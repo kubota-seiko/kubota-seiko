@@ -331,7 +331,7 @@
   .consult-form textarea{min-height:82px;resize:vertical;line-height:1.7;}
   .consult-form select{color:rgba(255,255,255,.85);}
   .consult-form input:focus,.consult-form textarea:focus,.consult-form select:focus{outline:none;border-color:var(--gold);}
-  .consult-form button{background:#fff;color:var(--ink);border:0;padding:17px;border-radius:2px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;transition:transform .25s,box-shadow .25s;margin-top:6px;}
+  .consult-form button{background:var(--gold);color:#fff;border:0;padding:20px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:.02em;cursor:pointer;font-family:inherit;transition:transform .25s,box-shadow .25s;margin-top:10px;box-shadow:0 10px 26px rgba(184,146,79,.32);}
   .consult-form button:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,255,255,.18);}
   .consult-form button:disabled{opacity:.6;cursor:default;transform:none;}
   #formResult{margin-top:22px;font-size:16px;color:#fff;}
@@ -377,6 +377,7 @@
       <a href="#stats">実績</a>
       <a href="#reasons">選ばれる理由</a>
       <a href="#svc">サービス</a>
+      <a href="cases.html">事例</a>
       <a href="#story">ご挨拶</a>
       <a href="#contact" class="nav-cta">無料相談</a>
     </nav>
@@ -594,6 +595,25 @@
   </div>
 </section>
 
+<!-- CASES TEASER -->
+<section style="background:var(--accent);color:#fff;">
+  <div class="wrap reveal" style="text-align:center;">
+    <p class="eyebrow">Case Studies</p>
+    <h2 class="sec-title" style="color:#fff;">業種は違うのに、みんな現実が動いている。</h2>
+    <p class="sec-lead" style="color:rgba(255,255,255,.74);margin:0 auto 32px;">思考が整理されると、人は自分で答えを見つけ、決断し、現実が動き始めます。<br>その共通の構造を、事例でご覧ください。</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin-bottom:38px;font-size:13px;font-weight:600;">
+      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">整理される</span>
+      <span style="color:var(--gold);font-weight:700;">→</span>
+      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">本音が言葉に</span>
+      <span style="color:var(--gold);font-weight:700;">→</span>
+      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">自分で決断</span>
+      <span style="color:var(--gold);font-weight:700;">→</span>
+      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">現実が動く</span>
+    </div>
+    <a href="cases.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;padding:16px 34px;border-radius:2px;font-size:15px;font-weight:700;transition:transform .25s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">思考整理で動いた事例を見る →</a>
+  </div>
+</section>
+
 <!-- STORY -->
 <section id="story">
   <div class="wrap reveal">
@@ -698,7 +718,7 @@
         <option value="対面">対面</option>
       </select>
       <input type="text" name="Preferred date" placeholder="ご希望の日程があれば（任意）">
-      <button type="submit">相談を申し込む →</button>
+      <button type="submit">無料相談で、思考整理を体験する →</button>
     </form>
     <div id="formResult"></div>
     <p class="form-sub">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank" rel="noopener">Messenger</a> からどうぞ。</p>
@@ -808,12 +828,12 @@
             cf.style.display='none';
             result.textContent='送信ありがとうございました。内容を確認のうえ、ご連絡します。';
           }else{
-            btn.textContent='相談を申し込む →';btn.disabled=false;
+            btn.textContent='無料相談で、思考整理を体験する →';btn.disabled=false;
             result.textContent='送信に失敗しました。お手数ですが、もう一度お試しください。';
           }
         })
         .catch(function(){
-          btn.textContent='相談を申し込む →';btn.disabled=false;
+          btn.textContent='無料相談で、思考整理を体験する →';btn.disabled=false;
           result.textContent='送信に失敗しました。Messengerからもご連絡いただけます。';
         });
     });
