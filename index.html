@@ -118,9 +118,9 @@
 
   /* services */
   .svc{background:var(--soft);}
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px;margin-top:48px;align-items:stretch;}
   .svc-card{
-    background:#fff;border:1px solid var(--line);border-radius:6px;padding:38px 32px;
+    background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px 24px;
     display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;
   }
   .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.07);}
@@ -137,6 +137,11 @@
   .svc-dots{display:flex;gap:8px;margin:0 0 14px;}
   .svc-dots span{width:12px;height:12px;border-radius:50%;background:var(--line);}
   .svc-dots span.on{background:var(--gold);}
+  .svc-tagline{font-size:13px;color:var(--ink);font-weight:500;line-height:1.65;margin:12px 0 14px;}
+  .svc-list{list-style:none;margin:0 0 14px;}
+  .svc-list li{font-size:13px;color:#444;line-height:1.55;padding-left:18px;position:relative;margin-bottom:7px;}
+  .svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;font-size:12px;}
+  .svc-for{font-size:12px;color:var(--sub);line-height:1.7;padding-top:12px;border-top:1px solid var(--line);margin-top:auto;}
 
   /* profile */
   .prof-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
@@ -215,7 +220,7 @@
     .hero-grid{grid-template-columns:1fr;gap:40px;}
     .hero-photo{max-width:380px;margin:0 auto;}
     .stats .wrap{grid-template-columns:1fr;gap:36px;}
-    .pain-grid,.svc-grid,.test-grid{grid-template-columns:1fr;}
+    .pain-grid,.test-grid{grid-template-columns:1fr;}
     .prof-grid{grid-template-columns:1fr;gap:36px;}
     .prof-photo{max-width:340px;}
   }
@@ -287,32 +292,68 @@
     <div class="reveal">
       <p class="eyebrow">Service & Price</p>
       <h2 class="sec-title">サービス・料金</h2>
-      <p class="sec-lead">選べる3つのプラン。続けやすい月2回がおすすめです。</p>
+      <p class="sec-lead">経営者の頭の中にある感覚・想い・判断基準を、言葉にし、必要に応じて仕組みに変えていきます。まずは思考整理から。続けるほど、言葉・商品・導線・仕組みが整っていきます。</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
-        <div class="svc-tag">習慣化</div>
-        <div class="svc-dots"><span class="on"></span><span></span><span></span><span></span></div>
-        <div class="svc-name">月1回プラン</div>
+        <div class="svc-tag">Starter</div>
+        <div class="svc-name">思考整理プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分。まずは思考整理を習慣にしたい方へ。</p>
+        <p class="svc-tagline">まずは、頭の中を整理したい方へ。</p>
+        <ul class="svc-list">
+          <li>月1回 60分セッション</li>
+          <li>現状の課題・優先順位の整理</li>
+          <li>次の一手の明確化</li>
+          <li>セッション後の簡易メモ</li>
+        </ul>
+        <p class="svc-for">こんな方に：頭の中が散らかっている／まず話しながら整理したい／壁打ち相手がほしい</p>
       </div>
       <div class="svc-card feat reveal">
-        <div class="svc-tag">続けやすい</div>
-        <div class="svc-dots"><span class="on"></span><span class="on"></span><span></span><span></span></div>
-        <div class="svc-name">月2回プラン</div>
+        <div class="svc-tag">Standard</div>
+        <div class="svc-name">言語化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分。考えを整え続ける、続けやすいペース。</p>
+        <p class="svc-tagline">考えを整え、言葉にして使える状態にしたい方へ。<br><span style="color:var(--gold);font-weight:700;">いちばんおすすめ</span></p>
+        <ul class="svc-list">
+          <li>月2回 60分セッション</li>
+          <li>課題・想い・強みの言語化</li>
+          <li>サービス説明文・発信テーマの整理</li>
+          <li>提案・無料相談で使う言葉づくり</li>
+          <li>月1枚の思考整理レポート</li>
+        </ul>
+        <p class="svc-for">こんな方に：自分の価値を言葉にしたい／発信やHPの言葉を整えたい／見せ方を整理したい</p>
       </div>
       <div class="svc-card reveal">
-        <div class="svc-tag">集中</div>
-        <div class="svc-dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
-        <div class="svc-name">月4回プラン</div>
+        <div class="svc-tag">Plus</div>
+        <div class="svc-name">仕組み化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分。言語化と仕組み化を一気に進めたい方へ。</p>
+        <p class="svc-tagline">言語化した内容を、事業の仕組みまで落としたい方へ。</p>
+        <ul class="svc-list">
+          <li>月4回 60分セッション</li>
+          <li>商品設計・導線設計</li>
+          <li>HP / LP / プロフィール文の整理</li>
+          <li>事例・お客様の声の整理</li>
+          <li>フォーム・返信文・簡易マニュアル設計</li>
+          <li>AI活用による業務整理＋月1回の実装レビュー</li>
+        </ul>
+        <p class="svc-for">こんな方に：感覚経営を仕組みに変えたい／人に任せる形を作りたい／AI・DXを取り入れたい</p>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-tag">Project</div>
+        <div class="svc-name">事業構築プロジェクト</div>
+        <div class="svc-price">応相談</div>
+        <p class="svc-tagline">経営者の頭の中を、事業全体の資産に変えるプロジェクト。</p>
+        <ul class="svc-list">
+          <li>事業コンセプト・営業導線の設計</li>
+          <li>HP / LP 構成・営業資料化</li>
+          <li>社内マニュアル・顧客対応フロー整備</li>
+          <li>AI / DX 導入設計</li>
+          <li>チーム共有資料の作成</li>
+          <li>継続的な経営参謀支援</li>
+        </ul>
+        <p class="svc-for">こんな方に：事業を本格的に再構築したい／属人的な仕事を仕組みに／頭の中をチームに渡したい</p>
       </div>
     </div>
-    <p class="svc-note reveal">言語化した内容を、AI・DXで“ホームページ・営業導線・仕組み”まで形にする「構築プロジェクト」（応相談）もご用意しています。</p>
+    <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ変えていきます。</p>
   </div>
 </section>
 
