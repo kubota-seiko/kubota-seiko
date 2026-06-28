@@ -142,6 +142,18 @@
   .svc-list li{font-size:13px;color:#444;line-height:1.55;padding-left:18px;position:relative;margin-bottom:7px;}
   .svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;font-size:12px;}
   .svc-for{font-size:12px;color:var(--sub);line-height:1.7;padding-top:12px;border-top:1px solid var(--line);margin-top:auto;}
+  .svc-project{margin-top:24px;background:var(--accent);color:#fff;border-radius:10px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .svc-project .svc-tag{background:var(--gold);color:#fff;}
+  .svc-project h3{font-size:24px;color:#fff;margin:14px 0 10px;}
+  .svc-project .proj-price{font-size:32px;font-weight:700;color:#fff;}
+  .svc-project .proj-price small{font-size:14px;color:var(--gold);font-weight:500;margin-left:6px;}
+  .svc-project .proj-desc{font-size:14px;color:rgba(255,255,255,.82);line-height:1.85;margin:14px 0 22px;}
+  .svc-project .proj-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 28px;border-radius:2px;font-size:14px;font-weight:700;transition:transform .25s;}
+  .svc-project .proj-cta:hover{transform:translateY(-2px);color:var(--accent);}
+  .svc-project ul{list-style:none;}
+  .svc-project ul li{font-size:14px;color:rgba(255,255,255,.9);line-height:1.6;padding-left:20px;position:relative;margin-bottom:9px;}
+  .svc-project ul li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700;}
+  @media(max-width:760px){.svc-project{grid-template-columns:1fr;gap:24px;padding:30px 26px;}}
 
   /* profile */
   .prof-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
@@ -337,23 +349,25 @@
         </ul>
         <p class="svc-for">こんな方に：感覚経営を仕組みに変えたい／人に任せる形を作りたい／AI・DXを取り入れたい</p>
       </div>
-      <div class="svc-card reveal">
-        <div class="svc-tag">Project</div>
-        <div class="svc-name">事業構築プロジェクト</div>
-        <div class="svc-price">応相談</div>
-        <p class="svc-tagline">経営者の頭の中を、事業全体の資産に変えるプロジェクト。</p>
-        <ul class="svc-list">
-          <li>事業コンセプト・営業導線の設計</li>
-          <li>HP / LP 構成・営業資料化</li>
-          <li>社内マニュアル・顧客対応フロー整備</li>
-          <li>AI / DX 導入設計</li>
-          <li>チーム共有資料の作成</li>
-          <li>継続的な経営参謀支援</li>
-        </ul>
-        <p class="svc-for">こんな方に：事業を本格的に再構築したい／属人的な仕事を仕組みに／頭の中をチームに渡したい</p>
-      </div>
     </div>
     <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ変えていきます。</p>
+    <div class="svc-project reveal">
+      <div class="proj-head">
+        <span class="svc-tag">Project</span>
+        <h3>事業構築プロジェクト</h3>
+        <div class="proj-price">65万円<small>〜（応相談）</small></div>
+        <p class="proj-desc">経営者の頭の中を、事業全体の資産に変えるプロジェクト。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
+        <a href="#contact" class="proj-cta">まずは無料相談する <span class="arr">→</span></a>
+      </div>
+      <ul>
+        <li>事業コンセプト・営業導線の設計</li>
+        <li>HP / LP 構成・営業資料化</li>
+        <li>社内マニュアル・顧客対応フロー整備</li>
+        <li>AI / DX 導入設計</li>
+        <li>チーム共有資料の作成</li>
+        <li>継続的な経営参謀支援</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -406,7 +420,7 @@
 <section class="cta" id="contact">
   <div class="wrap reveal">
     <h2>まずは無料相談から</h2>
-    <p>約60分の無料相談で、ご相談の内容を基にした「思考整理レポート（1枚）」をお渡しします。話すだけで、頭の中が整理される感覚を、まず体験してください。</p>
+    <p>約30分の無料相談で、ご相談の内容を基にした「思考整理レポート（1枚）」をお渡しします。話すだけで、頭の中が整理される感覚を、まず体験してください。</p>
     <form id="consultForm" class="consult-form">
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
       <input type="hidden" name="subject" value="【無料相談】お申し込み｜思考整理の参謀">
