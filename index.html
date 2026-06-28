@@ -97,7 +97,9 @@
 
   /* stats */
   .stats{background:var(--accent);color:#fff;}
-  .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;}
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;}
+  .creed{text-align:center;font-size:clamp(21px,3.3vw,32px);font-weight:700;color:#fff;line-height:1.6;margin-bottom:52px;letter-spacing:.02em;}
+  .creed b{color:var(--gold);font-weight:700;}
   .stat .num{font-family:"Inter",sans-serif;font-size:clamp(44px,7vw,72px);font-weight:700;line-height:1;letter-spacing:-.02em;}
   .stat .num small{font-size:.4em;font-weight:500;margin-left:4px;color:var(--gold);}
   .stat .lbl{margin-top:14px;font-size:15px;color:rgba(255,255,255,.72);}
@@ -167,6 +169,7 @@
   .mission{background:var(--soft);border-left:3px solid var(--gold);padding:22px 26px;border-radius:0 4px 4px 0;}
   .mission span{display:block;font-size:12px;letter-spacing:.2em;color:var(--gold);margin-bottom:8px;font-family:"Inter";font-weight:600;}
   .mission p{font-size:19px;font-weight:700;}
+  .mission .mission-credo{font-size:14px;font-weight:600;color:var(--gold);margin-top:12px;line-height:1.55;}
 
   /* testimonials */
   .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
@@ -231,7 +234,7 @@
     .hero{padding-top:118px;}
     .hero-grid{grid-template-columns:1fr;gap:40px;}
     .hero-photo{max-width:380px;margin:0 auto;}
-    .stats .wrap{grid-template-columns:1fr;gap:36px;}
+    .stats-row{grid-template-columns:1fr;gap:36px;}
     .pain-grid,.test-grid{grid-template-columns:1fr;}
     .prof-grid{grid-template-columns:1fr;gap:36px;}
     .prof-photo{max-width:340px;}
@@ -275,9 +278,11 @@
 <!-- STATS -->
 <section class="stats" id="stats">
   <div class="wrap">
-    <div class="stat reveal"><div class="num">11<small>年</small></div><div class="lbl">自営業歴・法人8期目</div></div>
-    <div class="stat reveal"><div class="num">10,000<small>件以上</small></div><div class="lbl">累計セッション実績</div></div>
-    <div class="stat reveal"><div class="num">26,000<small>+</small></div><div class="lbl">AI対話・検証実績<span style="display:block;font-size:11px;opacity:.7;margin-top:3px;">※2025年4月時点</span></div></div>
+    <div class="stats-row">
+      <div class="stat reveal"><div class="num">11<small>年</small></div><div class="lbl">自営業歴・法人8期目</div></div>
+      <div class="stat reveal"><div class="num">10,000<small>件以上</small></div><div class="lbl">累計セッション実績</div></div>
+      <div class="stat reveal"><div class="num">26,000<small>+</small></div><div class="lbl">AI対話・検証実績<span style="display:block;font-size:11px;opacity:.7;margin-top:3px;">※2025年4月時点</span></div></div>
+    </div>
   </div>
 </section>
 
@@ -390,6 +395,7 @@
       <div class="mission">
         <span>MISSION</span>
         <p>「経営者の想いを、未来へ繋ぐ」</p>
+        <p class="mission-credo">想いを言葉に、言葉を仕組みに、仕組みを未来へ。</p>
       </div>
     </div>
   </div>
@@ -412,7 +418,7 @@
       <p>AIは、人の代わりになるものではありません。人が自分らしく輝き続けるための、最高のパートナーです。</p>
       <p>もし今、「頭の中を整理したい」「事業を次のステージへ進めたい」「AIを経営に活かしたい」——そう感じているなら、ぜひ一度、お話を聞かせてください。あなた自身がまだ気づいていない可能性を、一緒に形にしていけることを、楽しみにしています。</p>
     </div>
-    <p class="story-quote">「想いを言葉に、言葉を仕組みに、仕組みを未来へ。」<small>― Eternal株式会社 代表取締役 窪田 成功</small></p>
+    <p style="margin-top:36px;text-align:right;font-size:15px;color:var(--sub);">Eternal株式会社 代表取締役　<b style="color:var(--ink);font-size:18px;">窪田 成功</b></p>
   </div>
 </section>
 
