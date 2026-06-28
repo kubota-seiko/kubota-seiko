@@ -153,6 +153,24 @@
   .about-flow::before{content:"";display:block;width:44px;height:2px;background:var(--gold);margin:0 auto 30px;border-radius:2px;}
   .about-note{margin-top:32px;color:var(--sub);font-size:15px;}
 
+  /* check (思考整理チェック) */
+  #check .sec-lead{max-width:560px;}
+  .check-box{max-width:680px;margin:44px auto 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 34px;}
+  .check-list{list-style:none;}
+  .check-list li{margin-bottom:8px;}
+  .check-list label{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:border-color .2s,background .2s;font-size:15px;color:var(--ink);line-height:1.6;}
+  .check-list label:hover{border-color:var(--gold);background:var(--soft);}
+  .check-list input{margin-top:2px;width:18px;height:18px;accent-color:var(--gold);flex:0 0 auto;cursor:pointer;}
+  .check-list input:checked + span{color:var(--accent);font-weight:500;}
+  .check-btn{display:block;width:100%;margin-top:20px;background:var(--accent);color:#fff;border:0;padding:16px;border-radius:4px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:transform .2s,opacity .2s;}
+  .check-btn:hover{transform:translateY(-2px);opacity:.92;}
+  .check-result{margin-top:24px;text-align:center;display:none;}
+  .check-result.show{display:block;}
+  .check-result .rmsg{font-size:16px;line-height:1.85;color:var(--ink);margin-bottom:22px;}
+  .check-result .rmsg b{color:var(--accent);}
+  .check-result .check-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;transition:transform .2s;}
+  .check-result .check-cta:hover{transform:translateY(-2px);color:#fff;}
+
   /* reasons */
   .reasons{background:var(--accent);color:#fff;}
   .reasons .sec-lead{color:rgba(255,255,255,.72);margin-left:auto;margin-right:auto;}
@@ -436,6 +454,29 @@
   </div>
 </section>
 
+<!-- CHECK (思考整理チェック) -->
+<section id="check">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;">
+      <p class="eyebrow">Check</p>
+      <h2 class="sec-title">思考整理チェック</h2>
+      <p class="sec-lead" style="margin:0 auto;">10秒でできる、かんたんセルフチェック。当てはまるものを選んでみてください。</p>
+    </div>
+    <div class="check-box reveal">
+      <ul class="check-list">
+        <li><label><input type="checkbox" class="ck"><span>頭の中に考えはあるが、うまく言葉にできない</span></label></li>
+        <li><label><input type="checkbox" class="ck"><span>やることが多すぎて、優先順位が決まらない</span></label></li>
+        <li><label><input type="checkbox" class="ck"><span>考えているのに、なかなか前に進めない</span></label></li>
+        <li><label><input type="checkbox" class="ck"><span>AIを使っているが、成果につながっていない</span></label></li>
+        <li><label><input type="checkbox" class="ck"><span>相談したいが、本音を話せる相手がいない</span></label></li>
+        <li><label><input type="checkbox" class="ck"><span>想いはあるのに、HPや資料でうまく表現できない</span></label></li>
+      </ul>
+      <button type="button" id="checkBtn" class="check-btn">結果を見る</button>
+      <div id="checkResult" class="check-result"></div>
+    </div>
+  </div>
+</section>
+
 <!-- REASONS -->
 <section class="reasons" id="reasons">
   <div class="wrap">
@@ -712,6 +753,28 @@
     el.style.transitionDelay=(i%3*0.08)+'s';
     io.observe(el);
   });
+
+  // 思考整理チェック
+  var checkBtn=document.getElementById('checkBtn');
+  if(checkBtn){
+    checkBtn.addEventListener('click',function(){
+      var n=document.querySelectorAll('#check .ck:checked').length;
+      var msg;
+      if(n===0){
+        msg='今は、思考が整理されている状態かもしれません。さらに前へ進めたいときは、いつでもご相談ください。';
+      }else if(n<=2){
+        msg='<b>'+n+'つ</b>当てはまりましたね。少し整理するだけで、ぐっと前に進めるはずです。';
+      }else if(n<=4){
+        msg='<b>'+n+'つ</b>当てはまりました。頭の中が少し混み合っているサインかも。一度、一緒に整理してみませんか？';
+      }else{
+        msg='<b>'+n+'つ</b>当てはまりました。一人で抱え込みすぎているのかもしれません。思考整理で、きっと変えられます。';
+      }
+      var r=document.getElementById('checkResult');
+      r.innerHTML='<p class="rmsg">'+msg+'</p><a href="#contact" class="check-cta">無料相談で、頭の中を整理する →</a>';
+      r.classList.add('show');
+      r.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  }
 
   // consultation form submit (Web3Forms)
   var cf=document.getElementById('consultForm');
