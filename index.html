@@ -156,6 +156,21 @@
   #prof{background:var(--soft);}
   #prof .mission{background:#fff;}
 
+  /* more (SNS) */
+  #more .sec-lead{max-width:600px;}
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+  .more-card{display:flex;flex-direction:column;align-items:flex-start;padding:34px 30px;border:1px solid var(--line);border-radius:10px;background:#fff;color:inherit;transition:transform .25s,box-shadow .25s,border-color .25s;}
+  .more-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(0,0,0,.07);border-color:var(--gold);color:inherit;}
+  .more-ico{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;margin-bottom:18px;}
+  .more-ico svg{width:24px;height:24px;}
+  .more-card b{font-size:19px;color:var(--ink);margin-bottom:8px;letter-spacing:.02em;}
+  .more-role{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--gold);margin-bottom:12px;}
+  .more-desc{font-size:14px;color:var(--sub);line-height:1.75;margin-bottom:22px;}
+  .more-link{margin-top:auto;font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:8px;}
+  .more-link .arr{transition:transform .25s;}
+  .more-card:hover .more-link .arr{transform:translateX(4px);}
+  @media(max-width:820px){.more-grid{grid-template-columns:1fr;}}
+
   /* pain */
   #pain .wrap > .reveal{text-align:center;}
   #pain .wrap > .reveal .sec-lead{margin-left:auto;margin-right:auto;}
@@ -178,6 +193,8 @@
 
   /* services */
   .svc{background:var(--soft);}
+  #svc .wrap > .reveal:first-child{text-align:center;}
+  #svc .wrap > .reveal:first-child .sec-lead{margin-left:auto;margin-right:auto;}
   .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px;margin-top:48px;align-items:stretch;}
   .svc-card{
     background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px 24px;
@@ -386,7 +403,7 @@
     <h2 class="sec-title">思考整理とは？</h2>
     <p class="about-lead">AIで、誰もが同じ情報を手にできる時代。<br>だからこそ、価値を分けるのは「思考を整理する力」です。</p>
     <p class="about-flow">想いを言葉にし、<br>言葉を仕組みにし、<br>未来へつなぐこと。</p>
-    <p class="about-note">それは、頭の中を片づけることではありません。AIをパートナーに、想いを未来へつなぐこと。それが、私の考える「思考整理」です。</p>
+    <p class="about-note">それは、頭の中を片づけることではありません。考えを整理し、判断し、形にして、実行する——そのサイクルを、AIをパートナーに、少しでも速く回せるように。回るほど、経営は前へ進みます。それが、私の考える「思考整理」です。</p>
   </div>
 </section>
 
@@ -396,14 +413,14 @@
     <div class="reveal" style="text-align:center;">
       <p class="eyebrow">Why Me</p>
       <h2 class="sec-title" style="color:#fff;">選ばれる理由</h2>
-      <p class="sec-lead">実績・経験・専門性。複数の視点から、経営者の思考整理に伴走します。</p>
+      <p class="sec-lead">実績・経験・専門性。複数の視点から、経営の「考える→決める→動く」が、より速く前へ進むよう伴走します。</p>
     </div>
     <div class="reason-list">
       <div class="reason-row reveal"><span class="rno">01</span><div class="rtxt"><b>1万件以上のセッション経験</b><span>10年以上にわたり、学生から経営者まで、累計1万件以上の対話を重ねてきました。課題を解きほぐす力が、私の土台です。</span></div></div>
       <div class="reason-row reveal"><span class="rno">02</span><div class="rtxt"><b>AIとの26,000回以上の対話・検証</b><span>実務でAIを徹底的に検証し、「使える形」に落とし込みます。流行ではなく、現場で役立つ活用法を。<span style="opacity:.6;">（※2025年4月時点）</span></span></div></div>
       <div class="reason-row reveal"><span class="rno">03</span><div class="rtxt"><b>シータヒーリング®インストラクター</b><span>講師として250名以上を養成。人の深層心理や思考パターンを長年探究し、言葉の奥にある「本当の想い」を引き出します。</span></div></div>
       <div class="reason-row reveal"><span class="rno">04</span><div class="rtxt"><b>法人設立8期目の経営経験</b><span>自らも経営者として事業を続けてきたからこそ、現場の判断や孤独に、同じ目線で寄り添えます。</span></div></div>
-      <div class="reason-row reveal"><span class="rno">05</span><div class="rtxt"><b>思考整理 × AI × DX</b><span>整理する力、言語化する力、そして実装する力。3つを掛け合わせて、想いを事業の形にします。</span></div></div>
+      <div class="reason-row reveal"><span class="rno">05</span><div class="rtxt"><b>思考整理 × AI × DX</b><span>整理する力、言語化する力、そして実装する力。3つを掛け合わせ、判断から実行までのサイクルを、より速く前へ進めます。</span></div></div>
     </div>
     <div class="reveal" style="text-align:center;margin-top:44px;">
       <a href="#contact" class="reasons-cta">無料相談で、頭の中を整理する <span class="arr">→</span></a>
@@ -519,6 +536,7 @@
       <p><span class="u">私はこれまで、</span><span class="u">1万件以上のセッションを通して、</span><span class="u">経営者や個人事業主をはじめ、</span><span class="u">さまざまな方の人生や仕事の悩みに向き合ってきました。</span><span class="u">また、シータヒーリング®インストラクターとして、</span><span class="u">人の深層心理や思考パターンを長年探究し、</span><span class="u">「人は何によって変化し、自分らしく生きられるのか」を</span><span class="u">学び続けてきました。</span></p>
       <p><span class="u">そして現在は、</span><span class="u">26,000回以上（現在も更新中）の</span><span class="u">ChatGPTとの対話・検証を重ね、</span><span class="u">人の思考とAIを融合させる、</span><span class="u">新しい支援の形を追求しています。</span></p>
       <p><span class="u">私の仕事は、</span><span class="u">AIを教えることではありません。</span><span class="u">人の想いや考えを整理し、言葉にし、</span><span class="u">AIを活用しながら、</span><span class="u">事業・サービス・仕組みへと形にしていくことです。</span><span class="u">ホームページ制作、サービス設計、営業資料、</span><span class="u">業務改善、DX、組織づくり——</span><span class="u">すべては「思考整理」から始まります。</span><span class="u">だから私は、自分の仕事を</span><span class="u"><b>「思考整理の参謀」</b>と表現しています。</span></p>
+      <p><span class="u">整理し、判断し、形にして、実行する。</span><span class="u">このサイクルが速く回るほど、</span><span class="u">経営は前へ進み、進化していきます。</span><span class="u">私が本当に実現したいのは、</span><span class="u">この<b>「経営の進化速度」</b>を上げること。</span><span class="u">AIは、そのための心強いパートナーです。</span></p>
       <p><span class="u">Eternal株式会社のミッションは、</span><span class="u"><b>「経営者の想いを、未来へ繋ぐ。」</b></span><span class="u">経営者は、多くの責任を背負いながら、</span><span class="u">本音を話せる相手が少ない存在です。</span><span class="u">一人で抱え込み悩み続けるのではなく、</span><span class="u">安心して考えを整理し、</span><span class="u">その想いを次の世代へ繋いでいける——</span><span class="u">そんな存在でありたい。</span><span class="u">その想いで、一人ひとりと向き合っています。</span></p>
       <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">“永く続く”——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
       <p><span class="u">このホームページを作ったのも、</span><span class="u">その想いをお伝えしたかったからです。</span><span class="u">これまでご縁の多くはご紹介から始まり、</span><span class="u">そのたびに「どんな仕事をしているのですか？」と聞かれます。</span><span class="u">けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、</span><span class="u">私が本当に提供している価値を表現しきれません。</span></p>
@@ -549,6 +567,40 @@
         <span>MISSION</span>
         <p>「経営者の想いを、未来へ繋ぐ」</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE (SNS) -->
+<section id="more">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;">
+      <p class="eyebrow">Follow</p>
+      <h2 class="sec-title">もっと窪田成功を知る</h2>
+      <p class="sec-lead" style="margin:0 auto;">ホームページではサービスや実績を。日々の気づきや考え方、活動の様子は、それぞれのメディアで発信しています。</p>
+    </div>
+    <div class="more-grid">
+      <a href="https://note.com/kubota_seiko" target="_blank" rel="noopener" class="more-card reveal">
+        <span class="more-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20.5l1-4L16 5.5l3 3L8 19.5z"/><path d="M14 7.5l3 3"/></svg></span>
+        <b>note</b>
+        <span class="more-role">思想・価値観・深い考察</span>
+        <span class="more-desc">思考整理・AI・経営・人生について、少し深く考えたことを発信しています。</span>
+        <span class="more-link">記事を読む <span class="arr">→</span></span>
+      </a>
+      <a href="https://www.facebook.com/seikou.kubota" target="_blank" rel="noopener" class="more-card reveal">
+        <span class="more-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M14.5 8.5h-1.3c-.7 0-1.1.4-1.1 1.1V11H15l-.4 2.2h-2.5V20"/></svg></span>
+        <b>Facebook</b>
+        <span class="more-role">日々の気づき・実践・改善</span>
+        <span class="more-desc">日々の活動や挑戦、実際の改善プロセスを、リアルタイムで発信しています。</span>
+        <span class="more-link">投稿を見る <span class="arr">→</span></span>
+      </a>
+      <a href="https://www.instagram.com/kubota_seiko" target="_blank" rel="noopener" class="more-card reveal">
+        <span class="more-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1"/></svg></span>
+        <b>Instagram</b>
+        <span class="more-role">世界観・活動風景・人柄</span>
+        <span class="more-desc">活動の様子や世界観、仕事の雰囲気を、写真やショート動画で発信しています。</span>
+        <span class="more-link">写真・動画を見る <span class="arr">→</span></span>
+      </a>
     </div>
   </div>
 </section>
