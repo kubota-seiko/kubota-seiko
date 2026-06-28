@@ -428,7 +428,24 @@
       var btn=cf.querySelector('button');
       var result=document.getElementById('formResult');
       btn.textContent='送信中...';btn.disabled=true;
-      fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(cf)})
+      var el=cf.elements;
+      var g=function(n){return el[n]?el[n].value:'';};
+      var payload={
+        access_key:g('access_key'),
+        subject:g('subject'),
+        from_name:g('from_name'),
+        'お名前':g('Name'),
+        'メールアドレス':g('email'),
+        'お仕事・事業':g('Business'),
+        'いちばんのモヤモヤ':g('Main concern'),
+        'これまで試したこと':g('Tried before'),
+        '理想の状態':g('Ideal state'),
+        '言語化できていない部分':g('Hard to verbalize'),
+        '持ち帰りたいもの':g('Takeaway'),
+        '相談方法':g('Consultation method'),
+        '希望日程':g('Preferred date')
+      };
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
         .then(function(r){return r.json();})
         .then(function(data){
           if(data.success){
