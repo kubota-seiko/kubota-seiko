@@ -109,7 +109,48 @@
   .stat .num small{font-size:.4em;font-weight:500;margin-left:4px;color:var(--gold);}
   .stat .lbl{margin-top:14px;font-size:15px;color:rgba(255,255,255,.72);}
 
+  /* concept */
+  #about .wrap{text-align:center;max-width:780px;}
+  #about .eyebrow{margin-bottom:18px;}
+  .about-lead{font-size:clamp(17px,2.5vw,22px);color:var(--ink);line-height:1.85;margin:6px 0 32px;}
+  .about-flow{font-size:clamp(23px,3.8vw,36px);font-weight:700;color:var(--accent);line-height:1.7;letter-spacing:.02em;}
+  .about-flow::before{content:"";display:block;width:44px;height:2px;background:var(--gold);margin:0 auto 30px;border-radius:2px;}
+  .about-note{margin-top:32px;color:var(--sub);font-size:15px;}
+
+  /* reasons */
+  .reasons{background:var(--accent);color:#fff;}
+  .reasons .sec-lead{color:rgba(255,255,255,.72);margin-left:auto;margin-right:auto;}
+  .reason-list{max-width:880px;margin:44px auto 0;}
+  .reason-row{display:flex;gap:26px;align-items:flex-start;padding:26px 4px;border-top:1px solid rgba(255,255,255,.14);}
+  .reason-row:last-child{border-bottom:1px solid rgba(255,255,255,.14);}
+  .reason-row .rno{font-family:"Inter",sans-serif;font-size:22px;font-weight:700;color:var(--gold);min-width:46px;line-height:1.4;letter-spacing:.04em;}
+  .reason-row .rtxt b{display:block;font-size:clamp(17px,2.4vw,19px);color:#fff;margin-bottom:7px;letter-spacing:.01em;}
+  .reason-row .rtxt span{font-size:14px;color:rgba(255,255,255,.74);line-height:1.75;}
+  .reasons-cta{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.5);color:#fff;padding:15px 30px;border-radius:2px;font-size:14px;font-weight:500;transition:background .25s,color .25s,transform .25s;}
+  .reasons-cta:hover{background:#fff;color:var(--accent);transform:translateY(-2px);}
+  .reasons-cta .arr{transition:transform .25s;}
+  .reasons-cta:hover .arr{transform:translateX(4px);}
+
+  /* benefits */
+  #benefit .sec-lead{max-width:580px;}
+  .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
+  @media(max-width:820px){.benefit-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.benefit-grid{grid-template-columns:1fr;}}
+  .benefit{text-align:center;padding:32px 20px;border:1px solid var(--line);border-radius:8px;transition:transform .25s,border-color .25s;}
+  .benefit:hover{transform:translateY(-4px);border-color:var(--gold);}
+  .benefit .bf-ico{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--soft);color:var(--gold);margin-bottom:16px;}
+  .benefit .bf-ico svg{width:24px;height:24px;}
+  .benefit b{display:block;font-size:16px;color:var(--ink);margin-bottom:9px;}
+  .benefit span:last-child{display:block;font-size:13px;color:var(--sub);line-height:1.65;}
+  .benefit-cta{text-align:center;margin-top:48px;}
+  .benefit-cta p{font-size:15px;color:var(--sub);margin-bottom:22px;}
+
+  /* profile (moved lower) */
+  #prof{background:var(--soft);}
+  #prof .mission{background:#fff;}
+
   /* pain */
+  #pain .pain-card{background:#fff;}
   .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
   .pain-card{
     border:1px solid var(--line);border-radius:4px;padding:32px 30px;
@@ -257,10 +298,10 @@
   <div class="wrap nav-in">
     <a href="#top" class="brand">窪田成功<span>思考整理の参謀</span></a>
     <nav class="nav-links">
-      <a href="#stats">実績</a>
       <a href="#pain">こんな方へ</a>
+      <a href="#stats">実績</a>
+      <a href="#reasons">選ばれる理由</a>
       <a href="#svc">サービス</a>
-      <a href="#prof">プロフィール</a>
       <a href="#story">ご挨拶</a>
       <a href="#contact" class="nav-cta">無料相談</a>
     </nav>
@@ -285,6 +326,23 @@
   </div>
 </section>
 
+<!-- PAIN -->
+<section class="svc" id="pain">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">For You</p>
+      <h2 class="sec-title">こんなお悩み、ありませんか？</h2>
+      <p class="sec-lead">ひとつでも当てはまるなら、思考整理で変えられます。一人で抱え込まなくて大丈夫です。</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3v-3H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><div class="pain-txt"><b>頭の中が整理できない</b><span>考えや想いはあるのに、うまく言葉にできない。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><path d="M16 6.2a2.8 2.8 0 0 1 0 5.3"/><path d="M17.5 13.6c2 .6 3.5 2.4 3.5 5"/></svg></span><div class="pain-txt"><b>一人で抱え込んでしまう</b><span>相談したいが、本音を話せる相手が少ない。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 5v3"/><circle cx="12" cy="4" r="1"/><path d="M9.5 12.5v.01M14.5 12.5v.01" stroke-width="2.6"/><path d="M10 15.5h4"/><path d="M3 11.5v3M21 11.5v3"/></svg></span><div class="pain-txt"><b>AIを経営に活かしたい</b><span>AI・DXを、自社の武器として取り入れたい。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div class="pain-txt"><b>想いを形にしたい</b><span>頭の中のアイデアを、事業・仕組みにして残したい。</span></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- STATS -->
 <section class="stats" id="stats">
   <div class="wrap">
@@ -296,19 +354,57 @@
   </div>
 </section>
 
-<!-- PAIN -->
-<section id="pain">
+<!-- CONCEPT -->
+<section class="svc" id="about">
+  <div class="wrap reveal">
+    <p class="eyebrow">Concept</p>
+    <h2 class="sec-title">思考整理とは？</h2>
+    <p class="about-lead">AIで、誰もが同じ情報を手にできる時代。<br>だからこそ、価値を分けるのは「思考を整理する力」です。</p>
+    <p class="about-flow">想いを言葉にし、<br>言葉を仕組みにし、<br>未来へつなぐこと。</p>
+    <p class="about-note">それは、頭の中を片づけることではありません。AIをパートナーに、想いを未来へつなぐこと。それが、私の考える「思考整理」です。</p>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section class="reasons" id="reasons">
   <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">For You</p>
-      <h2 class="sec-title">感覚でやってこられた経営者の皆様へ。</h2>
-      <p class="sec-lead">ひとつでも当てはまるなら、言語化と仕組み化で変えられます。</p>
+    <div class="reveal" style="text-align:center;">
+      <p class="eyebrow">Why Me</p>
+      <h2 class="sec-title" style="color:#fff;">選ばれる理由</h2>
+      <p class="sec-lead">実績・経験・専門性。複数の視点から、経営者の思考整理に伴走します。</p>
     </div>
-    <div class="pain-grid">
-      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3v-3H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><div class="pain-txt"><b>言語化したい</b><span>感覚でやってきたが、自分のやり方を言葉にできていない。</span></div></div>
-      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div class="pain-txt"><b>仕組みにしたい</b><span>頭の中の判断基準を、仕組み・マニュアルに残したい。</span></div></div>
-      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 5v3"/><circle cx="12" cy="4" r="1"/><path d="M9.5 12.5v.01M14.5 12.5v.01" stroke-width="2.6"/><path d="M10 15.5h4"/><path d="M3 11.5v3M21 11.5v3"/></svg></span><div class="pain-txt"><b>AIで自走したい</b><span>AI・DXを使って、自走できる状態をつくりたい。</span></div></div>
-      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><path d="M16 6.2a2.8 2.8 0 0 1 0 5.3"/><path d="M17.5 13.6c2 .6 3.5 2.4 3.5 5"/></svg></span><div class="pain-txt"><b>相談相手を選びたい</b><span>相談したいが、「誰でもいい」わけではない。</span></div></div>
+    <div class="reason-list">
+      <div class="reason-row reveal"><span class="rno">01</span><div class="rtxt"><b>1万件以上のセッション経験</b><span>10年以上にわたり、経営者から個人まで、累計1万件以上の対話を重ねてきました。課題を解きほぐす力が、私の土台です。</span></div></div>
+      <div class="reason-row reveal"><span class="rno">02</span><div class="rtxt"><b>AIとの26,000回以上の対話・検証</b><span>実務でAIを徹底的に検証し、「使える形」に落とし込みます。流行ではなく、現場で役立つ活用法を。<span style="opacity:.6;">（※2025年4月時点）</span></span></div></div>
+      <div class="reason-row reveal"><span class="rno">03</span><div class="rtxt"><b>シータヒーリング®インストラクター</b><span>人の深層心理や思考パターンを長年探究。言葉の奥にある「本当の想い」を引き出します。</span></div></div>
+      <div class="reason-row reveal"><span class="rno">04</span><div class="rtxt"><b>法人設立8期目の経営経験</b><span>自らも経営者として事業を続けてきたからこそ、現場の判断や孤独に、同じ目線で寄り添えます。</span></div></div>
+      <div class="reason-row reveal"><span class="rno">05</span><div class="rtxt"><b>思考整理 × AI × DX</b><span>整理する力、言語化する力、そして実装する力。3つを掛け合わせて、想いを事業の形にします。</span></div></div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:44px;">
+      <a href="#contact" class="reasons-cta">あなたの思考整理、お手伝いします <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefit">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;">
+      <p class="eyebrow">Benefits</p>
+      <h2 class="sec-title">ご相談のあと、こう変わります。</h2>
+      <p class="sec-lead" style="margin:0 auto;">サービスの内容よりも先に、得られる変化から。頭の中が整理されると、経営はもっと前に進みます。</p>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>思考が整理される</b><span>モヤモヤしていた頭の中が、すっきりと見通せるように。</span></div>
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>判断が速くなる</b><span>何を優先すべきかが明確になり、迷いが減る。</span></div>
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>想いが言葉になる</b><span>伝わらなかった価値が、伝わる言葉として形に。</span></div>
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>AIを経営で活かせる</b><span>整理した考えを、AIを使って成果につなげられる。</span></div>
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>事業が仕組み化される</b><span>属人的なやり方が、続く仕組み・資産に変わる。</span></div>
+      <div class="benefit reveal"><span class="bf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><b>一人で抱え込まなくてよくなる</b><span>本音を話せる参謀がいる、という安心。</span></div>
+    </div>
+    <div class="benefit-cta reveal">
+      <p>ここまで読んで「これは自分のことだ」と感じた方へ。</p>
+      <a href="#contact" class="hero-cta">まずは無料相談で、頭の中を整理する <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -386,6 +482,28 @@
   </div>
 </section>
 
+<!-- STORY -->
+<section id="story">
+  <div class="wrap reveal">
+    <p class="eyebrow">Message</p>
+    <h2 class="sec-title">ご挨拶</h2>
+    <p class="credo-lead reveal">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
+    <div class="story-body">
+      <p><span class="u">情報があふれる時代に、</span><span class="u">本当に大切なのは何か——。</span><span class="u">AIの進化によって、</span><span class="u">仕事のやり方は大きく変わり、</span><span class="u">誰でもAIを使える時代になりました。</span><span class="u">情報も簡単に手に入ります。</span><span class="u">けれど、価値を分けるのは、</span><span class="u">情報の“量”ではありません。</span></p>
+      <p><span class="u"><b>「何を考え、どう判断し、どう行動するか。」</b></span><br><span class="u">その思考を整理する力こそが、</span><span class="u">これからの時代に最も重要な力だと、</span><span class="u">私は考えています。</span></p>
+      <p><span class="u">私はこれまで、</span><span class="u">1万件以上のセッションを通して、</span><span class="u">経営者や個人事業主をはじめ、</span><span class="u">さまざまな方の人生や仕事の悩みに向き合ってきました。</span><span class="u">また、シータヒーリング®インストラクターとして、</span><span class="u">人の深層心理や思考パターンを長年探究し、</span><span class="u">「人は何によって変化し、自分らしく生きられるのか」を</span><span class="u">学び続けてきました。</span></p>
+      <p><span class="u">そして現在は、</span><span class="u">26,000回以上（現在も更新中）の</span><span class="u">ChatGPTとの対話・検証を重ね、</span><span class="u">人の思考とAIを融合させる、</span><span class="u">新しい支援の形を追求しています。</span></p>
+      <p><span class="u">私の仕事は、</span><span class="u">AIを教えることではありません。</span><span class="u">人の想いや考えを整理し、言葉にし、</span><span class="u">AIを活用しながら、</span><span class="u">事業・サービス・仕組みへと形にしていくことです。</span><span class="u">ホームページ制作、サービス設計、営業資料、</span><span class="u">業務改善、DX、組織づくり——</span><span class="u">すべては「思考整理」から始まります。</span><span class="u">だから私は、自分の仕事を</span><span class="u"><b>「思考整理の参謀」</b>と表現しています。</span></p>
+      <p><span class="u">Eternal株式会社のミッションは、</span><span class="u"><b>「経営者の想いを、未来へ繋ぐ。」</b></span><span class="u">経営者は、多くの責任を背負いながら、</span><span class="u">本音を話せる相手が少ない存在です。</span><span class="u">一人で抱え込み悩み続けるのではなく、</span><span class="u">安心して考えを整理し、</span><span class="u">その想いを次の世代へ繋いでいける——</span><span class="u">そんな存在でありたい。</span><span class="u">その想いで、一人ひとりと向き合っています。</span></p>
+      <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">“永く続く”——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
+      <p><span class="u">このホームページを作ったのも、</span><span class="u">その想いをお伝えしたかったからです。</span><span class="u">これまでご縁の多くはご紹介から始まり、</span><span class="u">そのたびに「どんな仕事をしているのですか？」と聞かれます。</span><span class="u">けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、</span><span class="u">私が本当に提供している価値を表現しきれません。</span></p>
+      <p><span class="u">AIは、人の代わりになるものではありません。</span><span class="u">人が自分らしく輝き続けるための、</span><span class="u">最高のパートナーです。</span></p>
+      <p><span class="u">もし今、</span><span class="u">「頭の中を整理したい」</span><span class="u">「事業を次のステージへ進めたい」</span><span class="u">「AIを経営に活かしたい」——</span><span class="u">そう感じているなら、</span><span class="u">ぜひ一度、お話を聞かせてください。</span><span class="u">あなた自身がまだ気づいていない可能性を、</span><span class="u">一緒に形にしていけることを、楽しみにしています。</span></p>
+    </div>
+    <p style="margin-top:36px;text-align:center;font-size:15px;color:var(--sub);">Eternal株式会社 代表取締役　<b style="color:var(--ink);font-size:18px;">窪田 成功</b></p>
+  </div>
+</section>
+
 <!-- PROFILE -->
 <section id="prof">
   <div class="wrap prof-grid">
@@ -407,28 +525,6 @@
         <p>「経営者の想いを、未来へ繋ぐ」</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- STORY -->
-<section class="svc" id="story">
-  <div class="wrap reveal">
-    <p class="eyebrow">Message</p>
-    <h2 class="sec-title">ご挨拶</h2>
-    <p class="credo-lead reveal">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
-    <div class="story-body">
-      <p><span class="u">情報があふれる時代に、</span><span class="u">本当に大切なのは何か——。</span><span class="u">AIの進化によって、</span><span class="u">仕事のやり方は大きく変わり、</span><span class="u">誰でもAIを使える時代になりました。</span><span class="u">情報も簡単に手に入ります。</span><span class="u">けれど、価値を分けるのは、</span><span class="u">情報の“量”ではありません。</span></p>
-      <p><span class="u"><b>「何を考え、どう判断し、どう行動するか。」</b></span><br><span class="u">その思考を整理する力こそが、</span><span class="u">これからの時代に最も重要な力だと、</span><span class="u">私は考えています。</span></p>
-      <p><span class="u">私はこれまで、</span><span class="u">1万件以上のセッションを通して、</span><span class="u">経営者や個人事業主をはじめ、</span><span class="u">さまざまな方の人生や仕事の悩みに向き合ってきました。</span><span class="u">また、シータヒーリング®インストラクターとして、</span><span class="u">人の深層心理や思考パターンを長年探究し、</span><span class="u">「人は何によって変化し、自分らしく生きられるのか」を</span><span class="u">学び続けてきました。</span></p>
-      <p><span class="u">そして現在は、</span><span class="u">26,000回以上（現在も更新中）の</span><span class="u">ChatGPTとの対話・検証を重ね、</span><span class="u">人の思考とAIを融合させる、</span><span class="u">新しい支援の形を追求しています。</span></p>
-      <p><span class="u">私の仕事は、</span><span class="u">AIを教えることではありません。</span><span class="u">人の想いや考えを整理し、言葉にし、</span><span class="u">AIを活用しながら、</span><span class="u">事業・サービス・仕組みへと形にしていくことです。</span><span class="u">ホームページ制作、サービス設計、営業資料、</span><span class="u">業務改善、DX、組織づくり——</span><span class="u">すべては「思考整理」から始まります。</span><span class="u">だから私は、自分の仕事を</span><span class="u"><b>「思考整理の参謀」</b>と表現しています。</span></p>
-      <p><span class="u">Eternal株式会社のミッションは、</span><span class="u"><b>「経営者の想いを、未来へ繋ぐ。」</b></span><span class="u">経営者は、多くの責任を背負いながら、</span><span class="u">本音を話せる相手が少ない存在です。</span><span class="u">一人で抱え込み悩み続けるのではなく、</span><span class="u">安心して考えを整理し、</span><span class="u">その想いを次の世代へ繋いでいける——</span><span class="u">そんな存在でありたい。</span><span class="u">その想いで、一人ひとりと向き合っています。</span></p>
-      <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">“永く続く”——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
-      <p><span class="u">このホームページを作ったのも、</span><span class="u">その想いをお伝えしたかったからです。</span><span class="u">これまでご縁の多くはご紹介から始まり、</span><span class="u">そのたびに「どんな仕事をしているのですか？」と聞かれます。</span><span class="u">けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、</span><span class="u">私が本当に提供している価値を表現しきれません。</span></p>
-      <p><span class="u">AIは、人の代わりになるものではありません。</span><span class="u">人が自分らしく輝き続けるための、</span><span class="u">最高のパートナーです。</span></p>
-      <p><span class="u">もし今、</span><span class="u">「頭の中を整理したい」</span><span class="u">「事業を次のステージへ進めたい」</span><span class="u">「AIを経営に活かしたい」——</span><span class="u">そう感じているなら、</span><span class="u">ぜひ一度、お話を聞かせてください。</span><span class="u">あなた自身がまだ気づいていない可能性を、</span><span class="u">一緒に形にしていけることを、楽しみにしています。</span></p>
-    </div>
-    <p style="margin-top:36px;text-align:center;font-size:15px;color:var(--sub);">Eternal株式会社 代表取締役　<b style="color:var(--ink);font-size:18px;">窪田 成功</b></p>
   </div>
 </section>
 
