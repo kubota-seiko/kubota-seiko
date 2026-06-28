@@ -112,6 +112,9 @@
   .pain-card .chk{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--soft);
     display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:15px;}
   .pain-card p{font-size:16px;font-weight:500;}
+  .pain-txt{display:flex;flex-direction:column;gap:5px;}
+  .pain-txt b{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:.01em;}
+  .pain-txt span{font-size:14px;color:var(--sub);line-height:1.65;}
 
   /* services */
   .svc{background:var(--soft);}
@@ -129,6 +132,11 @@
   .svc-price small{font-size:14px;color:var(--sub);font-weight:500;font-family:"Noto Sans JP";}
   .svc-desc{color:var(--sub);font-size:14px;margin-top:14px;padding-top:18px;border-top:1px solid var(--line);}
   .svc-note{text-align:center;color:var(--sub);font-size:14px;margin-top:32px;}
+  .svc-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent);background:var(--soft);border-radius:20px;padding:4px 13px;margin-bottom:14px;}
+  .svc-card.feat .svc-tag{color:#fff;background:var(--gold);}
+  .svc-dots{display:flex;gap:8px;margin:0 0 14px;}
+  .svc-dots span{width:12px;height:12px;border-radius:50%;background:var(--line);}
+  .svc-dots span.on{background:var(--gold);}
 
   /* profile */
   .prof-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
@@ -262,14 +270,14 @@
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">For You</p>
-      <h2 class="sec-title">こんな方へ</h2>
-      <p class="sec-lead">感覚でやってこられた経営者の皆様へ。<br>ひとつでも当てはまるなら、言語化と仕組み化で変えられます。</p>
+      <h2 class="sec-title">感覚でやってこられた経営者の皆様へ。</h2>
+      <p class="sec-lead">ひとつでも当てはまるなら、言語化と仕組み化で変えられます。</p>
     </div>
     <div class="pain-grid">
-      <div class="pain-card reveal"><span class="chk">✓</span><p>感覚でやってきたが、自分のやり方を言語化できない</p></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><p>頭の中の判断基準を、仕組み・マニュアルにしたい</p></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><p>AI・DXを使って、自走できる状態をつくりたい</p></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><p>相談したいが、「誰でもいい」わけではない</p></div>
+      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>言葉にできない</b><span>感覚でやってきたが、自分のやり方を言語化できない。</span></div></div>
+      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>仕組みにしたい</b><span>頭の中の判断基準を、仕組み・マニュアルに残したい。</span></div></div>
+      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>AIで自走したい</b><span>AI・DXを使って、自走できる状態をつくりたい。</span></div></div>
+      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>相手は、選びたい</b><span>相談したいが、「誰でもいい」わけではない。</span></div></div>
     </div>
   </div>
 </section>
@@ -284,19 +292,25 @@
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
+        <div class="svc-tag">習慣化</div>
+        <div class="svc-dots"><span class="on"></span><span></span><span></span><span></span></div>
         <div class="svc-name">月1回プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分・月1回。まずは思考整理を習慣にしたい方へ。</p>
+        <p class="svc-desc">1回 約60分。まずは思考整理を習慣にしたい方へ。</p>
       </div>
       <div class="svc-card feat reveal">
+        <div class="svc-tag">続けやすい</div>
+        <div class="svc-dots"><span class="on"></span><span class="on"></span><span></span><span></span></div>
         <div class="svc-name">月2回プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分・月2回。考えを整え続ける、続けやすいおすすめのペース。</p>
+        <p class="svc-desc">1回 約60分。考えを整え続ける、続けやすいペース。</p>
       </div>
       <div class="svc-card reveal">
+        <div class="svc-tag">集中</div>
+        <div class="svc-dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
         <div class="svc-name">月4回プラン</div>
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
-        <p class="svc-desc">1回 約60分・月4回。言語化と仕組み化を集中的に進めたい方へ。</p>
+        <p class="svc-desc">1回 約60分。言語化と仕組み化を一気に進めたい方へ。</p>
       </div>
     </div>
     <p class="svc-note reveal">言語化した内容を、AI・DXで“ホームページ・営業導線・仕組み”まで形にする「構築プロジェクト」（応相談）もご用意しています。</p>
