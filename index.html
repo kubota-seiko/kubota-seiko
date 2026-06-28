@@ -262,6 +262,22 @@
   .svc-dots span{width:12px;height:12px;border-radius:50%;background:var(--line);}
   .svc-dots span.on{background:var(--gold);}
   .svc-tagline{font-size:13px;color:var(--ink);font-weight:500;line-height:1.65;margin:12px 0 14px;}
+  .svc-rec{align-self:flex-start;font-size:11px;font-weight:700;color:#fff;background:var(--gold);border-radius:20px;padding:3px 12px;margin:12px 0 4px;}
+  .svc-evo{font-size:17px;font-weight:700;color:var(--accent);margin:14px 0 8px;letter-spacing:.01em;}
+  .svc-1line{font-size:13px;color:var(--sub);line-height:1.8;}
+  /* evolution-speed chart */
+  .evo-chart{max-width:520px;margin:46px auto 4px;}
+  .evo-track{display:flex;align-items:flex-end;gap:16px;height:150px;}
+  .evo-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .evo-block{width:100%;background:var(--gold);border-radius:6px 6px 0 0;}
+  .evo-col:nth-child(1) .evo-block{opacity:.4;}
+  .evo-col:nth-child(2) .evo-block{opacity:.68;}
+  .evo-name{margin-top:12px;font-size:13px;font-weight:700;color:var(--accent);text-align:center;line-height:1.4;}
+  .evo-name small{display:block;font-size:11px;font-weight:500;color:var(--sub);margin-top:2px;}
+  .evo-axis{text-align:center;font-size:13px;color:var(--sub);margin-top:16px;}
+  .evo-axis b{color:var(--gold);font-weight:700;}
+  .evo-note{text-align:center;max-width:600px;margin:18px auto 0;font-size:14px;color:var(--ink);line-height:1.85;}
+  .svc-hook{font-size:clamp(18px,2.7vw,23px);font-weight:700;color:var(--accent);line-height:1.8;max-width:640px;margin:0 auto;}
   .svc-list{list-style:none;margin:0 0 14px;}
   .svc-list li{font-size:13px;color:#444;line-height:1.55;padding-left:18px;position:relative;margin-bottom:7px;}
   .svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;font-size:12px;}
@@ -318,6 +334,7 @@
 
   /* cta */
   .cta{background:var(--ink);color:#fff;text-align:center;}
+  .cta-creed{color:var(--gold);font-size:clamp(15px,2.3vw,19px);font-weight:700;letter-spacing:.05em;margin-bottom:18px;}
   .cta h2{font-size:clamp(28px,5vw,46px);margin-bottom:16px;}
   .cta p{color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 36px;font-size:16px;}
   .cta-btn{
@@ -343,6 +360,8 @@
   .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap;}
   .foot-brand b{font-size:18px;}
   .foot-brand p{color:var(--sub);font-size:14px;margin-top:6px;}
+  .foot-philo{font-size:12px;color:var(--gold);letter-spacing:.03em;margin-top:10px;}
+  .foot-philo span{display:inline-block;font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sub);margin-right:8px;}
   .foot-social{display:flex;gap:24px;}
   .foot-social a{font-size:14px;color:var(--sub);transition:color .2s;}
   .foot-social a:hover{color:var(--ink);}
@@ -526,52 +545,41 @@
 <section class="svc" id="svc">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">Service & Price</p>
-      <h2 class="sec-title">サービス・料金</h2>
-      <p class="sec-lead">感覚・想いを、言葉にし、仕組みに変え、現実を動かしていく伴走です。プランの違いは、作業量やページ数ではありません。思考整理を重ねる「接触頻度」——つまり、経営の進化速度の違いです。</p>
+      <p class="eyebrow">Plans</p>
+      <h2 class="sec-title">進化速度で選ぶ。</h2>
+      <p class="sec-lead svc-hook">経営は、一度整理して終わりではありません。進化し続けるもの。<br>だから、参謀も、AIも、ホームページも、一緒に進化していきます。</p>
+    </div>
+    <div class="evo-chart reveal">
+      <div class="evo-track">
+        <div class="evo-col"><div class="evo-block" style="height:42%"></div><span class="evo-name">思考整理<small>月1回</small></span></div>
+        <div class="evo-col"><div class="evo-block" style="height:68%"></div><span class="evo-name">言語化<small>月2回</small></span></div>
+        <div class="evo-col"><div class="evo-block" style="height:100%"></div><span class="evo-name">仕組み化<small>月4回</small></span></div>
+      </div>
+      <p class="evo-axis">接触頻度が増えるほど、<b>経営の進化速度</b>が上がる&nbsp;→</p>
+      <p class="evo-note">どのプランも、一回一回は最高最善で。違いは“質”ではなく、“頻度”だけです。</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
         <div class="svc-tag">Starter</div>
         <div class="svc-name">思考整理プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月</small></div>
-        <p class="svc-tagline">まずは、頭の中を整理したい方へ。</p>
-        <ul class="svc-list">
-          <li>月1回 60分セッション</li>
-          <li>現状の課題・優先順位の整理</li>
-          <li>次の一手の明確化</li>
-          <li>セッション後の簡易メモ</li>
-        </ul>
-        <p class="svc-for">こんな方に：頭の中が散らかっている／まず話しながら整理したい／壁打ち相手がほしい</p>
+        <p class="svc-evo">進化の土台をつくる。</p>
+        <p class="svc-1line">月1回、自分と向き合う場。思考を整理し、次の一歩を定めます。</p>
       </div>
       <div class="svc-card feat reveal">
         <div class="svc-tag">Standard</div>
         <div class="svc-name">言語化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月</small></div>
-        <p class="svc-tagline">考えを整え、言葉にして使える状態にしたい方へ。<br><span style="color:var(--gold);font-weight:700;">いちばんおすすめ</span></p>
-        <ul class="svc-list">
-          <li>月2回 60分セッション</li>
-          <li>課題・想い・強みの言語化</li>
-          <li>サービス説明文・発信テーマの整理</li>
-          <li>提案・無料相談で使う言葉づくり</li>
-          <li>月1枚の思考整理レポート</li>
-        </ul>
-        <p class="svc-for">こんな方に：自分の価値を言葉にしたい／発信やHPの言葉を整えたい／見せ方を整理したい</p>
+        <p class="svc-rec">いちばんおすすめ</p>
+        <p class="svc-evo">進化速度を上げる。</p>
+        <p class="svc-1line">月2回、進化サイクルを回す場。思考を言葉に変え、実行まで。</p>
       </div>
       <div class="svc-card reveal">
         <div class="svc-tag">Plus</div>
         <div class="svc-name">仕組み化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
-        <p class="svc-tagline">言語化した内容を、事業の仕組みまで落としたい方へ。</p>
-        <ul class="svc-list">
-          <li>月4回 60分セッション</li>
-          <li>商品設計・導線設計</li>
-          <li>HP / LP / プロフィール文の整理</li>
-          <li>事例・お客様の声の整理</li>
-          <li>フォーム・返信文・簡易マニュアル設計</li>
-          <li>AI活用による業務整理＋月1回の実装レビュー</li>
-        </ul>
-        <p class="svc-for">こんな方に：感覚経営を仕組みに変えたい／人に任せる形を作りたい／AI・DXを取り入れたい</p>
+        <p class="svc-evo">進化を仕組みに変える。</p>
+        <p class="svc-1line">毎週、思考・実装・改善を進める場。事業が自走する仕組みへ。</p>
       </div>
     </div>
     <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ。ホームページや仕組みは「納品して終わり」ではなく、対話を重ねるたびに、経営と一緒に進化していきます。</p>
@@ -580,7 +588,7 @@
         <span class="svc-tag">Project</span>
         <h3>事業構築プロジェクト</h3>
         <div class="proj-price">65万円<small>〜（応相談）</small></div>
-        <p class="proj-desc">経営者の頭の中を、事業全体の資産に変えるプロジェクト。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
+        <p class="proj-desc">短期集中で、事業のOS（コンセプト・導線・仕組み）を組み替える場。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
         <a href="#contact" class="proj-cta">まずは無料相談する <span class="arr">→</span></a>
       </div>
       <ul>
@@ -627,6 +635,7 @@
       <p><span class="u">そして現在は、</span><span class="u">26,000回以上（現在も更新中）の</span><span class="u">ChatGPTとの対話・検証を重ね、</span><span class="u">人の思考とAIを融合させる、</span><span class="u">新しい支援の形を追求しています。</span></p>
       <p><span class="u">私の仕事は、</span><span class="u">AIを教えることではありません。</span><span class="u">人の想いや考えを整理し、言葉にし、</span><span class="u">AIを活用しながら、</span><span class="u">事業・サービス・仕組みへと形にしていくことです。</span><span class="u">ホームページ制作、サービス設計、営業資料、</span><span class="u">業務改善、DX、組織づくり——</span><span class="u">すべては「思考整理」から始まります。</span><span class="u">だから私は、自分の仕事を</span><span class="u"><b>「思考整理の参謀」</b>と表現しています。</span></p>
       <p><span class="u">整理し、判断し、形にして、実行する。</span><span class="u">このサイクルが速く回るほど、</span><span class="u">経営は前へ進み、進化していきます。</span><span class="u">私が本当に実現したいのは、</span><span class="u">この<b>「経営の進化速度」</b>を上げること。</span><span class="u">AIは、そのための心強いパートナーです。</span></p>
+      <p><span class="u">だから私がお渡しするのは、</span><span class="u">一度きりの「答え」ではありません。</span><span class="u">思考整理から、言語化・実装・改善までを、</span><span class="u">速く回し続けられる「状態」そのものです。</span></p>
       <p><span class="u">Eternal株式会社のミッションは、</span><span class="u"><b>「経営者の想いを、未来へ繋ぐ。」</b></span><span class="u">経営者は、多くの責任を背負いながら、</span><span class="u">本音を話せる相手が少ない存在です。</span><span class="u">一人で抱え込み悩み続けるのではなく、</span><span class="u">安心して考えを整理し、</span><span class="u">その想いを次の世代へ繋いでいける——</span><span class="u">そんな存在でありたい。</span><span class="u">その想いで、一人ひとりと向き合っています。</span></p>
       <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">“永く続く”——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
       <p><span class="u">このホームページを作ったのも、</span><span class="u">その想いをお伝えしたかったからです。</span><span class="u">これまでご縁の多くはご紹介から始まり、</span><span class="u">そのたびに「どんな仕事をしているのですか？」と聞かれます。</span><span class="u">けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、</span><span class="u">私が本当に提供している価値を表現しきれません。</span></p>
@@ -656,6 +665,10 @@
       <div class="mission">
         <span>MISSION</span>
         <p>「経営者の想いを、未来へ繋ぐ」</p>
+      </div>
+      <div class="mission" style="margin-top:14px;">
+        <span>VISION</span>
+        <p>永遠の進化<br><small style="font-size:14px;font-weight:600;color:var(--gold);">〜自分らしく輝き続けよう！〜</small></p>
       </div>
     </div>
   </div>
@@ -698,6 +711,7 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
+    <p class="cta-creed">完成を目指すのではない。進化し続ける経営を。</p>
     <h2>まずは無料相談から</h2>
     <p>約30分の無料相談で、ご相談の内容を基にした「思考整理レポート（1枚）」をお渡しします。話すだけで、頭の中が整理される感覚を、まず体験してください。</p>
     <form id="consultForm" class="consult-form">
@@ -732,6 +746,7 @@
       <div class="foot-brand">
         <b>窪田 成功</b>
         <p>思考整理の参謀 ／ Eternal株式会社</p>
+        <p class="foot-philo"><span>Philosophy</span>永遠の進化 〜自分らしく輝き続けよう！〜</p>
       </div>
       <div class="foot-social">
         <a href="https://note.com/kubota_seiko" target="_blank" rel="noopener">note</a>
