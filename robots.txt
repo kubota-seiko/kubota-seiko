@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kubota-seiko.com/sitemap.xml
