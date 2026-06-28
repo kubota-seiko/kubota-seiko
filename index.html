@@ -282,6 +282,14 @@
   .svc-list li{font-size:13px;color:#444;line-height:1.55;padding-left:18px;position:relative;margin-bottom:7px;}
   .svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;font-size:12px;}
   .svc-for{font-size:12px;color:var(--sub);line-height:1.7;padding-top:12px;border-top:1px solid var(--line);margin-top:auto;}
+  .svc-plans-head{margin-top:84px;padding-top:60px;border-top:1px solid var(--line);}
+  .lp-explain{background:#fff;border:1px solid var(--line);border-radius:12px;padding:36px 40px;margin:24px auto 0;max-width:820px;text-align:center;}
+  .lp-explain h3{font-size:clamp(20px,3vw,26px);color:var(--accent);margin-bottom:18px;}
+  .lp-explain p{font-size:15px;color:var(--ink);line-height:1.9;margin-bottom:16px;}
+  .lp-explain .lp-why{color:var(--sub);font-size:14px;}
+  .lp-explain b{color:var(--accent);}
+  .lp-explain .lp-punch{font-size:clamp(16px,2.4vw,19px);font-weight:700;color:var(--accent);margin:22px 0 0;}
+  @media(max-width:760px){.lp-explain{padding:28px 24px;}}
   .svc-project{margin-top:24px;background:var(--accent);color:#fff;border-radius:10px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
   .svc-project .svc-tag{background:var(--gold);color:#fff;}
   .svc-project h3{font-size:24px;color:#fff;margin:14px 0 10px;}
@@ -545,9 +553,38 @@
 <section class="svc" id="svc">
   <div class="wrap">
     <div class="reveal">
+      <p class="eyebrow">Service</p>
+      <h2 class="sec-title">経営者の想いを、一枚のLPに。</h2>
+      <p class="sec-lead svc-hook">経営は、一度整理して終わりではありません。進化し続けるもの。<br>だから、参謀も、AIも、ホームページも、一緒に進化していきます。</p>
+    </div>
+    <div class="lp-explain reveal">
+      <h3>まずは、1枚のLPから。</h3>
+      <p>LP（ランディングページ）とは、ひとつの商品・サービスを伝え、「申し込みたい」と思ってもらうことに特化した1ページです。会社全体を伝えるホームページと違い、目的がはっきりしています。</p>
+      <p>私が作るのは、デザインではありません。<b>思考整理から生まれた「伝わる構造」</b>を、一枚のLPにします。そして、作って終わりにはしません。公開後も改善を重ね、成果につながるまで、一緒に育てます。</p>
+      <p class="lp-why">ホームページ全体を作り直す前に、まず一つのサービスを伝わる形に。その方が、早く公開でき・効果を測れ・改善しやすく、“売れる構造”が見えてきます。成果が出たLPを基に、ホームページ全体へ広げていきます。</p>
+      <p class="lp-punch">LPは、作って終わりではありません。売れるまで、一緒に育てます。</p>
+    </div>
+    <div class="svc-project reveal">
+      <div class="proj-head">
+        <span class="svc-tag">Project</span>
+        <h3>まずはLPから、事業構築へ。</h3>
+        <div class="proj-price">応相談</div>
+        <p class="proj-desc">いきなり全部は作りません。まず、いちばん成果に直結する「伝わるLP（ランディングページ）」を一緒に育てます。公開 → 反応を見る → 思考整理 → 改善（Ver.2）のサイクルを回し、成果が出たら、ホームページ全体・営業導線・仕組みへと自然に広げていきます。</p>
+        <a href="#contact" class="proj-cta">まずは無料相談する <span class="arr">→</span></a>
+      </div>
+      <ul>
+        <li>まず：伝わるLPを設計・公開（誰に・何を・どこへ）</li>
+        <li>公開後：反応を見て改善し続ける（“納品”ではなく“進化”）</li>
+        <li>次に：ホームページ全体・営業導線へ展開</li>
+        <li>営業資料・事例の整備</li>
+        <li>AI / DX 導入設計</li>
+        <li>継続的な経営参謀支援</li>
+      </ul>
+    </div>
+    <div class="reveal svc-plans-head" style="text-align:center;">
       <p class="eyebrow">Plans</p>
       <h2 class="sec-title">進化速度で選ぶ。</h2>
-      <p class="sec-lead svc-hook">経営は、一度整理して終わりではありません。進化し続けるもの。<br>だから、参謀も、AIも、ホームページも、一緒に進化していきます。</p>
+      <p class="sec-lead" style="margin:0 auto;">LPで成果が見えたら、継続して経営の進化を伴走します。プランの違いは、改善サイクルを回す“回転数”——つまり、経営の進化速度の違いです。</p>
     </div>
     <div class="evo-chart reveal">
       <div class="evo-track">
@@ -555,8 +592,8 @@
         <div class="evo-col"><div class="evo-block" style="height:68%"></div><span class="evo-name">言語化<small>月2回</small></span></div>
         <div class="evo-col"><div class="evo-block" style="height:100%"></div><span class="evo-name">仕組み化<small>月4回</small></span></div>
       </div>
-      <p class="evo-axis">接触頻度が増えるほど、<b>経営の進化速度</b>が上がる&nbsp;→</p>
-      <p class="evo-note">どのプランも、一回一回は最高最善で。違いは“質”ではなく、“頻度”だけです。</p>
+      <p class="evo-axis">改善サイクルを速く回すほど、<b>経営の進化速度</b>が上がる&nbsp;→</p>
+      <p class="evo-note">仮説 → 実装 → 反応 → 改善。このサイクルを、どれだけ速く回せるか。どのプランも一回一回は最高最善——変わるのは“質”ではなく、サイクルの“回転数”です。</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
@@ -583,23 +620,6 @@
       </div>
     </div>
     <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ。ホームページや仕組みは「納品して終わり」ではなく、対話を重ねるたびに、経営と一緒に進化していきます。</p>
-    <div class="svc-project reveal">
-      <div class="proj-head">
-        <span class="svc-tag">Project</span>
-        <h3>事業構築プロジェクト</h3>
-        <div class="proj-price">65万円<small>〜（応相談）</small></div>
-        <p class="proj-desc">短期集中で、事業のOS（コンセプト・導線・仕組み）を組み替える場。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
-        <a href="#contact" class="proj-cta">まずは無料相談する <span class="arr">→</span></a>
-      </div>
-      <ul>
-        <li>事業コンセプト・営業導線の設計</li>
-        <li>HP / LP 構成・営業資料化</li>
-        <li>社内マニュアル・顧客対応フロー整備</li>
-        <li>AI / DX 導入設計</li>
-        <li>チーム共有資料の作成</li>
-        <li>継続的な経営参謀支援</li>
-      </ul>
-    </div>
   </div>
 </section>
 
