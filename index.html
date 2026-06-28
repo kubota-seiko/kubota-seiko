@@ -100,6 +100,11 @@
   .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;}
   .creed{text-align:center;font-size:clamp(21px,3.3vw,32px);font-weight:700;color:#fff;line-height:1.6;margin-bottom:52px;letter-spacing:.02em;}
   .creed b{color:var(--gold);font-weight:700;}
+  .credo-title{text-align:center;font-size:clamp(20px,3.2vw,30px);font-weight:700;color:var(--accent);line-height:1.65;letter-spacing:.02em;margin-top:50px;padding-top:44px;border-top:1px solid var(--line);}
+  .credo-title b{color:var(--gold);}
+  .credo-lead{text-align:center;font-size:clamp(19px,3vw,28px);font-weight:700;color:var(--accent);line-height:1.7;letter-spacing:.03em;margin:4px 0 40px;}
+  .credo-lead b{color:inherit;font-weight:inherit;}
+  .credo-lead::before{content:"";display:block;width:44px;height:2px;background:var(--gold);margin:0 auto 24px;border-radius:2px;}
   .stat .num{font-family:"Inter",sans-serif;font-size:clamp(44px,7vw,72px);font-weight:700;line-height:1;letter-spacing:-.02em;}
   .stat .num small{font-size:.4em;font-weight:500;margin-left:4px;color:var(--gold);}
   .stat .lbl{margin-top:14px;font-size:15px;color:rgba(255,255,255,.72);}
@@ -111,8 +116,9 @@
     display:flex;gap:18px;align-items:flex-start;transition:border-color .25s,transform .25s;
   }
   .pain-card:hover{border-color:var(--ink);transform:translateY(-3px);}
-  .pain-card .chk{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--soft);
-    display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:15px;}
+  .pain-card .chk{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:var(--soft);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);}
+  .pain-card .chk svg{width:22px;height:22px;}
   .pain-card p{font-size:16px;font-weight:500;}
   .pain-txt{display:flex;flex-direction:column;gap:5px;}
   .pain-txt b{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:.01em;}
@@ -295,10 +301,10 @@
       <p class="sec-lead">ひとつでも当てはまるなら、言語化と仕組み化で変えられます。</p>
     </div>
     <div class="pain-grid">
-      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>言語化したい</b><span>感覚でやってきたが、自分のやり方を言葉にできていない。</span></div></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>仕組みにしたい</b><span>頭の中の判断基準を、仕組み・マニュアルに残したい。</span></div></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>AIで自走したい</b><span>AI・DXを使って、自走できる状態をつくりたい。</span></div></div>
-      <div class="pain-card reveal"><span class="chk">✓</span><div class="pain-txt"><b>相談相手を選びたい</b><span>相談したいが、「誰でもいい」わけではない。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3v-3H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><div class="pain-txt"><b>言語化したい</b><span>感覚でやってきたが、自分のやり方を言葉にできていない。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div class="pain-txt"><b>仕組みにしたい</b><span>頭の中の判断基準を、仕組み・マニュアルに残したい。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 5v3"/><circle cx="12" cy="4" r="1"/><path d="M9.5 12.5v.01M14.5 12.5v.01" stroke-width="2.6"/><path d="M10 15.5h4"/><path d="M3 11.5v3M21 11.5v3"/></svg></span><div class="pain-txt"><b>AIで自走したい</b><span>AI・DXを使って、自走できる状態をつくりたい。</span></div></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><path d="M16 6.2a2.8 2.8 0 0 1 0 5.3"/><path d="M17.5 13.6c2 .6 3.5 2.4 3.5 5"/></svg></span><div class="pain-txt"><b>相談相手を選びたい</b><span>相談したいが、「誰でもいい」わけではない。</span></div></div>
     </div>
   </div>
 </section>
@@ -395,7 +401,6 @@
       <div class="mission">
         <span>MISSION</span>
         <p>「経営者の想いを、未来へ繋ぐ」</p>
-        <p class="mission-credo">想いを言葉に、言葉を仕組みに、仕組みを未来へ。</p>
       </div>
     </div>
   </div>
@@ -406,8 +411,9 @@
   <div class="wrap reveal">
     <p class="eyebrow">Message</p>
     <h2 class="sec-title">ご挨拶</h2>
+    <p class="credo-lead reveal">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
     <div class="story-body">
-      <p>AIの進化によって、仕事のやり方は大きく変わりました。誰でもAIを使える時代になり、情報も簡単に手に入るようになりました。しかし、本当に大切なのは、情報の量ではありません。</p>
+      <p>情報があふれる時代に、本当に大切なのは何か——。AIの進化によって、仕事のやり方は大きく変わり、誰でもAIを使える時代になりました。情報も簡単に手に入ります。けれど、価値を分けるのは、情報の“量”ではありません。</p>
       <p><b>「何を考え、どう判断し、どう行動するか。」</b><br>その思考を整理する力こそが、これからの時代に最も重要な力だと、私は考えています。</p>
       <p>私はこれまで、1万件以上のセッションを通して、経営者や個人事業主をはじめ、さまざまな方の人生や仕事の悩みに向き合ってきました。また、シータヒーリング®インストラクターとして、人の深層心理や思考パターンを長年探究し、「人は何によって変化し、自分らしく生きられるのか」を学び続けてきました。</p>
       <p>そして現在は、26,000回以上（現在も更新中）のChatGPTとの対話・検証を重ね、人の思考とAIを融合させる、新しい支援の形を追求しています。</p>
