@@ -387,6 +387,71 @@
   .foot-social a:hover{color:var(--ink);}
   .copy{margin-top:40px;font-size:12px;color:var(--sub);font-family:"Inter";letter-spacing:.04em;}
 
+  /* philosophy */
+  #philosophy{position:relative;border-top:1px solid var(--line);padding:120px 0;}
+  #philosophy .wrap{max-width:900px;}
+  #philosophy h2{
+    font-size:clamp(32px,5.5vw,56px);
+    font-weight:700;
+    line-height:1.5;
+    color:var(--ink);
+    margin-bottom:32px;
+    letter-spacing:.02em;
+  }
+  #philosophy h2 span:first-child{
+    display:block;
+    color:var(--gold);
+    font-size:.65em;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+    font-family:"Inter",sans-serif;
+  }
+  #philosophy > .wrap > .reveal > p:nth-of-type(1){
+    font-size:clamp(17px,2.2vw,20px);
+    line-height:1.95;
+    color:var(--ink);
+    margin:48px 0 0;
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight:500;
+  }
+  #philosophy > .wrap > .reveal > p:nth-of-type(2){
+    font-size:clamp(17px,2.2vw,20px);
+    line-height:1.95;
+    color:var(--ink);
+    margin:22px 0 0;
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight:500;
+  }
+  #philosophy > .wrap > .reveal > p:nth-of-type(3){
+    font-size:clamp(17px,2.2vw,20px);
+    line-height:1.95;
+    color:var(--gold);
+    margin:22px 0 0;
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight:600;
+  }
+  #philosophy > .wrap > .reveal > p:nth-of-type(4){
+    font-size:14px;
+    color:#999;
+    margin:44px 0 0;
+    line-height:1.85;
+    max-width:640px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #philosophy > .wrap > .reveal > p:nth-of-type(4) span{
+    color:var(--ink);
+    font-weight:600;
+  }
+
   /* fade-in */
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -437,6 +502,22 @@
       <div class="frame">
         <img src="images/mind.jpg" alt="頭の中で思考が絡まっているイメージ" onerror="this.replaceWith(window.__ph(4,5,'KS'))">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="wrap" style="text-align:center;">
+    <div class="reveal">
+      <h2>
+        <span>ミッション</span>
+        経営者の想いを<br>孤独死させない。
+      </h2>
+      <p>感覚で走ってきた経営者の中には、<br>まだ言葉になっていない想いがあります。</p>
+      <p>その想いを整理し、言語化し、<br>AIと仕組みの力で未来へつなぐ。</p>
+      <p>それが、思考整理の参謀としての役割です。</p>
+      <p>「人そのものの孤独死」ではなく、<span>経営者の中にある想い・ビジョン・言葉になっていない価値が、誰にも届かず消えてしまうこと</span>を防ぐ。<br>それが、私たちのミッションです。</p>
     </div>
   </div>
 </section>
