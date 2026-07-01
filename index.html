@@ -348,9 +348,9 @@ section:nth-of-type(11) {
 }
 
 .pain-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 4px;
   padding: 40px 32px;
   text-align: left;
   transition: all 0.3s ease;
@@ -358,8 +358,9 @@ section:nth-of-type(11) {
 
 .pain-card:hover {
   border-color: var(--gold);
-  box-shadow: 0 2px 8px rgba(168, 153, 104, 0.08);
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: none;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .pain-card h3 {
@@ -475,9 +476,9 @@ section:nth-of-type(11) {
 }
 
 .reason-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 4px;
   padding: 48px 40px;
   text-align: left;
   transition: all 0.3s ease;
@@ -485,8 +486,9 @@ section:nth-of-type(11) {
 
 .reason-card:hover {
   border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(168, 153, 104, 0.08);
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .reason-card h3 {
@@ -522,10 +524,17 @@ section:nth-of-type(11) {
 }
 
 .benefit-card {
-  background: var(--bg);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 4px;
   padding: 40px 32px;
   text-align: left;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .benefit-card h3 {
@@ -569,9 +578,9 @@ section:nth-of-type(11) {
 }
 
 .service-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 4px;
   padding: 48px 40px;
   text-align: left;
   transition: all 0.3s ease;
@@ -579,8 +588,9 @@ section:nth-of-type(11) {
 
 .service-card:hover {
   border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(168, 153, 104, 0.08);
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .service-card h3 {
@@ -625,9 +635,9 @@ section:nth-of-type(11) {
 }
 
 .service-info {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: rgba(250, 251, 252, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.3);
+  border-radius: 4px;
   padding: 60px 48px;
   text-align: center;
   margin-top: 80px;
@@ -703,9 +713,9 @@ section:nth-of-type(11) {
 }
 
 .profile-box {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: rgba(250, 251, 252, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.3);
+  border-radius: 4px;
   padding: 40px 36px;
   text-align: left;
   margin-top: 40px;
@@ -1133,12 +1143,12 @@ body {
   <div class="wrap" style="max-width: 100%;">
     <div style="max-width: 100%; display: flex; flex-direction: column; align-items: center;">
       <figure style="margin: 0 0 72px 0; width: 100%; max-width: 420px;" class="hero-visual">
-        <img src="./images/mind.jpg" alt="思考整理のプロセス" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; display: block; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); transition: all 0.8s ease;">
+        <img src="./images/mind.jpg" alt="思考整理のプロセス" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); transition: all 0.8s ease;">
       </figure>
 
       <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
-        <h1 style="margin-bottom: 48px;">感覚を言語化し、<br>経営を進化させる。</h1>
-        <p class="hero-subtitle">思考整理から、AI・仕組み化・改善まで伴走します。<br>対話を通じて、経営の進化速度を一緒に上げていきます。</p>
+        <h1 style="margin-bottom: 48px;">感覚を言語化し、<br>経営を<br>進化させる。</h1>
+        <p class="hero-subtitle">思考整理から、<br><br>AI・仕組み化・改善<br>まで伴走します。<br><br>対話を通じて、<br>経営の進化速度を<br>一緒に上げていきます。</p>
         <div style="display: flex; justify-content: center; margin-top: 16px;">
           <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
         </div>
@@ -1151,9 +1161,9 @@ body {
 <section class="intro-section section-soft">
   <div class="wrap">
     <span class="intro-label">経営の進化速度とは</span>
-    <p class="intro-text">経営の進化を決めるのは、<br>戦略ではなく判断の速度。</p>
-    <p class="intro-text">整理する<br>↓<br>判断する<br>↓<br>動く<br>↓<br>改善する<br><br>このサイクルを速く回すほど、経営は前へ進みます。</p>
-    <p class="intro-text" style="margin-top: 56px; border-top: 1px solid var(--border); padding-top: 56px;"><strong>本質は、<br>経営者の決断と実行のスピード<br>が変わること。</strong></p>
+    <p class="intro-text">経営の進化を決めるのは、<br><br>戦略ではなく<br>判断の速度。</p>
+    <p class="intro-text">整理する<br>　　↓<br>判断する<br>　　↓<br>動く<br>　　↓<br>改善する<br><br>このサイクルを<br>速く回すほど、<br><br>経営は前へ進みます。</p>
+    <p class="intro-text" style="margin-top: 56px; border-top: 1px solid var(--border); padding-top: 56px;"><strong>本質は、<br><br>経営者の<br>決断と実行のスピードが<br><br>変わること。</strong></p>
   </div>
 </section>
 
@@ -1218,13 +1228,15 @@ body {
   <div class="wrap">
     <div class="section-header">
       <h2>経営の進化を加速させるもの</h2>
-      <p>AIで、誰もが同じ情報を手にできる時代。価値を分けるのは、判断の速度と実行の質。そのサイクルを速くするのが「思考整理」です。</p>
+      <p>AIで、<br>誰もが同じ情報を<br>手にできる時代。<br><br>価値を分けるのは、<br><br>判断の速度と、<br>実行の質。<br><br>そのサイクルを<br>速くするのが、<br><br>「思考整理」です。</p>
     </div>
     <div class="concept-box">
-      <p class="accent-large">感覚を言葉に<br>↓<br>言葉を仕組みに<br>↓<br>経営の進化を形に</p>
-      <p>それは、頭の中を片づけることではありません。</p>
-      <p>考えを整理し、判断し、形にして、実行する——そのサイクルを、AIをパートナーに、少しでも速く回せるように。</p>
-      <p>回るほど、経営は前へ進みます。それが、私の考える「思考整理」です。</p>
+      <p class="accent-large">感覚を言葉に<br>　　↓<br>言葉を仕組みに<br>　　↓<br>経営の進化を形に</p>
+      <p>それは、<br>頭の中を片づけることではありません。</p>
+      <p>考えを整理し、<br>判断し、<br>形にして、<br>実行する。</p>
+      <p>そのサイクルを、<br>AIをパートナーに、<br>少しでも速く<br>回せるように。</p>
+      <p>回るほど、<br>経営は前へ進みます。</p>
+      <p>それが、<br>私の考える<br>「思考整理」です。</p>
     </div>
   </div>
 </section>
@@ -1234,7 +1246,7 @@ body {
   <div class="wrap">
     <div class="section-header">
       <h2>選ばれる理由</h2>
-      <p>実績・経験・専門性。複数の視点から、経営の「考える→決める→動く」が、より速く前へ進むよう伴走します。</p>
+      <p>対話から実装まで。<br>思考整理 → AI活用 → 組織改善 → 体系化。<br><br>このプロセス全体を、<br>実装レベルで理解し、<br>実践できる人だからこそ、<br>経営の進化速度を上げられます。</p>
     </div>
     <div class="reasons-grid">
       <div class="reason-card">
@@ -1256,7 +1268,12 @@ body {
         <p>自らも経営者として事業を続けてきたからこそ、現場の判断や孤独に、同じ目線で寄り添えます。</p>
       </div>
       <div class="reason-card">
-        <h3>05 | 思考整理 × AI × DX</h3>
+        <h3>05 | 大阪府倫理法人会 DX担当副事務長</h3>
+        <p>DX担当副事務長（2年目）として、<br>会員管理や業務改善、DX推進など、<br>組織全体の仕組みづくりに携わっています。</p>
+        <p>個人事業だけでなく、<br>組織全体の改善・DX・仕組み化を<br>実践していることが、<br>私の強みの一つです。</p>
+      </div>
+      <div class="reason-card">
+        <h3>06 | 思考整理 × AI × DX</h3>
         <p>整理する力、言語化する力、そして実装する力。</p>
         <p>3つを掛け合わせ、判断から実行までのサイクルを、より速く前へ進めます。</p>
       </div>
@@ -1370,41 +1387,41 @@ body {
     <h2>ご挨拶</h2>
     <p class="message-header">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
     <div class="message-box">
-      <p>情報があふれる時代に、本当に大切なのは何か。</p>
-      <p>AIの進化によって、誰でもAIを使える時代になりました。情報も簡単に手に入ります。</p>
-      <p>けれど、価値を分けるのは、情報の"量"ではありません。</p>
+      <p>情報があふれる時代に、<br>本当に大切なのは何か。</p>
+      <p>AIの進化によって、<br>誰でもAIを使える時代になりました。<br>情報も簡単に手に入ります。</p>
+      <p>けれど、<br>価値を分けるのは、<br>情報の"量"ではありません。</p>
       <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">① 価値を分けるもの</strong></p>
-      <p>「何を考え、どう判断し、どう行動するか。」</p>
-      <p>その思考を整理する力こそが、これからの時代に最も重要な力だと、私は考えています。</p>
-      <p>私はこれまで、1万件以上のセッションを通して、経営者や個人事業主をはじめ、さまざまな方の人生や仕事の悩みに向き合ってきました。</p>
-      <p>また、シータヒーリング®インストラクターとして、人の深層心理を長年探究し、「人は何によって変化し、自分らしく生きられるのか」を学び続けてきました。</p>
-      <p>そして現在は、26,000回以上のChatGPTとの対話を重ね、人の思考とAIを融合させる、新しい支援の形を追求しています。</p>
+      <p>「何を考え、<br>どう判断し、<br>どう行動するか。」</p>
+      <p>その思考を整理する力こそが、<br><br>これからの時代に<br>最も重要な力だと、<br><br>私は考えています。</p>
+      <p>私はこれまで、<br>1万件以上のセッションを通して、<br><br>経営者や個人事業主をはじめ、<br>さまざまな方の<br>人生や仕事の悩みに<br>向き合ってきました。</p>
+      <p>また、<br>シータヒーリング®インストラクターとして、<br><br>人の深層心理を<br>長年探究し、<br><br>「人は何によって変化し、<br>自分らしく生きられるのか」<br>を学び続けてきました。</p>
+      <p>そして現在は、<br>26,000回以上のChatGPTとの対話を重ね、<br><br>人の思考とAIを融合させる、<br>新しい支援の形を<br>追求しています。</p>
       <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">② 経営の進化速度を上げること</strong></p>
-      <p>私の仕事は、AIを教えることではありません。</p>
-      <p>人の想いや考えを整理し、言葉にし、AIを活用しながら、事業・サービス・仕組みへと形にしていくこと。</p>
-      <p>ホームページ制作、サービス設計、営業資料、業務改善、DX、組織づくり——すべては「思考整理」から始まります。</p>
-      <p>だから私は、自分の仕事を「思考整理の参謀」と表現しています。</p>
-      <p style="margin-top: 32px;">整理し、判断し、形にして、実行する。</p>
-      <p>このサイクルが速く回るほど、経営は前へ進みます。</p>
-      <p>私が本当に実現したいのは、この「<span class="accent-text">経営の進化速度</span>」を上げること。</p>
-      <p>AIは、そのための心強いパートナーです。</p>
+      <p>私の仕事は、<br>AIを教えることではありません。</p>
+      <p>人の想いや考えを整理し、<br>言葉にし、<br>AIを活用しながら、<br><br>事業・サービス・仕組みへ<br>形にしていくこと。</p>
+      <p>ホームページ制作、<br>サービス設計、<br>営業資料、<br>業務改善、DX、組織づくり。<br><br>すべては「思考整理」から<br>始まります。</p>
+      <p>だから私は、<br>自分の仕事を<br>「思考整理の参謀」と<br>表現しています。</p>
+      <p style="margin-top: 32px;">整理し、<br>判断し、<br>形にして、<br>実行する。</p>
+      <p>このサイクルが<br>速く回るほど、<br><br>経営は前へ進みます。</p>
+      <p>私が本当に実現したいのは、<br><br>この「<span class="accent-text">経営の進化速度</span>」を<br>上げること。</p>
+      <p>AIは、<br>そのための<br>心強いパートナーです。</p>
       <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">③ ミッション：経営者の孤独を解消する</strong></p>
-      <p><strong style="font-size: 18px;">Eternal株式会社のミッション<br>「経営者の想いを、未来へ繋ぐ。」</strong></p>
-      <p>経営者は、多くの責任を背負いながら、本音を話せる相手が少ない存在です。</p>
-      <p>一人で抱え込み悩み続けるのではなく、安心して考えを整理し、その想いを次の世代へ繋いでいける。</p>
-      <p>そんな存在でありたい。その想いで、一人ひとりと向き合っています。</p>
-      <p style="margin-top: 32px;">会社を「Eternal（エターナル）」と名づけたのは、「永く続く」という願いを込めたから。</p>
-      <p>経営者の想いが途切れず、未来へずっと繋がっていくように。</p>
-      <p>それが、Eternalという名前に託した約束です。</p>
-      <p>このホームページを作ったのも、その想いをお伝えしたかったから。</p>
-      <p>これまでご縁の多くはご紹介から始まり、そのたびに「どんな仕事をしているのですか？」と聞かれます。</p>
-      <p>けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、私が本当に提供している価値を表現しきれません。</p>
-      <p style="margin-top: 48px; margin-bottom: 48px; font-size: 18px; line-height: 2.0;">AIは、人の代わりになるものではありません。<br><br>人が自分らしく輝き続けるための、<br>最高のパートナーです。</p>
-      <p>もし今、「頭の中を整理したい」と感じているなら。</p>
-      <p>「事業を次のステージへ進めたい」と感じているなら。</p>
-      <p>「AIを経営に活かしたい」と感じているなら。</p>
-      <p style="margin-top: 24px;">ぜひ一度、お話を聞かせてください。</p>
-      <p>あなた自身がまだ気づいていない可能性を、一緒に形にしていけることを、楽しみにしています。</p>
+      <p><strong style="font-size: 18px;">Eternal株式会社のミッション<br><br>「経営者の想いを、<br>未来へ繋ぐ。」</strong></p>
+      <p>経営者は、<br>多くの責任を背負いながら、<br><br>本音を話せる相手が<br>少ない存在です。</p>
+      <p>一人で抱え込み<br>悩み続けるのではなく、<br><br>安心して考えを整理し、<br>その想いを<br>次の世代へ<br>繋いでいける。</p>
+      <p>そんな存在でありたい。<br>その想いで、<br>一人ひとりと<br>向き合っています。</p>
+      <p style="margin-top: 32px;">会社を<br>「Eternal（エターナル）」<br>と名づけたのは、<br><br>「永く続く」という<br>願いを込めたから。</p>
+      <p>経営者の想いが<br>途切れず、<br>未来へずっと<br>繋がっていくように。</p>
+      <p>それが、<br>Eternalという名前に<br>託した約束です。</p>
+      <p>このホームページを作ったのも、<br>その想いをお伝えしたかったから。</p>
+      <p>これまでご縁の多くは<br>ご紹介から始まり、<br><br>そのたびに<br>「どんな仕事をしているのですか？」<br>と聞かれます。</p>
+      <p>けれど<br>「コーチング」<br>「AI活用」<br>「DX支援」<br><br>という言葉だけでは、<br><br>私が本当に<br>提供している価値を<br>表現しきれません。</p>
+      <p style="margin-top: 48px; margin-bottom: 48px; font-size: 18px; line-height: 2.0;">AIは、<br>人の代わりになるものではありません。<br><br>人が自分らしく<br>輝き続けるための、<br><br>最高のパートナーです。</p>
+      <p>もし今、<br>「頭の中を整理したい」と<br>感じているなら。</p>
+      <p>「事業を<br>次のステージへ<br>進めたい」と<br>感じているなら。</p>
+      <p>「AIを経営に<br>活かしたい」と<br>感じているなら。</p>
+      <p style="margin-top: 24px;">ぜひ一度、<br>お話を聞かせてください。</p>
+      <p>あなた自身が<br>まだ気づいていない<br>可能性を、<br><br>一緒に形にしていけることを、<br>楽しみにしています。</p>
       <p style="margin-top: 48px; font-weight: 600;">Eternal株式会社 代表取締役<br>窪田 成功</p>
     </div>
   </div>
@@ -1414,7 +1431,7 @@ body {
 <section class="profile-section section-light" id="profile">
   <div class="wrap">
     <figure style="margin-bottom: 60px; max-width: 360px; margin-left: auto; margin-right: auto;">
-      <img src="./images/profile.jpg" alt="窪田成功" style="width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
+      <img src="./images/profile.jpg" alt="窪田成功" style="width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 6px; display: block; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
     </figure>
     <h2>窪田 成功</h2>
     <p class="profile-subtitle">KUBOTA SEIKO</p>
@@ -1506,7 +1523,7 @@ body {
         <div style="text-align: center; padding-top: 60px; border-top: 1px solid var(--border);">
           <p style="font-size: 16px; color: var(--gray-mid); margin-bottom: 32px;">そして、すべての思考が表現される</p>
           <div style="max-width: 400px; margin: 0 auto;">
-            <div class="follow-card" style="background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 40px 32px; text-align: center;">
+            <div class="follow-card" style="background: transparent; border: 1px solid rgba(229, 231, 235, 0.3); border-radius: 4px; padding: 40px 32px; text-align: center;">
               <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--ink);">Instagram</h3>
               <span class="follow-label">世界観・人柄・活動風景</span>
               <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin: 16px 0;">
