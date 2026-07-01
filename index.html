@@ -786,15 +786,16 @@ body {
 
 <!-- Hero -->
 <section class="hero section-light" id="top">
-  <div class="wrap" style="max-width: 100%;">
-    <div style="max-width: 100%; display: flex; flex-direction: column; align-items: center;">
-      <figure style="margin: 0 0 56px 0; width: 100%; max-width: 380px;" class="hero-visual">
-        <img src="./images/mind.jpg" alt="経営への視点" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); transition: all 0.8s ease;">
-      </figure>
+  <div class="wrap" style="max-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
 
-      <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
-        <h1 style="margin-bottom: 44px;">経営は、<br>もっと面白くなる。</h1>
-      </div>
+    <!-- Background Visual (脇役：右下に小さく配置) -->
+    <figure style="position: absolute; bottom: 0; right: 0; margin: 0; width: 100%; max-width: 240px; opacity: 0.6; z-index: 0;">
+      <img src="./images/mind.jpg" alt="" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; box-shadow: none;">
+    </figure>
+
+    <!-- Text Content (主役：中央に大きく) -->
+    <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto; position: relative; z-index: 1; text-align: center;">
+      <h1 style="margin-bottom: 0; font-size: clamp(56px, 8.5vw, 88px); line-height: 1.5; letter-spacing: -0.03em;">経営は、<br>もっと面白くなる。</h1>
     </div>
   </div>
 </section>
