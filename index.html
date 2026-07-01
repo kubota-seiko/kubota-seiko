@@ -62,8 +62,8 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(52px, 8vw, 80px);
-  letter-spacing: -0.025em;
+  font-size: clamp(48px, 7.5vw, 76px);
+  letter-spacing: -0.02em;
   font-weight: 700;
 }
 
@@ -227,7 +227,7 @@ section:nth-of-type(11) {
 
 /* Hero */
 .hero {
-  padding: 160px 0 180px;
+  padding: 160px 0 160px;
   text-align: center;
   background: linear-gradient(to bottom, var(--white) 0%, var(--white) 100%);
 }
@@ -244,17 +244,17 @@ section:nth-of-type(11) {
 }
 
 .hero h1 {
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   color: var(--ink);
 }
 
 .hero-subtitle {
   font-size: 18px;
   color: var(--gray-dark);
-  margin-bottom: 80px;
+  margin-bottom: 64px;
   line-height: 2.0;
   font-weight: 400;
-  max-width: 760px;
+  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -265,12 +265,12 @@ section:nth-of-type(11) {
   justify-content: center;
   background: var(--ink);
   color: var(--white);
-  padding: 20px 60px;
+  padding: 18px 56px;
   border-radius: 6px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  min-width: 300px;
+  min-width: 280px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(15, 17, 26, 0.1);
 }
@@ -764,6 +764,28 @@ section:nth-of-type(11) {
   padding: 120px 0;
 }
 
+.process-step {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(168, 153, 104, 0.08);
+}
+
+.process-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
 .follow-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -984,8 +1006,32 @@ footer {
   }
 }
 
+@keyframes heroVisualFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 body {
   animation: fadeIn 0.4s ease;
+}
+
+.hero-visual {
+  animation: heroVisualFadeIn 1.2s ease-out 0.2s both;
+}
+
+.hero-visual img {
+  transition: filter 0.8s ease, transform 0.8s ease;
+}
+
+.hero-visual img:hover {
+  filter: brightness(1.05);
+  transform: scale(1.02);
 }
 
 /* Responsive */
@@ -1050,6 +1096,18 @@ body {
   section:nth-of-type(n) {
     padding: 80px 0 100px !important;
   }
+
+  /* Follow grid responsive */
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  [style*="display: grid; grid-template-columns"] > div:nth-child(2),
+  [style*="display: grid; grid-template-columns"] > div:nth-child(4),
+  [style*="display: grid; grid-template-columns"] > div:nth-child(6),
+  [style*="display: grid; grid-template-columns"] > div:nth-child(8) {
+    display: none !important;
+  }
 }
 </style>
 </head>
@@ -1074,14 +1132,14 @@ body {
 <section class="hero section-light" id="top">
   <div class="wrap" style="max-width: 100%;">
     <div style="max-width: 100%; display: flex; flex-direction: column; align-items: center;">
-      <figure style="margin: 0 0 80px 0; width: 100%; max-width: 420px;">
-        <img src="./images/profile.jpg" alt="窪田成功" style="width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; display: block; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);">
+      <figure style="margin: 0 0 72px 0; width: 100%; max-width: 420px;" class="hero-visual">
+        <img src="./images/mind.jpg" alt="思考整理のプロセス" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; display: block; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); transition: all 0.8s ease;">
       </figure>
 
       <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
         <h1 style="margin-bottom: 48px;">感覚を言語化し、<br>経営を進化させる。</h1>
         <p class="hero-subtitle">思考整理から、AI・仕組み化・改善まで伴走します。<br>対話を通じて、経営の進化速度を一緒に上げていきます。</p>
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center; margin-top: 16px;">
           <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
         </div>
       </div>
@@ -1355,6 +1413,9 @@ body {
 <!-- Profile -->
 <section class="profile-section section-light" id="profile">
   <div class="wrap">
+    <figure style="margin-bottom: 60px; max-width: 360px; margin-left: auto; margin-right: auto;">
+      <img src="./images/profile.jpg" alt="窪田成功" style="width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
+    </figure>
     <h2>窪田 成功</h2>
     <p class="profile-subtitle">KUBOTA SEIKO</p>
     <div class="profile-box">
@@ -1376,27 +1437,85 @@ body {
 <section class="follow-section section-soft">
   <div class="wrap">
     <div class="section-header">
-      <h2>もっと窪田成功を知る</h2>
-      <p>ホームページではサービスや実績を。日々の気づきや考え方、活動の様子は、それぞれのメディアで発信しています。</p>
+      <h2>思考が生まれ、進化していくプロセス</h2>
+      <p>完成品を売るのではなく、改善し続ける人です。<br>発信も進化しています。思考がどう整理され、形になるか。そのプロセスをご覧ください。</p>
     </div>
-    <div class="follow-grid">
-      <div class="follow-card">
-        <h3>note</h3>
-        <span class="follow-label">思想・価値観・深い考察</span>
-        <p>思考整理・AI・経営・人生について、少し深く考えたことを発信しています。</p>
-        <a href="https://note.com/kubota_seiko" target="_blank">記事を読む →</a>
-      </div>
-      <div class="follow-card">
-        <h3>Facebook</h3>
-        <span class="follow-label">日々の気づき・実践・改善</span>
-        <p>日々の活動や挑戦、実際の改善プロセスを、リアルタイムで発信しています。</p>
-        <a href="https://www.facebook.com/seikou.kubota" target="_blank">投稿を見る →</a>
-      </div>
-      <div class="follow-card">
-        <h3>Instagram</h3>
-        <span class="follow-label">世界観・活動風景・人柄</span>
-        <p>活動の様子や世界観、仕事の雰囲気を、写真やショート動画で発信しています。</p>
-        <a href="https://www.instagram.com/kubota_seiko" target="_blank">写真・動画を見る →</a>
+
+    <div style="max-width: 920px; margin: 0 auto;">
+      <!-- Process Flow -->
+      <div style="margin-bottom: 100px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 60px; align-items: start;">
+
+          <!-- Step 1: Threads -->
+          <div class="process-step">
+            <div class="process-number">01</div>
+            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Threads</h3>
+            <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px;">
+              リアルタイムの気づき。<br>思考の断片が生まれる瞬間。
+            </p>
+            <a href="https://www.threads.net" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">アクセス →</a>
+          </div>
+
+          <!-- Arrow -->
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="font-size: 24px; color: var(--gold); font-weight: 300;">→</div>
+          </div>
+
+          <!-- Step 2: Ameblo -->
+          <div class="process-step">
+            <div class="process-number">02</div>
+            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Ameblo</h3>
+            <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px;">
+              断片を整理する。<br>検索される記事として。
+            </p>
+            <a href="https://ameblo.jp" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">ブログへ →</a>
+          </div>
+
+          <!-- Arrow -->
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="font-size: 24px; color: var(--gold); font-weight: 300;">→</div>
+          </div>
+
+          <!-- Step 3: Facebook -->
+          <div class="process-step">
+            <div class="process-number">03</div>
+            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Facebook</h3>
+            <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px;">
+              実践に変える。<br>改善事例として共有。
+            </p>
+            <a href="https://www.facebook.com/seikou.kubota" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">活動を見る →</a>
+          </div>
+
+          <!-- Arrow -->
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="font-size: 24px; color: var(--gold); font-weight: 300;">→</div>
+          </div>
+
+          <!-- Step 4: note -->
+          <div class="process-step">
+            <div class="process-number">04</div>
+            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">note</h3>
+            <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px;">
+              思想として体系化。<br>深い考察として完成。
+            </p>
+            <a href="https://note.com/kubota_seiko" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">記事を読む →</a>
+          </div>
+        </div>
+
+        <!-- Essence -->
+        <div style="text-align: center; padding-top: 60px; border-top: 1px solid var(--border);">
+          <p style="font-size: 16px; color: var(--gray-mid); margin-bottom: 32px;">そして、すべての思考が表現される</p>
+          <div style="max-width: 400px; margin: 0 auto;">
+            <div class="follow-card" style="background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 40px 32px; text-align: center;">
+              <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--ink);">Instagram</h3>
+              <span class="follow-label">世界観・人柄・活動風景</span>
+              <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin: 16px 0;">
+                思考が、世界観になる。<br>仕事の雰囲気・人柄が伝わる場所。
+              </p>
+              <a href="https://www.instagram.com/kubota_seiko" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">写真を見る →</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
