@@ -182,9 +182,9 @@ section {
 }
 
 .wrap {
-  max-width: 1200px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 40px;
 }
 
 /* Hero */
@@ -194,7 +194,10 @@ section {
 }
 
 .hero .wrap {
-  max-width: 900px;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero h1 {
@@ -211,7 +214,9 @@ section {
 }
 
 .hero-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--ink);
   color: var(--white);
   padding: 16px 48px;
@@ -219,6 +224,8 @@ section {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.01em;
+  min-width: 320px;
+  text-align: center;
 }
 
 .hero-cta:hover {
@@ -232,7 +239,7 @@ section {
 }
 
 .intro-section .wrap {
-  max-width: 800px;
+  max-width: 920px;
   text-align: center;
 }
 
@@ -264,8 +271,9 @@ section {
 }
 
 .section-header {
-  max-width: 800px;
+  max-width: 920px;
   margin: 0 auto 100px;
+  text-align: center;
 }
 
 .section-header h2 {
@@ -282,7 +290,7 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
@@ -343,7 +351,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 80px;
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
   text-align: center;
 }
@@ -372,7 +380,7 @@ section {
 }
 
 .concept-section .wrap {
-  max-width: 800px;
+  max-width: 920px;
   text-align: center;
 }
 
@@ -382,7 +390,10 @@ section {
   padding: 60px 48px;
   border-radius: 4px;
   margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
+  max-width: 920px;
 }
 
 .concept-box p {
@@ -406,7 +417,7 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
-  max-width: 1000px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
@@ -458,7 +469,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  max-width: 1000px;
+  max-width: 920px;
   margin: 0 auto;
   margin-top: 80px;
 }
@@ -505,7 +516,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  max-width: 1000px;
+  max-width: 920px;
   margin: 0 auto;
   margin-top: 80px;
 }
@@ -573,7 +584,7 @@ section {
   padding: 60px 48px;
   text-align: center;
   margin-top: 80px;
-  max-width: 800px;
+  max-width: 920px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -584,7 +595,7 @@ section {
 }
 
 .message-section .wrap {
-  max-width: 900px;
+  max-width: 920px;
 }
 
 .message-section h2 {
@@ -605,6 +616,10 @@ section {
   border-left: 2px solid var(--gold);
   padding: 60px 48px;
   border-radius: 4px;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 920px;
 }
 
 .message-box p {
@@ -626,7 +641,7 @@ section {
 }
 
 .profile-section .wrap {
-  max-width: 700px;
+  max-width: 920px;
   text-align: center;
 }
 
@@ -647,6 +662,9 @@ section {
   padding: 40px 36px;
   text-align: left;
   margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 920px;
 }
 
 .profile-box ul {
@@ -703,7 +721,7 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  max-width: 1000px;
+  max-width: 920px;
   margin: 0 auto;
   margin-top: 80px;
 }
@@ -777,7 +795,7 @@ section {
 }
 
 .contact-form {
-  max-width: 700px;
+  max-width: 920px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -926,19 +944,24 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .nav-in {
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .nav-links {
-    gap: 24px;
+    gap: 20px;
   }
 
   .wrap {
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .hero {
-    padding: 140px 0 80px;
+    padding: 120px 0 80px;
+  }
+
+  .hero-cta {
+    min-width: 100%;
+    max-width: 100%;
   }
 
   .stats-grid,
@@ -979,6 +1002,13 @@ body {
 <!-- Hero -->
 <section class="hero section-light" id="top">
   <div class="wrap">
+    <div style="max-width: 100%; text-align: center; margin-bottom: 60px;">
+      <figure style="margin: 0; margin-bottom: 40px;">
+        <div style="width: 280px; height: 360px; margin: 0 auto; background: linear-gradient(135deg, #E5E7EB 0%, #F3F4F6 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--gray-mid); font-size: 14px; font-weight: 500;">
+          <span>窪田成功の写真</span>
+        </div>
+      </figure>
+    </div>
     <h1>感覚を言語化し、<br>経営を進化させる。</h1>
     <p class="hero-subtitle">思考整理から、AI・仕組み化・改善まで伴走します。対話を通じて、経営の進化速度を一緒に上げていきます。</p>
     <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
