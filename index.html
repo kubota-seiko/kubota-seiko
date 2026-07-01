@@ -109,14 +109,6 @@ header.nav {
   color: var(--ink);
 }
 
-.brand span {
-  font-size: 11px;
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-left: 12px;
-}
-
 .nav-links {
   display: flex;
   gap: 48px;
@@ -168,7 +160,7 @@ section {
 
 /* Hero */
 .hero {
-  padding: 160px 0 160px;
+  padding: 200px 0 200px;
   text-align: center;
   background: var(--white);
 }
@@ -264,12 +256,6 @@ section {
 
 .trust-section h2 {
   color: var(--white);
-  margin-bottom: 24px;
-}
-
-.trust-section .intro {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
   margin-bottom: 80px;
 }
 
@@ -311,7 +297,7 @@ section {
 .cta-message {
   max-width: 800px;
   margin: 0 auto 60px;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 2.0;
   color: var(--gray-dark);
 }
@@ -340,11 +326,6 @@ section {
   text-align: center;
 }
 
-.message-section h2 {
-  margin-bottom: 60px;
-  font-size: 36px;
-}
-
 .message-box {
   max-width: 800px;
   margin: 0 auto;
@@ -357,6 +338,11 @@ section {
   margin-bottom: 24px;
 }
 
+.message-box strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
 /* Profile */
 .profile-section {
   padding: 120px 0;
@@ -366,8 +352,8 @@ section {
 
 .profile-image {
   width: 100%;
-  max-width: 360px;
-  margin: 0 auto 60px;
+  max-width: 280px;
+  margin: 0 auto 48px;
 }
 
 .profile-image img {
@@ -380,12 +366,26 @@ section {
   display: block;
 }
 
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.profile-subtitle {
+  font-size: 14px;
+  color: var(--gray-mid);
+  margin-bottom: 24px;
+}
+
 .mission-box {
   background: var(--bg);
   border-left: 2px solid var(--gold);
-  padding: 32px 40px;
+  padding: 24px 32px;
   border-radius: 4px;
-  margin-top: 32px;
+  max-width: 400px;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -399,7 +399,7 @@ section {
 }
 
 .mission-text {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink);
 }
@@ -412,24 +412,26 @@ section {
 
 .follow-section h2 {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  font-size: 28px;
 }
 
 .follow-intro {
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray-mid);
   margin-bottom: 80px;
-  max-width: 800px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.8;
 }
 
 .process-flow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   align-items: start;
   max-width: 920px;
   margin-left: auto;
@@ -489,26 +491,26 @@ section {
 
 .essence-box {
   text-align: center;
-  padding-top: 80px;
+  padding-top: 60px;
   border-top: 1px solid var(--border);
   max-width: 920px;
   margin: 0 auto;
 }
 
 .essence-text {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray-mid);
   margin-bottom: 48px;
-  line-height: 2.0;
+  line-height: 1.8;
 }
 
 .instagram-card {
   background: transparent;
   border: 1px solid rgba(229, 231, 235, 0.3);
   border-radius: 4px;
-  padding: 40px 32px;
+  padding: 36px 28px;
   text-align: center;
-  max-width: 400px;
+  max-width: 360px;
   margin: 0 auto;
 }
 
@@ -523,15 +525,15 @@ section {
   letter-spacing: 0.1em;
   color: var(--gold);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: block;
 }
 
 .instagram-card p {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--gray-mid);
-  line-height: 1.7;
-  margin: 16px 0;
+  line-height: 1.6;
+  margin: 12px 0;
 }
 
 .instagram-card a {
@@ -564,7 +566,7 @@ section {
 }
 
 .contact-form {
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -576,14 +578,16 @@ section {
 .contact-form label {
   display: block;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-size: 15px;
 }
 
 .contact-form div {
-  margin-bottom: 60px;
+  margin-bottom: 36px;
 }
 
+.contact-form input[type="text"],
+.contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
   padding: 14px 16px;
@@ -593,29 +597,18 @@ section {
   color: var(--white);
   font-family: inherit;
   font-size: 15px;
-  min-height: 100px;
-  resize: vertical;
   line-height: 1.6;
 }
 
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
 .contact-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.radio-group {
-  text-align: left;
-  display: flex;
-  gap: 32px;
-}
-
-.contact-form input[type="radio"] {
-  margin-right: 8px;
-}
-
-.contact-form input[type="radio"] + label {
-  display: inline-block;
-  font-weight: 400;
-  margin: 0;
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .contact-btn {
@@ -627,6 +620,8 @@ section {
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .contact-btn:hover {
@@ -638,7 +633,7 @@ section {
   text-align: center;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 40px;
+  margin-top: 32px;
 }
 
 .contact-note a {
@@ -659,14 +654,6 @@ footer {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 8px;
-}
-
-.footer-brand span {
-  font-size: 11px;
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-left: 12px;
 }
 
 .footer-tagline {
@@ -754,16 +741,12 @@ body {
     display: none;
   }
 
-  .nav-links.active {
-    display: flex;
-  }
-
   .wrap {
     padding: 0 20px;
   }
 
   .hero {
-    padding: 100px 0 120px;
+    padding: 120px 0 140px;
   }
 
   .hero h1 {
@@ -782,6 +765,10 @@ body {
   section {
     padding: 80px 0;
   }
+
+  .process-arrow {
+    display: none;
+  }
 }
 </style>
 </head>
@@ -791,9 +778,7 @@ body {
 <header class="nav" id="nav">
   <div class="nav-in">
     <div class="brand">窪田成功</div>
-    <div class="nav-links">
-      <a href="#perspective">視点転換</a>
-      <a href="#message">ご挨拶</a>
+    <div class="nav-links" style="display: none;">
       <a href="#contact" class="nav-cta">相談する</a>
     </div>
   </div>
@@ -809,9 +794,6 @@ body {
 
       <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
         <h1 style="margin-bottom: 44px;">経営は、<br>もっと面白くなる。</h1>
-        <div style="display: flex; justify-content: center; margin-top: 24px;">
-          <a href="#belief" style="font-size: 16px; color: var(--gray-mid); text-decoration: underline; opacity: 0.8;">続きを読む</a>
-        </div>
       </div>
     </div>
   </div>
@@ -885,10 +867,7 @@ body {
 <!-- 信頼 -->
 <section class="trust-section" id="trust">
   <div class="wrap" style="max-width: 920px;">
-    <div style="text-align: center; margin-bottom: 80px;">
-      <h2>この変化は、実現している。</h2>
-      <p class="intro">何度も。</p>
-    </div>
+    <h2>この変化は、実現している。</h2>
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-number">11<span style="font-size: 0.4em;">年</span></div>
@@ -910,19 +889,11 @@ body {
 <section class="cta-section" id="cta">
   <div class="wrap" style="max-width: 920px;">
     <p class="cta-message">
-      経営は、もっと面白くなる。<br>
-      <br>
-      その始まりは、大きな経営課題ではありません。<br>
-      <br>
-      今日感じた、小さなストレスです。<br>
-      <br>
-      そのストレスを一緒に整理することが、<br>
-      経営を一段上から見られる最初の一歩になります。<br>
-      <br>
-      あなたが今感じている、小さなストレスを送ってください。
+      小さなストレスを、<br>
+      一緒に整理しませんか。
     </p>
     <div style="text-align: center;">
-      <a href="#contact" class="cta-button">小さなストレスを送る →</a>
+      <a href="#contact" class="cta-button">小さなストレスを送る</a>
     </div>
   </div>
 </section>
@@ -930,37 +901,18 @@ body {
 <!-- Message -->
 <section class="message-section" id="message">
   <div class="wrap" style="max-width: 920px;">
-    <h2>ご挨拶</h2>
     <div class="message-box">
-      <p>
-        <strong>社長を、現場から経営へ戻す。</strong>
+      <p style="margin-bottom: 48px;">
+        <strong style="font-size: 20px;">社長を、<br>現場から経営へ戻す。</strong>
       </p>
       <p>
-        それが、私の仕事です。
-      </p>
-      <p style="margin-top: 48px;">
-        経営者は、多くの責任を背負いながら、<br>
-        本音を話せる相手が少ない存在です。<br>
-        <br>
-        一人で抱え込み悩み続けるのではなく、<br>
+        私は、経営者が一人で抱え込み、<br>
+        現場に埋もれてしまう状態を変えたい。<br>
         <br>
         安心して考えを整理し、<br>
-        その想いを次の世代へ繋いでいける。<br>
+        もう一度、経営を一段上から見られる時間をつくる。<br>
         <br>
-        そんな存在でありたい。<br>
-        その想いで、一人ひとりと向き合っています。
-      </p>
-      <p style="margin-top: 48px;">
-        このホームページは、<br>
-        その想いをお伝えするために作りました。<br>
-        <br>
-        もし今、<br>
-        「頭の中を整理したい」と感じているなら。<br>
-        <br>
-        「事業を次のステージへ進めたい」と<br>
-        感じているなら。<br>
-        <br>
-        ぜひ一度、お話を聞かせてください。
+        それが、私の仕事です。
       </p>
     </div>
   </div>
@@ -972,11 +924,11 @@ body {
     <div class="profile-image">
       <img src="./images/profile.jpg" alt="窪田成功">
     </div>
-    <h2>窪田 成功</h2>
-    <p style="font-size: 14px; color: var(--gray-mid); margin-bottom: 48px;">KUBOTA SEIKO</p>
+    <p class="profile-name">窪田 成功</p>
+    <p class="profile-subtitle">Eternal株式会社 代表取締役</p>
     <div class="mission-box">
-      <p class="mission-label">MISSION</p>
-      <p class="mission-text">「経営者の想いを、未来へ繋ぐ」</p>
+      <p class="mission-label">Mission</p>
+      <p class="mission-text">経営者の想いを、未来へ繋ぐ</p>
     </div>
   </div>
 </section>
@@ -986,8 +938,8 @@ body {
   <div class="wrap" style="max-width: 920px;">
     <h2>思考が生まれ、進化していくプロセス</h2>
     <p class="follow-intro">
-      完成品を売るのではなく、改善し続ける人です。<br>
-      発信も進化しています。思考がどう整理され、形になるか。そのプロセスをご覧ください。
+      完成品を売るのではなく、改善し続ける。<br>
+      各プラットフォームで、思考が整理され、形になるプロセスをご覧ください。
     </p>
 
     <div class="process-flow">
@@ -1036,17 +988,15 @@ body {
     <!-- Essence -->
     <div class="essence-box">
       <p class="essence-text">
-        そして、<br>
-        すべての思考が<br>
+        そして、すべての思考が<br>
         世界観になる。
       </p>
       <div class="instagram-card">
         <h3>Instagram</h3>
-        <span class="instagram-label">世界観・人柄・活動風景</span>
+        <span class="instagram-label">世界観・人柄</span>
         <p>
           思考が形になり、<br>
-          仕事の雰囲気・人柄が<br>
-          伝わる場所。
+          人柄が伝わる場所。
         </p>
         <a href="https://www.instagram.com/kubota_seiko" target="_blank">写真を見る →</a>
       </div>
@@ -1057,40 +1007,31 @@ body {
 <!-- Contact -->
 <section class="contact-section" id="contact">
   <div class="wrap">
-    <h2>モニター募集：小さなストレスを教えてください。</h2>
-    <p class="contact-lead">あなたの現場にある「小さなストレス」を送ってください。その一通のメッセージから、思考整理が始まり、一緒に改善事例を作っていきます。</p>
+    <h2>小さなストレスを、教えてください。</h2>
+    <p class="contact-lead">あなたの現場にある「小さなストレス」を送ってください。その一通のメッセージから、相談が始まります。</p>
     <div class="contact-form">
       <form>
-        <!-- Block 1 -->
+        <!-- Block 1: Name -->
         <div>
-          <label>① 今、どんなストレスがありますか？</label>
-          <textarea placeholder="毎日感じている小さな違和感、繰り返される質問、同じミスなど"></textarea>
+          <label>お名前</label>
+          <input type="text" placeholder="窪田 太郎" required>
         </div>
 
-        <!-- Block 2 -->
+        <!-- Block 2: Email -->
         <div>
-          <label>② 本当はどうなったら理想ですか？</label>
-          <textarea placeholder="ストレスが解消されたとき、どんな状態になっていたいか"></textarea>
+          <label>メールアドレス</label>
+          <input type="email" placeholder="your@email.com" required>
         </div>
 
-        <!-- Block 3 -->
+        <!-- Block 3: Stress -->
         <div>
-          <label>ご希望の相談方法（任意）</label>
-          <div class="radio-group">
-            <div>
-              <input type="radio" id="online" name="method" value="online">
-              <label for="online">オンライン</label>
-            </div>
-            <div>
-              <input type="radio" id="face" name="method" value="face">
-              <label for="face">対面</label>
-            </div>
-          </div>
+          <label>今感じている、小さなストレス</label>
+          <textarea placeholder="毎日感じている小さな違和感、繰り返される質問、同じミスなど。何でも構いません。" required></textarea>
         </div>
 
         <!-- Button -->
         <div style="text-align: center;">
-          <button type="submit" class="contact-btn">小さなストレスを送って、<br>相談する →</button>
+          <button type="submit" class="contact-btn">送信する</button>
         </div>
       </form>
       <p class="contact-note">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank">Messenger</a> からどうぞ。</p>
@@ -1117,7 +1058,6 @@ body {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
