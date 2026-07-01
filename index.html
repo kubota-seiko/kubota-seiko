@@ -233,10 +233,14 @@ section:nth-of-type(11) {
 }
 
 .hero .wrap {
-  max-width: 920px;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .hero h1 {
@@ -250,7 +254,7 @@ section:nth-of-type(11) {
   margin-bottom: 80px;
   line-height: 2.0;
   font-weight: 400;
-  max-width: 800px;
+  max-width: 760px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -261,12 +265,12 @@ section:nth-of-type(11) {
   justify-content: center;
   background: var(--ink);
   color: var(--white);
-  padding: 20px 64px;
+  padding: 20px 60px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  min-width: 340px;
+  min-width: 300px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(15, 17, 26, 0.1);
 }
@@ -1016,9 +1020,9 @@ body {
   }
 
   .hero-cta {
-    min-width: 100%;
+    min-width: auto;
     max-width: calc(100% - 40px);
-    padding: 18px 32px;
+    padding: 18px 40px;
     font-size: 16px;
   }
 
@@ -1070,16 +1074,18 @@ body {
 <section class="hero section-light" id="top">
   <div class="wrap" style="max-width: 100%;">
     <div style="max-width: 100%; display: flex; flex-direction: column; align-items: center;">
-      <figure style="margin: 0 0 80px 0; width: 100%; max-width: 500px;">
+      <figure style="margin: 0 0 80px 0; width: 100%; max-width: 420px;">
         <div style="width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, #D1D5DB 0%, #E5E7EB 50%, #F3F4F6 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--gray-mid); font-size: 16px; font-weight: 500; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);">
           <span>窪田成功</span>
         </div>
       </figure>
 
-      <div style="max-width: 920px; padding: 0 40px;">
+      <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
         <h1 style="margin-bottom: 48px;">感覚を言語化し、<br>経営を進化させる。</h1>
         <p class="hero-subtitle">思考整理から、AI・仕組み化・改善まで伴走します。<br>対話を通じて、経営の進化速度を一緒に上げていきます。</p>
-        <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
+        <div style="display: flex; justify-content: center;">
+          <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
+        </div>
       </div>
     </div>
   </div>
