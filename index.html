@@ -46,7 +46,19 @@ body {
 
 h1, h2, h3, h4 {
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.4;
+}
+
+h1 {
+  margin-bottom: 32px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-bottom: 16px;
 }
 
 h1 {
@@ -65,8 +77,8 @@ h3 {
 }
 
 p {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 2.0;
   color: var(--gray-dark);
 }
 
@@ -74,6 +86,19 @@ a {
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
+}
+
+.accent-text {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.accent-large {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 24px 0;
 }
 
 /* Header Navigation */
@@ -180,9 +205,9 @@ section {
 .hero-subtitle {
   font-size: 18px;
   color: var(--gray-dark);
-  margin-bottom: 48px;
-  line-height: 1.8;
-  font-weight: 500;
+  margin-bottom: 64px;
+  line-height: 2.0;
+  font-weight: 400;
 }
 
 .hero-cta {
@@ -223,10 +248,10 @@ section {
 
 .intro-text {
   font-size: 20px;
-  line-height: 1.9;
+  line-height: 2.0;
   color: var(--ink);
   font-weight: 500;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 /* Pain Section */
@@ -240,17 +265,17 @@ section {
 
 .section-header {
   max-width: 800px;
-  margin: 0 auto 80px;
+  margin: 0 auto 100px;
 }
 
 .section-header h2 {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .section-header p {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--gray-mid);
-  line-height: 1.8;
+  line-height: 2.0;
 }
 
 .pain-grid {
@@ -289,9 +314,9 @@ section {
 }
 
 .pain-card p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-mid);
-  line-height: 1.7;
+  line-height: 1.9;
 }
 
 /* Stats Section */
@@ -414,9 +439,9 @@ section {
 }
 
 .reason-card p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-mid);
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 .reasons-cta {
@@ -452,9 +477,9 @@ section {
 }
 
 .benefit-card p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-mid);
-  line-height: 1.7;
+  line-height: 1.9;
 }
 
 .benefits-cta {
@@ -525,11 +550,12 @@ section {
 }
 
 .service-card li {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--gray-mid);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding-left: 20px;
   position: relative;
+  line-height: 1.8;
 }
 
 .service-card li:before {
@@ -582,9 +608,9 @@ section {
 }
 
 .message-box p {
-  font-size: 15px;
-  line-height: 1.9;
-  margin-bottom: 16px;
+  font-size: 17px;
+  line-height: 2.0;
+  margin-bottom: 20px;
   color: var(--gray-dark);
 }
 
@@ -628,11 +654,12 @@ section {
 }
 
 .profile-box li {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-mid);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding-left: 20px;
   position: relative;
+  line-height: 1.8;
 }
 
 .profile-box li:before {
@@ -709,9 +736,9 @@ section {
 }
 
 .follow-card p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--gray-mid);
-  line-height: 1.7;
+  line-height: 1.85;
   margin-bottom: 20px;
 }
 
@@ -962,9 +989,9 @@ body {
 <section class="intro-section section-soft">
   <div class="wrap">
     <span class="intro-label">経営の進化速度とは</span>
-    <p class="intro-text">経営の進化を決めるのは、戦略ではなく判断の速度。</p>
-    <p class="intro-text">整理する→判断する→動く→改善する——このサイクルを速く回すほど、経営は前へ進みます。思考整理は、そのサイクルを加速させる土台です。</p>
-    <p class="intro-text" style="margin-top: 48px; border-top: 1px solid var(--border); padding-top: 48px;"><strong>本質は、経営者の決断と実行のスピードが変わること。</strong></p>
+    <p class="intro-text">経営の進化を決めるのは、<br>戦略ではなく判断の速度。</p>
+    <p class="intro-text">整理する<br>↓<br>判断する<br>↓<br>動く<br>↓<br>改善する<br><br>このサイクルを速く回すほど、経営は前へ進みます。</p>
+    <p class="intro-text" style="margin-top: 56px; border-top: 1px solid var(--border); padding-top: 56px;"><strong>本質は、<br>経営者の決断と実行のスピード<br>が変わること。</strong></p>
   </div>
 </section>
 
@@ -978,23 +1005,23 @@ body {
     <div class="pain-grid">
       <div class="pain-card">
         <h3>頭の中が整理できない</h3>
-        <p>考えや想いはあるのに、うまく言葉にできない。</p>
+        <p>考えや想いはあるのに、<br>言葉にできない。</p>
       </div>
       <div class="pain-card">
         <h3>一人で抱え込んでしまう</h3>
-        <p>相談したいが、本音を話せる相手が少ない。</p>
+        <p>本音を話せる相手が、<br>少ない。</p>
       </div>
       <div class="pain-card">
         <h3>AIを経営に活かしたい</h3>
-        <p>AI・DXを、自社の武器として取り入れたい。</p>
+        <p>AI・DXを、自社の武器として<br>取り入れたい。</p>
       </div>
       <div class="pain-card">
         <h3>想いを形にしたい</h3>
-        <p>頭の中のアイデアを、事業・仕組みにして残したい。</p>
+        <p>アイデアを、事業・仕組みにして<br>残したい。</p>
       </div>
       <div class="pain-card wide">
         <h3>発信・資料で表現できない</h3>
-        <p>想いはあるのに、ホームページや営業資料にうまく表現できない。</p>
+        <p>想いはあるのに、ホームページや営業資料に<br>うまく表現できない。</p>
       </div>
     </div>
   </div>
@@ -1032,8 +1059,10 @@ body {
       <p>AIで、誰もが同じ情報を手にできる時代。価値を分けるのは、判断の速度と実行の質。そのサイクルを速くするのが「思考整理」です。</p>
     </div>
     <div class="concept-box">
-      <p><strong>感覚を言葉にし、言葉を仕組みにし、経営の進化を形にすること。</strong></p>
-      <p>それは、頭の中を片づけることではありません。考えを整理し、判断し、形にして、実行する——そのサイクルを、AIをパートナーに、少しでも速く回せるように。回るほど、経営は前へ進みます。それが、私の考える「思考整理」です。</p>
+      <p class="accent-large">感覚を言葉に<br>↓<br>言葉を仕組みに<br>↓<br>経営の進化を形に</p>
+      <p>それは、頭の中を片づけることではありません。</p>
+      <p>考えを整理し、判断し、形にして、実行する——そのサイクルを、AIをパートナーに、少しでも速く回せるように。</p>
+      <p>回るほど、経営は前へ進みます。それが、私の考える「思考整理」です。</p>
     </div>
   </div>
 </section>
@@ -1048,15 +1077,17 @@ body {
     <div class="reasons-grid">
       <div class="reason-card">
         <h3>01 | 1万件以上のセッション経験</h3>
-        <p>10年以上にわたり、学生から経営者まで、累計1万件以上の対話を重ねてきました。課題を解きほぐす力が、私の土台です。</p>
+        <p>10年以上にわたり、学生から経営者まで、累計1万件以上の対話を重ねてきました。</p>
+        <p>課題を解きほぐす力が、私の土台です。</p>
       </div>
       <div class="reason-card">
         <h3>02 | AIとの26,000回以上の対話・検証</h3>
-        <p>実務でAIを徹底的に検証し、「使える形」に落とし込みます。流行ではなく、現場で役立つ活用法を。</p>
+        <p>実務でAIを徹底的に検証し、「使える形」に落とし込みます。</p>
+        <p>流行ではなく、現場で役立つ活用法を提供します。</p>
       </div>
       <div class="reason-card">
         <h3>03 | シータヒーリング®インストラクター</h3>
-        <p>講師として250名以上を養成。人の深層心理や思考パターンを長年探究し、言葉の奥にある「本当の想い」を引き出します。</p>
+        <p>講師として250名以上を養成。人の深層心理を長年探究し、言葉の奥にある「本当の想い」を引き出します。</p>
       </div>
       <div class="reason-card">
         <h3>04 | 法人設立8期目の経営経験</h3>
@@ -1064,7 +1095,8 @@ body {
       </div>
       <div class="reason-card">
         <h3>05 | 思考整理 × AI × DX</h3>
-        <p>整理する力、言語化する力、そして実装する力。3つを掛け合わせ、判断から実行までのサイクルを、より速く前へ進めます。</p>
+        <p>整理する力、言語化する力、そして実装する力。</p>
+        <p>3つを掛け合わせ、判断から実行までのサイクルを、より速く前へ進めます。</p>
       </div>
     </div>
     <div class="reasons-cta">
@@ -1083,27 +1115,27 @@ body {
     <div class="benefits-grid">
       <div class="benefit-card">
         <h3>思考が整理される</h3>
-        <p>モヤモヤしていた頭の中を、一緒に見える形にしていきます。</p>
+        <p>モヤモヤしていた頭の中を、<br>見える形にしていきます。</p>
       </div>
       <div class="benefit-card">
         <h3>判断がしやすくなる</h3>
-        <p>何を優先すべきかを整理し、迷いを減らすきっかけをつくります。</p>
+        <p>何を優先すべきかを整理し、<br>迷いを減らすきっかけをつくります。</p>
       </div>
       <div class="benefit-card">
         <h3>現場のストレスが改善しやすくなる</h3>
-        <p>同じミス、同じ質問、同じ手戻りを見つけ、仕組みで減らせる形を一緒に考えます。</p>
+        <p>同じミス、同じ質問、同じ手戻りを見つけ、仕組みで減らせる形を考えます。</p>
       </div>
       <div class="benefit-card">
         <h3>AIを経営で活かす入口が見える</h3>
-        <p>整理した考えを、AIを使って実装・改善につなげる方法を一緒に試します。</p>
+        <p>整理した考えを、AIを使って<br>実装・改善につなげる方法を試します。</p>
       </div>
       <div class="benefit-card">
         <h3>時間の使い方を見直せる</h3>
-        <p>社長やスタッフが本来やるべき仕事に集中できるよう、改善ポイントを探します。</p>
+        <p>社長やスタッフが本来やるべき仕事に集中できるよう、<br>改善ポイントを探します。</p>
       </div>
       <div class="benefit-card">
         <h3>利益につながる改善の種が見つかる</h3>
-        <p>時間短縮・ミス削減・問い合わせ増加・受注率改善など、経営に効く変化の入口を一緒に探します。</p>
+        <p>時間短縮・ミス削減・問い合わせ増加・受注率改善など、経営に効く変化を探します。</p>
       </div>
     </div>
     <div class="benefits-cta">
@@ -1124,8 +1156,8 @@ body {
       <div class="service-card">
         <h3>Starter</h3>
         <p class="service-card-title">思考整理プラン</p>
-        <div class="service-price">¥33,000/月</div>
-        <p><strong>まずは、頭の中を整理したい方へ。</strong></p>
+        <div class="service-price">¥33,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
+        <p><strong>まずは、<br>頭の中を整理したい方へ。</strong></p>
         <ul>
           <li>月1回 60分セッション</li>
           <li>現状の課題・優先順位の整理</li>
@@ -1136,8 +1168,8 @@ body {
       <div class="service-card">
         <h3>Standard</h3>
         <p class="service-card-title">言語化伴走プラン</p>
-        <div class="service-price">¥55,000/月</div>
-        <p><strong>考えを整え、言葉にして使える状態にしたい方へ。いちばんおすすめ</strong></p>
+        <div class="service-price">¥55,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
+        <p><strong>考えを整え、<br>言葉にして使える状態に。<br><span style="color: var(--gold);">いちばんおすすめ</span></strong></p>
         <ul>
           <li>月2回 60分セッション</li>
           <li>課題・想い・強みの言語化</li>
@@ -1149,8 +1181,8 @@ body {
       <div class="service-card">
         <h3>Plus</h3>
         <p class="service-card-title">仕組み化伴走プラン</p>
-        <div class="service-price">¥110,000/月</div>
-        <p><strong>言語化した内容を、事業の仕組みまで落としたい方へ。</strong></p>
+        <div class="service-price">¥110,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
+        <p><strong>言語化した内容を、<br>事業全体に<br>落としたい方へ。</strong></p>
         <ul>
           <li>月4回 60分セッション</li>
           <li>商品設計・導線設計</li>
@@ -1176,22 +1208,42 @@ body {
     <h2>ご挨拶</h2>
     <p class="message-header">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
     <div class="message-box">
-      <p>情報があふれる時代に、本当に大切なのは何か——。AIの進化によって、仕事のやり方は大きく変わり、誰でもAIを使える時代になりました。情報も簡単に手に入ります。けれど、価値を分けるのは、情報の"量"ではありません。</p>
-      <p><strong style="font-size: 16px; color: var(--ink);">① 価値を分けるもの</strong></p>
-      <p>「何を考え、どう判断し、どう行動するか。」その思考を整理する力こそが、これからの時代に最も重要な力だと、私は考えています。</p>
-      <p>私はこれまで、1万件以上のセッションを通して、経営者や個人事業主をはじめ、さまざまな方の人生や仕事の悩みに向き合ってきました。また、シータヒーリング®インストラクターとして、人の深層心理や思考パターンを長年探究し、「人は何によって変化し、自分らしく生きられるのか」を学び続けてきました。</p>
-      <p>そして現在は、26,000回以上のChatGPTとの対話・検証を重ね、人の思考とAIを融合させる、新しい支援の形を追求しています。</p>
-      <p><strong style="font-size: 16px; color: var(--ink);">② 経営の進化速度を上げること</strong></p>
-      <p>私の仕事は、AIを教えることではありません。人の想いや考えを整理し、言葉にし、AIを活用しながら、事業・サービス・仕組みへと形にしていくことです。ホームページ制作、サービス設計、営業資料、業務改善、DX、組織づくり——すべては「思考整理」から始まります。だから私は、自分の仕事を「思考整理の参謀」と表現しています。</p>
-      <p>整理し、判断し、形にして、実行する。このサイクルが速く回るほど、経営は前へ進み、進化していきます。私が本当に実現したいのは、この「経営の進化速度」を上げること。AIは、そのための心強いパートナーです。</p>
-      <p><strong style="font-size: 16px; color: var(--ink);">③ ミッション：経営者の孤独を解消する</strong></p>
-      <p><strong>Eternal株式会社のミッションは、「経営者の想いを、未来へ繋ぐ。」</strong></p>
-      <p>経営者は、多くの責任を背負いながら、本音を話せる相手が少ない存在です。一人で抱え込み悩み続けるのではなく、安心して考えを整理し、その想いを次の世代へ繋いでいける——そんな存在でありたい。その想いで、一人ひとりと向き合っています。</p>
-      <p>その願いを込めて、会社を「Eternal（エターナル）」と名づけました。"永く続く"——経営者の想いが途切れず、未来へずっと繋がっていくように。それが、Eternalという名前に託した約束です。</p>
-      <p>このホームページを作ったのも、その想いをお伝えしたかったからです。これまでご縁の多くはご紹介から始まり、そのたびに「どんな仕事をしているのですか？」と聞かれます。けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、私が本当に提供している価値を表現しきれません。</p>
-      <p>AIは、人の代わりになるものではありません。人が自分らしく輝き続けるための、最高のパートナーです。</p>
-      <p>もし今、「頭の中を整理したい」「事業を次のステージへ進めたい」「AIを経営に活かしたい」——そう感じているなら、ぜひ一度、お話を聞かせてください。あなた自身がまだ気づいていない可能性を、一緒に形にしていけることを、楽しみにしています。</p>
-      <p style="margin-top: 36px; font-weight: 600;">Eternal株式会社 代表取締役　窪田 成功</p>
+      <p>情報があふれる時代に、本当に大切なのは何か。</p>
+      <p>AIの進化によって、誰でもAIを使える時代になりました。情報も簡単に手に入ります。</p>
+      <p>けれど、価値を分けるのは、情報の"量"ではありません。</p>
+      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">① 価値を分けるもの</strong></p>
+      <p>「何を考え、どう判断し、どう行動するか。」</p>
+      <p>その思考を整理する力こそが、これからの時代に最も重要な力だと、私は考えています。</p>
+      <p>私はこれまで、1万件以上のセッションを通して、経営者や個人事業主をはじめ、さまざまな方の人生や仕事の悩みに向き合ってきました。</p>
+      <p>また、シータヒーリング®インストラクターとして、人の深層心理を長年探究し、「人は何によって変化し、自分らしく生きられるのか」を学び続けてきました。</p>
+      <p>そして現在は、26,000回以上のChatGPTとの対話を重ね、人の思考とAIを融合させる、新しい支援の形を追求しています。</p>
+      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">② 経営の進化速度を上げること</strong></p>
+      <p>私の仕事は、AIを教えることではありません。</p>
+      <p>人の想いや考えを整理し、言葉にし、AIを活用しながら、事業・サービス・仕組みへと形にしていくこと。</p>
+      <p>ホームページ制作、サービス設計、営業資料、業務改善、DX、組織づくり——すべては「思考整理」から始まります。</p>
+      <p>だから私は、自分の仕事を「思考整理の参謀」と表現しています。</p>
+      <p style="margin-top: 32px;">整理し、判断し、形にして、実行する。</p>
+      <p>このサイクルが速く回るほど、経営は前へ進みます。</p>
+      <p>私が本当に実現したいのは、この「<span class="accent-text">経営の進化速度</span>」を上げること。</p>
+      <p>AIは、そのための心強いパートナーです。</p>
+      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">③ ミッション：経営者の孤独を解消する</strong></p>
+      <p><strong style="font-size: 18px;">Eternal株式会社のミッション<br>「経営者の想いを、未来へ繋ぐ。」</strong></p>
+      <p>経営者は、多くの責任を背負いながら、本音を話せる相手が少ない存在です。</p>
+      <p>一人で抱え込み悩み続けるのではなく、安心して考えを整理し、その想いを次の世代へ繋いでいける。</p>
+      <p>そんな存在でありたい。その想いで、一人ひとりと向き合っています。</p>
+      <p style="margin-top: 32px;">会社を「Eternal（エターナル）」と名づけたのは、「永く続く」という願いを込めたから。</p>
+      <p>経営者の想いが途切れず、未来へずっと繋がっていくように。</p>
+      <p>それが、Eternalという名前に託した約束です。</p>
+      <p>このホームページを作ったのも、その想いをお伝えしたかったから。</p>
+      <p>これまでご縁の多くはご紹介から始まり、そのたびに「どんな仕事をしているのですか？」と聞かれます。</p>
+      <p>けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、私が本当に提供している価値を表現しきれません。</p>
+      <p style="margin-top: 48px; margin-bottom: 48px; font-size: 18px; line-height: 2.0;">AIは、人の代わりになるものではありません。<br><br>人が自分らしく輝き続けるための、<br>最高のパートナーです。</p>
+      <p>もし今、「頭の中を整理したい」と感じているなら。</p>
+      <p>「事業を次のステージへ進めたい」と感じているなら。</p>
+      <p>「AIを経営に活かしたい」と感じているなら。</p>
+      <p style="margin-top: 24px;">ぜひ一度、お話を聞かせてください。</p>
+      <p>あなた自身がまだ気づいていない可能性を、一緒に形にしていけることを、楽しみにしています。</p>
+      <p style="margin-top: 48px; font-weight: 600;">Eternal株式会社 代表取締役<br>窪田 成功</p>
     </div>
   </div>
 </section>
