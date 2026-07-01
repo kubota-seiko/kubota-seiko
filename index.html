@@ -9,7 +9,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="窪田成功">
 <meta name="theme-color" content="#1A1A2E">
-<meta name="google-site-verification" content="EHcp8bBC4R0wppeMwD0z7-7RxwCJHgNT7Edv_NiAWEA" />
+<!-- Google Search Console をお使いになる場合は、ここに発行された確認用metaタグを貼ってください -->
 <meta property="og:title" content="思考整理の参謀 窪田成功｜経営者の思考整理 × AI活用・仕組み化">
 <meta property="og:description" content="経営者・個人事業主の思考を整理し、想いを言葉に、AIを活用して事業・サービス・仕組みへ。思考整理 × AI × DXで、経営の進化速度を上げる伴走を。">
 <meta property="og:type" content="website">
@@ -153,24 +153,6 @@
   .about-flow::before{content:"";display:block;width:44px;height:2px;background:var(--gold);margin:0 auto 30px;border-radius:2px;}
   .about-note{margin-top:32px;color:var(--sub);font-size:15px;}
 
-  /* check (思考整理チェック) */
-  #check .sec-lead{max-width:560px;}
-  .check-box{max-width:680px;margin:44px auto 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 34px;}
-  .check-list{list-style:none;}
-  .check-list li{margin-bottom:8px;}
-  .check-list label{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:border-color .2s,background .2s;font-size:15px;color:var(--ink);line-height:1.6;}
-  .check-list label:hover{border-color:var(--gold);background:var(--soft);}
-  .check-list input{margin-top:2px;width:18px;height:18px;accent-color:var(--gold);flex:0 0 auto;cursor:pointer;}
-  .check-list input:checked + span{color:var(--accent);font-weight:500;}
-  .check-btn{display:block;width:100%;margin-top:20px;background:var(--accent);color:#fff;border:0;padding:16px;border-radius:4px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:transform .2s,opacity .2s;}
-  .check-btn:hover{transform:translateY(-2px);opacity:.92;}
-  .check-result{margin-top:24px;text-align:center;display:none;}
-  .check-result.show{display:block;}
-  .check-result .rmsg{font-size:16px;line-height:1.85;color:var(--ink);margin-bottom:22px;}
-  .check-result .rmsg b{color:var(--accent);}
-  .check-result .check-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;transition:transform .2s;}
-  .check-result .check-cta:hover{transform:translateY(-2px);color:#fff;}
-
   /* reasons */
   .reasons{background:var(--accent);color:#fff;}
   .reasons .sec-lead{color:rgba(255,255,255,.72);margin-left:auto;margin-right:auto;}
@@ -205,7 +187,7 @@
 
   /* more (SNS) */
   #more .sec-lead{max-width:600px;}
-  .more-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:18px;margin-top:48px;}
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;}
   .more-card{display:flex;flex-direction:column;align-items:flex-start;padding:34px 30px;border:1px solid var(--line);border-radius:10px;background:#fff;color:inherit;transition:transform .25s,box-shadow .25s,border-color .25s;}
   .more-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(0,0,0,.07);border-color:var(--gold);color:inherit;}
   .more-ico{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;margin-bottom:18px;}
@@ -262,34 +244,10 @@
   .svc-dots span{width:12px;height:12px;border-radius:50%;background:var(--line);}
   .svc-dots span.on{background:var(--gold);}
   .svc-tagline{font-size:13px;color:var(--ink);font-weight:500;line-height:1.65;margin:12px 0 14px;}
-  .svc-rec{align-self:flex-start;font-size:11px;font-weight:700;color:#fff;background:var(--gold);border-radius:20px;padding:3px 12px;margin:12px 0 4px;}
-  .svc-evo{font-size:17px;font-weight:700;color:var(--accent);margin:14px 0 8px;letter-spacing:.01em;}
-  .svc-1line{font-size:13px;color:var(--sub);line-height:1.8;}
-  /* evolution-speed chart */
-  .evo-chart{max-width:520px;margin:46px auto 4px;}
-  .evo-track{display:flex;align-items:flex-end;gap:16px;height:150px;}
-  .evo-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
-  .evo-block{width:100%;background:var(--gold);border-radius:6px 6px 0 0;}
-  .evo-col:nth-child(1) .evo-block{opacity:.4;}
-  .evo-col:nth-child(2) .evo-block{opacity:.68;}
-  .evo-name{margin-top:12px;font-size:13px;font-weight:700;color:var(--accent);text-align:center;line-height:1.4;}
-  .evo-name small{display:block;font-size:11px;font-weight:500;color:var(--sub);margin-top:2px;}
-  .evo-axis{text-align:center;font-size:13px;color:var(--sub);margin-top:16px;}
-  .evo-axis b{color:var(--gold);font-weight:700;}
-  .evo-note{text-align:center;max-width:600px;margin:18px auto 0;font-size:14px;color:var(--ink);line-height:1.85;}
-  .svc-hook{font-size:clamp(18px,2.7vw,23px);font-weight:700;color:var(--accent);line-height:1.8;max-width:640px;margin:0 auto;}
   .svc-list{list-style:none;margin:0 0 14px;}
   .svc-list li{font-size:13px;color:#444;line-height:1.55;padding-left:18px;position:relative;margin-bottom:7px;}
   .svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;font-size:12px;}
   .svc-for{font-size:12px;color:var(--sub);line-height:1.7;padding-top:12px;border-top:1px solid var(--line);margin-top:auto;}
-  .svc-plans-head{margin-top:84px;padding-top:60px;border-top:1px solid var(--line);}
-  .lp-explain{background:#fff;border:1px solid var(--line);border-radius:12px;padding:36px 40px;margin:24px auto 0;max-width:820px;text-align:center;}
-  .lp-explain h3{font-size:clamp(20px,3vw,26px);color:var(--accent);margin-bottom:18px;}
-  .lp-explain p{font-size:15px;color:var(--ink);line-height:1.9;margin-bottom:16px;}
-  .lp-explain .lp-why{color:var(--sub);font-size:14px;}
-  .lp-explain b{color:var(--accent);}
-  .lp-explain .lp-punch{font-size:clamp(16px,2.4vw,19px);font-weight:700;color:var(--accent);margin:22px 0 0;}
-  @media(max-width:760px){.lp-explain{padding:28px 24px;}}
   .svc-project{margin-top:24px;background:var(--accent);color:#fff;border-radius:10px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
   .svc-project .svc-tag{background:var(--gold);color:#fff;}
   .svc-project h3{font-size:24px;color:#fff;margin:14px 0 10px;}
@@ -316,7 +274,6 @@
   .mission span{display:block;font-size:12px;letter-spacing:.2em;color:var(--gold);margin-bottom:8px;font-family:"Inter";font-weight:600;}
   .mission p{font-size:19px;font-weight:700;}
   .mission .mission-credo{font-size:14px;font-weight:600;color:var(--gold);margin-top:12px;line-height:1.55;}
-  .prof-bio{font-size:15px;line-height:1.95;color:var(--sub);margin:0 0 26px;}
 
   /* testimonials */
   .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
@@ -341,20 +298,8 @@
   .story-quote small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:14px;letter-spacing:.04em;}
   .wip{display:inline-block;vertical-align:middle;font-size:12px;font-weight:600;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:3px 12px;margin-left:14px;letter-spacing:.08em;}
 
-  /* why now */
-  .wn-seq{font-size:clamp(15px,2.3vw,18px);line-height:2.0;color:rgba(255,255,255,.82);max-width:740px;margin:8px auto 0;}
-  .wn-msg{font-size:clamp(17px,2.6vw,22px);font-weight:700;line-height:1.85;color:#fff;max-width:760px;margin:30px auto 0;letter-spacing:.01em;}
-  .wn-msg b{color:var(--gold);}
-  .wn-proof{font-size:14px;line-height:1.85;color:rgba(255,255,255,.6);max-width:680px;margin:28px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);}
-
-  /* vision declaration */
-  .vis-eyebrow{color:var(--gold);font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px;}
-  .vis-line{font-size:clamp(20px,3.4vw,30px);font-weight:700;line-height:1.75;color:#fff;letter-spacing:.02em;max-width:780px;margin:0 auto;}
-  .vis-sub{margin-top:22px;font-size:15px;color:rgba(255,255,255,.74);}
-
   /* cta */
   .cta{background:var(--ink);color:#fff;text-align:center;}
-  .cta-creed{color:var(--gold);font-size:clamp(15px,2.3vw,19px);font-weight:700;letter-spacing:.05em;margin-bottom:18px;}
   .cta h2{font-size:clamp(28px,5vw,46px);margin-bottom:16px;}
   .cta p{color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 36px;font-size:16px;}
   .cta-btn{
@@ -368,7 +313,7 @@
   .consult-form textarea{min-height:82px;resize:vertical;line-height:1.7;}
   .consult-form select{color:rgba(255,255,255,.85);}
   .consult-form input:focus,.consult-form textarea:focus,.consult-form select:focus{outline:none;border-color:var(--gold);}
-  .consult-form button{background:var(--gold);color:#fff;border:0;padding:20px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:.02em;cursor:pointer;font-family:inherit;transition:transform .25s,box-shadow .25s;margin-top:10px;box-shadow:0 10px 26px rgba(184,146,79,.32);}
+  .consult-form button{background:#fff;color:var(--ink);border:0;padding:17px;border-radius:2px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;transition:transform .25s,box-shadow .25s;margin-top:6px;}
   .consult-form button:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,255,255,.18);}
   .consult-form button:disabled{opacity:.6;cursor:default;transform:none;}
   #formResult{margin-top:22px;font-size:16px;color:#fff;}
@@ -380,8 +325,6 @@
   .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap;}
   .foot-brand b{font-size:18px;}
   .foot-brand p{color:var(--sub);font-size:14px;margin-top:6px;}
-  .foot-philo{font-size:12px;color:var(--gold);letter-spacing:.03em;margin-top:10px;}
-  .foot-philo span{display:inline-block;font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sub);margin-right:8px;}
   .foot-social{display:flex;gap:24px;}
   .foot-social a{font-size:14px;color:var(--sub);transition:color .2s;}
   .foot-social a:hover{color:var(--ink);}
@@ -416,7 +359,6 @@
       <a href="#stats">実績</a>
       <a href="#reasons">選ばれる理由</a>
       <a href="#svc">サービス</a>
-      <a href="cases.html">事例</a>
       <a href="#story">ご挨拶</a>
       <a href="#contact" class="nav-cta">無料相談</a>
     </nav>
@@ -428,10 +370,10 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="reveal">
-      <h1><span class="light">思考整理の参謀</span><span class="nw">感覚を言語化。</span><br><span class="nw">そして、仕組みへ。</span></h1>
-      <p class="hero-lead">経営者の中にある感覚を整理し、AIを活用して、<br>ホームページ・営業導線・仕組みまで形にします。</p>
-      <p class="hero-sub">思考整理から、現実が動き出すまで伴走します。</p>
-      <a href="#contact" class="hero-cta">無料相談で、頭の中を整理する <span class="arr">→</span></a>
+      <h1><span class="light">思考整理の参謀</span><span class="nw">仕事は続いている。</span><br><span class="nw">売上もある。</span></h1>
+      <p class="hero-lead">でも、心のどこかで思っている。<br>「もっと面白くできるはず。」</p>
+      <p class="hero-sub">その違和感は、衰えではありません。<br>次の進化が始まるサインです。</p>
+      <a href="#contact" class="hero-cta">感覚を更新。そして、仕組みへ。 <span class="arr">→</span></a>
     </div>
     <div class="hero-photo reveal">
       <div class="frame">
@@ -445,18 +387,13 @@
 <section id="intro">
   <div class="wrap reveal">
     <span class="intro-label">はじめての方へ</span>
-    <p class="intro-text">窪田成功の<b>「思考整理」</b>とは、頭の中にある想いを言葉にし、AIも活用しながら、事業・サービス・仕組みへと形にしていく支援です。</p>
-  </div>
-</section>
-
-<!-- WHY NOW -->
-<section class="why-now" id="why-now" style="background:var(--accent);color:#fff;text-align:center;">
-  <div class="wrap reveal">
-    <p class="eyebrow">Why Now</p>
-    <h2 class="sec-title" style="color:#fff;">なぜ今、「更新し続ける」なのか。</h2>
-    <p class="wn-seq">インターネットは、働き方を変えました。スマートフォンは、暮らしを変えました。そして今、AIは——その両方を合わせたほどの変化を、わずか数年で起こそうとしています。</p>
-    <p class="wn-msg">この時代に大切なのは、「一度作ること」ではなく、<b>更新し続けること</b>。私はAIとともに、あなたの思考・サービス・ホームページを、更新し続ける伴走者でありたい。</p>
-    <p class="wn-proof">——このホームページ自体、完成品ではありません。今も更新を続けています。それが、何よりの証明です。</p>
+    <p class="intro-text">人は、<br>可能性を感じた瞬間に<br>輝きを取り戻す。</p>
+    <p class="intro-text" style="margin-top:24px;"><b>その可能性を</b></p>
+    <p class="intro-text"><b>思考整理によって見つけ、</b></p>
+    <p class="intro-text"><b>AIやWebを活用しながら</b></p>
+    <p class="intro-text"><b>現実へ変えていく。</b></p>
+    <p class="intro-text" style="margin-top:24px;">それが、<br>私の仕事です。</p>
+    <p class="intro-text" style="margin-top:32px;border-top:1px solid var(--line);padding-top:24px;">ホームページは成果物。<br>本質は、<br>経営者のワクワクが戻ってくること。</p>
   </div>
 </section>
 
@@ -483,12 +420,11 @@
   <div class="wrap">
     <div class="reveal" style="text-align:center;margin-bottom:54px;">
       <p class="eyebrow">Track Record</p>
-      <h2 class="sec-title">だから、安心してお任せください。</h2>
-      <p class="sec-lead" style="color:rgba(255,255,255,.72);margin:0 auto;">学生から経営者まで、たくさんの想いや悩みに向き合ってきました。<br>数字は、その積み重ねです。</p>
+      <p class="creed">経営11年目、法人8期目、39歳。<br><br>毎日、AIと向き合い、<br>「えっ！！こんなことまでできるんや！」<br>という感動を体験しています。<br><br>その感動を、あなたにも。</p>
     </div>
     <div class="stats-row">
-      <div class="stat reveal"><div class="num">11<small>年目</small></div><div class="lbl">対話・セッション実績</div></div>
-      <div class="stat reveal"><div class="num">24,000<small>回以上</small></div><div class="lbl">AI対話・検証実績</div></div>
+      <div class="stat reveal"><div class="num">1万<small>件以上</small></div><div class="lbl">累計セッション実績</div></div>
+      <div class="stat reveal"><div class="num">24,000<small>+</small></div><div class="lbl">AI対話・検証実績<span style="display:block;font-size:11px;opacity:.7;margin-top:3px;">※2025年4月時点</span></div></div>
       <div class="stat reveal"><div class="num">7,030<small>名</small></div><div class="lbl">SNS総フォロー</div></div>
     </div>
   </div>
@@ -502,29 +438,6 @@
     <p class="about-lead">AIで、誰もが同じ情報を手にできる時代。<br>だからこそ、価値を分けるのは「思考を整理する力」です。</p>
     <p class="about-flow">想いを言葉にし、言葉を仕組みにし、未来へつなぐこと。</p>
     <p class="about-note">それは、頭の中を片づけることではありません。考えを整理し、判断し、形にして、実行する——そのサイクルを、AIをパートナーに、少しでも速く回せるように。回るほど、経営は前へ進みます。それが、私の考える「思考整理」です。</p>
-  </div>
-</section>
-
-<!-- CHECK (思考整理チェック) -->
-<section id="check">
-  <div class="wrap">
-    <div class="reveal" style="text-align:center;">
-      <p class="eyebrow">Check</p>
-      <h2 class="sec-title">思考整理チェック</h2>
-      <p class="sec-lead" style="margin:0 auto;">10秒でできる、かんたんセルフチェック。当てはまるものを選んでみてください。</p>
-    </div>
-    <div class="check-box reveal">
-      <ul class="check-list">
-        <li><label><input type="checkbox" class="ck"><span>頭の中に考えはあるが、うまく言葉にできない</span></label></li>
-        <li><label><input type="checkbox" class="ck"><span>やることが多すぎて、優先順位が決まらない</span></label></li>
-        <li><label><input type="checkbox" class="ck"><span>考えているのに、なかなか前に進めない</span></label></li>
-        <li><label><input type="checkbox" class="ck"><span>AIを使っているが、成果につながっていない</span></label></li>
-        <li><label><input type="checkbox" class="ck"><span>相談したいが、本音を話せる相手がいない</span></label></li>
-        <li><label><input type="checkbox" class="ck"><span>想いはあるのに、HPや資料でうまく表現できない</span></label></li>
-      </ul>
-      <button type="button" id="checkBtn" class="check-btn">結果を見る</button>
-      <div id="checkResult" class="check-result"></div>
-    </div>
   </div>
 </section>
 
@@ -576,92 +489,72 @@
 <section class="svc" id="svc">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">Plans</p>
-      <h2 class="sec-title">進化速度で選ぶ。</h2>
-      <p class="sec-lead svc-hook">経営は、一度整理して終わりではありません。進化し続けるもの。<br>だから、参謀も、AIも、ホームページも、一緒に進化していきます。</p>
-    </div>
-    <div class="evo-chart reveal">
-      <div class="evo-track">
-        <div class="evo-col"><div class="evo-block" style="height:42%"></div><span class="evo-name">思考整理<small>月1回</small></span></div>
-        <div class="evo-col"><div class="evo-block" style="height:68%"></div><span class="evo-name">言語化<small>月2回</small></span></div>
-        <div class="evo-col"><div class="evo-block" style="height:100%"></div><span class="evo-name">仕組み化<small>月4回</small></span></div>
-      </div>
-      <p class="evo-axis">改善サイクルを速く回すほど、<b>経営の進化速度</b>が上がる&nbsp;→</p>
-      <p class="evo-note">仮説 → 実装 → 反応 → 改善。このサイクルを、どれだけ速く回せるか。どのプランも一回一回は最高最善——変わるのは“質”ではなく、サイクルの“回転数”です。</p>
+      <p class="eyebrow">Service & Price</p>
+      <h2 class="sec-title">サービス・料金</h2>
+      <p class="sec-lead">経営者の頭の中にある感覚・想い・判断基準を、言葉にし、必要に応じて仕組みに変えていきます。まずは思考整理から。続けるほど、言葉・商品・導線・仕組みが整っていきます。</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
         <div class="svc-tag">Starter</div>
         <div class="svc-name">思考整理プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月</small></div>
-        <p class="svc-evo">進化の土台をつくる。</p>
-        <p class="svc-1line">月1回の対話に加え、日々の発信や考え方も必要に応じてフィードバック。「何を優先するか」を一緒に整理します。</p>
+        <p class="svc-tagline">まずは、頭の中を整理したい方へ。</p>
+        <ul class="svc-list">
+          <li>月1回 60分セッション</li>
+          <li>現状の課題・優先順位の整理</li>
+          <li>次の一手の明確化</li>
+          <li>セッション後の簡易メモ</li>
+        </ul>
+        <p class="svc-for">こんな方に：頭の中が散らかっている／まず話しながら整理したい／壁打ち相手がほしい</p>
       </div>
       <div class="svc-card feat reveal">
         <div class="svc-tag">Standard</div>
         <div class="svc-name">言語化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月</small></div>
-        <p class="svc-rec">いちばんおすすめ</p>
-        <p class="svc-evo">進化速度を上げる。</p>
-        <p class="svc-1line">月2回の対話に加え、SNS・プロフィール・サービス説明などの発信も一緒にブラッシュアップ。思考を言葉に変え、すぐ実践できる状態へ。</p>
+        <p class="svc-tagline">考えを整え、言葉にして使える状態にしたい方へ。<br><span style="color:var(--gold);font-weight:700;">いちばんおすすめ</span></p>
+        <ul class="svc-list">
+          <li>月2回 60分セッション</li>
+          <li>課題・想い・強みの言語化</li>
+          <li>サービス説明文・発信テーマの整理</li>
+          <li>提案・無料相談で使う言葉づくり</li>
+          <li>月1枚の思考整理レポート</li>
+        </ul>
+        <p class="svc-for">こんな方に：自分の価値を言葉にしたい／発信やHPの言葉を整えたい／見せ方を整理したい</p>
       </div>
       <div class="svc-card reveal">
         <div class="svc-tag">Plus</div>
         <div class="svc-name">仕組み化伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
-        <p class="svc-evo">進化を仕組みに変える。</p>
-        <p class="svc-1line">毎週の対話に加え、LP・ホームページ・営業導線・AI活用など、実装したものを一緒に改善。公開して終わりでなく、成果につながるよう継続的に育てます。</p>
+        <p class="svc-tagline">言語化した内容を、事業の仕組みまで落としたい方へ。</p>
+        <ul class="svc-list">
+          <li>月4回 60分セッション</li>
+          <li>商品設計・導線設計</li>
+          <li>HP / LP / プロフィール文の整理</li>
+          <li>事例・お客様の声の整理</li>
+          <li>フォーム・返信文・簡易マニュアル設計</li>
+          <li>AI活用による業務整理＋月1回の実装レビュー</li>
+        </ul>
+        <p class="svc-for">こんな方に：感覚経営を仕組みに変えたい／人に任せる形を作りたい／AI・DXを取り入れたい</p>
       </div>
     </div>
-    <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。——そして、どのプランでも「作って終わり」ではありません。LP・HP・SNS・提案資料・名刺・サービス説明まで、<b>今あるものを“もっと伝わる形”へ</b>。対話を重ねながら実践・改善を繰り返し、経営と一緒に進化していきます。</p>
-    <div class="reveal svc-plans-head" style="text-align:center;">
-      <p class="eyebrow">Implementation</p>
-      <h2 class="sec-title">そして、実装へ。</h2>
-      <p class="sec-lead" style="margin:0 auto;">思考整理で見えた“一番売りたいもの”を、まず一枚のLPに。AIで高速に実装し、公開後も改善し続けます。</p>
-    </div>
-    <div class="lp-explain reveal">
-      <h3>まずは、1枚のLPから。</h3>
-      <p>LP（ランディングページ）とは、ひとつの商品・サービスを伝え、「申し込みたい」と思ってもらうことに特化した1ページです。会社全体を伝えるホームページと違い、目的がはっきりしています。</p>
-      <p class="lp-challenge">新サービス、セミナー、採用、無料相談、キャンペーン——<b>LPは、経営者の“挑戦”を形にする一枚</b>。成果が見えるから、次の挑戦へつながります。</p>
-      <p>私が作るのは、デザインではありません。<b>思考整理から生まれた「伝わる構造」</b>を、一枚のLPにします。作って終わりにはせず、公開後も改善を重ね、成果につながるまで、一緒に育てます。</p>
-      <p class="lp-punch">LPは、作って終わりではありません。売れるまで、一緒に育てます。</p>
-    </div>
+    <p class="svc-note reveal">おすすめは <b>Standard｜言語化伴走プラン</b>。月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ変えていきます。</p>
     <div class="svc-project reveal">
       <div class="proj-head">
         <span class="svc-tag">Project</span>
-        <h3>LP進化プロジェクト</h3>
+        <h3>事業構築プロジェクト</h3>
         <div class="proj-price">65万円<small>〜（応相談）</small></div>
-        <p class="proj-desc">思考整理から、一つのサービスを「伝わるLP」へ。AIで高速に実装し、公開後も改善を重ねて、成果につながるページへ育てます。成果が出たら、ホームページ全体・営業導線・仕組みへと自然に広げていきます。</p>
+        <p class="proj-desc">経営者の頭の中を、事業全体の資産に変えるプロジェクト。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
         <a href="#contact" class="proj-cta">まずは無料相談する <span class="arr">→</span></a>
       </div>
       <ul>
-        <li>思考整理：何を・誰に・なぜ売れるかを整理</li>
-        <li>LP実装：伝わる構造を、AIで高速に形に</li>
-        <li>公開後：数字を見て改善し続ける（“納品”でなく“進化”）</li>
-        <li>展開：成果が出たらHP全体・営業導線へ</li>
-        <li>AI / DX 導入設計・営業資料・事例整備</li>
+        <li>事業コンセプト・営業導線の設計</li>
+        <li>HP / LP 構成・営業資料化</li>
+        <li>社内マニュアル・顧客対応フロー整備</li>
+        <li>AI / DX 導入設計</li>
+        <li>チーム共有資料の作成</li>
         <li>継続的な経営参謀支援</li>
       </ul>
     </div>
-  </div>
-</section>
-
-<!-- CASES TEASER -->
-<section style="background:var(--accent);color:#fff;">
-  <div class="wrap reveal" style="text-align:center;">
-    <p class="eyebrow">Case Studies</p>
-    <h2 class="sec-title" style="color:#fff;">業種は違うのに、みんな現実が動いている。</h2>
-    <p class="sec-lead" style="color:rgba(255,255,255,.74);margin:0 auto 32px;">思考が整理されると、人は自分で答えを見つけ、決断し、現実が動き始めます。<br>その共通の構造を、事例でご覧ください。</p>
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin-bottom:38px;font-size:13px;font-weight:600;">
-      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">整理される</span>
-      <span style="color:var(--gold);font-weight:700;">→</span>
-      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">本音が言葉に</span>
-      <span style="color:var(--gold);font-weight:700;">→</span>
-      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">自分で決断</span>
-      <span style="color:var(--gold);font-weight:700;">→</span>
-      <span style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;">現実が動く</span>
-    </div>
-    <a href="cases.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;padding:16px 34px;border-radius:2px;font-size:15px;font-weight:700;transition:transform .25s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">思考整理で動いた事例を見る →</a>
   </div>
 </section>
 
@@ -672,29 +565,19 @@
     <h2 class="sec-title">ご挨拶</h2>
     <p class="credo-lead reveal">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
     <div class="story-body">
-      <p><span class="u">情報があふれる時代に、</span><span class="u">本当に大切なのは何か——。</span><span class="u">AIの進化によって、</span><span class="u">仕事のやり方は大きく変わり、</span><span class="u">誰でもAIを使える時代になりました。</span><span class="u">情報も簡単に手に入ります。</span><span class="u">けれど、価値を分けるのは、</span><span class="u">情報の“量”ではありません。</span></p>
+      <p><span class="u">情報があふれる時代に、</span><span class="u">本当に大切なのは何か——。</span><span class="u">AIの進化によって、</span><span class="u">仕事のやり方は大きく変わり、</span><span class="u">誰でもAIを使える時代になりました。</span><span class="u">情報も簡単に手に入ります。</span><span class="u">けれど、価値を分けるのは、</span><span class="u">情報の"量"ではありません。</span></p>
       <p><span class="u"><b>「何を考え、どう判断し、どう行動するか。」</b></span><br><span class="u">その思考を整理する力こそが、</span><span class="u">これからの時代に最も重要な力だと、</span><span class="u">私は考えています。</span></p>
       <p><span class="u">私はこれまで、</span><span class="u">1万件以上のセッションを通して、</span><span class="u">経営者や個人事業主をはじめ、</span><span class="u">さまざまな方の人生や仕事の悩みに向き合ってきました。</span><span class="u">また、シータヒーリング®インストラクターとして、</span><span class="u">人の深層心理や思考パターンを長年探究し、</span><span class="u">「人は何によって変化し、自分らしく生きられるのか」を</span><span class="u">学び続けてきました。</span></p>
       <p><span class="u">そして現在は、</span><span class="u">24,000回以上（現在も更新中）の</span><span class="u">ChatGPTとの対話・検証を重ね、</span><span class="u">人の思考とAIを融合させる、</span><span class="u">新しい支援の形を追求しています。</span></p>
       <p><span class="u">私の仕事は、</span><span class="u">AIを教えることではありません。</span><span class="u">人の想いや考えを整理し、言葉にし、</span><span class="u">AIを活用しながら、</span><span class="u">事業・サービス・仕組みへと形にしていくことです。</span><span class="u">ホームページ制作、サービス設計、営業資料、</span><span class="u">業務改善、DX、組織づくり——</span><span class="u">すべては「思考整理」から始まります。</span><span class="u">だから私は、自分の仕事を</span><span class="u"><b>「思考整理の参謀」</b>と表現しています。</span></p>
       <p><span class="u">整理し、判断し、形にして、実行する。</span><span class="u">このサイクルが速く回るほど、</span><span class="u">経営は前へ進み、進化していきます。</span><span class="u">私が本当に実現したいのは、</span><span class="u">この<b>「経営の進化速度」</b>を上げること。</span><span class="u">AIは、そのための心強いパートナーです。</span></p>
-      <p><span class="u">だから私がお渡しするのは、</span><span class="u">一度きりの「答え」ではありません。</span><span class="u">思考整理から、言語化・実装・改善までを、</span><span class="u">速く回し続けられる「状態」そのものです。</span></p>
       <p><span class="u">Eternal株式会社のミッションは、</span><span class="u"><b>「経営者の想いを、未来へ繋ぐ。」</b></span><span class="u">経営者は、多くの責任を背負いながら、</span><span class="u">本音を話せる相手が少ない存在です。</span><span class="u">一人で抱え込み悩み続けるのではなく、</span><span class="u">安心して考えを整理し、</span><span class="u">その想いを次の世代へ繋いでいける——</span><span class="u">そんな存在でありたい。</span><span class="u">その想いで、一人ひとりと向き合っています。</span></p>
-      <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">“永く続く”——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
+      <p><span class="u">その願いを込めて、</span><span class="u">会社を「Eternal（エターナル）」と名づけました。</span><span class="u">"永く続く"——</span><span class="u">経営者の想いが途切れず、</span><span class="u">未来へずっと繋がっていくように。</span><span class="u">それが、Eternalという名前に託した約束です。</span></p>
       <p><span class="u">このホームページを作ったのも、</span><span class="u">その想いをお伝えしたかったからです。</span><span class="u">これまでご縁の多くはご紹介から始まり、</span><span class="u">そのたびに「どんな仕事をしているのですか？」と聞かれます。</span><span class="u">けれど「コーチング」「AI活用」「DX支援」という言葉だけでは、</span><span class="u">私が本当に提供している価値を表現しきれません。</span></p>
       <p><span class="u">AIは、人の代わりになるものではありません。</span><span class="u">人が自分らしく輝き続けるための、</span><span class="u">最高のパートナーです。</span></p>
       <p><span class="u">もし今、</span><span class="u">「頭の中を整理したい」</span><span class="u">「事業を次のステージへ進めたい」</span><span class="u">「AIを経営に活かしたい」——</span><span class="u">そう感じているなら、</span><span class="u">ぜひ一度、お話を聞かせてください。</span><span class="u">あなた自身がまだ気づいていない可能性を、</span><span class="u">一緒に形にしていけることを、楽しみにしています。</span></p>
     </div>
     <p style="margin-top:36px;text-align:center;font-size:15px;color:var(--sub);">Eternal株式会社 代表取締役　<b style="color:var(--ink);font-size:18px;">窪田 成功</b></p>
-  </div>
-</section>
-
-<!-- VISION DECLARATION -->
-<section style="background:var(--accent);color:#fff;text-align:center;">
-  <div class="wrap reveal">
-    <p class="vis-eyebrow">Vision</p>
-    <p class="vis-line">大切なのは「今どこにいるか」ではなく、<br>「これから、どれだけ更新を続けられるか」。</p>
-    <p class="vis-sub">ホームページも、経営も。AIとともに、進化し続ける時代へ。</p>
   </div>
 </section>
 
@@ -714,14 +597,9 @@
         <li>感覚の言語化と仕組み化の参謀</li>
         <li>思考整理コーチ</li>
       </ul>
-      <p class="prof-bio">これまで11年にわたり、累計10,000件以上の個別セッション・対話支援を行ってきました。現在は、24,000回以上のAI対話・検証をもとに、経営者の頭の中を、言葉・資料・仕組みに変える支援を行っています。</p>
       <div class="mission">
         <span>MISSION</span>
         <p>「経営者の想いを、未来へ繋ぐ」</p>
-      </div>
-      <div class="mission" style="margin-top:14px;">
-        <span>VISION</span>
-        <p>永遠の進化　<small style="font-size:14px;font-weight:600;color:var(--gold);">〜自分らしく輝き続けよう！〜</small></p>
       </div>
     </div>
   </div>
@@ -733,7 +611,7 @@
     <div class="reveal" style="text-align:center;">
       <p class="eyebrow">Follow</p>
       <h2 class="sec-title">もっと窪田成功を知る</h2>
-      <p class="sec-lead" style="margin:0 auto;">ホームページではサービスや実績を。日々の気づきや考え方、活動の様子は、それぞれのメディアで発信しています。<br><b style="color:var(--accent);">各メディア合わせて、7,000名以上に届いています。</b></p>
+      <p class="sec-lead" style="margin:0 auto;">ホームページではサービスや実績を。日々の気づきや考え方、活動の様子は、それぞれのメディアで発信しています。</p>
     </div>
     <div class="more-grid">
       <a href="https://note.com/kubota_seiko" target="_blank" rel="noopener" class="more-card reveal">
@@ -757,20 +635,6 @@
         <span class="more-desc">活動の様子や世界観、仕事の雰囲気を、写真やショート動画で発信しています。</span>
         <span class="more-link">写真・動画を見る <span class="arr">→</span></span>
       </a>
-      <a href="https://ameblo.jp/kubotaseiko/" target="_blank" rel="noopener" class="more-card reveal">
-        <span class="more-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8.5h4M12 12h4"/></svg></span>
-        <b>Ameblo</b>
-        <span class="more-role">日々の思考・気づき</span>
-        <span class="more-desc">完成前の“原石”。経営者との対話やAI活用の気づきを、その場で残しています。</span>
-        <span class="more-link">思考整理ノートを見る <span class="arr">→</span></span>
-      </a>
-      <a href="https://www.threads.com/@kubota_seiko" target="_blank" rel="noopener" class="more-card reveal">
-        <span class="more-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5h14v9H9.5l-3.5 3v-3H5z"/><path d="M9 9.5h.01M12 9.5h.01M15 9.5h.01" stroke-width="2.4"/></svg></span>
-        <b>Threads</b>
-        <span class="more-role">短い思考・リアルタイム</span>
-        <span class="more-desc">日々の気づきや考えを、短く・そのまま。リアルタイムでつぶやいています。</span>
-        <span class="more-link">投稿を見る <span class="arr">→</span></span>
-      </a>
     </div>
   </div>
 </section>
@@ -778,7 +642,6 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
-    <p class="cta-creed">完成を目指すのではない。進化し続ける経営を。</p>
     <h2>まずは無料相談から</h2>
     <p>約30分の無料相談で、ご相談の内容を基にした「思考整理レポート（1枚）」をお渡しします。話すだけで、頭の中が整理される感覚を、まず体験してください。</p>
     <form id="consultForm" class="consult-form">
@@ -799,7 +662,7 @@
         <option value="対面">対面</option>
       </select>
       <input type="text" name="Preferred date" placeholder="ご希望の日程があれば（任意）">
-      <button type="submit">無料相談で、思考整理を体験する →</button>
+      <button type="submit">相談を申し込む →</button>
     </form>
     <div id="formResult"></div>
     <p class="form-sub">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank" rel="noopener">Messenger</a> からどうぞ。</p>
@@ -813,14 +676,11 @@
       <div class="foot-brand">
         <b>窪田 成功</b>
         <p>思考整理の参謀 ／ Eternal株式会社</p>
-        <p class="foot-philo"><span>Philosophy</span>永遠の進化 〜自分らしく輝き続けよう！〜</p>
       </div>
       <div class="foot-social">
         <a href="https://note.com/kubota_seiko" target="_blank" rel="noopener">note</a>
         <a href="https://www.facebook.com/seikou.kubota" target="_blank" rel="noopener">Facebook</a>
         <a href="https://www.instagram.com/kubota_seiko" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://ameblo.jp/kubotaseiko/" target="_blank" rel="noopener">Ameblo</a>
-        <a href="https://www.threads.com/@kubota_seiko" target="_blank" rel="noopener">Threads</a>
       </div>
     </div>
     <p class="copy">© 2026 Kubota Seiko / Eternal Inc. All rights reserved.</p>
@@ -828,7 +688,7 @@
 </footer>
 
 <script>
-  // image placeholder generator (used if profile.jpg is missing)
+  // image placeholder generator
   window.__ph=function(w,h,txt){
     var d=document.createElement('div');
     d.style.cssText='width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1A1A2E,#33334d);color:#fff;font-family:Inter,sans-serif;font-size:clamp(40px,8vw,72px);font-weight:700;letter-spacing:.1em;';
@@ -842,7 +702,7 @@
     nav.classList.toggle('scrolled',window.scrollY>10);
   });
 
-  // mobile menu -> jump to contact (simple)
+  // mobile menu
   document.getElementById('menuBtn').addEventListener('click',function(){
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   });
@@ -858,29 +718,7 @@
     io.observe(el);
   });
 
-  // 思考整理チェック
-  var checkBtn=document.getElementById('checkBtn');
-  if(checkBtn){
-    checkBtn.addEventListener('click',function(){
-      var n=document.querySelectorAll('#check .ck:checked').length;
-      var msg;
-      if(n===0){
-        msg='今は、思考が整理されている状態かもしれません。さらに前へ進めたいときは、いつでもご相談ください。';
-      }else if(n<=2){
-        msg='<b>'+n+'つ</b>当てはまりましたね。少し整理するだけで、ぐっと前に進めるはずです。';
-      }else if(n<=4){
-        msg='<b>'+n+'つ</b>当てはまりました。頭の中が少し混み合っているサインかも。一度、一緒に整理してみませんか？';
-      }else{
-        msg='<b>'+n+'つ</b>当てはまりました。一人で抱え込みすぎているのかもしれません。思考整理で、きっと変えられます。';
-      }
-      var r=document.getElementById('checkResult');
-      r.innerHTML='<p class="rmsg">'+msg+'</p><a href="#contact" class="check-cta">無料相談で、頭の中を整理する →</a>';
-      r.classList.add('show');
-      r.scrollIntoView({behavior:'smooth',block:'center'});
-    });
-  }
-
-  // consultation form submit (Web3Forms)
+  // consultation form submit
   var cf=document.getElementById('consultForm');
   if(cf){
     cf.addEventListener('submit',function(e){
@@ -912,12 +750,12 @@
             cf.style.display='none';
             result.textContent='送信ありがとうございました。内容を確認のうえ、ご連絡します。';
           }else{
-            btn.textContent='無料相談で、思考整理を体験する →';btn.disabled=false;
+            btn.textContent='相談を申し込む →';btn.disabled=false;
             result.textContent='送信に失敗しました。お手数ですが、もう一度お試しください。';
           }
         })
         .catch(function(){
-          btn.textContent='無料相談で、思考整理を体験する →';btn.disabled=false;
+          btn.textContent='相談を申し込む →';btn.disabled=false;
           result.textContent='送信に失敗しました。Messengerからもご連絡いただけます。';
         });
     });
