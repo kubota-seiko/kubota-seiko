@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>思考整理の参謀 窪田成功｜経営者の思考整理 × AI活用・仕組み化</title>
-<meta name="description" content="思考整理の参謀・窪田成功。経営者・個人事業主の思考を整理し、想いを言葉に、AIを活用して事業・サービス・仕組みへ。">
+<title>窪田成功｜経営は、もっと面白くなる。</title>
+<meta name="description" content="経営者のための参謀。社長を現場から経営へ戻す。">
 <link rel="canonical" href="https://kubota-seiko.com/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="窪田成功">
@@ -50,31 +50,22 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  margin-bottom: 32px;
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-h3 {
-  margin-bottom: 16px;
-}
-
-h1 {
   font-size: clamp(48px, 7.5vw, 76px);
   letter-spacing: -0.02em;
   font-weight: 700;
+  margin-bottom: 32px;
 }
 
 h2 {
   font-size: clamp(36px, 6vw, 56px);
   letter-spacing: -0.015em;
+  margin-bottom: 20px;
 }
 
 h3 {
   font-size: 18px;
   font-weight: 600;
+  margin-bottom: 16px;
 }
 
 p {
@@ -87,19 +78,6 @@ a {
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
-}
-
-.accent-text {
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.accent-large {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.6;
-  margin: 24px 0;
 }
 
 /* Header Navigation */
@@ -172,43 +150,6 @@ header.nav {
 /* Sections */
 section {
   scroll-margin-top: 80px;
-  padding: 120px 0;
-}
-
-section:nth-of-type(2) {
-  padding: 140px 0 120px;
-}
-
-section:nth-of-type(3) {
-  padding: 120px 0 140px;
-}
-
-section:nth-of-type(5) {
-  padding: 120px 0 100px;
-}
-
-section:nth-of-type(6) {
-  padding: 120px 0 140px;
-}
-
-section:nth-of-type(7) {
-  padding: 120px 0 140px;
-}
-
-section:nth-of-type(8) {
-  padding: 120px 0 140px;
-}
-
-section:nth-of-type(9) {
-  padding: 120px 0 140px;
-}
-
-section:nth-of-type(10) {
-  padding: 120px 0 100px;
-}
-
-section:nth-of-type(11) {
-  padding: 120px 0 100px;
 }
 
 .section-light {
@@ -229,7 +170,7 @@ section:nth-of-type(11) {
 .hero {
   padding: 160px 0 160px;
   text-align: center;
-  background: linear-gradient(to bottom, var(--white) 0%, var(--white) 100%);
+  background: var(--white);
 }
 
 .hero .wrap {
@@ -248,157 +189,94 @@ section:nth-of-type(11) {
   color: var(--ink);
 }
 
-.hero-subtitle {
-  font-size: 18px;
-  color: var(--gray-dark);
-  margin-bottom: 64px;
-  line-height: 2.0;
-  font-weight: 400;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  color: var(--white);
-  padding: 18px 56px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  min-width: 280px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(15, 17, 26, 0.1);
-}
-
-.hero-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(15, 17, 26, 0.16);
-}
-
-/* Intro */
-.intro-section {
-  padding: 140px 0 120px;
-}
-
-.intro-section .wrap {
-  max-width: 920px;
+/* Belief */
+.belief-section {
+  padding: 160px 0;
+  background: var(--white);
   text-align: center;
 }
 
-.intro-label {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 700;
-  margin-bottom: 32px;
-}
-
-.intro-text {
-  font-size: 20px;
-  line-height: 2.0;
+.belief-section h2 {
+  font-size: 42px;
+  line-height: 1.8;
   color: var(--ink);
-  font-weight: 500;
-  margin-bottom: 36px;
+  margin-bottom: 0;
 }
 
-/* Pain Section */
+/* 現状認識 */
 .pain-section {
   padding: 120px 0;
-}
-
-.pain-section .wrap {
+  background: var(--bg);
   text-align: center;
 }
 
-.section-header {
-  max-width: 920px;
-  margin: 0 auto 100px;
+.pain-section p {
+  font-size: 18px;
+  line-height: 2.4;
+  color: var(--gray-dark);
+}
+
+/* 視点転換 */
+.perspective-section {
+  padding: 120px 0;
+  background: var(--white);
   text-align: center;
 }
 
-.section-header h2 {
-  margin-bottom: 32px;
+.perspective-section h2 {
+  margin-bottom: 48px;
 }
 
-.section-header p {
+.perspective-section p {
   font-size: 18px;
   color: var(--gray-mid);
   line-height: 2.0;
-}
-
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  max-width: 920px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-.pain-grid .wide {
-  grid-column: 1 / -1;
-  max-width: 450px;
+/* 変化 */
+.change-section {
+  padding: 120px 0;
+  background: var(--bg);
+  text-align: center;
+}
+
+.change-section h2 {
+  margin-bottom: 48px;
+}
+
+.change-section p {
+  font-size: 17px;
+  line-height: 2.2;
+  color: var(--gray-dark);
+  text-align: center;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-.pain-card {
-  background: transparent;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 4px;
-  padding: 40px 32px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.pain-card:hover {
-  border-color: var(--gold);
-  box-shadow: none;
-  transform: none;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.pain-card h3 {
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: var(--ink);
-}
-
-.pain-card p {
-  font-size: 16px;
-  color: var(--gray-mid);
-  line-height: 1.9;
-}
-
-/* Stats Section */
-.stats-section {
+/* 信頼 */
+.trust-section {
   background: var(--ink);
   color: var(--white);
   padding: 120px 0;
 }
 
-.stats-section h2 {
+.trust-section h2 {
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
-.stats-section .section-header {
-  margin-bottom: 80px;
-}
-
-.stats-section .section-header p {
+.trust-section .intro {
   color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin-bottom: 80px;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 80px;
+  gap: 40px;
   max-width: 920px;
   margin: 0 auto;
   text-align: center;
@@ -414,6 +292,7 @@ section:nth-of-type(11) {
   line-height: 1;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
+  color: var(--gold);
 }
 
 .stat-label {
@@ -422,327 +301,83 @@ section:nth-of-type(11) {
   font-weight: 500;
 }
 
-/* Concept Section */
-.concept-section {
-  padding: 120px 0;
-}
-
-.concept-section .wrap {
-  max-width: 920px;
-  text-align: center;
-}
-
-.concept-box {
-  background: var(--bg);
-  border-left: 2px solid var(--gold);
-  padding: 60px 48px;
-  border-radius: 4px;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  max-width: 920px;
-}
-
-.concept-box p {
-  font-size: 16px;
-  line-height: 1.9;
-  margin-bottom: 16px;
-}
-
-.concept-box strong {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* Why Me Section */
-.reasons-section {
-  padding: 120px 0;
-  background: var(--bg);
-}
-
-.reasons-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-.reasons-grid > div:nth-child(5) {
-  grid-column: 1 / -1;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.reason-card {
-  background: transparent;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 4px;
-  padding: 48px 40px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.reason-card:hover {
-  border-color: var(--gold);
-  transform: none;
-  box-shadow: none;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.reason-card h3 {
-  margin-bottom: 16px;
-  font-size: 16px;
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.reason-card p {
-  font-size: 16px;
-  color: var(--gray-mid);
-  line-height: 1.9;
-}
-
-.reasons-cta {
-  text-align: center;
-  margin-top: 80px;
-}
-
-/* Benefits Section */
-.benefits-section {
-  padding: 120px 0;
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  max-width: 920px;
-  margin: 0 auto;
-  margin-top: 80px;
-}
-
-.benefit-card {
-  background: transparent;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 4px;
-  padding: 40px 32px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.benefit-card:hover {
-  border-color: var(--gold);
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.benefit-card h3 {
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: var(--ink);
-}
-
-.benefit-card p {
-  font-size: 16px;
-  color: var(--gray-mid);
-  line-height: 1.9;
-}
-
-.benefits-cta {
-  background: var(--bg);
-  border-radius: 6px;
-  padding: 60px 48px;
-  text-align: center;
-  margin-top: 80px;
-}
-
-.benefits-cta p {
-  margin-bottom: 32px;
-  font-size: 16px;
-}
-
-/* Service Section */
-.service-section {
+/* CTA */
+.cta-section {
   padding: 120px 0;
   background: var(--white);
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  max-width: 920px;
-  margin: 0 auto;
-  margin-top: 80px;
-}
-
-.service-card {
-  background: transparent;
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  border-radius: 4px;
-  padding: 48px 40px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  border-color: var(--gold);
-  transform: none;
-  box-shadow: none;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.service-card h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: var(--ink);
-}
-
-.service-card-title {
-  font-size: 14px;
-  color: var(--gray-mid);
-  margin-bottom: 20px;
-}
-
-.service-price {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--gold);
-  margin: 24px 0 32px;
-}
-
-.service-card ul {
-  list-style: none;
-  margin: 0;
-}
-
-.service-card li {
-  font-size: 15px;
-  color: var(--gray-mid);
-  margin-bottom: 14px;
-  padding-left: 20px;
-  position: relative;
-  line-height: 1.8;
-}
-
-.service-card li:before {
-  content: "−";
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.service-info {
-  background: rgba(250, 251, 252, 0.5);
-  border: 1px solid rgba(229, 231, 235, 0.3);
-  border-radius: 4px;
-  padding: 60px 48px;
   text-align: center;
-  margin-top: 80px;
-  max-width: 920px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* Message Section */
-.message-section {
-  padding: 120px 0;
-}
-
-.message-section .wrap {
-  max-width: 920px;
-}
-
-.message-section h2 {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.message-header {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 40px;
-}
-
-.message-box {
-  background: var(--bg);
-  border-left: 2px solid var(--gold);
-  padding: 60px 48px;
-  border-radius: 4px;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 920px;
-}
-
-.message-box p {
+.cta-message {
+  max-width: 800px;
+  margin: 0 auto 60px;
   font-size: 17px;
   line-height: 2.0;
-  margin-bottom: 20px;
   color: var(--gray-dark);
 }
 
-.message-box strong {
+.cta-button {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  padding: 18px 56px;
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--ink);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(15, 17, 26, 0.1);
 }
 
-/* Profile Section */
-.profile-section {
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(15, 17, 26, 0.16);
+}
+
+/* Message */
+.message-section {
   padding: 120px 0;
-  background: var(--white);
-}
-
-.profile-section .wrap {
-  max-width: 920px;
+  background: var(--bg);
   text-align: center;
 }
 
-.profile-section h2 {
-  margin-bottom: 12px;
+.message-section h2 {
+  margin-bottom: 60px;
+  font-size: 36px;
 }
 
-.profile-subtitle {
-  font-size: 14px;
-  color: var(--gray-mid);
-  margin-bottom: 48px;
+.message-box {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 2.0;
+  color: var(--gray-dark);
 }
 
-.profile-box {
-  background: rgba(250, 251, 252, 0.5);
-  border: 1px solid rgba(229, 231, 235, 0.3);
-  border-radius: 4px;
-  padding: 40px 36px;
-  text-align: left;
-  margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 920px;
+.message-box p {
+  margin-bottom: 24px;
 }
 
-.profile-box ul {
-  list-style: none;
+/* Profile */
+.profile-section {
+  padding: 120px 0;
+  background: var(--white);
+  text-align: center;
 }
 
-.profile-box li {
-  font-size: 16px;
-  color: var(--gray-mid);
-  margin-bottom: 14px;
-  padding-left: 20px;
-  position: relative;
-  line-height: 1.8;
+.profile-image {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 60px;
 }
 
-.profile-box li:before {
-  content: "◦";
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-weight: 700;
+.profile-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: block;
 }
 
 .mission-box {
@@ -769,9 +404,36 @@ section:nth-of-type(11) {
   color: var(--ink);
 }
 
-/* Follow Section */
+/* Follow */
 .follow-section {
   padding: 120px 0;
+  background: var(--white);
+}
+
+.follow-section h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.follow-intro {
+  text-align: center;
+  font-size: 16px;
+  color: var(--gray-mid);
+  margin-bottom: 80px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.process-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-bottom: 100px;
+  align-items: start;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .process-step {
@@ -794,36 +456,69 @@ section:nth-of-type(11) {
   font-weight: 700;
   color: var(--gold);
   line-height: 1;
+  margin-bottom: 16px;
 }
 
-.follow-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+.process-step h3 {
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.process-step p {
+  font-size: 14px;
+  color: var(--gray-mid);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.process-step a {
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.process-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.essence-box {
+  text-align: center;
+  padding-top: 80px;
+  border-top: 1px solid var(--border);
   max-width: 920px;
   margin: 0 auto;
-  margin-top: 80px;
 }
 
-.follow-card {
-  background: var(--bg);
-  border-radius: 6px;
+.essence-text {
+  font-size: 16px;
+  color: var(--gray-mid);
+  margin-bottom: 48px;
+  line-height: 2.0;
+}
+
+.instagram-card {
+  background: transparent;
+  border: 1px solid rgba(229, 231, 235, 0.3);
+  border-radius: 4px;
   padding: 40px 32px;
   text-align: center;
-  transition: all 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.follow-card:hover {
-  transform: translateY(-2px);
-}
-
-.follow-card h3 {
-  font-size: 16px;
+.instagram-card h3 {
+  font-size: 18px;
   margin-bottom: 8px;
   color: var(--ink);
 }
 
-.follow-label {
+.instagram-label {
   font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--gold);
@@ -832,25 +527,20 @@ section:nth-of-type(11) {
   display: block;
 }
 
-.follow-card p {
+.instagram-card p {
   font-size: 15px;
   color: var(--gray-mid);
-  line-height: 1.85;
-  margin-bottom: 20px;
+  line-height: 1.7;
+  margin: 16px 0;
 }
 
-.follow-card a {
-  display: inline-block;
+.instagram-card a {
   font-size: 14px;
   color: var(--gold);
   font-weight: 600;
 }
 
-.follow-card a:hover {
-  color: var(--ink);
-}
-
-/* Contact Section */
+/* Contact */
 .contact-section {
   background: var(--ink);
   color: var(--white);
@@ -874,7 +564,7 @@ section:nth-of-type(11) {
 }
 
 .contact-form {
-  max-width: 920px;
+  max-width: 600px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -886,8 +576,12 @@ section:nth-of-type(11) {
 .contact-form label {
   display: block;
   font-weight: 600;
-  margin-bottom: 12px;
-  font-size: 14px;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.contact-form div {
+  margin-bottom: 60px;
 }
 
 .contact-form textarea {
@@ -899,7 +593,6 @@ section:nth-of-type(11) {
   color: var(--white);
   font-family: inherit;
   font-size: 15px;
-  margin-bottom: 28px;
   min-height: 100px;
   resize: vertical;
   line-height: 1.6;
@@ -909,9 +602,10 @@ section:nth-of-type(11) {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.contact-radio-group {
+.radio-group {
   text-align: left;
-  margin-bottom: 32px;
+  display: flex;
+  gap: 32px;
 }
 
 .contact-form input[type="radio"] {
@@ -920,9 +614,8 @@ section:nth-of-type(11) {
 
 .contact-form input[type="radio"] + label {
   display: inline-block;
-  margin-right: 36px;
-  margin-bottom: 0;
   font-weight: 400;
+  margin: 0;
 }
 
 .contact-btn {
@@ -934,7 +627,6 @@ section:nth-of-type(11) {
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
-  margin-top: 12px;
 }
 
 .contact-btn:hover {
@@ -946,7 +638,7 @@ section:nth-of-type(11) {
   text-align: center;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 36px;
+  margin-top: 40px;
 }
 
 .contact-note a {
@@ -1004,6 +696,13 @@ footer {
   color: rgba(255, 255, 255, 0.5);
   padding-top: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-note {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 24px;
+  line-height: 1.8;
 }
 
 /* Animations */
@@ -1075,48 +774,13 @@ body {
     font-size: clamp(28px, 7vw, 42px);
   }
 
-  .hero-cta {
-    min-width: auto;
-    max-width: calc(100% - 40px);
-    padding: 18px 40px;
-    font-size: 16px;
-  }
-
-  .hero-subtitle {
-    font-size: 17px;
-    margin-bottom: 60px;
-  }
-
   .stats-grid,
-  .benefits-grid,
-  .service-grid,
-  .follow-grid,
-  .reasons-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pain-grid {
+  .process-flow {
     grid-template-columns: 1fr;
   }
 
   section {
     padding: 80px 0;
-  }
-
-  section:nth-of-type(n) {
-    padding: 80px 0 100px !important;
-  }
-
-  /* Follow grid responsive */
-  [style*="grid-template-columns: repeat(4, 1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  [style*="display: grid; grid-template-columns"] > div:nth-child(2),
-  [style*="display: grid; grid-template-columns"] > div:nth-child(4),
-  [style*="display: grid; grid-template-columns"] > div:nth-child(6),
-  [style*="display: grid; grid-template-columns"] > div:nth-child(8) {
-    display: none !important;
   }
 }
 </style>
@@ -1126,14 +790,11 @@ body {
 <!-- Navigation -->
 <header class="nav" id="nav">
   <div class="nav-in">
-    <div class="brand">窪田成功<span>思考整理の参謀</span></div>
+    <div class="brand">窪田成功</div>
     <div class="nav-links">
-      <a href="#pain">お悩み</a>
-      <a href="#stats">実績</a>
-      <a href="#reasons">選ばれる理由</a>
-      <a href="#service">サービス</a>
+      <a href="#perspective">視点転換</a>
       <a href="#message">ご挨拶</a>
-      <a href="#contact" class="nav-cta">無料相談</a>
+      <a href="#contact" class="nav-cta">相談する</a>
     </div>
   </div>
 </header>
@@ -1143,68 +804,90 @@ body {
   <div class="wrap" style="max-width: 100%;">
     <div style="max-width: 100%; display: flex; flex-direction: column; align-items: center;">
       <figure style="margin: 0 0 56px 0; width: 100%; max-width: 380px;" class="hero-visual">
-        <img src="./images/mind.jpg" alt="思考整理のプロセス" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); transition: all 0.8s ease;">
+        <img src="./images/mind.jpg" alt="経営への視点" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); transition: all 0.8s ease;">
       </figure>
 
       <div style="width: 100%; max-width: 920px; padding: 0 40px; margin: 0 auto;">
-        <h1 style="margin-bottom: 52px;">感覚を言語化し、<br>経営を<br>進化させる。</h1>
-        <p class="hero-subtitle">思考整理から、<br><br>AI・仕組み化・改善<br>まで伴走します。<br><br>対話を通じて、<br>経営の進化速度を<br>一緒に上げていきます。</p>
-        <div style="display: flex; justify-content: center; margin-top: 16px;">
-          <a href="#contact" class="hero-cta">小さなストレスを教えてください →</a>
+        <h1 style="margin-bottom: 44px;">経営は、<br>もっと面白くなる。</h1>
+        <div style="display: flex; justify-content: center; margin-top: 24px;">
+          <a href="#belief" style="font-size: 16px; color: var(--gray-mid); text-decoration: underline; opacity: 0.8;">続きを読む</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Intro -->
-<section class="intro-section section-soft">
-  <div class="wrap">
-    <span class="intro-label">経営の進化速度とは</span>
-    <p class="intro-text">経営の進化を決めるのは、<br><br>戦略ではなく<br>判断の速度。</p>
-    <p class="intro-text">整理する<br>　　↓<br>判断する<br>　　↓<br>動く<br>　　↓<br>改善する<br><br>このサイクルを<br>速く回すほど、<br><br>経営は前へ進みます。</p>
-    <p class="intro-text" style="margin-top: 56px; border-top: 1px solid var(--border); padding-top: 56px;"><strong>本質は、<br><br>経営者の<br>決断と実行のスピードが<br><br>変わること。</strong></p>
+<!-- Belief -->
+<section class="belief-section" id="belief">
+  <div class="wrap" style="max-width: 920px;">
+    <h2>経営者は、<br>自分らしく<br>輝き続けていい。</h2>
   </div>
 </section>
 
-<!-- Pain -->
-<section class="pain-section section-light" id="pain">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>こんなお悩み、ありませんか？</h2>
-      <p>感覚で仕事を進めてきた、経営者・個人事業主の方へ。ひとつでも当てはまるなら、言語化と仕組み化で変えられます。</p>
-    </div>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <h3>頭の中が整理できない</h3>
-        <p>考えや想いはあるのに、<br>言葉にできない。</p>
-      </div>
-      <div class="pain-card">
-        <h3>一人で抱え込んでしまう</h3>
-        <p>本音を話せる相手が、<br>少ない。</p>
-      </div>
-      <div class="pain-card">
-        <h3>AIを経営に活かしたい</h3>
-        <p>AI・DXを、自社の武器として<br>取り入れたい。</p>
-      </div>
-      <div class="pain-card">
-        <h3>想いを形にしたい</h3>
-        <p>アイデアを、事業・仕組みにして<br>残したい。</p>
-      </div>
-      <div class="pain-card wide">
-        <h3>発信・資料で表現できない</h3>
-        <p>想いはあるのに、ホームページや営業資料に<br>うまく表現できない。</p>
-      </div>
+<!-- 現状認識 -->
+<section class="pain-section" id="pain">
+  <div class="wrap" style="max-width: 800px;">
+    <p>
+      朝起きたら、<br>
+      もう現場の対応に追われている。<br>
+      <br>
+      経営判断をする時間がない。<br>
+      <br>
+      社長が全部やってる状態から<br>
+      なかなか抜け出せない。<br>
+      <br>
+      何が進んだのか、<br>
+      よくわからない。<br>
+      <br>
+      でも、これが「成功している」状態だと思ってた。
+    </p>
+  </div>
+</section>
+
+<!-- 視点転換 -->
+<section class="perspective-section" id="perspective">
+  <div class="wrap" style="max-width: 920px;">
+    <h2>でも、視点が変わると、<br>すべてが変わる。</h2>
+    <p>
+      問題は「仕事が多い」ことではなく。<br>
+      <br>
+      「経営を見ていない」ことだった。
+    </p>
+  </div>
+</section>
+
+<!-- 変化 -->
+<section class="change-section" id="change">
+  <div class="wrap" style="max-width: 920px;">
+    <h2>すると、こんなことが起きた。</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <p>
+        現場対応に追われていた状態から。<br>
+        <br>
+        経営を考える時間が増えた。<br>
+        <br>
+        社長が全部やっていた状態から。<br>
+        <br>
+        チームに任せられるようになった。<br>
+        <br>
+        何が進んだかわからない状態から。<br>
+        <br>
+        経営が「見える」状態に。<br>
+        <br>
+        でも、これは始まりに過ぎない。<br>
+        <br>
+        ここから、本当の経営が面白くなる。
+      </p>
     </div>
   </div>
 </section>
 
-<!-- Stats -->
-<section class="stats-section" id="stats">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>だから、安心してお任せください。</h2>
-      <p>学生から経営者まで、たくさんの想いや悩みに向き合ってきました。数字は、その積み重ねです。</p>
+<!-- 信頼 -->
+<section class="trust-section" id="trust">
+  <div class="wrap" style="max-width: 920px;">
+    <div style="text-align: center; margin-bottom: 80px;">
+      <h2>この変化は、実現している。</h2>
+      <p class="intro">何度も。</p>
     </div>
     <div class="stats-grid">
       <div class="stat-item">
@@ -1213,7 +896,7 @@ body {
       </div>
       <div class="stat-item">
         <div class="stat-number">10,000<span style="font-size: 0.4em;">件以上</span></div>
-        <div class="stat-label">累計セッション実績</div>
+        <div class="stat-label">累計対話実績</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">26,000<span style="font-size: 0.4em;">+</span></div>
@@ -1223,240 +906,74 @@ body {
   </div>
 </section>
 
-<!-- Concept -->
-<section class="concept-section section-soft">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>経営の進化を加速させるもの</h2>
-      <p>AIで、<br>誰もが同じ情報を<br>手にできる時代。<br><br>価値を分けるのは、<br><br>判断の速度と、<br>実行の質。<br><br>そのサイクルを<br>速くするのが、<br><br>「思考整理」です。</p>
-    </div>
-    <div class="concept-box">
-      <p class="accent-large">感覚を言葉に<br>　　↓<br>言葉を仕組みに<br>　　↓<br>経営の進化を形に</p>
-      <p>それは、<br>頭の中を片づけることではありません。</p>
-      <p>考えを整理し、<br>判断し、<br>形にして、<br>実行する。</p>
-      <p>そのサイクルを、<br>AIをパートナーに、<br>少しでも速く<br>回せるように。</p>
-      <p>回るほど、<br>経営は前へ進みます。</p>
-      <p>それが、<br>私の考える<br>「思考整理」です。</p>
-    </div>
-  </div>
-</section>
-
-<!-- Why Me -->
-<section class="reasons-section section-light" id="reasons">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>選ばれる理由</h2>
-      <p>対話から実装まで。<br>思考整理 → AI活用 → 組織改善 → 体系化。<br><br>このプロセス全体を、<br>実装レベルで理解し、<br>実践できる人だからこそ、<br>経営の進化速度を上げられます。</p>
-    </div>
-    <div class="reasons-grid">
-      <div class="reason-card">
-        <h3>01 | 1万件以上のセッション経験</h3>
-        <p>10年以上にわたり、学生から経営者まで、累計1万件以上の対話を重ねてきました。</p>
-        <p>課題を解きほぐす力が、私の土台です。</p>
-      </div>
-      <div class="reason-card">
-        <h3>02 | AIとの26,000回以上の対話・検証</h3>
-        <p>実務でAIを徹底的に検証し、「使える形」に落とし込みます。</p>
-        <p>流行ではなく、現場で役立つ活用法を提供します。</p>
-      </div>
-      <div class="reason-card">
-        <h3>03 | シータヒーリング®インストラクター</h3>
-        <p>講師として250名以上を養成。人の深層心理を長年探究し、言葉の奥にある「本当の想い」を引き出します。</p>
-      </div>
-      <div class="reason-card">
-        <h3>04 | 法人設立8期目の経営経験</h3>
-        <p>自らも経営者として事業を続けてきたからこそ、現場の判断や孤独に、同じ目線で寄り添えます。</p>
-      </div>
-      <div class="reason-card">
-        <h3>05 | 大阪府倫理法人会 DX担当副事務長</h3>
-        <p>DX担当副事務長（2年目）として、<br>会員管理や業務改善、DX推進など、<br>組織全体の仕組みづくりに携わっています。</p>
-        <p>個人事業だけでなく、<br>組織全体の改善・DX・仕組み化を<br>実践していることが、<br>私の強みの一つです。</p>
-      </div>
-      <div class="reason-card">
-        <h3>06 | 思考整理 × AI × DX</h3>
-        <p>整理する力、言語化する力、そして実装する力。</p>
-        <p>3つを掛け合わせ、判断から実行までのサイクルを、より速く前へ進めます。</p>
-      </div>
-    </div>
-    <div class="reasons-cta">
-      <a href="#contact" class="hero-cta">小さなストレスを送ってみる →</a>
-    </div>
-  </div>
-</section>
-
-<!-- Benefits -->
-<section class="benefits-section section-soft" id="benefits">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>ご相談のあと、一緒に目指す変化。</h2>
-      <p>サービスの内容よりも先に、得られる変化から。頭の中が整理されると、経営の進化速度がぐんと上がります。</p>
-    </div>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <h3>思考が整理される</h3>
-        <p>モヤモヤしていた頭の中を、<br>見える形にしていきます。</p>
-      </div>
-      <div class="benefit-card">
-        <h3>判断がしやすくなる</h3>
-        <p>何を優先すべきかを整理し、<br>迷いを減らすきっかけをつくります。</p>
-      </div>
-      <div class="benefit-card">
-        <h3>現場のストレスが改善しやすくなる</h3>
-        <p>同じミス、同じ質問、同じ手戻りを見つけ、仕組みで減らせる形を考えます。</p>
-      </div>
-      <div class="benefit-card">
-        <h3>AIを経営で活かす入口が見える</h3>
-        <p>整理した考えを、AIを使って<br>実装・改善につなげる方法を試します。</p>
-      </div>
-      <div class="benefit-card">
-        <h3>時間の使い方を見直せる</h3>
-        <p>社長やスタッフが本来やるべき仕事に集中できるよう、<br>改善ポイントを探します。</p>
-      </div>
-      <div class="benefit-card">
-        <h3>利益につながる改善の種が見つかる</h3>
-        <p>時間短縮・ミス削減・問い合わせ増加・受注率改善など、経営に効く変化を探します。</p>
-      </div>
-    </div>
-    <div class="benefits-cta">
-      <p>ここまで読んで「これは自分のことだ」と感じた方へ。</p>
-      <a href="#contact" class="hero-cta">小さなストレスを送って、経営の進化を形にする →</a>
-    </div>
-  </div>
-</section>
-
-<!-- Service -->
-<section class="service-section section-light" id="service">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>サービス・料金</h2>
-      <p>経営者の頭の中にある感覚・想い・判断基準を、言葉にし、必要に応じて仕組みに変えていきます。まずは思考整理から。続けるほど、言葉・商品・導線・仕組みが整っていきます。</p>
-    </div>
-    <div class="service-grid">
-      <div class="service-card">
-        <h3>Starter</h3>
-        <p class="service-card-title">思考整理プラン</p>
-        <div class="service-price">¥33,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
-        <p><strong>まずは、<br>頭の中を整理したい方へ。</strong></p>
-        <ul>
-          <li>月1回 60分セッション</li>
-          <li>現状の課題・優先順位の整理</li>
-          <li>次の一手の明確化</li>
-          <li>セッション後の簡易メモ</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <h3>Standard</h3>
-        <p class="service-card-title">言語化伴走プラン</p>
-        <div class="service-price">¥55,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
-        <p><strong>考えを整え、<br>言葉にして使える状態に。<br><span style="color: var(--gold);">いちばんおすすめ</span></strong></p>
-        <ul>
-          <li>月2回 60分セッション</li>
-          <li>課題・想い・強みの言語化</li>
-          <li>サービス説明文・発信テーマの整理</li>
-          <li>提案・無料相談で使う言葉づくり</li>
-          <li>月1枚の思考整理レポート</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <h3>Plus</h3>
-        <p class="service-card-title">仕組み化伴走プラン</p>
-        <div class="service-price">¥110,000<span style="font-size: 14px; color: var(--gray-mid);">/月</span></div>
-        <p><strong>言語化した内容を、<br>事業全体に<br>落としたい方へ。</strong></p>
-        <ul>
-          <li>月4回 60分セッション</li>
-          <li>商品設計・導線設計</li>
-          <li>HP / LP / プロフィール文の整理</li>
-          <li>事例・お客様の声の整理</li>
-          <li>AI活用による業務整理＋月1回の実装レビュー</li>
-        </ul>
-      </div>
-    </div>
-    <div class="service-info">
-      <p><strong>おすすめは Standard｜言語化伴走プラン。</strong><br>月2回の対話で、考えを整えながら、発信・サービス説明・提案に使える言葉へ変えていきます。</p>
-      <h3 style="margin-top: 32px; margin-bottom: 12px;">Project</h3>
-      <p style="margin-bottom: 16px;"><strong>事業構築プロジェクト</strong><br>65万円〜（応相談）</p>
-      <p>経営者の頭の中を、事業全体の資産に変えるプロジェクト。思考整理から、言語化・仕組み化・AI/DX実装・チームへの共有まで、一気通貫で伴走します。</p>
-      <a href="#contact" class="hero-cta" style="margin-top: 24px;">小さなストレスを送ってみる →</a>
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="wrap" style="max-width: 920px;">
+    <p class="cta-message">
+      経営は、もっと面白くなる。<br>
+      <br>
+      その始まりは、大きな経営課題ではありません。<br>
+      <br>
+      今日感じた、小さなストレスです。<br>
+      <br>
+      そのストレスを一緒に整理することが、<br>
+      経営を一段上から見られる最初の一歩になります。<br>
+      <br>
+      あなたが今感じている、小さなストレスを送ってください。
+    </p>
+    <div style="text-align: center;">
+      <a href="#contact" class="cta-button">小さなストレスを送る →</a>
     </div>
   </div>
 </section>
 
 <!-- Message -->
-<section class="message-section section-soft" id="message">
-  <div class="wrap">
+<section class="message-section" id="message">
+  <div class="wrap" style="max-width: 920px;">
     <h2>ご挨拶</h2>
-    <p class="message-header">「想いを言葉に。言葉を仕組みに。仕組みを未来へ。」</p>
     <div class="message-box">
-      <p>情報があふれる時代に、<br>本当に大切なのは何か。</p>
-      <p>AIの進化によって、<br>誰でもAIを使える時代になりました。<br>情報も簡単に手に入ります。</p>
-      <p>けれど、<br>価値を分けるのは、<br>情報の"量"ではありません。</p>
-      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">① 価値を分けるもの</strong></p>
-      <p>「何を考え、<br>どう判断し、<br>どう行動するか。」</p>
-      <p>その思考を整理する力こそが、<br><br>これからの時代に<br>最も重要な力だと、<br><br>私は考えています。</p>
-      <p>私はこれまで、<br>1万件以上のセッションを通して、<br><br>経営者や個人事業主をはじめ、<br>さまざまな方の<br>人生や仕事の悩みに<br>向き合ってきました。</p>
-      <p>また、<br>シータヒーリング®インストラクターとして、<br><br>人の深層心理を<br>長年探究し、<br><br>「人は何によって変化し、<br>自分らしく生きられるのか」<br>を学び続けてきました。</p>
-      <p>そして現在は、<br>26,000回以上のChatGPTとの対話を重ね、<br><br>人の思考とAIを融合させる、<br>新しい支援の形を<br>追求しています。</p>
-      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">② 経営の進化速度を上げること</strong></p>
-      <p>私の仕事は、<br>AIを教えることではありません。</p>
-
-      <p>人の想いや考えを<br>整理し、</p>
-
-      <p>言葉にし、</p>
-
-      <p>AIを活用しながら、<br>事業・サービス・仕組みへ<br>形にしていくこと。</p>
-
-      <p>ホームページ制作。</p>
-      <p>サービス設計。</p>
-      <p>営業資料。</p>
-      <p>業務改善。</p>
-      <p>DX。</p>
-      <p>組織づくり。</p>
-
-      <p>すべては「思考整理」から<br>始まります。</p>
-
-      <p>だから私は、<br>自分の仕事を<br>「思考整理の参謀」と<br>表現しています。</p>
-      <p style="margin-top: 32px;">整理し、<br>判断し、<br>形にして、<br>実行する。</p>
-      <p>このサイクルが<br>速く回るほど、<br><br>経営は前へ進みます。</p>
-      <p>私が本当に実現したいのは、<br><br>この「<span class="accent-text">経営の進化速度</span>」を<br>上げること。</p>
-      <p>AIは、<br>そのための<br>心強いパートナーです。</p>
-      <p style="margin-top: 48px; margin-bottom: 48px;"><strong style="font-size: 18px; color: var(--ink);">③ ミッション：経営者の孤独を解消する</strong></p>
-      <p><strong style="font-size: 18px;">Eternal株式会社のミッション<br><br>「経営者の想いを、<br>未来へ繋ぐ。」</strong></p>
-      <p>経営者は、<br>多くの責任を背負いながら、<br><br>本音を話せる相手が<br>少ない存在です。</p>
-      <p>一人で抱え込み<br>悩み続けるのではなく、<br><br>安心して考えを整理し、<br>その想いを<br>次の世代へ<br>繋いでいける。</p>
-      <p>そんな存在でありたい。<br>その想いで、<br>一人ひとりと<br>向き合っています。</p>
-      <p style="margin-top: 32px;">会社を<br>「Eternal（エターナル）」<br>と名づけたのは、<br><br>「永く続く」という<br>願いを込めたから。</p>
-      <p>経営者の想いが<br>途切れず、<br>未来へずっと<br>繋がっていくように。</p>
-      <p>それが、<br>Eternalという名前に<br>託した約束です。</p>
-      <p>このホームページを作ったのも、<br>その想いをお伝えしたかったから。</p>
-      <p>これまでご縁の多くは<br>ご紹介から始まり、<br><br>そのたびに<br>「どんな仕事をしているのですか？」<br>と聞かれます。</p>
-      <p>けれど<br>「コーチング」<br>「AI活用」<br>「DX支援」<br><br>という言葉だけでは、<br><br>私が本当に<br>提供している価値を<br>表現しきれません。</p>
-      <p style="margin-top: 48px; margin-bottom: 48px; font-size: 18px; line-height: 2.0;">AIは、<br>人の代わりになるものではありません。<br><br>人が自分らしく<br>輝き続けるための、<br><br>最高のパートナーです。</p>
-      <p>もし今、<br>「頭の中を整理したい」と<br>感じているなら。</p>
-      <p>「事業を<br>次のステージへ<br>進めたい」と<br>感じているなら。</p>
-      <p>「AIを経営に<br>活かしたい」と<br>感じているなら。</p>
-      <p style="margin-top: 24px;">ぜひ一度、<br>お話を聞かせてください。</p>
-      <p>あなた自身が<br>まだ気づいていない<br>可能性を、<br><br>一緒に形にしていけることを、<br>楽しみにしています。</p>
-      <p style="margin-top: 48px; font-weight: 600;">Eternal株式会社 代表取締役<br>窪田 成功</p>
+      <p>
+        <strong>社長を、現場から経営へ戻す。</strong>
+      </p>
+      <p>
+        それが、私の仕事です。
+      </p>
+      <p style="margin-top: 48px;">
+        経営者は、多くの責任を背負いながら、<br>
+        本音を話せる相手が少ない存在です。<br>
+        <br>
+        一人で抱え込み悩み続けるのではなく、<br>
+        <br>
+        安心して考えを整理し、<br>
+        その想いを次の世代へ繋いでいける。<br>
+        <br>
+        そんな存在でありたい。<br>
+        その想いで、一人ひとりと向き合っています。
+      </p>
+      <p style="margin-top: 48px;">
+        このホームページは、<br>
+        その想いをお伝えするために作りました。<br>
+        <br>
+        もし今、<br>
+        「頭の中を整理したい」と感じているなら。<br>
+        <br>
+        「事業を次のステージへ進めたい」と<br>
+        感じているなら。<br>
+        <br>
+        ぜひ一度、お話を聞かせてください。
+      </p>
     </div>
   </div>
 </section>
 
 <!-- Profile -->
-<section class="profile-section section-light" id="profile">
-  <div class="wrap">
-    <figure style="margin-bottom: 60px; max-width: 360px; margin-left: auto; margin-right: auto;">
-      <img src="./images/profile.jpg" alt="窪田成功" style="width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; border-radius: 6px; display: block; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
-    </figure>
-    <h2>窪田 成功</h2>
-    <p class="profile-subtitle">KUBOTA SEIKO</p>
-    <div class="profile-box">
-      <ul>
-        <li>Eternal株式会社 代表取締役</li>
-        <li>大阪府倫理法人会 DX副事務長</li>
-        <li>感覚の言語化と仕組み化の参謀</li>
-        <li>思考整理コーチ</li>
-      </ul>
+<section class="profile-section" id="profile">
+  <div class="wrap" style="max-width: 920px;">
+    <div class="profile-image">
+      <img src="./images/profile.jpg" alt="窪田成功">
     </div>
+    <h2>窪田 成功</h2>
+    <p style="font-size: 14px; color: var(--gray-mid); margin-bottom: 48px;">KUBOTA SEIKO</p>
     <div class="mission-box">
       <p class="mission-label">MISSION</p>
       <p class="mission-text">「経営者の想いを、未来へ繋ぐ」</p>
@@ -1465,88 +982,73 @@ body {
 </section>
 
 <!-- Follow -->
-<section class="follow-section section-soft">
-  <div class="wrap">
-    <div class="section-header">
-      <h2>思考が生まれ、進化していくプロセス</h2>
-      <p>完成品を売るのではなく、改善し続ける人です。<br>発信も進化しています。思考がどう整理され、形になるか。そのプロセスをご覧ください。</p>
+<section class="follow-section" id="follow">
+  <div class="wrap" style="max-width: 920px;">
+    <h2>思考が生まれ、進化していくプロセス</h2>
+    <p class="follow-intro">
+      完成品を売るのではなく、改善し続ける人です。<br>
+      発信も進化しています。思考がどう整理され、形になるか。そのプロセスをご覧ください。
+    </p>
+
+    <div class="process-flow">
+      <!-- Threads -->
+      <div class="process-step">
+        <div class="process-number">01</div>
+        <h3>Threads</h3>
+        <p>リアルタイムの<br>気づき</p>
+        <a href="https://www.threads.net" target="_blank">アクセス →</a>
+      </div>
+
+      <!-- Arrow -->
+      <div class="process-arrow">→</div>
+
+      <!-- Ameblo -->
+      <div class="process-step">
+        <div class="process-number">02</div>
+        <h3>Ameblo</h3>
+        <p>日々の<br>思考整理</p>
+        <a href="https://ameblo.jp" target="_blank">ブログへ →</a>
+      </div>
+
+      <!-- Arrow -->
+      <div class="process-arrow">→</div>
+
+      <!-- Facebook -->
+      <div class="process-step">
+        <div class="process-number">03</div>
+        <h3>Facebook</h3>
+        <p>実践・<br>改善報告</p>
+        <a href="https://www.facebook.com/seikou.kubota" target="_blank">活動を見る →</a>
+      </div>
+
+      <!-- Arrow -->
+      <div class="process-arrow">→</div>
+
+      <!-- note -->
+      <div class="process-step">
+        <div class="process-number">04</div>
+        <h3>note</h3>
+        <p>思想・<br>深い考察</p>
+        <a href="https://note.com/kubota_seiko" target="_blank">記事を読む →</a>
+      </div>
     </div>
 
-    <div style="max-width: 920px; margin: 0 auto;">
-      <!-- Process Flow -->
-      <div style="margin-bottom: 100px;">
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 60px; align-items: start;">
-
-          <!-- Step 1: Threads -->
-          <div class="process-step">
-            <div class="process-number">01</div>
-            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Threads</h3>
-            <p style="font-size: 14px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 16px;">
-              リアルタイムの気づき
-            </p>
-            <a href="https://www.threads.net" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">アクセス →</a>
-          </div>
-
-          <!-- Arrow -->
-          <div style="display: flex; align-items: center; justify-content: center;">
-            <div style="font-size: 20px; color: var(--gold); font-weight: 300;">→</div>
-          </div>
-
-          <!-- Step 2: Ameblo -->
-          <div class="process-step">
-            <div class="process-number">02</div>
-            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Ameblo</h3>
-            <p style="font-size: 14px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 16px;">
-              日々の思考整理
-            </p>
-            <a href="https://ameblo.jp" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">ブログへ →</a>
-          </div>
-
-          <!-- Arrow -->
-          <div style="display: flex; align-items: center; justify-content: center;">
-            <div style="font-size: 20px; color: var(--gold); font-weight: 300;">→</div>
-          </div>
-
-          <!-- Step 3: Facebook -->
-          <div class="process-step">
-            <div class="process-number">03</div>
-            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">Facebook</h3>
-            <p style="font-size: 14px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 16px;">
-              実践・改善報告
-            </p>
-            <a href="https://www.facebook.com/seikou.kubota" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">活動を見る →</a>
-          </div>
-
-          <!-- Arrow -->
-          <div style="display: flex; align-items: center; justify-content: center;">
-            <div style="font-size: 20px; color: var(--gold); font-weight: 300;">→</div>
-          </div>
-
-          <!-- Step 4: note -->
-          <div class="process-step">
-            <div class="process-number">04</div>
-            <h3 style="font-size: 18px; margin: 20px 0 12px; color: var(--ink);">note</h3>
-            <p style="font-size: 14px; color: var(--gray-mid); line-height: 1.6; margin-bottom: 16px;">
-              思想・深い考察
-            </p>
-            <a href="https://note.com/kubota_seiko" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">記事を読む →</a>
-          </div>
-        </div>
-
-        <!-- Essence -->
-        <div style="text-align: center; padding-top: 80px; border-top: 1px solid var(--border);">
-          <p style="font-size: 16px; color: var(--gray-mid); margin-bottom: 48px;">そして、<br>すべての思考が<br>世界観になる。</p>
-          <div style="max-width: 400px; margin: 0 auto;">
-            <div class="follow-card" style="background: transparent; border: 1px solid rgba(229, 231, 235, 0.3); border-radius: 4px; padding: 40px 32px; text-align: center;">
-              <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--ink);">Instagram</h3>
-              <span class="follow-label">世界観・人柄・活動風景</span>
-              <p style="font-size: 15px; color: var(--gray-mid); line-height: 1.7; margin: 16px 0;">
-                思考が形になり、<br>仕事の雰囲気・人柄が<br>伝わる場所。
-              </p>
-              <a href="https://www.instagram.com/kubota_seiko" target="_blank" style="font-size: 14px; color: var(--gold); font-weight: 600;">写真を見る →</a>
-            </div>
-          </div>
-        </div>
+    <!-- Essence -->
+    <div class="essence-box">
+      <p class="essence-text">
+        そして、<br>
+        すべての思考が<br>
+        世界観になる。
+      </p>
+      <div class="instagram-card">
+        <h3>Instagram</h3>
+        <span class="instagram-label">世界観・人柄・活動風景</span>
+        <p>
+          思考が形になり、<br>
+          仕事の雰囲気・人柄が<br>
+          伝わる場所。
+        </p>
+        <a href="https://www.instagram.com/kubota_seiko" target="_blank">写真を見る →</a>
       </div>
     </div>
   </div>
@@ -1556,58 +1058,61 @@ body {
 <section class="contact-section" id="contact">
   <div class="wrap">
     <h2>モニター募集：小さなストレスを教えてください。</h2>
-    <p class="contact-lead">あなたの現場にある「小さなストレス」を、窪田成功の個人LINEに送ってください。その一通のLINEから、思考整理セッションが始まり、一緒に改善事例を作っていきます。</p>
-    <div class="contact-form" style="max-width: 600px; margin: 0 auto;">
+    <p class="contact-lead">あなたの現場にある「小さなストレス」を送ってください。その一通のメッセージから、思考整理が始まり、一緒に改善事例を作っていきます。</p>
+    <div class="contact-form">
       <form>
         <!-- Block 1 -->
-        <div style="margin-bottom: 60px;">
-          <label style="display: block; font-weight: 600; margin-bottom: 16px; font-size: 15px;">① 今、どんなストレスがありますか？</label>
-          <textarea style="width: 100%; padding: 14px 16px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--white); font-family: inherit; font-size: 15px; min-height: 100px; resize: vertical; line-height: 1.6;" placeholder="毎日感じている小さな違和感、繰り返される質問、同じミスなど"></textarea>
+        <div>
+          <label>① 今、どんなストレスがありますか？</label>
+          <textarea placeholder="毎日感じている小さな違和感、繰り返される質問、同じミスなど"></textarea>
         </div>
 
         <!-- Block 2 -->
-        <div style="margin-bottom: 60px;">
-          <label style="display: block; font-weight: 600; margin-bottom: 16px; font-size: 15px;">② 本当はどうなったら理想ですか？</label>
-          <textarea style="width: 100%; padding: 14px 16px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; background: rgba(255, 255, 255, 0.05); color: var(--white); font-family: inherit; font-size: 15px; min-height: 100px; resize: vertical; line-height: 1.6;" placeholder="ストレスが解消されたとき、どんな状態になっていたいか"></textarea>
+        <div>
+          <label>② 本当はどうなったら理想ですか？</label>
+          <textarea placeholder="ストレスが解消されたとき、どんな状態になっていたいか"></textarea>
         </div>
 
         <!-- Block 3 -->
-        <div style="margin-bottom: 60px;">
-          <label style="display: block; font-weight: 600; margin-bottom: 16px; font-size: 15px;">ご希望の相談方法（任意）</label>
-          <div style="display: flex; gap: 32px;">
+        <div>
+          <label>ご希望の相談方法（任意）</label>
+          <div class="radio-group">
             <div>
               <input type="radio" id="online" name="method" value="online">
-              <label for="online" style="display: inline; font-weight: 400; margin: 0;">オンライン</label>
+              <label for="online">オンライン</label>
             </div>
             <div>
               <input type="radio" id="face" name="method" value="face">
-              <label for="face" style="display: inline; font-weight: 400; margin: 0;">対面</label>
+              <label for="face">対面</label>
             </div>
           </div>
         </div>
 
         <!-- Button -->
         <div style="text-align: center;">
-          <button type="submit" class="contact-btn">小さなストレスを送って、<br>モニター相談する →</button>
+          <button type="submit" class="contact-btn">小さなストレスを送って、<br>相談する →</button>
         </div>
       </form>
-      <p class="contact-note" style="margin-top: 40px;">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank">Messenger</a> からどうぞ。</p>
+      <p class="contact-note">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank">Messenger</a> からどうぞ。</p>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <div class="wrap">
-    <p class="footer-brand">窪田成功<span>思考整理の参謀</span></p>
-    <p class="footer-tagline">Eternal株式会社</p>
-    <div class="footer-links">
-      <a href="https://note.com/kubota_seiko" target="_blank">note</a>
-      <a href="https://www.facebook.com/seikou.kubota" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/kubota_seiko" target="_blank">Instagram</a>
-    </div>
-    <p class="footer-copyright">© 2026 Kubota Seiko / Eternal Inc. All rights reserved.</p>
+  <p class="footer-brand">窪田成功</p>
+  <p class="footer-tagline">Eternal株式会社</p>
+  <div class="footer-links">
+    <a href="https://note.com/kubota_seiko" target="_blank">note</a>
+    <a href="https://www.facebook.com/seikou.kubota" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/kubota_seiko" target="_blank">Instagram</a>
   </div>
+  <p class="footer-copyright">© 2026 Kubota Seiko / Eternal Inc. All rights reserved.</p>
+  <p class="footer-note">
+    このブランドは完成品ではありません。<br>
+    市場との対話を通じて進化し続ける、<br>
+    Eternal Brand OS v0.9（実証版）です。
+  </p>
 </footer>
 
 <script>
