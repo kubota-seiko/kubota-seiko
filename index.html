@@ -2,13 +2,30 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQKZ2M8B6S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HQKZ2M8B6S');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>窪田成功 | 感覚を仕組みにする参謀</title>
 <meta name="description" content="感覚と仕組みが一致すると、売上が動き出す。感覚・経験・価値はあるのに、言葉・導線・仕組みが今の状態に合っていない方へ。まずは小さな違和感を見える化するところから。">
+<link rel="canonical" href="https://kubota-seiko.com/">
+<meta name="robots" content="index, follow">
 <meta property="og:title" content="窪田成功 | 感覚を仕組みにする参謀">
 <meta property="og:description" content="社長の感覚・違和感・想いを対話で言語化し、HP・メニュー・SNS・導線・現場で回る仕組みに変える伴走サービス。">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:url" content="https://kubota-seiko.com/">
+<meta property="og:image" content="https://kubota-seiko.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -226,6 +243,7 @@
       <a href="#svc">サービス</a>
       <a href="#prof">プロフィール</a>
       <a href="#story">ストーリー</a>
+      <a href="#voice">事例</a>
       <a href="#contact" class="nav-cta">無料相談</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
@@ -345,6 +363,35 @@
   </div>
 </section>
 
+<!-- VOICE / CASES -->
+<section id="voice">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Voice</p>
+      <h2 class="sec-title">事例に見る、変化の兆し。</h2>
+      <p class="sec-lead">感覚が言葉になり、仕組みに変わると、現実も動き出します。詳しい経緯は<a href="cases.html" style="text-decoration:underline;">事例ページ</a>でご覧いただけます。</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="quote">"</div>
+        <p class="body">答えは"外"ではなく、ご本人の中にありました。整理されると、人は自分の足元にある宝に気づき、自分の意志で動き出せます。</p>
+        <div class="who"><div class="av">01</div><div><b>Case 01</b><span>迷い→本音→決断→現実が動く</span></div></div>
+      </div>
+      <div class="test-card reveal">
+        <div class="quote">"</div>
+        <p class="body">動けないのは、意志が弱いからではありません。本当の動機が、まだ言葉になっていないだけ。見えた瞬間、人は自分で前に進めます。</p>
+        <div class="who"><div class="av">02</div><div><b>Case 02</b><span>迷い→本当の動機→役割の再定義→仕組み化</span></div></div>
+      </div>
+      <div class="test-card reveal">
+        <div class="quote">"</div>
+        <p class="body">人は、誰かに引っ張られて動くのではありません。自分の言葉でビジョンを掴んだとき、内側から動き出します。</p>
+        <div class="who"><div class="av">03</div><div><b>Case 03</b><span>ビジョン→言語化→覚悟→実行</span></div></div>
+      </div>
+    </div>
+    <p class="svc-note reveal">すべての事例を<a href="cases.html" style="text-decoration:underline;">事例ページ</a>で見る →</p>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
@@ -354,6 +401,7 @@
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
       <input type="hidden" name="subject" value="【無料相談】お申し込み｜感覚を仕組みにする参謀">
       <input type="hidden" name="from_name" value="感覚を仕組みにする参謀サイト">
+      <input type="hidden" name="流入元ページ" id="inflowPage" value="TOPページ(直接)">
       <input type="text" name="お名前" placeholder="お名前 *" required>
       <input type="email" name="メールアドレス" placeholder="メールアドレス *" required>
       <input type="text" name="お仕事・事業" placeholder="今のお仕事・事業を一言で *" required>
@@ -407,6 +455,22 @@
     html.style.scrollBehavior='auto';
     target.scrollIntoView({block:'start'});
     html.style.scrollBehavior=prev||'';
+  })();
+
+  // record which page a CTA came from (?from=stress-support / sanbo / sokujitsu-lp-lab)
+  // so inquiries can be attributed to the page that generated them.
+  (function(){
+    var labels={
+      'stress-support':'小さなストレス解消サポート',
+      'sanbo':'感覚を仕組みにする参謀',
+      'sokujitsu-lp-lab':'即日LPラボ'
+    };
+    var params=new URLSearchParams(location.search);
+    var from=params.get('from');
+    var field=document.getElementById('inflowPage');
+    if(field && from && labels[from]){
+      field.value=labels[from];
+    }
   })();
 
   // image placeholder generator (used if profile.jpg is missing)
