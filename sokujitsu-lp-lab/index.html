@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>即日LPラボ(感覚を仕組みにする参謀 スピード版)｜窪田成功</title>
+<meta name="description" content="話すだけで、LPの原稿ができる。対話とAIを使い、商品価値・想いをLP原稿一式に整えるスピード集中サービスです。制作代行ではありません。">
+<link rel="canonical" href="https://kubota-seiko.com/sokujitsu-lp-lab/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="即日LPラボ(感覚を仕組みにする参謀 スピード版)｜窪田成功">
+<meta property="og:description" content="話すだけで、LPの原稿ができる。LP制作代行ではなく、商品価値言語化・LP原稿設計サービスです。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kubota-seiko.com/sokujitsu-lp-lab/">
+<meta property="og:image" content="https://kubota-seiko.com/images/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;--ink:#1A1A1A;--accent:#1A1A2E;--gold:#B8924F;
+    --sub:#666666;--line:#ECECEC;--soft:#F7F7F8;--gap:96px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Noto Sans JP","Inter",sans-serif;color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  h1,h2,h3{line-height:1.4;font-weight:700;letter-spacing:.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  section{padding:var(--gap) 0;}
+  .eyebrow{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600;}
+  .sec-title{font-size:clamp(24px,4vw,34px);margin-bottom:14px;}
+  .sec-lead{color:var(--sub);font-size:16px;max-width:680px;}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);}
+  .nav-in{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{font-weight:700;font-size:16px;letter-spacing:.04em;}
+  .brand span{color:var(--sub);font-weight:400;font-size:12px;margin-left:8px;}
+  .nav-right{display:flex;gap:22px;align-items:center;}
+  .nav-right a{font-size:14px;color:var(--sub);transition:color .2s;}
+  .nav-right a:hover{color:var(--ink);}
+  .nav-cta{background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:2px;font-size:13px;}
+
+  .shero{padding:150px 0 40px;}
+  .shero h1{font-size:clamp(26px,5vw,42px);letter-spacing:.03em;max-width:760px;}
+  .shero .lead{max-width:640px;margin-top:22px;font-size:16px;color:var(--ink);}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
+  .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
+  .note{margin-top:16px;font-size:13px;color:var(--sub);max-width:640px;}
+
+  table.dtable{width:100%;border-collapse:collapse;margin-top:28px;font-size:13.5px;}
+  table.dtable th,table.dtable td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;}
+  table.dtable th{background:var(--soft);font-weight:700;}
+
+  .box{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:30px 32px;margin-top:28px;}
+  .box h3{font-size:15px;margin-bottom:14px;}
+  .box h3.no-top{margin-top:0;}
+  .box ul{padding-left:1.2em;margin-bottom:8px;}
+  .box li{margin-bottom:8px;font-size:15px;}
+  .box-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+
+  ul.plain{padding-left:1.2em;}
+  ul.plain li{margin-bottom:10px;font-size:15px;}
+  ol.plain{padding-left:1.3em;}
+  ol.plain li{margin-bottom:8px;font-size:15px;}
+
+  .faq{margin-top:36px;}
+  .faq-item{margin-bottom:22px;}
+  .faq-item .q{font-weight:700;font-size:15px;margin-bottom:6px;}
+  .faq-item .a{color:var(--sub);font-size:14.5px;}
+
+  .notice-box{border-left:3px solid var(--gold);background:var(--soft);border-radius:0 8px 8px 0;padding:26px 30px;margin-top:28px;}
+  .notice-box ul{padding-left:1.2em;margin-top:12px;}
+  .notice-box li{margin-bottom:8px;font-size:14.5px;}
+
+  footer{padding:48px 0;border-top:1px solid var(--line);text-align:center;}
+  footer p{color:var(--sub);font-size:13px;}
+  footer a{color:var(--sub);text-decoration:underline;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  .plan-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  @media(max-width:700px){
+    :root{--gap:56px;}
+    .box-cols{grid-template-columns:1fr;}
+    .nav-right a:not(.nav-cta){display:none;}
+    .plan-table-wrap{margin-top:28px;}
+    .plan-table-wrap table.dtable{width:auto;min-width:640px;margin-top:0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="../" class="brand">窪田成功<span>感覚を仕組みにする参謀</span></a>
+    <div class="nav-right">
+      <a href="../">TOPへ戻る</a>
+      <a href="../sanbo/">参謀ページへ戻る</a>
+      <a href="../#contact" class="nav-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="shero">
+  <div class="wrap reveal">
+    <p class="eyebrow">感覚を仕組みにする参謀 [スピード版] 即日LPラボ</p>
+    <h1>話すだけで、LPの原稿ができる。</h1>
+    <p class="lead">これは、LPを代わりに作る制作代行サービスではありません。あなたの頭の中にある商品価値・想い・違和感を、対話とAIでLP原稿一式に変えるサービスです。</p>
+    <a href="../#contact" class="cta">自分に合うプランを診断してみる →</a>
+    <p class="note">※「即日」とは、申込み当日に対応するという意味ではありません。予約した実施日当日に集中して作業するという意味です(詳しくは下記)。</p>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">About</p>
+    <h2 class="sec-title">即日LPラボとは。</h2>
+    <p style="font-size:15px;max-width:720px;">即日LPラボは、社長・個人事業主・講師・セラピスト・専門職の頭の中にある商品価値・想い・違和感・強みを、LP原稿一式に整えるサービスです。</p>
+    <p style="margin-top:14px;font-size:15px;max-width:720px;">中心にあるのは、デザインや公開作業ではありません。感覚を言語化し、商品価値を整理し、申し込みにつながるLPの言葉・構成・導線に変えること。それが即日LPラボの価値です。</p>
+    <p style="margin-top:14px;font-size:15px;max-width:720px;">お渡しするのは、ファーストビューコピー・本文原稿・価格の見せ方・CTA文言・FAQ・SNS告知文などを含む「LP原稿一式」です。</p>
+  </div>
+</section>
+
+<!-- DIFFERENCE -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Difference</p>
+    <h2 class="sec-title">「LP制作代行」とは、何が違うのか。</h2>
+    <p style="font-size:15px;max-width:720px;">「即日LPラボ」という名前から、LPを代わりに作って公開してくれるサービスだと思われることがあります。私たちが提供しているのは、それとは違います。</p>
+    <table class="dtable">
+      <tr><th>観点</th><th>一般的なLP制作代行</th><th>即日LPラボ</th></tr>
+      <tr><td>出発点</td><td>ヒアリングシート・テンプレートから作る</td><td>まだ言葉になっていない感覚・違和感から出発する</td></tr>
+      <tr><td>プロセス</td><td>要件定義 → デザイン → 実装</td><td>対話(AI同席)→ 言語化 → 商品価値の整理 → 構成設計</td></tr>
+      <tr><td>成果物</td><td>公開されたウェブページ</td><td>申込みにつながる「LP原稿一式」(実装は別)</td></tr>
+      <tr><td>価値の源泉</td><td>デザイン力・技術力</td><td>感覚を言語化する力 × AIの構造化力</td></tr>
+    </table>
+    <p style="margin-top:16px;font-size:14.5px;color:var(--sub);">私たちが整えるのは「言葉と構成」です。デザインと公開は、あなた自身のチームや制作会社にお渡しいただく、または別途ご相談ください。</p>
+  </div>
+</section>
+
+<!-- FOR YOU -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">For You</p>
+    <h2 class="sec-title">こんな方に向いています。</h2>
+    <ul class="plain">
+      <li>商品・サービスの価値には自信があるが、LPの言葉にする時間がない方</li>
+      <li>何を書けばいいか分からず、LP作成が止まってしまっている方</li>
+      <li>対面での取材や長時間のヒアリングに時間を割けない方</li>
+      <li>すでに公開環境(HP/STUDIO/Wix/ペライチ/WordPressなど)を持っていて、原稿だけ整えたい方</li>
+      <li>商品価値の言語化から、まとめて短時間で進めたい方</li>
+    </ul>
+    <h3 style="font-size:15px;margin:22px 0 10px;">こんな方には合わない場合があります</h3>
+    <p style="font-size:15px;color:var(--sub);max-width:720px;">公開環境そのものがない方、ドメイン・サーバー・決済・予約フォームの設定が必要な方は、即日LPラボ本体の対象外です。その場合は別見積もりまたは外部パートナーをご紹介します。</p>
+    <p style="margin-top:12px;font-size:15px;color:var(--sub);max-width:720px;">また、商品・サービス自体がまだ固まっていない方は、まず<a href="../sanbo/" style="text-decoration:underline;">「感覚を仕組みにする参謀」</a>からのご相談をおすすめしています。</p>
+  </div>
+</section>
+
+<!-- STYLE -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Style</p>
+    <h2 class="sec-title">話し方は自由。窪田は画面オフ・音声オフで聞いています。</h2>
+    <p style="font-size:15px;max-width:720px;">Zoomでは、顔出し・音声ありで自由に話してください。整理された話し方でなくて大丈夫です。</p>
+    <p style="margin-top:14px;font-size:15px;max-width:720px;">窪田成功はあえて画面オフ・音声オフで参加し、チャットで質問・確認をしながら聞いています。これは失礼な対応ではなく、あなたの言葉と熱量をそのまま拾い、AIと一緒に整理するための意図的なスタイルです。</p>
+    <h3 style="font-size:15px;margin:22px 0 10px;">当日までの流れ</h3>
+    <ol class="plain">
+      <li>申し込み</li>
+      <li>日程調整</li>
+      <li>事前フォーム回答</li>
+      <li>実施日当日(Zoomで自由に話す)</li>
+      <li>LP原稿・構成・導線を作成</li>
+      <li>当日〜翌営業日を目安に納品</li>
+    </ol>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Scope</p>
+    <h2 class="sec-title">即日LPラボでできること・できないこと。</h2>
+    <div class="box">
+      <div class="box-cols">
+        <div>
+          <h3 class="no-top">本体に含まれるもの</h3>
+          <ul>
+            <li>事前フォーム、Zoom聞き取り、Zoom文字起こし、チャットでの質問、AI整理タイム</li>
+            <li>商品コンセプト整理、ターゲット整理、LP構成</li>
+            <li>ファーストビューコピー、本文原稿、価格の見せ方、選ばれる理由、CTA文言、申込導線、FAQ</li>
+            <li>SNS告知文、公開前チェックリスト、LP原稿一式の納品</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="no-top">含まれないもの</h3>
+          <ul>
+            <li>対面取材、訪問打ち合わせ、現地・写真・動画撮影、現場同行</li>
+            <li>ドメイン取得、DNS設定、サーバー契約</li>
+            <li>WordPress/STUDIO/Wix/ペライチ等の初期設定</li>
+            <li>決済設定、予約フォーム設定、メール自動返信設定、広告運用</li>
+            <li>公開作業、即日公開保証、高度なデザイン制作、複数回の無制限修正</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:14.5px;color:var(--sub);">すでに公開環境をお持ちの方は、原稿をその環境へ反映する「LP反映サポート」を別途ご相談いただけます(既存の公開環境・ログイン情報・管理権限をお持ちの場合のみ対応可能です)。公開環境をお持ちでない場合や、ドメイン・サーバー・決済などの設定が必要な場合は、別見積もりまたは外部パートナーのご紹介という形で対応します。</p>
+  </div>
+</section>
+
+<!-- DIAGNOSIS -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Diagnosis</p>
+    <h2 class="sec-title">30秒で、自分に合うプランが分かります。</h2>
+    <p style="font-size:15px;max-width:680px;">以下の質問に答えるだけで、あなたに合うプランが分かります。</p>
+    <ol class="plain">
+      <li>売りたい商品・サービスはありますか?</li>
+      <li>その商品・サービスの価格は決まっていますか?</li>
+      <li>LPを載せるHP・STUDIO・Wix・ペライチ・WordPressなどの公開環境はありますか?</li>
+      <li>ログイン情報・管理権限はありますか?</li>
+      <li>自分またはチームで原稿をページに反映できますか?</li>
+      <li>こちらに既存ページへの反映も希望しますか?</li>
+      <li>公開環境づくりから必要ですか?</li>
+      <li>何が必要か分からない状態ですか?</li>
+    </ol>
+    <a href="../#contact" class="cta">診断をはじめる →</a>
+    <p style="margin-top:16px;font-size:14.5px;color:var(--sub);">回答いただいた内容をもとに、下記A〜Fから、あなたに合うプランをご案内します。</p>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Plans</p>
+    <h2 class="sec-title">診断結果ごとのおすすめプラン</h2>
+    <p style="font-size:15px;">迷ったら、まずは<strong>A. LP公開準備診断</strong>から始めるのがおすすめです。</p>
+    <div class="plan-table-wrap">
+    <table class="dtable">
+      <tr><th>プラン</th><th>こんな方に</th><th>価格</th><th>所要時間</th><th>納品目安</th></tr>
+      <tr><td>A. LP公開準備診断</td><td>価格未確定、または何が必要か分からない方</td><td>22,000円〜33,000円</td><td>60〜90分</td><td>当日〜翌営業日</td></tr>
+      <tr><td>B. 即日LPラボ Lite</td><td>公開環境・反映は自分たちで行える方</td><td>55,000円</td><td>2〜3時間</td><td>当日中</td></tr>
+      <tr><td>C. 即日LPラボ Standard</td><td>公開環境・反映は自分たちで行える(または反映不要な)方</td><td>77,000円〜110,000円</td><td>4〜6時間</td><td>当日〜翌営業日</td></tr>
+      <tr><td>D. Standard + LP反映サポート</td><td>既存の公開環境・ログイン情報・管理権限がある方</td><td>Standard料金 + 55,000円〜110,000円</td><td>+1〜2営業日</td><td>環境確認後に確定</td></tr>
+      <tr><td>E. 公開環境構築</td><td>公開環境そのものがない方(本体には含まれません)</td><td>別途見積もり</td><td>状況確認後に提示</td><td>別途見積もり</td></tr>
+      <tr><td>F. 感覚を仕組みにする参謀</td><td>商品・サービス自体がまだ固まっていない方</td><td>個別相談</td><td>個別相談</td><td>個別相談</td></tr>
+    </table>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--sub);">※ 納品目安は、素材量・回答内容・確認スピードにより変動します。気になるプランがあれば、プラン名を添えてお気軽にお問い合わせください。</p>
+    <a href="../#contact" class="cta">このプランについて問い合わせる →</a>
+  </div>
+</section>
+
+<!-- NOTICE -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Notice</p>
+    <h2 class="sec-title">「即日」についての大切なお知らせ</h2>
+    <div class="notice-box">
+      <p style="font-size:15px;">即日LPラボの「即日」とは、お申し込み当日に対応するという意味ではありません。事前に予約した実施日当日に、LPの言葉・構成・導線を集中的に整えるという意味です。</p>
+      <ul>
+        <li>お申し込み当日の即時対応は保証していません</li>
+        <li>ご利用には、事前フォームへのご回答と、実施日のご予約が必要です</li>
+        <li>事前情報が不足している場合、納品目安が延びる場合があります</li>
+        <li>公開作業・ドメイン設定・決済設定・予約フォーム設定は対象外です</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Before You Apply</p>
+    <h2 class="sec-title">お申し込み前にご確認ください。</h2>
+    <ul class="plain">
+      <li>売りたい商品・サービスが明確になっているか</li>
+      <li>価格が決まっているか</li>
+      <li>公開環境(WordPress/STUDIO/Wix/ペライチ等)を持っているか</li>
+      <li>持っている場合、ログイン情報・管理権限を自分で操作できるか</li>
+      <li>ドメイン・サーバーは契約済みか</li>
+      <li>決済システム・予約フォームは導入済みか</li>
+      <li>LPに使いたい写真・素材は自分で用意できるか(現地・写真・動画撮影は本体に含まれないため)</li>
+      <li>既存ページへの反映(LP反映サポート)を希望するか、その場合は公開環境・ログイン情報・管理権限があるか</li>
+      <li>成果物はLP原稿一式であり、デザイン済みの完成LPや公開作業は含まれないことを理解しているか</li>
+      <li>Zoomでの聞き取りにおいて、窪田成功が画面オフ・音声オフで参加する形式を理解しているか</li>
+      <li>「即日」は申し込み当日対応ではなく、予約した実施日当日の集中作業であることを理解しているか</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="sec-title">よくあるご質問</h2>
+    <div class="faq">
+      <div class="faq-item"><p class="q">Q. 完成したデザインのLPが届きますか?</p><p class="a">いいえ。届くのはLPの原稿(コピー・構成)です。デザイン・実装は別工程になります。</p></div>
+      <div class="faq-item"><p class="q">Q. 申し込んだその日に対応してもらえますか?</p><p class="a">いいえ。「即日」は事前に予約した実施日当日に集中して作成するという意味で、申込み当日の即時対応ではありません。</p></div>
+      <div class="faq-item"><p class="q">Q. ドメインや決済の設定もお願いできますか?</p><p class="a">含まれません。公開環境の構築は別見積もりまたは外部パートナーのご紹介になります。</p></div>
+      <div class="faq-item"><p class="q">Q. うまく話せるか不安です。</p><p class="a">整理されていない話し方で構いません。感覚的な話から言葉にしていくのが、このサービスの中心的な価値です。</p></div>
+      <div class="faq-item"><p class="q">Q. 何が必要か自分でも分かっていません。申し込んでいいですか?</p><p class="a">まずはお気軽にご相談ください。状況に応じて、LP公開準備診断や「感覚を仕組みにする参謀」など、適したご案内をします。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO SANBO -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">More</p>
+    <h2 class="sec-title">もっと深く、事業全体を整えたい方へ。</h2>
+    <p style="font-size:15px;max-width:680px;">即日LPラボは、「感覚を仕組みにする参謀」のスピード版です。LPの言葉と構成をまず整えたい方には即日LPラボを、事業コンセプト・商品設計・HP全体・導線・月次伴走まで含めてじっくり整えたい方には、本体の「感覚を仕組みにする参謀」をおすすめしています。</p>
+    <a href="../sanbo/" class="cta-secondary">感覚を仕組みにする参謀のページを見る →</a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="wrap reveal" style="text-align:center;">
+    <h2 class="sec-title">まずは、自分に合うプランを診断してみましょう。</h2>
+    <p class="sec-lead" style="margin:0 auto;">「即日LPラボには興味があるけれど、自分に合うプランが分からない」という方がほとんどです。まずはお気軽にご相談ください。</p>
+    <a href="../#contact" class="cta">自分に合うプランを診断してみる →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>窪田 成功 ／ 感覚を仕組みにする参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../sanbo/">参謀ページへ戻る</a></p>
+  </div>
+</footer>
+
+<script>
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay=(i%3*0.08)+'s';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
