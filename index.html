@@ -63,6 +63,9 @@
   }
   .sec-title{font-size:clamp(26px,4vw,40px);margin-bottom:14px;}
   .sec-lead{color:var(--sub);font-size:16px;max-width:640px;}
+  .center-block{text-align:center;}
+  .center-block .sec-lead{margin-left:auto;margin-right:auto;}
+  #story > .wrap > .eyebrow,#story > .wrap > .sec-title{text-align:center;}
 
   /* nav */
   header.nav{
@@ -106,14 +109,14 @@
   .hero-stress-list li{position:relative;padding-left:22px;margin-bottom:10px;font-size:15px;color:var(--ink);}
   .hero-stress-list li:last-child{margin-bottom:0;}
   .hero-stress-list li::before{content:"・";position:absolute;left:0;color:var(--gold);font-weight:700;}
-  .hero-closing{font-size:16px;font-weight:700;margin:26px auto 30px;max-width:520px;line-height:1.8;}
-  .hero-hook{font-size:clamp(19px,3vw,23px);font-weight:700;margin-bottom:22px;color:var(--ink);}
-  .bubble-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 auto 14px;max-width:600px;}
+  .hero-closing{font-size:16px;font-weight:700;margin:38px auto 42px;max-width:520px;line-height:1.8;}
+  .hero-hook{font-size:clamp(19px,3vw,23px);font-weight:700;margin-bottom:34px;color:var(--ink);}
+  .bubble-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:0 auto 32px;max-width:600px;}
   .bubble{display:block;background:var(--soft);border-radius:16px 16px 16px 4px;padding:11px 18px;font-size:13.5px;color:var(--ink);text-align:center;box-shadow:0 6px 16px rgba(0,0,0,.04);}
-  .hero-hook-sub{font-size:14px;color:var(--sub);margin-bottom:26px;}
-  .hero-answer-lead{font-size:14px;color:var(--sub);margin-bottom:8px;}
-  .hero-label{font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.18em;margin-bottom:14px;font-family:"Noto Sans JP",sans-serif;}
-  .hero-reassure{background:var(--soft);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:20px 26px;margin:22px auto 0;max-width:480px;text-align:center;}
+  .hero-hook-sub{font-size:14px;color:var(--sub);margin-bottom:38px;}
+  .hero-answer-lead{font-size:14px;color:var(--sub);margin-bottom:12px;}
+  .hero-label{font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.18em;margin-bottom:24px;font-family:"Noto Sans JP",sans-serif;}
+  .hero-reassure{background:var(--soft);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:22px 28px;margin:34px auto 0;max-width:480px;text-align:center;}
   .hero-reassure p{font-size:14px;color:var(--sub);line-height:1.9;}
   .hero-reassure b{color:var(--ink);font-weight:700;}
   @media(max-width:640px){.bubble-list{grid-template-columns:1fr;max-width:340px;}}
@@ -199,7 +202,7 @@
   .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.07);}
   .svc-card.feat{border-color:var(--gold);position:relative;box-shadow:0 14px 34px rgba(184,146,79,.12);}
   .svc-card.feat::after{content:"おすすめ";position:absolute;top:20px;right:20px;background:var(--gold);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.08em;}
-  .svc-grid-upper{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:24px;}
+  .svc-grid-upper{display:grid;grid-template-columns:1fr;max-width:360px;margin:24px auto 0;}
   .svc-card.premium{border-color:var(--accent);position:relative;box-shadow:0 14px 34px rgba(26,26,46,.12);}
   .svc-card.premium::after{content:"本格伴走・要相談";position:absolute;top:20px;right:20px;background:var(--accent);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.06em;}
   .svc-name{font-size:18px;font-weight:700;margin-bottom:6px;}
@@ -290,7 +293,7 @@
     .hero-photo{max-width:380px;margin:0 auto;}
     .stats .wrap{grid-template-columns:repeat(2,1fr);gap:32px;}
     .pain-grid,.svc-grid,.test-grid{grid-template-columns:1fr;}
-    .svc-grid-upper{grid-template-columns:1fr;}
+    .svc-grid-upper{max-width:100%;}
     .prof-grid{grid-template-columns:1fr;gap:36px;}
     .prof-photo{max-width:340px;}
   }
@@ -317,7 +320,7 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="wrap hero-simple reveal">
-    <p class="hero-hook">こんなこと、誰に聞けばいいんだろう。</p>
+    <p class="hero-hook">こんなこと、誰に聞けばいいんだろう?</p>
     <div class="bubble-list">
       <p class="bubble">💬 PDFの保存先が分からない…</p>
       <p class="bubble">💬 Excelが思い通りにならない…</p>
@@ -334,9 +337,9 @@
     <h1>経営者の<br>小さなストレスを仕組みで解決します。</h1>
     <p class="hero-closing">そんな小さなストレスを<br>再発しない仕組みに変えていきます。</p>
     <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">30分スポット相談を申し込む <span class="arr">→</span></a>
-    <p style="margin-top:14px;font-size:13px;color:var(--sub);">¥16,500(税込)・30分</p>
+    <p style="margin-top:20px;font-size:13px;color:var(--sub);">¥16,500(税込)・30分</p>
     <div class="hero-reassure">
-      <p><b>小さな相談で大丈夫です。まずは30分で整理します。</b><br>「こんなこと聞いていいのかな?」<br>そんな小さなストレスほど歓迎しています。</p>
+      <p><b>小さな相談も大丈夫です。まずは30分で整理します。</b><br>「こんなこと聞いていいのかな?」<br>そんな小さなストレスほど歓迎しています。</p>
     </div>
   </div>
 </section>
@@ -354,7 +357,7 @@
 <!-- PAIN -->
 <section id="pain">
   <div class="wrap">
-    <div class="reveal">
+    <div class="reveal center-block">
       <p class="eyebrow">Check</p>
       <h2 class="sec-title">あなたは今、どのズレで止まっていますか?</h2>
       <p class="sec-lead">小さな違和感ほど、後回しにされがちです。<br>いくつ当てはまりましたか? 1つでも当てはまれば、そこから見える化していきましょう。</p>
@@ -372,13 +375,13 @@
 <!-- SERVICES -->
 <section class="svc" id="svc">
   <div class="wrap">
-    <div class="reveal">
+    <div class="reveal center-block">
       <p class="eyebrow">Service & Price</p>
       <h2 class="sec-title">感覚を仕組みにする参謀</h2>
       <p class="sec-lead">感覚と仕組みが一致すると、売上が動き出します。経営者の頭の中にある構想・違和感・強み・サービスを、言葉・導線・行動に落とし込む5つのメニューです。</p>
     </div>
     <div class="flow-steps reveal">
-      <div class="flow-step"><span class="flow-num">1</span><p>小さな<br>ストレス</p></div>
+      <div class="flow-step"><span class="flow-num">1</span><p>小さな相談</p></div>
       <span class="flow-arrow">→</span>
       <div class="flow-step"><span class="flow-num">2</span><p>相談</p></div>
       <span class="flow-arrow">→</span>
@@ -389,16 +392,16 @@
       <div class="flow-step"><span class="flow-num">5</span><p>再発防止</p></div>
     </div>
     <div class="svc-essence reveal">
-      <p class="label">本質</p>
+      <p class="label" style="text-align:center;">本質</p>
       <p>表面的にはPDF・Excel・LINE・Googleドライブ・AI活用などの相談に見えますが、本質は経営者の頭の中にある感覚・経験・判断を言葉にし、再現できる仕組みに変えていくことです。「ITサポート」でも「AIの使い方講座」でもなく、感覚を仕組みに変える参謀として、日々の小さな違和感を、二度と迷わない形に変えていきます。「30分スポット相談」は、経営者が誰にも言えずに抱えている違和感を最初に受け止める入口です。ここから、経営者の孤独を、少しずつ減らしていきます。</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card feat reveal">
+      <div class="svc-card reveal">
         <div class="svc-name">30分スポット相談</div>
         <div class="svc-price"><span class="yen">¥</span>16,500</div>
         <p class="svc-desc">小さなストレス、今つまずいていること、AI・HP・事業導線の軽い相談を整理します。まずはここから。</p>
       </div>
-      <div class="svc-card reveal">
+      <div class="svc-card feat reveal">
         <div class="svc-name">60分 思考整理セッション</div>
         <div class="svc-price"><span class="yen">¥</span>33,000</div>
         <p class="svc-desc">頭の中を整理し、次の一手を決める基本メニューです。</p>
@@ -415,11 +418,6 @@
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
         <p class="svc-desc">AI外部脳・タスク整理・事業導線・行動整理を、継続的に伴走します。</p>
       </div>
-      <div class="svc-card premium reveal">
-        <div class="svc-name">事業・思考・発信の再構築プログラム</div>
-        <div class="svc-price"><span class="yen">¥</span>650,000<small>〜応相談</small></div>
-        <p class="svc-desc">3ヶ月集中伴走。事業の方向性・商品設計・価格設計・HP/発信導線・AI外部脳・行動設計を、まとめて整えます。深く合う方だけにご提案しています。</p>
-      </div>
     </div>
     <p class="svc-note reveal">まずは「30分スポット相談(¥16,500)」から。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
   </div>
@@ -429,7 +427,7 @@
 <!-- 今後、事例が増えた場合はこの.case-cardブロックをこのsection内に複製して追加してください(1事例=1.case-card) -->
 <section id="case-ishikawa">
   <div class="wrap">
-    <div class="reveal">
+    <div class="reveal center-block">
       <p class="case-badge">実際の改善事例</p>
       <h2 class="sec-title">小さなストレスが、仕組みに変わった瞬間</h2>
       <p class="sec-lead">愛媛県 焼肉店店主様(モニター)の事例です。</p>
@@ -492,8 +490,8 @@
       <ul>
         <li>Eternal株式会社 代表取締役</li>
         <li>大阪府倫理法人会 DX副事務長</li>
-        <li>感覚の言語化と仕組み化の参謀</li>
         <li>感覚を仕組みにする参謀</li>
+        <li>シータヒーリング®️インストラクター</li>
       </ul>
       <div class="mission">
         <span>MISSION</span>
@@ -510,7 +508,7 @@
     <p class="eyebrow">Story</p>
     <h2 class="sec-title">なぜ、この仕事をするのか</h2>
     <div class="story-body">
-      <p>優秀な経営者ほど、感覚で走ってきています。頭の中には、判断基準も、アイデアも、想いもある。でもそれを言葉にできず、人に渡せず、仕組みにもできない。だから、すべてを一人で抱え込んでしまう。</p>
+      <p>優秀な経営者の方ほど、感覚で走ってこられてるのではないでしょうか? 頭の中には、判断基準も、アイデアも、想いもある。でもそれを言葉にできず、人に渡せず、仕組みにもできない。だから、すべてを一人で抱え込んでしまう。</p>
       <p>このテーマに向き合うきっかけは、父の死でした。誰にも本音を相談できないまま、一人で抱え込み、孤独のうちに旅立ちました。もし悩みを共有できる相手がいたら、何かが違ったかもしれない。そう思ったことが、今のこの仕事につながっています。</p>
       <p>僕がしたいのは、経営者の頭の中を、隣で一緒に言語化すること。そして、整理した思考を、AIやテンプレート、ルールという“仕組み”に変えること。そうすれば、経営者は一人で抱えなくてよくなります。</p>
       <p>僕自身、ADHD・ASDの傾向があります。人より忘れっぽかったり、思うようにいかなかったり、「こんなこと聞いていいのかな」と迷う感覚を、日常的に味わってきました。だからこそ、経営者が一人で抱えている“小さすぎて相談しにくい”違和感に、人一倍気づくことができます。</p>
@@ -523,7 +521,7 @@
 <!-- VOICE / CASES -->
 <section id="voice">
   <div class="wrap">
-    <div class="reveal">
+    <div class="reveal center-block">
       <p class="eyebrow">Voice</p>
       <h2 class="sec-title">事例に見る、変化の兆し。</h2>
       <p class="sec-lead">感覚が言葉になり、仕組みに変わると、現実も動き出します。詳しい経緯は<a href="cases.html" style="text-decoration:underline;">事例ページ</a>でご覧いただけます。</p>
@@ -552,10 +550,12 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
-    <h2>650,000円以上の本格伴走をご検討の方へ</h2>
+    <h2>本格伴走をご希望の方へ</h2>
+    <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);margin:-8px 0 18px;">再構築プログラム 650,000円〜応相談</p>
     <p>「事業・思考・発信の再構築プログラム」など、上位の伴走をお考えの方向けに、正式なお申し込み前の無料相談を行っています。深く合う方だけにご提案したいため、まずは今の状況を伺わせてください。</p>
-    <p style="font-size:13px;color:rgba(255,255,255,.6);margin:-4px 0 22px;">小さなご相談は「30分スポット相談(¥16,500)」をご利用ください。<a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;text-decoration:underline;" target="_blank" rel="noopener">LINEで申し込む →</a></p>
-    <p style="font-size:13px;color:rgba(255,255,255,.55);margin:0 0 6px;">お名前・メールアドレス・モヤモヤの3つだけで送信できます。その他は任意です。</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.6);max-width:480px;margin:-4px auto 6px;text-align:center;">小さなご相談は「30分スポット相談(¥16,500)」をご利用ください。</p>
+    <p style="max-width:480px;margin:0 auto 22px;text-align:center;"><a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;font-weight:700;font-size:14px;text-decoration:underline;" target="_blank" rel="noopener">LINEで申し込む →</a></p>
+    <p style="font-size:13px;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 6px;text-align:center;">お名前・メールアドレス・モヤモヤの3つだけで送信できます。その他は任意です。</p>
     <form id="consultForm" class="consult-form">
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
       <input type="hidden" name="subject" value="【上位伴走 事前相談】お申し込み｜感覚を仕組みにする参謀">
@@ -711,7 +711,7 @@
 </script>
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
 <div class="line-fab-wrap">
-  <p class="line-fab-note">小さな相談で大丈夫です</p>
+  <p class="line-fab-note">小さな相談も大丈夫です</p>
   <a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">30分相談を申し込む →</a>
 </div>
 
