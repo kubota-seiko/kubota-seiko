@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<rect x="0" y="0" width="600" height="600" rx="16" fill="#F4F3F1"/>
+<path d="
+M 190 120
+C 210 95, 250 82, 290 88
+C 330 94, 360 115, 378 148
+C 386 163, 388 178, 398 188
+C 412 196, 428 202, 432 214
+C 434 222, 424 228, 410 230
+C 400 231, 396 238, 400 248
+C 404 260, 398 270, 386 274
+C 382 290, 384 305, 376 318
+C 368 331, 366 344, 356 354
+C 346 364, 344 374, 334 380
+C 322 388, 306 392, 290 393
+" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="
+M 190 120
+C 155 145, 138 190, 140 235
+C 141 260, 152 280, 160 300
+C 168 320, 168 340, 156 356
+C 148 367, 140 375, 132 382
+" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 152 262 C 161 259, 168 265, 166 275 C 164 283, 156 284, 151 277 C 148 272, 148 266, 152 262" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 190.0 175.0 Q 207.7 191.7 193.1 192.9 Q 178.6 194.2 189.4 199.6 Q 200.2 205.0 204.0 193.4 Q 207.8 181.7 193.6 185.5 Q 179.5 189.4 177.4 175.7 Q 175.3 162.0 189.0 167.3 Q 202.7 172.5 196.4 182.0 Q 190.1 191.5 202.5 196.6 Q 214.9 201.8 210.5 189.4 Q 206.1 176.9 201.2 189.3 Q 196.2 201.7 186.6 190.5 Q 176.9 179.4 189.1 173.6 Q 201.3 167.8 190.1 158.5 Q 178.9 149.2 180.4 161.1 Q 182.0 172.9 194.2 166.9 Q 206.5 160.8 208.0 174.7 Q 209.4 188.6 196.3 180.6 Q 183.2 172.6 198.4 173.6 Q 213.5 174.5 207.2 186.3 Q 200.9 198.1 213.3 200.1 Q 225.8 202.2 226.9 192.4 " fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+<line x1="295" y1="205" x2="321" y2="205" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="205" x2="347" y2="205" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="205" x2="373" y2="205" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="231" x2="321" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="231" x2="347" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="231" x2="373" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="257" x2="321" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="257" x2="347" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="257" x2="373" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="283" x2="321" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="283" x2="347" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="283" x2="373" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="205" x2="295" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="231" x2="295" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="295" y1="257" x2="295" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="205" x2="321" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="231" x2="321" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="321" y1="257" x2="321" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="205" x2="347" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="231" x2="347" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="347" y1="257" x2="347" y2="283" stroke="#B8924F" stroke-width="2"/>
+<line x1="373" y1="205" x2="373" y2="231" stroke="#B8924F" stroke-width="2"/>
+<line x1="373" y1="231" x2="373" y2="257" stroke="#B8924F" stroke-width="2"/>
+<line x1="373" y1="257" x2="373" y2="283" stroke="#B8924F" stroke-width="2"/>
+<circle cx="295" cy="205" r="4.5" fill="#B8924F"/>
+<circle cx="321" cy="205" r="4.5" fill="#B8924F"/>
+<circle cx="347" cy="205" r="4.5" fill="#B8924F"/>
+<circle cx="373" cy="205" r="4.5" fill="#B8924F"/>
+<circle cx="295" cy="231" r="4.5" fill="#B8924F"/>
+<circle cx="321" cy="231" r="4.5" fill="#B8924F"/>
+<circle cx="347" cy="231" r="4.5" fill="#B8924F"/>
+<circle cx="373" cy="231" r="4.5" fill="#B8924F"/>
+<circle cx="295" cy="257" r="4.5" fill="#B8924F"/>
+<circle cx="321" cy="257" r="4.5" fill="#B8924F"/>
+<circle cx="347" cy="257" r="4.5" fill="#B8924F"/>
+<circle cx="373" cy="257" r="4.5" fill="#B8924F"/>
+<circle cx="295" cy="283" r="4.5" fill="#B8924F"/>
+<circle cx="321" cy="283" r="4.5" fill="#B8924F"/>
+<circle cx="347" cy="283" r="4.5" fill="#B8924F"/>
+<circle cx="373" cy="283" r="4.5" fill="#B8924F"/>
+
+</svg>
