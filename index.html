@@ -86,7 +86,7 @@
 
   /* hero */
   .hero{padding-top:140px;padding-bottom:var(--gap);}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;}
   .hero h1{font-size:clamp(34px,6vw,62px);letter-spacing:.03em;}
   .hero h1 .light{display:block;font-size:.4em;font-weight:600;color:var(--gold);letter-spacing:.2em;margin-bottom:18px;font-family:"Noto Sans JP",sans-serif;}
   .hero h1 .nw{white-space:nowrap;}
@@ -100,9 +100,11 @@
   .hero-cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.18);color:#fff;}
   .hero-cta .arr{transition:transform .25s;}
   .hero-cta:hover .arr{transform:translateX(4px);}
+  .hero-simple{text-align:center;max-width:720px;margin:0 auto;}
+  .hero-simple .hero-lead{max-width:600px;margin:28px auto 34px;}
   .hero-photo{position:relative;max-width:420px;margin-left:auto;}
   .hero-photo .frame{
-    aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--soft);
+    aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--soft);
     box-shadow:0 30px 60px rgba(0,0,0,.10);
   }
   .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -252,20 +254,10 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="reveal">
-      <h1><span class="light">感覚を仕組みにする参謀</span><span class="nw">感覚と仕組みが一致すると、</span><br><span class="nw">売上が動き出す。</span></h1>
-      <p class="hero-lead">感覚・経験・価値はある。でも、言葉・導線・仕組みが<br>今の状態に合っていない方へ。</p>
-      <p class="hero-sub">まずは、今のズレがどこにあるかを見てみませんか。</p>
-      <a href="stress-support/" class="hero-cta">小さなストレスを見える化する <span class="arr">→</span></a>
-      <p style="margin-top:18px;"><a href="sanbo/" style="font-size:14px;color:var(--sub);text-decoration:underline;">感覚を仕組みにする参謀について知る →</a></p>
-    </div>
-    <div class="hero-photo reveal">
-      <div class="frame">
-        <img src="images/profile.jpg" alt="窪田成功" onerror="this.replaceWith(window.__ph(4,5,'KS'))">
-      </div>
-      <div class="badge">感覚を仕組みにする参謀</div>
-    </div>
+  <div class="wrap hero-simple reveal">
+    <h1><span class="light">感覚を仕組みにする参謀</span><span class="nw">感覚と仕組みが一致すると、</span><br><span class="nw">売上が動き出す。</span></h1>
+    <p class="hero-lead">感覚・経験・価値はある。でも、言葉・導線・仕組みが今の状態に合っていない方へ。まずは、今のズレがどこにあるかを見てみませんか。</p>
+    <a href="?from=top-hero#contact" class="hero-cta">無料相談はこちら <span class="arr">→</span></a>
   </div>
 </section>
 
@@ -397,19 +389,20 @@
   <div class="wrap reveal">
     <h2>まずは、今のズレがどこにあるかを見てみませんか。</h2>
     <p>感覚・経験・価値は、すでにあります。あとは、それを言葉にし、仕組みにするだけです。まずは60分の無料相談で、今のズレを一緒に見える化しましょう。</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.55);margin:-6px 0 6px;">お名前・メールアドレス・モヤモヤの3つだけで送信できます。その他は任意です。</p>
     <form id="consultForm" class="consult-form">
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
       <input type="hidden" name="subject" value="【無料相談】お申し込み｜感覚を仕組みにする参謀">
       <input type="hidden" name="from_name" value="感覚を仕組みにする参謀サイト">
       <input type="hidden" name="流入元ページ" id="inflowPage" value="TOPページ(直接)">
-      <input type="text" name="お名前" placeholder="お名前 *" required>
-      <input type="email" name="メールアドレス" placeholder="メールアドレス *" required>
-      <input type="text" name="お仕事・事業" placeholder="今のお仕事・事業を一言で *" required>
+      <input type="text" name="お名前" placeholder="お名前 *" required autocomplete="name">
+      <input type="email" name="メールアドレス" placeholder="メールアドレス *" required autocomplete="email">
+      <input type="text" name="お仕事・事業" placeholder="今のお仕事・事業を一言で（任意）">
       <textarea name="いちばんのモヤモヤ" placeholder="いま、いちばんモヤモヤしている・引っかかっていることは？ *" required></textarea>
       <textarea name="試したこと" placeholder="それについて、これまで試したことは？（あれば）"></textarea>
-      <textarea name="理想の状態" placeholder="解決したら、どんな状態になっていたいですか？ *" required></textarea>
+      <textarea name="理想の状態" placeholder="解決したら、どんな状態になっていたいですか？（任意）"></textarea>
       <textarea name="言語化できていない部分" placeholder="「感覚でやっていて言葉にできていない」と感じる部分は？"></textarea>
-      <textarea name="持ち帰りたいもの" placeholder="今回の相談で、持ち帰りたいものは？ *" required></textarea>
+      <textarea name="持ち帰りたいもの" placeholder="今回の相談で、持ち帰りたいものは？（任意）"></textarea>
       <select name="相談方法">
         <option value="" disabled selected>ご希望の相談方法（任意）</option>
         <option value="オンライン">オンライン</option>
@@ -419,7 +412,7 @@
       <button type="submit">相談を申し込む →</button>
     </form>
     <div id="formResult"></div>
-    <p class="form-sub">気軽に話したい方は <a href="https://m.me/1137798936077822" target="_blank" rel="noopener">Messenger</a> からどうぞ。</p>
+    <!-- 将来:ここに「LINEで相談する」ボタンを設置予定 -->
   </div>
 </section>
 
@@ -463,7 +456,13 @@
     var labels={
       'stress-support':'小さなストレス解消サポート',
       'sanbo':'感覚を仕組みにする参謀',
-      'sokujitsu-lp-lab':'即日LPラボ'
+      'sokujitsu-lp-lab':'即日LPラボ',
+      'top-hero':'TOPページ(ヒーロー)',
+      'sanbo-hero':'感覚を仕組みにする参謀(ファーストビュー)',
+      'stress-support-hero':'小さなストレス解消サポート(ファーストビュー)',
+      'sokujitsu-lp-lab-hero':'即日LPラボ(ファーストビュー)',
+      'cases-hero':'事例ページ(ファーストビュー)',
+      'cases':'事例ページ'
     };
     var params=new URLSearchParams(location.search);
     var from=params.get('from');
@@ -517,6 +516,12 @@
           if(data.success){
             cf.style.display='none';
             result.textContent='送信ありがとうございました。内容を確認のうえ、ご連絡します。';
+            if(typeof gtag==='function'){
+              gtag('event','generate_lead',{
+                'page_location':location.href,
+                'inflow_page':(document.getElementById('inflowPage')?document.getElementById('inflowPage').value:'')
+              });
+            }
           }else{
             btn.textContent='相談を申し込む →';btn.disabled=false;
             result.textContent='送信に失敗しました。お手数ですが、もう一度お試しください。';
@@ -524,7 +529,7 @@
         })
         .catch(function(){
           btn.textContent='相談を申し込む →';btn.disabled=false;
-          result.textContent='送信に失敗しました。Messengerからもご連絡いただけます。';
+          result.textContent='送信に失敗しました。時間をおいて再度お試しください。';
         });
     });
   }
