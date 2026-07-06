@@ -119,10 +119,21 @@
   .hero-reassure{background:var(--soft);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:22px 28px;margin:34px auto 0;max-width:480px;text-align:center;}
   .hero-reassure p{font-size:14px;color:var(--sub);line-height:1.9;}
   .hero-reassure b{color:var(--ink);font-weight:700;}
+  .hero-inquiry-note{font-size:13px;color:var(--sub);margin-top:18px;}
+  .hero-inquiry-note a{color:var(--gold);font-weight:600;text-decoration:underline;}
   @media(max-width:640px){.bubble-list{grid-template-columns:1fr;max-width:340px;}}
   .svc-essence{background:#fff;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:26px 30px;margin:36px 0 8px;max-width:780px;}
   .svc-essence .label{font-size:12px;letter-spacing:.15em;color:var(--gold);font-weight:700;margin-bottom:10px;}
   .svc-essence p{font-size:15px;line-height:1.9;color:var(--ink);}
+  .principle-list{list-style:none;padding:0;margin:0;text-align:left;}
+  .principle-list li{font-size:15px;line-height:1.9;color:var(--ink);padding-left:22px;position:relative;margin-bottom:10px;font-weight:600;}
+  .principle-list li:last-child{margin-bottom:0;}
+  .principle-list li::before{content:"→";position:absolute;left:0;color:var(--gold);font-weight:700;}
+  .story-quote.sub{font-size:clamp(17px,2.4vw,22px);font-weight:600;color:var(--ink);border-left-color:var(--sub);margin-top:32px;}
+  #brand-statement{background:var(--soft);padding:96px 0;}
+  #brand-statement .eyebrow{justify-content:center;}
+  .brand-statement-body{font-size:clamp(18px,2.4vw,23px);line-height:2.0;color:var(--ink);font-weight:600;margin:18px 0 30px;}
+  .brand-statement-mission{font-size:clamp(15px,2vw,18px);line-height:1.9;color:var(--gold);font-weight:700;}
 
   /* SERVICE FLOW (小さなストレス→相談→原因整理→仕組み化→再発防止) */
   .flow-steps{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:36px 0;}
@@ -343,6 +354,7 @@
     <div class="hero-reassure">
       <p><b>小さな相談も大丈夫です。まずは30分で整理します。</b><br>「こんなこと聞いていいのかな?」<br>そんな小さなストレスほど歓迎しています。</p>
     </div>
+    <p class="hero-inquiry-note">どのサービスが合うか分からない方は、申し込み前に<a href="https://lin.ee/Qr9byp1" class="line-cta" target="_blank" rel="noopener">LINEで気軽にご質問</a>ください。</p>
   </div>
 </section>
 
@@ -421,7 +433,7 @@
         <p class="svc-desc">AI外部脳・タスク整理・事業導線・行動整理を、継続的に伴走します。</p>
       </div>
     </div>
-    <p class="svc-note reveal">まずは「30分スポット相談(¥16,500)」から。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
+    <p class="svc-note reveal">サービス選びに迷う場合は、まずは<a href="https://lin.ee/Qr9byp1" class="line-cta" style="text-decoration:underline;" target="_blank" rel="noopener">LINEでご質問</a>だけでも大丈夫です。<br>本気で整理したい方は「30分スポット相談(¥16,500)」から。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
   </div>
 </section>
 
@@ -511,11 +523,25 @@
     <h2 class="sec-title">なぜ、この仕事をするのか</h2>
     <div class="story-body">
       <p>優秀な経営者の方ほど、感覚で走ってこられてるのではないでしょうか? 頭の中には、判断基準も、アイデアも、想いもある。でもそれを言葉にできず、人に渡せず、仕組みにもできない。だから、すべてを一人で抱え込んでしまう。</p>
+      <p>私は、経営者が「こんなこと聞いていいのかな」と思ってしまう瞬間を、何度も見てきました。実は、その小さな違和感こそが、経営のボトルネックであることが少なくありません。だから私は、大きな経営課題ではなく、小さなストレスから一緒に整理します。</p>
       <p>このテーマに向き合うきっかけは、父の死でした。誰にも本音を相談できないまま、一人で抱え込み、孤独のうちに旅立ちました。もし悩みを共有できる相手がいたら、何かが違ったかもしれない。そう思ったことが、今のこの仕事につながっています。</p>
       <p>僕がしたいのは、経営者の頭の中を、隣で一緒に言語化すること。そして、整理した思考を、AIやテンプレート、ルールという“仕組み”に変えること。そうすれば、経営者は一人で抱えなくてよくなります。</p>
       <p>僕自身、ADHD・ASDの傾向があります。人より忘れっぽかったり、思うようにいかなかったり、「こんなこと聞いていいのかな」と迷う感覚を、日常的に味わってきました。だからこそ、経営者が一人で抱えている“小さすぎて相談しにくい”違和感に、人一倍気づくことができます。</p>
+    </div>
+    <div class="svc-essence reveal" style="margin-top:36px;">
+      <p class="label">私の判断基準</p>
+      <ul class="principle-list">
+        <li>答えは、あなたの中にある。</li>
+        <li>小さなストレスほど、経営の本質につながっている。</li>
+        <li>AIは人の代わりではなく、思考を整理するパートナー。</li>
+        <li>仕組みは、人を縛るためではなく、人を自由にするため。</li>
+      </ul>
+    </div>
+    <div class="story-body" style="margin-top:8px;">
+      <p>私は先生になりたいわけではありません。答えを教える人ではなく、一緒に整理し、仕組みに変え、経営者が自分で判断できる状態をつくる。だから「コンサルタント」ではなく、「参謀」という言葉を選んでいます。</p>
       <p>経営者は、孤独です。相談できる相手がいないまま、決断だけが迫ってくる。その孤独を、ゼロにしたい。それが、僕がこの仕事を続ける理由です。</p>
     </div>
+    <p class="story-quote sub">「答えは外にあるのではなく、本人の中にある。私は、それを見つけやすくする仕組みを一緒につくる。」</p>
     <p class="story-quote">「経営者の孤独死を、ゼロにする。」<small>― 窪田 成功</small></p>
   </div>
 </section>
@@ -546,6 +572,15 @@
       </div>
     </div>
     <p class="svc-note reveal">すべての事例を<a href="cases.html" style="text-decoration:underline;">事例ページ</a>で見る →</p>
+  </div>
+</section>
+
+<!-- BRAND STATEMENT -->
+<section id="brand-statement">
+  <div class="wrap reveal" style="max-width:680px;text-align:center;margin:0 auto;">
+    <p class="eyebrow">Statement</p>
+    <p class="brand-statement-body">経営者は、一人で抱えなくていい。<br>小さなストレスも、言葉にならない違和感も、頭の中の構想も。<br>私はそれらを一緒に整理し、AIと仕組みを活用して、再現できる形へ変えていきます。</p>
+    <p class="brand-statement-mission">目指しているのは、問題を解決することだけではありません。<br>経営者の想いを、孤独死させないこと。</p>
   </div>
 </section>
 
