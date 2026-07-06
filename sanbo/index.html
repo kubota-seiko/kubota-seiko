@@ -61,6 +61,11 @@
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
+  /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
+  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
+  .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
+  .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
+  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
 
   table.dtable{width:100%;border-collapse:collapse;margin-top:28px;font-size:14px;}
   table.dtable th,table.dtable td{border:1px solid var(--line);padding:14px 16px;text-align:left;vertical-align:top;}
@@ -113,7 +118,7 @@
     <div class="nav-right">
       <a href="../">TOPへ戻る</a>
       <a href="../stress-support/">入口:小さなストレス解消サポート</a>
-      <a href="../?from=sanbo#contact" class="nav-cta">無料相談</a>
+      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">無料相談</a>
     </div>
   </div>
 </header>
@@ -124,8 +129,9 @@
     <p class="eyebrow">感覚を仕組みにする参謀</p>
     <h1><span class="light">感覚を言語化。そして、仕組みに。</span>社長の小さな違和感を、<br>選ばれる仕組みに変える。</h1>
     <p class="lead">社長の頭の中にある感覚・違和感・想いを対話で言語化し、HP・メニュー・SNS・導線・現場で回る仕組みに整えます。答えを一方的に渡すサービスではありません。</p>
-    <a href="../?from=sanbo#contact" class="cta">相談してみる →</a><br>
-    <a href="../?from=sanbo-hero#contact" class="cta-secondary">無料相談はこちら →</a>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">相談してみる →</a><br>
+    <a href="https://lin.ee/Qr9byp1" class="cta-secondary line-cta" target="_blank" rel="noopener">無料相談はこちら →</a>
+    <a href="https://lin.ee/Qr9byp1" class="line-text line-cta" style="margin-left:12px;" target="_blank" rel="noopener">LINEで相談する →</a>
   </div>
 </section>
 
@@ -236,9 +242,10 @@
   <div class="wrap reveal" style="text-align:center;">
     <h2 class="sec-title">まずはご相談ください</h2>
     <p class="sec-lead" style="margin:0 auto;">いきなり高額商品からのご案内はしていません。まずは入口商品、または直接のご相談からお気軽にどうぞ。</p>
-    <a href="../?from=sanbo#contact" class="cta">相談してみる →</a><br>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">相談してみる →</a><br>
     <a href="../stress-support/" class="cta-secondary">入口:小さなストレス解消サポートを見る →</a>
     <a href="../cases.html" class="cta-secondary" style="margin-left:12px;">事例を見る →</a>
+    <a href="https://lin.ee/Qr9byp1" class="line-text line-cta" style="margin-left:12px;" target="_blank" rel="noopener">LINEで相談する →</a>
   </div>
 </section>
 
@@ -256,6 +263,17 @@
     el.style.transitionDelay=(i%3*0.08)+'s';
     io.observe(el);
   });
+  // LINE CTA click tracking
+  document.querySelectorAll('.line-cta').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof gtag==='function'){
+        gtag('event','line_click',{'page_location':location.href});
+      }
+    });
+  });
 </script>
+<!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
+<a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
+
 </body>
 </html>

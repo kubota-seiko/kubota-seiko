@@ -62,6 +62,11 @@
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
+  /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
+  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
+  .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
+  .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
+  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
 
   /* pain cards (index.htmlと共通) */
   .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:40px;}
@@ -116,7 +121,7 @@
     <div class="nav-right">
       <a href="../">TOPへ戻る</a>
       <a href="../sanbo/">参謀について</a>
-      <a href="../?from=stress-support#contact" class="nav-cta">無料相談</a>
+      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">無料相談</a>
     </div>
   </div>
 </header>
@@ -127,8 +132,9 @@
     <p class="eyebrow">Stress Support</p>
     <h1>経営者の小さなストレスを、<br>売上導線に変える。</h1>
     <p class="lead">あなたの事業は今、どのズレで止まっていますか?<br>経営が進まないのは、能力が足りないからではありません。感覚と仕組みが、少しズレているだけです。</p>
-    <a href="../?from=stress-support#contact" class="cta">感覚と仕組みのズレを見える化する →</a><br>
-    <a href="../?from=stress-support-hero#contact" class="cta-secondary">無料相談はこちら →</a>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">感覚と仕組みのズレを見える化する →</a><br>
+    <a href="https://lin.ee/Qr9byp1" class="cta-secondary line-cta" target="_blank" rel="noopener">無料相談はこちら →</a>
+    <a href="https://lin.ee/Qr9byp1" class="line-text line-cta" style="margin-left:12px;" target="_blank" rel="noopener">LINEで相談する →</a>
   </div>
 </section>
 
@@ -291,8 +297,9 @@
   <div class="wrap reveal" style="text-align:center;">
     <h2 class="sec-title">まずは、小さなストレスを見える化しましょう。</h2>
     <p class="sec-lead" style="margin:0 auto;">「なんとなく」で止まっていた違和感が、90分で言葉になります。</p>
-    <a href="../?from=stress-support#contact" class="cta">小さなストレスを見える化する →</a><br>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">小さなストレスを見える化する →</a><br>
     <a href="../cases.html" class="cta-secondary">事例を見る →</a>
+    <a href="https://lin.ee/Qr9byp1" class="line-text line-cta" style="margin-left:12px;" target="_blank" rel="noopener">LINEで相談する →</a>
   </div>
 </section>
 
@@ -310,6 +317,17 @@
     el.style.transitionDelay=(i%3*0.08)+'s';
     io.observe(el);
   });
+  // LINE CTA click tracking
+  document.querySelectorAll('.line-cta').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof gtag==='function'){
+        gtag('event','line_click',{'page_location':location.href});
+      }
+    });
+  });
 </script>
+<!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
+<a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
+
 </body>
 </html>

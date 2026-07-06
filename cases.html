@@ -59,6 +59,12 @@
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
 
+  /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
+  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
+  .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
+  .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
+  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
+
   /* flow */
   .flow{background:var(--accent);color:#fff;padding:56px 0;}
   .flow .wrap{text-align:center;}
@@ -121,7 +127,7 @@
     <a href="index.html" class="brand">窪田成功<span>感覚を仕組みにする参謀</span></a>
     <div class="nav-right">
       <a href="index.html">TOPへ戻る</a>
-      <a href="index.html?from=cases#contact" class="nav-cta">無料相談</a>
+      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">無料相談</a>
     </div>
   </div>
 </header>
@@ -132,7 +138,8 @@
     <p class="eyebrow">Case Studies</p>
     <h1>感覚が仕組みに変わり、現実が動いた。</h1>
     <p class="lead">業種も、悩みも、相談内容も違います。けれど、共通して起きていることがあります。<br>感覚が言葉になり、仕組みに変わると、人は自分で答えを見つけ、自然と動き出し、現実が動き始めます。</p>
-    <a href="index.html?from=cases-hero#contact" class="cta">無料相談はこちら →</a>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">無料相談はこちら →</a>
+    <p style="margin-top:16px;"><a href="https://lin.ee/Qr9byp1" class="line-text line-cta" target="_blank" rel="noopener">LINEで相談する →</a></p>
   </div>
 </section>
 
@@ -202,7 +209,8 @@
   <div class="wrap reveal">
     <h2>業種は違うのに、<br>みんな、現実が動いている。</h2>
     <p>私は、答えを与えているのではありません。ご本人の中にある答えを言葉にし、現実が動くところまで伴走しています。</p>
-    <a href="index.html?from=cases#contact" class="cta">無料相談で、感覚と仕組みのズレを見える化する →</a>
+    <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">無料相談で、感覚と仕組みのズレを見える化する →</a>
+    <p style="margin-top:16px;font-size:14px;"><a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;text-decoration:underline;" target="_blank" rel="noopener">LINEで相談する →</a></p>
     <p style="margin-top:22px;font-size:14px;">
       <a href="stress-support/" style="color:#fff;text-decoration:underline;">小さなストレス解消サポート</a> ｜
       <a href="sanbo/" style="color:#fff;text-decoration:underline;">感覚を仕組みにする参謀</a> ｜
@@ -222,6 +230,18 @@
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // LINE CTA click tracking
+  document.querySelectorAll('.line-cta').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof gtag==='function'){
+        gtag('event','line_click',{'page_location':location.href});
+      }
+    });
+  });
 </script>
+<!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
+<a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
+
 </body>
 </html>

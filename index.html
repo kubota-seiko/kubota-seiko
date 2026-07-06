@@ -102,6 +102,14 @@
   .hero-cta:hover .arr{transform:translateX(4px);}
   .hero-simple{text-align:center;max-width:720px;margin:0 auto;}
   .hero-simple .hero-lead{max-width:600px;margin:28px auto 34px;}
+
+  /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
+  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
+  .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
+  .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
+  .line-btn{display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;text-decoration:none;margin-top:18px;transition:transform .2s,box-shadow .2s;}
+  .line-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(6,199,85,.3);color:#fff !important;}
+  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
   .hero-photo{position:relative;max-width:420px;margin-left:auto;}
   .hero-photo .frame{
     aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--soft);
@@ -246,7 +254,7 @@
       <a href="#prof">プロフィール</a>
       <a href="#story">ストーリー</a>
       <a href="#voice">事例</a>
-      <a href="#contact" class="nav-cta">無料相談</a>
+      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">無料相談</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
   </div>
@@ -257,7 +265,8 @@
   <div class="wrap hero-simple reveal">
     <h1><span class="light">感覚を仕組みにする参謀</span><span class="nw">感覚と仕組みが一致すると、</span><br><span class="nw">売上が動き出す。</span></h1>
     <p class="hero-lead">感覚・経験・価値はある。でも、言葉・導線・仕組みが今の状態に合っていない方へ。まずは、今のズレがどこにあるかを見てみませんか。</p>
-    <a href="?from=top-hero#contact" class="hero-cta">無料相談はこちら <span class="arr">→</span></a>
+    <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">無料相談はこちら <span class="arr">→</span></a>
+    <p style="margin-top:18px;"><a href="https://lin.ee/Qr9byp1" class="line-text line-cta" target="_blank" rel="noopener">LINEで相談する →</a></p>
   </div>
 </section>
 
@@ -412,7 +421,7 @@
       <button type="submit">相談を申し込む →</button>
     </form>
     <div id="formResult"></div>
-    <!-- 将来:ここに「LINEで相談する」ボタンを設置予定 -->
+    <p class="form-sub">フォームのご記入が難しい方は<br><a href="https://lin.ee/Qr9byp1" class="line-btn line-cta" target="_blank" rel="noopener">LINEで相談する →</a></p>
   </div>
 </section>
 
@@ -533,6 +542,18 @@
         });
     });
   }
+
+  // LINE CTA click tracking
+  document.querySelectorAll('.line-cta').forEach(function(el){
+    el.addEventListener('click', function(){
+      if(typeof gtag==='function'){
+        gtag('event','line_click',{'page_location':location.href});
+      }
+    });
+  });
 </script>
+<!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
+<a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
+
 </body>
 </html>
