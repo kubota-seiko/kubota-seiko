@@ -151,12 +151,14 @@
   @media(max-width:760px){.case-flow{grid-template-columns:1fr;}.case-card{padding:30px 22px;}}
 
   /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
-  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
+  .line-fab-wrap{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+  .line-fab-note{background:#fff;color:var(--ink);font-size:12px;font-weight:600;padding:7px 14px;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,.12);white-space:nowrap;}
+  .line-fab{display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
   .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
   .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
   .line-btn{display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;text-decoration:none;margin-top:18px;transition:transform .2s,box-shadow .2s;}
   .line-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(6,199,85,.3);color:#fff !important;}
-  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
+  @media(max-width:480px){.line-fab-wrap{right:14px;bottom:14px;}.line-fab{padding:12px 18px;font-size:13px;}.line-fab-note{font-size:11px;padding:6px 12px;}}
   .hero-photo{position:relative;max-width:420px;margin-left:auto;}
   .hero-photo .frame{
     aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--soft);
@@ -197,6 +199,9 @@
   .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.07);}
   .svc-card.feat{border-color:var(--gold);position:relative;box-shadow:0 14px 34px rgba(184,146,79,.12);}
   .svc-card.feat::after{content:"おすすめ";position:absolute;top:20px;right:20px;background:var(--gold);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.08em;}
+  .svc-grid-upper{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:24px;}
+  .svc-card.premium{border-color:var(--accent);position:relative;box-shadow:0 14px 34px rgba(26,26,46,.12);}
+  .svc-card.premium::after{content:"本格伴走・要相談";position:absolute;top:20px;right:20px;background:var(--accent);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.06em;}
   .svc-name{font-size:18px;font-weight:700;margin-bottom:6px;}
   .svc-price{font-family:"Inter",sans-serif;font-size:30px;font-weight:700;margin:10px 0 4px;}
   .svc-price .yen{margin-right:4px;}
@@ -285,6 +290,7 @@
     .hero-photo{max-width:380px;margin:0 auto;}
     .stats .wrap{grid-template-columns:repeat(2,1fr);gap:32px;}
     .pain-grid,.svc-grid,.test-grid{grid-template-columns:1fr;}
+    .svc-grid-upper{grid-template-columns:1fr;}
     .prof-grid{grid-template-columns:1fr;gap:36px;}
     .prof-photo{max-width:340px;}
   }
@@ -302,7 +308,7 @@
       <a href="#prof">プロフィール</a>
       <a href="#story">ストーリー</a>
       <a href="#voice">事例</a>
-      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">小さなストレスを相談</a>
+      <a href="https://lin.ee/Qr9byp1" class="nav-cta line-cta" target="_blank" rel="noopener">30分相談を申し込む</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
   </div>
@@ -327,9 +333,10 @@
     <p class="hero-label">感覚を仕組みにする参謀</p>
     <h1>経営者の<br>小さなストレスを仕組みで解決します。</h1>
     <p class="hero-closing">そんな小さなストレスを<br>再発しない仕組みに変えていきます。</p>
-    <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">小さなストレスをLINEで相談する <span class="arr">→</span></a>
+    <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">30分スポット相談を申し込む <span class="arr">→</span></a>
+    <p style="margin-top:14px;font-size:13px;color:var(--sub);">¥16,500(税込)・30分</p>
     <div class="hero-reassure">
-      <p>大きな相談でなくても大丈夫です。<br><b>「こんなこと聞いていいのかな?」</b><br>そんな小さなストレスほど歓迎しています。</p>
+      <p><b>小さな相談で大丈夫です。まずは30分で整理します。</b><br>「こんなこと聞いていいのかな?」<br>そんな小さなストレスほど歓迎しています。</p>
     </div>
   </div>
 </section>
@@ -368,7 +375,7 @@
     <div class="reveal">
       <p class="eyebrow">Service & Price</p>
       <h2 class="sec-title">感覚を仕組みにする参謀</h2>
-      <p class="sec-lead">「小さなストレス改善サポート」として、小さなストレスをLINEで相談いただき、原因を整理し、再発しない仕組みに変えていくサービスです。</p>
+      <p class="sec-lead">感覚と仕組みが一致すると、売上が動き出します。経営者の頭の中にある構想・違和感・強み・サービスを、言葉・導線・行動に落とし込む5つのメニューです。</p>
     </div>
     <div class="flow-steps reveal">
       <div class="flow-step"><span class="flow-num">1</span><p>小さな<br>ストレス</p></div>
@@ -383,26 +390,38 @@
     </div>
     <div class="svc-essence reveal">
       <p class="label">本質</p>
-      <p>表面的にはPDF・Excel・LINE・Googleドライブ・AI活用などの相談に見えますが、本質は経営者の頭の中にある感覚・経験・判断を言葉にし、再現できる仕組みに変えていくことです。「ITサポート」でも「AIの使い方講座」でもなく、感覚を仕組みに変える参謀として、日々の小さな違和感を、二度と迷わない形に変えていきます。「小さなストレス改善サポート」は、経営者が誰にも言えずに抱えている違和感を最初に受け止める入口の商品です。ここから、経営者の孤独を、少しずつ減らしていきます。</p>
+      <p>表面的にはPDF・Excel・LINE・Googleドライブ・AI活用などの相談に見えますが、本質は経営者の頭の中にある感覚・経験・判断を言葉にし、再現できる仕組みに変えていくことです。「ITサポート」でも「AIの使い方講座」でもなく、感覚を仕組みに変える参謀として、日々の小さな違和感を、二度と迷わない形に変えていきます。「30分スポット相談」は、経営者が誰にも言えずに抱えている違和感を最初に受け止める入口です。ここから、経営者の孤独を、少しずつ減らしていきます。</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card feat reveal">
-        <div class="svc-name">小さなストレス改善サポート<br>入口:小さな違和感整理90分</div>
+        <div class="svc-name">30分スポット相談</div>
+        <div class="svc-price"><span class="yen">¥</span>16,500</div>
+        <p class="svc-desc">小さなストレス、今つまずいていること、AI・HP・事業導線の軽い相談を整理します。まずはここから。</p>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-name">60分 思考整理セッション</div>
         <div class="svc-price"><span class="yen">¥</span>33,000</div>
-        <p class="svc-desc">90分。今の違和感を整理し、強みを言葉にし、次に取り組む1テーマを決めます。多くの方が最初に選ぶ一歩です。</p>
+        <p class="svc-desc">頭の中を整理し、次の一手を決める基本メニューです。</p>
       </div>
       <div class="svc-card reveal">
-        <div class="svc-name">中核:感覚を仕組みにする設計セッション</div>
-        <div class="svc-price"><span class="yen">¥</span>110,000<small>〜</small></div>
-        <p class="svc-desc">本質言語化・商品コンセプト整理・HPコピー設計・導線改善案の作成まで。</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">本格伴走:感覚を仕組みにする参謀契約</div>
-        <div class="svc-price"><span class="yen">¥</span>330,000<small>〜550,000円</small></div>
-        <p class="svc-desc">事業・経営を進化させる継続伴走。HP改善・メニュー設計・AI活用導入・月次伴走まで。</p>
+        <div class="svc-name">2回伴走セッション</div>
+        <div class="svc-price"><span class="yen">¥</span>55,000<small>(60分×2回)</small></div>
+        <p class="svc-desc">1回目で整理し、2回目で実行後の調整・確認を行う中核メニューです。有効期限は30日以内。</p>
       </div>
     </div>
-    <p class="svc-note reveal">まずは「小さなストレス改善サポート(小さな違和感整理90分)」から。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
+    <div class="svc-grid-upper">
+      <div class="svc-card reveal">
+        <div class="svc-name">月4回 外部脳伴走</div>
+        <div class="svc-price"><span class="yen">¥</span>110,000<small>/月</small></div>
+        <p class="svc-desc">AI外部脳・タスク整理・事業導線・行動整理を、継続的に伴走します。</p>
+      </div>
+      <div class="svc-card premium reveal">
+        <div class="svc-name">事業・思考・発信の再構築プログラム</div>
+        <div class="svc-price"><span class="yen">¥</span>650,000<small>〜応相談</small></div>
+        <p class="svc-desc">3ヶ月集中伴走。事業の方向性・商品設計・価格設計・HP/発信導線・AI外部脳・行動設計を、まとめて整えます。深く合う方だけにご提案しています。</p>
+      </div>
+    </div>
+    <p class="svc-note reveal">まずは「30分スポット相談(¥16,500)」から。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
   </div>
 </section>
 
@@ -533,13 +552,13 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
-    <h2>今のストレスを、ひとつ送ってください。</h2>
-    <p>小さなストレスほど、後回しにされがちです。まずは60分の相談で、今引っかかっていることを一緒に整理しましょう。</p>
-    <p style="font-size:15px;font-weight:700;color:#fff;margin:-4px 0 2px;">「こんなことでもいいのかな?」——その相談ほど、歓迎しています。</p>
+    <h2>650,000円以上の本格伴走をご検討の方へ</h2>
+    <p>「事業・思考・発信の再構築プログラム」など、上位の伴走をお考えの方向けに、正式なお申し込み前の無料相談を行っています。深く合う方だけにご提案したいため、まずは今の状況を伺わせてください。</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.6);margin:-4px 0 22px;">小さなご相談は「30分スポット相談(¥16,500)」をご利用ください。<a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;text-decoration:underline;" target="_blank" rel="noopener">LINEで申し込む →</a></p>
     <p style="font-size:13px;color:rgba(255,255,255,.55);margin:0 0 6px;">お名前・メールアドレス・モヤモヤの3つだけで送信できます。その他は任意です。</p>
     <form id="consultForm" class="consult-form">
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
-      <input type="hidden" name="subject" value="【無料相談】お申し込み｜感覚を仕組みにする参謀">
+      <input type="hidden" name="subject" value="【上位伴走 事前相談】お申し込み｜感覚を仕組みにする参謀">
       <input type="hidden" name="from_name" value="感覚を仕組みにする参謀サイト">
       <input type="hidden" name="流入元ページ" id="inflowPage" value="TOPページ(直接)">
       <input type="text" name="お名前" placeholder="お名前 *" required autocomplete="name">
@@ -556,7 +575,7 @@
         <option value="対面">対面</option>
       </select>
       <input type="text" name="希望日程" placeholder="ご希望の日程があれば（任意）">
-      <button type="submit">相談を申し込む →</button>
+      <button type="submit">事前相談を申し込む →</button>
     </form>
     <div id="formResult"></div>
     <p class="form-sub">フォームのご記入が難しい方は<br><a href="https://lin.ee/Qr9byp1" class="line-btn line-cta" target="_blank" rel="noopener">LINEで相談する →</a></p>
@@ -691,7 +710,10 @@
   });
 </script>
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
-<a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
+<div class="line-fab-wrap">
+  <p class="line-fab-note">小さな相談で大丈夫です</p>
+  <a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">30分相談を申し込む →</a>
+</div>
 
 </body>
 </html>
