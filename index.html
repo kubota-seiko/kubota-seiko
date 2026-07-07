@@ -127,6 +127,7 @@
   .hero-reassure b{color:var(--ink);font-weight:700;}
   .hero-inquiry-note{font-size:13px;color:var(--sub);margin-top:18px;}
   .hero-inquiry-note a{color:var(--gold);font-weight:600;text-decoration:underline;}
+  .hero-cta-reassure{font-size:14px;color:var(--sub);line-height:1.9;margin:0 auto 24px;max-width:420px;}
   @media(max-width:640px){.bubble-list{grid-template-columns:1fr;max-width:340px;}}
   .hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 26px;margin:0 auto 48px;max-width:660px;}
   .hero-card{text-align:center;}
@@ -198,7 +199,6 @@
   .case-voice{margin-top:32px;border-left:3px solid var(--gold);padding:20px 26px;background:var(--soft);border-radius:0 6px 6px 0;}
   .case-voice-label{font-size:12px;letter-spacing:.1em;color:var(--gold);font-weight:700;margin-bottom:8px;}
   .case-voice-body{font-size:15px;color:var(--sub);font-style:italic;}
-  #case-ishikawa{background:#FBF7EE;}
   .case-badge{display:inline-block;background:var(--gold);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 16px;border-radius:20px;margin-bottom:18px;}
   .case-card{background:#fff;border-radius:12px;padding:56px 48px;box-shadow:0 24px 54px rgba(0,0,0,.07);border:1px solid var(--line);margin-top:56px;}
   .case-card .case-flow{margin-top:28px;}
@@ -280,6 +280,12 @@
   .svc-price small{font-size:14px;color:var(--sub);font-weight:500;font-family:"Noto Sans JP";}
   .svc-desc{color:var(--sub);font-size:14px;margin-top:14px;padding-top:18px;border-top:1px solid var(--line);}
   .svc-note{text-align:center;color:var(--sub);font-size:14px;margin-top:32px;}
+  .svc-payment-note{text-align:center;color:var(--sub);font-size:13px;margin-top:24px;}
+  .faq-list{max-width:720px;margin:56px auto 0;display:flex;flex-direction:column;gap:28px;}
+  .faq-item{border-bottom:1px solid var(--line);padding-bottom:28px;}
+  .faq-item:last-child{border-bottom:0;padding-bottom:0;}
+  .faq-q{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--ink);}
+  .faq-a{font-size:15px;color:var(--sub);line-height:1.9;}
 
   /* profile */
   .prof-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:76px;align-items:stretch;}
@@ -404,12 +410,13 @@
     </div>
     <p class="hero-hook" style="margin-top:40px;">こんなこと、誰に聞けばいいんだろう?</p>
     <p class="hero-hook-sub">そのひとつひとつが、遠慮なく相談していいことです。</p>
-    <p class="hero-insight">小さなつまずきの奥には、たいてい経営の本質が隠れています。だからここでは、大きな課題ではなく、いま目の前で止まっている小さなストレスからほどいていきます。</p>
+    <p class="hero-insight">小さなつまずきの奥には、<br>たいてい経営の本質が隠れています。<br><br>だからここでは、大きな課題ではなく、<br>いま目の前にある小さなストレスから<br>ほどいていきます。</p>
     <p class="hero-ai-note">AIに聞けば、答えは返ってきます。<br>しかし、<br>その答えが、あなたに合うとは限りません。<br>何を聞けばいいか。<br>どう使えばいいか。<br>そこで止まってしまうこともあります。</p>
-    <p class="hero-answer-lead">頭の中でもやもやしていたものが、するりと言葉になり、仕組みに変わる——その瞬間から、現実は動き出します。<br>そこまでを、あなたに合った進め方で、一緒に作っていきましょう。</p>
-    <p class="hero-insight">誰かの正解を当てはめるのではなく、あなただけの進め方を、ゼロから一緒に立ち上げる。それが、私の仕事です。</p>
+    <p class="hero-answer-lead">頭の中でもやもやしていたものが、<br>するりと言葉になり、<br>仕組みに変わる。<br><br>その瞬間から、現実は動き出します。<br><br>そこまでを、あなたに合った進め方で、<br>一緒に作っていきましょう。</p>
+    <p class="hero-insight">誰かの正解を<br>当てはめるのではなく、<br><br>あなただけの進め方を、<br>一緒に立ち上げる。<br><br>それが、私の仕事です。</p>
     <h1>参謀・窪田成功が、<br><span style="display:inline-block;transform:translateX(0.5em);">相談に乗ります。</span></h1>
     <p class="hero-closing">PDF・AI・Googleドライブの小さなつまずきから、<br>思考整理・チーム共有・売上導線まで。<br>まずは今、目の前で止まっていることから一緒に整えます。</p>
+    <p class="hero-cta-reassure">何から話せばいいか分からなくても大丈夫です。<br>まずは、今困っていることをそのまま送ってください。</p>
     <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">LINEで無料相談する <span class="arr">→</span></a>
     <p style="margin-top:20px;font-size:13px;color:var(--sub);">無料・LINEで気軽に</p>
     <div class="hero-reassure">
@@ -548,59 +555,8 @@
         <p class="svc-desc">毎月60分×2回の伴走に加え、簡易LINE相談付き。1回目で整理し、2回目で実行後の調整・確認を行う中核プランです。</p>
       </div>
     </div>
+    <p class="svc-payment-note reveal">お支払い方法・日程変更・キャンセル規定は、お申し込み前に個別にご案内します。</p>
     <p class="svc-note reveal">サービス選びに迷う場合は、まずは<a href="https://lin.ee/Qr9byp1" class="line-cta" style="text-decoration:underline;" target="_blank" rel="noopener">LINEで無料相談</a>だけでも大丈夫です。<br>内容を確認した上で、必要な場合は「初回スポット相談(¥5,500)」からご案内します。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
-  </div>
-</section>
-
-<!-- CASE STUDY: 愛媛県焼肉店店主様(モニター) -->
-<!-- 今後、事例が増えた場合はこの.case-cardブロックをこのsection内に複製して追加してください(1事例=1.case-card) -->
-<section id="case-ishikawa">
-  <div class="wrap">
-    <div class="reveal center-block">
-      <p class="case-badge">実際の改善事例</p>
-      <h2 class="sec-title">小さなストレスが、仕組みに変わった瞬間</h2>
-      <p class="sec-lead">飲食店店主様(モニター)の事例です。</p>
-    </div>
-    <div class="case-card reveal">
-      <div class="case-card-head">
-        <div class="case-avatar">飲</div>
-        <div>
-          <div class="case-name">飲食店店主様<span class="case-tag">モニター</span></div>
-        </div>
-      </div>
-      <p class="case-lead">本業は好き。でも、事務仕事になると止まってしまう。</p>
-      <div class="case-flow">
-        <div class="case-block">
-          <span class="case-label">Before</span>
-          <ul>
-            <li>ExcelをPDFへ変換したが、保存先が分からない</li>
-            <li>PDFが送れていないことに気付かなかった</li>
-            <li>LINEをPCへ入れたい</li>
-            <li>誰に聞けばいいか分からなかった</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <span class="case-label">提案</span>
-          <ul>
-            <li>画面共有で一緒に確認</li>
-            <li>PDF保存場所の仕組みを整理</li>
-            <li>Excel・PDFの使い分けを整理</li>
-            <li>今後迷わないルールを作成</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <span class="case-label">After</span>
-          <ul>
-            <li>本業に集中できるようになった</li>
-          </ul>
-        </div>
-      </div>
-      <div class="case-voice">
-        <p class="case-voice-label">お客様の声</p>
-        <p class="case-voice-body">(モニター許可確認後に掲載予定)</p>
-      </div>
-    </div>
-    <p class="svc-note reveal" style="margin-top:20px;">※本事例はモニター実施中のため、詳細は本人確認・掲載許可取得後に正式掲載します。</p>
   </div>
 </section>
 
@@ -680,13 +636,59 @@
   </div>
 </section>
 
-<!-- VOICE / CASES -->
+<!-- VOICE / CASES (愛媛県焼肉店店主様の詳細事例 + 短い声、を1セクションに統合) -->
+<!-- 今後、事例が増えた場合はこの.case-cardブロックを複製して追加してください(1事例=1.case-card) -->
 <section id="voice">
   <div class="wrap">
     <div class="reveal center-block">
+      <p class="eyebrow">Case</p>
+      <h2 class="sec-title">小さなストレスが、仕組みに変わった瞬間</h2>
+      <p class="sec-lead">飲食店店主様(モニター)の事例と、これまでの変化の兆しをご紹介します。</p>
+    </div>
+    <div class="case-card reveal">
+      <div class="case-card-head">
+        <div class="case-avatar">飲</div>
+        <div>
+          <div class="case-name">飲食店店主様<span class="case-tag">モニター</span></div>
+        </div>
+      </div>
+      <p class="case-lead">本業は好き。でも、事務仕事になると止まってしまう。</p>
+      <div class="case-flow">
+        <div class="case-block">
+          <span class="case-label">Before</span>
+          <ul>
+            <li>ExcelをPDFへ変換したが、保存先が分からない</li>
+            <li>PDFが送れていないことに気付かなかった</li>
+            <li>LINEをPCへ入れたい</li>
+            <li>誰に聞けばいいか分からなかった</li>
+          </ul>
+        </div>
+        <div class="case-block">
+          <span class="case-label">提案</span>
+          <ul>
+            <li>画面共有で一緒に確認</li>
+            <li>PDF保存場所の仕組みを整理</li>
+            <li>Excel・PDFの使い分けを整理</li>
+            <li>今後迷わないルールを作成</li>
+          </ul>
+        </div>
+        <div class="case-block">
+          <span class="case-label">After</span>
+          <ul>
+            <li>本業に集中できるようになった</li>
+          </ul>
+        </div>
+      </div>
+      <div class="case-voice">
+        <p class="case-voice-label">お客様の声</p>
+        <p class="case-voice-body">(モニター許可確認後に掲載予定)</p>
+      </div>
+    </div>
+    <p class="svc-note reveal" style="margin-top:20px;">※本事例はモニター実施中のため、詳細は本人確認・掲載許可取得後に正式掲載します。</p>
+    <div class="reveal center-block" style="margin-top:64px;">
       <p class="eyebrow">Voice</p>
       <h2 class="sec-title">事例に見る、変化の兆し。</h2>
-      <p class="sec-lead">感覚が言葉になり、仕組みに変わると、現実も動き出します。詳しい経緯は<a href="cases.html" style="text-decoration:underline;">事例ページ</a>でご覧いただけます。</p>
+      <p class="sec-lead">詳しい経緯は<a href="cases.html" style="text-decoration:underline;">事例ページ</a>でご覧いただけます。</p>
     </div>
     <div class="test-grid">
       <div class="test-card reveal">
@@ -716,6 +718,46 @@
     <p class="brand-statement-body">リーダーは、一人で抱えなくていい。<br>小さなストレスも、言葉にならない違和感も、<br>頭の中の構想も。<br>私はそれらを一緒に整理し、AIと仕組みを活用して、再現できる形へ変えていきます。</p>
     <p class="brand-statement-mission">目指しているのは、問題を解決することだけではありません。<br>リーダーの想いを、孤独死させないこと。</p>
     <p class="brand-statement-body" style="font-size:16px;margin-top:24px;">感覚を言語化。そして、仕組みへ。その翻訳を専門にする参謀は、私です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="reveal center-block">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="sec-title">よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 何から相談すればいいか分からなくても大丈夫ですか?</p>
+        <p class="faq-a">はい、大丈夫です。話がまとまっていなくても、<br>今感じている小さな違和感をそのまま話していただければ、<br>一緒に整理していきます。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 小さな相談でも申し込んでいいですか?</p>
+        <p class="faq-a">もちろんです。大きな課題である必要はありません。<br>「これくらいで相談していいのかな」ということほど、歓迎しています。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 無料相談では何をしますか?</p>
+        <p class="faq-a">今困っていることを伺い、内容を確認します。<br>そのうえで、必要な場合のみ有料相談をご案内します。<br>無理にすすめることはありません。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 支払い方法は何がありますか?</p>
+        <p class="faq-a">お支払い方法は、お申し込み前に個別にご案内します。<br>ご希望に応じて調整しますので、まずはお気軽にご相談ください。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 日程変更はできますか?</p>
+        <p class="faq-a">はい、可能です。<br>ご事情に応じて日程の調整をいたしますので、事前にLINEでご連絡ください。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. キャンセル規定はありますか?</p>
+        <p class="faq-a">詳しいキャンセル規定は、お申し込み前にご案内します。<br>急なご事情にも、できる限り柔軟に対応します。</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">Q. 継続サービスを無理に勧められることはありますか?</p>
+        <p class="faq-a">いいえ、ありません。<br>合わないと感じた場合は、その場で終了して大丈夫です。<br>無理な勧誘は行いません。</p>
+      </div>
+    </div>
   </div>
 </section>
 
