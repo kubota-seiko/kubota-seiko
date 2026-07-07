@@ -136,13 +136,13 @@
   .brand-statement-mission{font-size:clamp(15px,2vw,18px);line-height:1.9;color:var(--gold);font-weight:700;}
 
   /* SERVICE FLOW (小さなストレス→相談→原因整理→仕組み化→再発防止) */
-  .flow-steps{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:36px 0;}
+  .flow-steps{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:10px;margin:36px 0;}
   .flow-step{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px;}
   .flow-step .flow-num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-family:"Inter",sans-serif;}
   .flow-step.goal .flow-num{background:var(--gold);}
   .flow-step.goal p{font-weight:700;color:var(--ink);}
   .flow-step p{font-size:13px;text-align:center;color:var(--ink);font-weight:600;}
-  .flow-arrow{color:var(--sub);font-size:16px;}
+  .flow-arrow{color:var(--sub);font-size:16px;height:34px;display:flex;align-items:center;justify-content:center;}
   @media(max-width:640px){.flow-steps{gap:4px;}.flow-step{width:78px;}.flow-arrow{display:none;}}
 
   /* CASE STUDY (Before/提案/After) */
@@ -261,6 +261,7 @@
 
   /* cta */
   .cta{background:var(--ink);color:#fff;text-align:center;}
+  .cta-eyebrow{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px;font-weight:600;}
   .cta h2{font-size:clamp(28px,5vw,46px);margin-bottom:16px;}
   .cta p{color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 36px;font-size:16px;}
   .cta-btn{
@@ -348,8 +349,8 @@
     <p class="hero-hook-sub">そのひとつひとつが、遠慮なく聞いていいことです。</p>
     <p class="hero-answer-lead">その答えとして、</p>
     <p class="hero-label">感覚を仕組みにする参謀</p>
-    <h1>小さなストレスから、<br>経営の仕組みを<br>整える。</h1>
-    <p class="hero-closing">PDFのことでも、AIのことでも、経営のことでも構いません。<br>小さな違和感から、一緒に整理していきます。</p>
+    <h1>小さなストレスから、<br>仕組みを整える。</h1>
+    <p class="hero-closing">PDF・Excel・AI・Googleドライブの小さなつまずきから、<br>思考整理・チーム共有・売上導線まで。<br>まずは今、目の前で止まっていることから一緒に整えます。</p>
     <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">30分スポット相談を申し込む <span class="arr">→</span></a>
     <p style="margin-top:20px;font-size:13px;color:var(--sub);">¥16,500(税込)・30分</p>
     <div class="hero-reassure">
@@ -400,7 +401,7 @@
       <span class="flow-arrow">→</span>
       <div class="flow-step"><span class="flow-num">2</span><p>思考整理</p></div>
       <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="flow-num">3</span><p>AI活用</p></div>
+      <div class="flow-step"><span class="flow-num">3</span><p>AIへの<br>聞き方</p></div>
       <span class="flow-arrow">→</span>
       <div class="flow-step"><span class="flow-num">4</span><p>仕組み化</p></div>
       <span class="flow-arrow">→</span>
@@ -581,7 +582,7 @@
 <section id="brand-statement">
   <div class="wrap reveal" style="max-width:680px;text-align:center;margin:0 auto;">
     <p class="eyebrow">Statement</p>
-    <p class="brand-statement-body">経営者は、一人で抱えなくていい。<br>小さなストレスも、言葉にならない違和感も、頭の中の構想も。<br>私はそれらを一緒に整理し、AIと仕組みを活用して、再現できる形へ変えていきます。</p>
+    <p class="brand-statement-body">経営者は、一人で抱えなくていい。<br>小さなストレスも、言葉にならない違和感も、<br>頭の中の構想も。<br>私はそれらを一緒に整理し、AIと仕組みを活用して、再現できる形へ変えていきます。</p>
     <p class="brand-statement-mission">目指しているのは、問題を解決することだけではありません。<br>経営者の想いを、孤独死させないこと。</p>
   </div>
 </section>
@@ -589,8 +590,9 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap reveal">
-    <h2>本格伴走をご希望の方へ</h2>
-    <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.85);margin:-8px 0 18px;">再構築プログラム 650,000円〜応相談</p>
+    <p class="cta-eyebrow">本格伴走をご希望の方へ</p>
+    <h2>再構築プログラム<br>650,000円〜応相談</h2>
+    <p>小さなストレスの奥に、事業全体の整理や大きな経営課題が必要だと感じた場合は、本格伴走として一緒に再構築していきます。</p>
     <p>「事業・思考・発信の再構築プログラム」など、上位の伴走をお考えの方向けに、正式なお申し込み前の無料相談を行っています。<br>深く合う方だけにご提案したいため、まずは今の状況を伺わせてください。</p>
     <p style="font-size:13px;color:rgba(255,255,255,.6);max-width:480px;margin:-4px auto 6px;text-align:center;">小さなご相談は「30分スポット相談(¥16,500)」をご利用ください。</p>
     <p style="max-width:480px;margin:0 auto 22px;text-align:center;"><a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;font-weight:700;font-size:14px;text-decoration:underline;" target="_blank" rel="noopener">LINEで申し込む →</a></p>
