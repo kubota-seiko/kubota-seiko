@@ -272,12 +272,17 @@
 
   /* CASE STUDY (Before/提案/After) */
   .case-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
-  .case-block{background:var(--soft);border-radius:8px;padding:26px 24px;}
-  .case-block .case-label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--gold);padding:4px 14px;border-radius:20px;margin-bottom:14px;}
-  .case-block ul{list-style:none;}
-  .case-block li{position:relative;padding-left:18px;margin-bottom:10px;font-size:14px;color:var(--ink);line-height:1.6;}
-  .case-block li:last-child{margin-bottom:0;}
-  .case-block li::before{content:"・";position:absolute;left:0;color:var(--sub);}
+  .case-block{background:var(--soft);border-radius:16px;padding:24px 20px;}
+  .case-block .case-label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--gold);padding:4px 14px;border-radius:20px;margin-bottom:16px;}
+  .case-block ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .case-block li{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px 10px 32px;margin-bottom:0;font-size:13.5px;color:var(--ink);line-height:1.6;}
+  .case-block li::before{content:"";position:absolute;left:13px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--sub);}
+  .case-flow .case-block:nth-child(1) .case-label{background:#9B9B93;}
+  .case-flow .case-block:nth-child(1) li::before{background:#9B9B93;}
+  .case-flow .case-block:nth-child(3) .case-label{background:#7C9169;}
+  .case-flow .case-block:nth-child(3) li{border-color:#E4EEDA;padding-left:36px;}
+  .case-flow .case-block:nth-child(3) li::before{content:"";width:14px;height:14px;border-radius:50%;background:#EAF0E2;left:10px;top:11px;}
+  .case-flow .case-block:nth-child(3) li::after{content:"";position:absolute;left:13.5px;top:15.5px;width:5px;height:8px;border-right:1.6px solid #7C9169;border-bottom:1.6px solid #7C9169;transform:rotate(45deg);}
   .case-voice{margin-top:32px;border-left:3px solid var(--gold);padding:20px 26px;background:var(--soft);border-radius:0 6px 6px 0;}
   .case-voice-label{font-size:12px;letter-spacing:.1em;color:var(--gold);font-weight:700;margin-bottom:8px;}
   .case-voice-body{font-size:15px;color:var(--sub);font-style:italic;}
@@ -289,6 +294,11 @@
   .case-name{font-size:17px;font-weight:700;}
   .case-tag{display:inline-block;margin-left:10px;font-size:11px;font-weight:700;background:var(--soft);color:var(--sub);padding:3px 10px;border-radius:12px;vertical-align:middle;}
   @media(max-width:760px){.case-flow{grid-template-columns:1fr;}.case-card{padding:30px 22px;}}
+  .manual-card{max-width:640px;margin:40px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:center;}
+  .manual-card-icon{width:48px;height:48px;border-radius:50%;background:#EAF0E2;color:#7C9169;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+  .manual-card-icon svg{width:24px;height:24px;}
+  .manual-card-title{font-size:18px;font-weight:800;color:var(--ink);margin-bottom:12px;}
+  .manual-card-body{font-size:14px;color:var(--sub);line-height:1.9;max-width:520px;margin:0 auto;}
 
   /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
   .line-fab-wrap{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
@@ -590,6 +600,11 @@
         <span class="topic-text">Google Driveを整理する</span>
         <span class="topic-arrow">→</span>
       </a>
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="13" y2="18"></line></svg></span>
+        <span class="topic-text">頭の中をマニュアルにする</span>
+        <span class="topic-arrow">→</span>
+      </a>
     </div>
   </div>
 </section>
@@ -653,7 +668,7 @@
     <div class="reveal center-block">
       <p class="eyebrow">Service & Price</p>
       <h2 class="sec-title">感覚を仕組みにする参謀</h2>
-      <p class="sec-lead">感覚と仕組みが一致すると、現実が動き出します。<br>リーダーの頭の中にある構想・違和感・強み・サービスを、<br>言葉・導線・行動に落とし込む参謀OSの4つのステップです。</p>
+      <p class="sec-lead">感覚と仕組みが一致すると、現実が動き出します。<br>リーダーや担当者の頭の中にある構想・違和感・判断基準・経験知を、<br>言葉・手順・導線・行動に落とし込む参謀OSの4つのステップです。</p>
     </div>
     <div class="os-pipeline reveal">
       <div class="os-tag"><span>参謀OS</span></div>
@@ -878,6 +893,11 @@
       </div>
     </div>
     <p class="svc-note reveal" style="margin-top:20px;">※本事例はモニター実施中のため、詳細は本人確認・掲載許可取得後に正式掲載します。</p>
+    <div class="manual-card reveal">
+      <span class="manual-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="13" y2="18"></line></svg></span>
+      <p class="manual-card-title">頭の中をマニュアルにする</p>
+      <p class="manual-card-body">社長・店長・担当者の中にある「感覚でやっていること」「毎回説明していること」「その人にしか分からない判断」を、対話から言葉・手順・確認ポイントに変えていきます。<br>属人化していた知見が、組織で使える仕組みに変わります。</p>
+    </div>
     <div class="reveal center-block" style="margin-top:64px;">
       <p class="eyebrow">Voice</p>
       <h2 class="sec-title">事例に見る、変化の兆し。</h2>
