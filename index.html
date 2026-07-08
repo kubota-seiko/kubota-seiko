@@ -220,6 +220,15 @@
   .line-text{display:inline-block;color:#06C755;text-decoration:underline;font-size:14px;font-weight:600;}
   .line-btn{display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:15px 30px;border-radius:2px;font-size:15px;font-weight:600;text-decoration:none;margin-top:18px;transition:transform .2s,box-shadow .2s;}
   .line-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(6,199,85,.3);color:#fff !important;}
+  .share-prompt{margin-top:56px;text-align:center;}
+  .share-prompt p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.9;margin-bottom:18px;}
+  .share-buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .share-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:2px;font-size:13px;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;border:none;}
+  .share-btn:hover{transform:translateY(-2px);}
+  .share-line{background:#06C755;color:#fff !important;}
+  .share-line:hover{box-shadow:0 10px 22px rgba(6,199,85,.3);}
+  .share-copy{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;}
+  .share-copy:hover{border-color:var(--gold);color:var(--gold);}
   @media(max-width:480px){.line-fab-wrap{right:14px;bottom:14px;}.line-fab{padding:12px 18px;font-size:13px;}.line-fab-note{font-size:11px;padding:6px 12px;}}
   .hero-photo{position:relative;max-width:420px;margin-left:auto;}
   .hero-photo .frame{
@@ -815,6 +824,13 @@
     </form>
     <div id="formResult"></div>
     <p class="form-sub">フォームのご記入が難しい方は<br><a href="https://lin.ee/Qr9byp1" class="line-btn line-cta" target="_blank" rel="noopener">LINEで相談する →</a></p>
+    <div class="share-prompt reveal">
+      <p>もし「この人に読んでほしいな」と思う方がいたら、<br>このページを送っていただけると嬉しいです。</p>
+      <div class="share-buttons">
+        <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fkubota-seiko.com%2F" target="_blank" rel="noopener" class="share-btn share-line">LINEでシェアする</a>
+        <button type="button" class="share-btn share-copy" id="copyLinkBtn">リンクをコピー</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -901,6 +917,27 @@
   document.getElementById('menuBtn').addEventListener('click',function(){
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   });
+
+  // copy page link for the "share with someone" prompt
+  // use execCommand (synchronous, no permission prompt) instead of the
+  // async Clipboard API, which can hang without a real user gesture / permission grant
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      var ta = document.createElement('textarea');
+      ta.value = 'https://kubota-seiko.com/';
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta);
+      var original = copyBtn.textContent;
+      copyBtn.textContent = 'コピーしました';
+      setTimeout(function(){ copyBtn.textContent = original; }, 2000);
+    });
+  }
 
   // fade-in on scroll
   var io=new IntersectionObserver(function(entries){
