@@ -139,6 +139,15 @@
   .hero-cta-row{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:56px;}
   .hero-cta-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--ink);padding:20px 38px;border-radius:2px;font-size:15px;font-weight:500;border:1.5px solid var(--line);transition:border-color .25s,color .25s;}
   .hero-cta-outline:hover{border-color:var(--gold);color:var(--gold);}
+  .topic-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+  .topic-card{display:flex;align-items:center;gap:18px;padding:22px 26px;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink);}
+  .topic-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06);border-color:#D8E3D0;color:var(--ink);}
+  .topic-icon{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#EAF0E2;display:flex;align-items:center;justify-content:center;color:#7C9169;}
+  .topic-icon svg{width:20px;height:20px;}
+  .topic-text{flex:1;font-size:18px;font-weight:700;}
+  .topic-arrow{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transition:transform .2s;}
+  .topic-card:hover .topic-arrow{transform:translateX(3px);}
+  @media(max-width:640px){.topic-card{padding:18px 20px;gap:14px;}.topic-text{font-size:16px;}}
   .hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 26px;margin:0 auto 48px;max-width:660px;}
   .hero-card{text-align:center;}
   .hero-card-icon{color:var(--gold);margin-bottom:10px;}
@@ -552,6 +561,43 @@
     </div>
     <p class="pain-sub reveal" style="text-align:center;max-width:620px;margin:36px auto 0;font-size:14px;color:var(--sub);line-height:2;">飲食店・個人店主の方からは、こんなご相談もあります。<br>メニューを考えるのが毎回しんどい ・ 接客は好きだけど、裏側の事務作業が後回しになる ・ 忙しさに追われて、雑務がどんどん溜まっていく</p>
     <p class="pain-lead-out reveal" style="text-align:center;max-width:580px;margin:32px auto 0;font-size:15px;color:var(--ink);line-height:2;">ひとつでも当てはまったなら、<span style="color:var(--gold);font-weight:700;">このページは、あなたのために書いています。</span><br>同じように悩んでいる方が浮かんだら、その方にもぜひ見せてあげてください。</p>
+  </div>
+</section>
+
+<!-- TOPICS (consultation cards) -->
+<section id="topics">
+  <div class="wrap">
+    <div class="reveal center-block">
+      <p class="eyebrow">Topics</p>
+      <h2 class="sec-title">こんな小さなストレスから、<br>相談できます。</h2>
+    </div>
+    <div class="topic-list">
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span>
+        <span class="topic-text">PDF迷子を解決する</span>
+        <span class="topic-arrow">→</span>
+      </a>
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"></path><circle cx="8" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="16" cy="12" r="1" fill="currentColor" stroke="none"></circle></svg></span>
+        <span class="topic-text">AIへの質問を整理する</span>
+        <span class="topic-arrow">→</span>
+      </a>
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+        <span class="topic-text">スタッフへの伝え方を整える</span>
+        <span class="topic-arrow">→</span>
+      </a>
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polygon points="15 9 13 13 9 15 11 11 15 9" fill="currentColor" stroke="currentColor"></polygon></svg></span>
+        <span class="topic-text">売上導線を見える化する</span>
+        <span class="topic-arrow">→</span>
+      </a>
+      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
+        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"></path></svg></span>
+        <span class="topic-text">Google Driveを整理する</span>
+        <span class="topic-arrow">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
