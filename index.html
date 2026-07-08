@@ -312,14 +312,14 @@
 
   /* services */
   .svc{background:var(--soft);}
-  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:64px;}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;}
   .svc-card{
-    background:#fff;border:1px solid var(--line);border-radius:6px;padding:38px 32px;
-    display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px 28px;
+    display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s;
   }
-  .svc-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.07);}
-  .svc-card.feat{border-color:var(--gold);position:relative;box-shadow:0 14px 34px rgba(184,146,79,.12);}
-  .svc-card.feat::after{content:"おすすめ";position:absolute;top:20px;right:20px;background:var(--gold);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.08em;}
+  .svc-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06);border-color:#D8E3D0;}
+  .svc-card.feat{border-color:#7C9169;position:relative;box-shadow:0 12px 28px rgba(124,145,105,.14);}
+  .svc-card.feat::after{content:"おすすめ";position:absolute;top:20px;right:20px;background:#7C9169;color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.08em;}
   .svc-grid-upper{display:grid;grid-template-columns:1fr;max-width:360px;margin:24px auto 0;}
   .svc-card.premium{border-color:var(--accent);position:relative;box-shadow:0 14px 34px rgba(26,26,46,.12);}
   .svc-card.premium::after{content:"本格伴走・要相談";position:absolute;top:20px;right:20px;background:var(--accent);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.06em;}
