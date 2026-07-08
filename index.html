@@ -237,9 +237,9 @@
   .stats-head .sec-title{color:#fff;}
   .stats-head .sec-lead{color:rgba(255,255,255,.72);margin-left:auto;margin-right:auto;}
   .stats-divider{width:40px;height:2px;background:var(--gold);margin:24px auto 0;}
-  .stats-grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:68px 90px;}
+  .stats-grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:68px 60px;}
   .stats-grid2 .stat{position:relative;text-align:left;}
-  .stats-grid2 .stat:nth-child(odd)::after{content:"";position:absolute;top:-28px;right:-45px;bottom:-28px;width:1px;background:rgba(255,255,255,.15);}
+  .stats-grid2 .stat:not(:last-child)::after{content:"";position:absolute;top:-28px;right:-30px;bottom:-28px;width:1px;background:rgba(255,255,255,.15);}
   .stats-grid2 .stat-icon{color:var(--gold);margin-bottom:18px;display:block;}
   .stat .num{font-family:"Inter",sans-serif;font-size:clamp(44px,7vw,72px);font-weight:700;line-height:1;letter-spacing:-.02em;}
   .stat .num small{font-size:.4em;font-weight:500;margin-left:4px;color:var(--gold);}
@@ -248,7 +248,7 @@
   @media(max-width:900px){
     .stats-grid2{grid-template-columns:1fr;gap:40px;text-align:center;}
     .stats-grid2 .stat{text-align:center;}
-    .stats-grid2 .stat:nth-child(odd)::after{display:none;}
+    .stats-grid2 .stat::after{display:none;}
     .stats-grid2 .stat-icon{margin-left:auto;margin-right:auto;}
   }
 
@@ -456,12 +456,6 @@
         <div class="num">2.4<small>万回+</small></div>
         <div class="lbl">ChatGPT対話数(2025.4時点)</div>
         <p class="stat-desc">AIを使いこなし、最適な仕組みに変えます。</p>
-      </div>
-      <div class="stat reveal">
-        <svg class="stat-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-        <div class="num">1<small>億円+</small></div>
-        <div class="lbl">事業累計売上(個人事業〜法人)</div>
-        <p class="stat-desc">個人事業から法人まで、自分の事業を仕組み化で積み上げてきた売上です。</p>
       </div>
     </div>
   </div>
