@@ -200,13 +200,25 @@
   .brand-statement-mission{font-size:clamp(15px,2vw,18px);line-height:1.9;color:var(--gold);font-weight:700;}
 
   /* SERVICE FLOW (小さなストレス→相談→原因整理→仕組み化→再発防止) */
-  .flow-steps{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:16px;margin:52px 0;}
-  .flow-step{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px;}
-  .flow-step .flow-num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-family:"Inter",sans-serif;}
-  .flow-step.goal .flow-num{background:var(--gold);}
-  .flow-step.goal p{font-weight:700;color:var(--ink);}
-  .flow-step p{font-size:13px;text-align:center;color:var(--ink);font-weight:600;}
-  .flow-step .flow-desc{display:block;font-size:12px;color:var(--sub);font-weight:400;line-height:1.6;margin-top:2px;min-height:64px;text-align:center;}
+  .os-pipeline{max-width:920px;margin:52px auto 0;}
+  .os-tag{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:22px;}
+  .os-tag span{font-size:12px;letter-spacing:.15em;font-weight:700;color:#7C9169;background:#EAF0E2;padding:6px 16px;border-radius:999px;}
+  .os-steps{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;gap:0;}
+  .os-step{flex:1 1 180px;max-width:200px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 18px;text-align:center;margin:0 -1px;position:relative;z-index:1;}
+  .os-step .os-num{width:30px;height:30px;border-radius:50%;background:#F1F1EC;color:#6B6B66;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;margin:0 auto 14px;font-family:"Inter",sans-serif;}
+  .os-step:nth-child(3) .os-num{background:#E4EEDA;color:#4F5F45;}
+  .os-step:nth-child(5) .os-num{background:#EAF0E2;color:#3F4F38;}
+  .os-step:nth-child(7) .os-num{background:#7C9169;color:#fff;}
+  .os-step p.os-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+  .os-step .os-desc{display:block;font-size:12.5px;color:var(--sub);font-weight:400;line-height:1.7;min-height:58px;}
+  .os-arrow{flex:0 0 auto;width:28px;display:flex;align-items:center;justify-content:center;color:#B9C7AC;font-size:16px;}
+  .os-output{display:flex;align-items:center;justify-content:center;gap:14px;max-width:420px;margin:28px auto 0;background:#EAF0E2;border-radius:16px;padding:20px 28px;}
+  .os-output .os-output-dot{width:36px;height:36px;border-radius:50%;background:#7C9169;color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .os-output .os-output-dot svg{width:18px;height:18px;}
+  .os-output-text p.os-output-title{font-size:16px;font-weight:800;color:#2E3A28;}
+  .os-output-text p.os-output-desc{font-size:12.5px;color:#4F5F45;margin-top:2px;}
+  .os-down-arrow{display:flex;align-items:center;justify-content:center;color:#B9C7AC;font-size:20px;margin:6px 0;}
+  @media(max-width:760px){.os-steps{flex-direction:column;align-items:center;gap:14px;}.os-step{max-width:280px;width:100%;margin:0;}.os-step .os-desc{min-height:0;}.os-arrow{display:none;}}
   .flow-arrow{color:var(--sub);font-size:16px;height:34px;display:flex;align-items:center;justify-content:center;}
   .hero-simple h1{margin-top:26px;}
   @media(max-width:640px){.flow-steps{flex-direction:column;align-items:center;gap:22px;}.flow-step{width:100%;max-width:280px;}.flow-step .flow-desc{min-height:0;}.flow-arrow{display:none;}}
@@ -607,18 +619,24 @@
     <div class="reveal center-block">
       <p class="eyebrow">Service & Price</p>
       <h2 class="sec-title">感覚を仕組みにする参謀</h2>
-      <p class="sec-lead">感覚と仕組みが一致すると、現実が動き出します。<br>リーダーの頭の中にある構想・違和感・強み・サービスを、<br>言葉・導線・行動に落とし込む5つの流れです。</p>
+      <p class="sec-lead">感覚と仕組みが一致すると、現実が動き出します。<br>リーダーの頭の中にある構想・違和感・強み・サービスを、<br>言葉・導線・行動に落とし込む参謀OSの4つのステップです。</p>
     </div>
-    <div class="flow-steps reveal">
-      <div class="flow-step"><span class="flow-num">1</span><p>小さな<br>ストレス相談</p><span class="flow-desc">小さな違和感を、話してみるところから。</span></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="flow-num">2</span><p>思考整理</p><span class="flow-desc">それが生まれた背景を、一緒に整理します。</span></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="flow-num">3</span><p>言語化</p><span class="flow-desc">本当に大切にしたいことを、言葉にします。</span></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step"><span class="flow-num">4</span><p>仕組み化</p><span class="flow-desc">カレンダー・AI・テンプレート・ルールに落とし込みます。</span></div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step goal"><span class="flow-num">5</span><p>現実化</p><span class="flow-desc">気づけば、現実化しているという状態へ。</span></div>
+    <div class="os-pipeline reveal">
+      <div class="os-tag"><span>参謀OS</span></div>
+      <div class="os-steps">
+        <div class="os-step"><span class="os-num">1</span><p class="os-title">聞く</p><span class="os-desc">小さな違和感を、話してみるところから。</span></div>
+        <span class="os-arrow">→</span>
+        <div class="os-step"><span class="os-num">2</span><p class="os-title">整理</p><span class="os-desc">それが生まれた背景を、一緒に整理します。</span></div>
+        <span class="os-arrow">→</span>
+        <div class="os-step"><span class="os-num">3</span><p class="os-title">言語化</p><span class="os-desc">本当に大切にしたいことを、言葉にします。</span></div>
+        <span class="os-arrow">→</span>
+        <div class="os-step"><span class="os-num">4</span><p class="os-title">仕組み化</p><span class="os-desc">カレンダー・AI・テンプレート・ルールに落とし込みます。</span></div>
+      </div>
+      <div class="os-down-arrow">↓</div>
+      <div class="os-output">
+        <span class="os-output-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+        <div class="os-output-text"><p class="os-output-title">現実が動く</p><p class="os-output-desc">気づけば、現実化しているという状態へ。</p></div>
+      </div>
     </div>
     <div class="quote-shareable reveal">目標ではなく、小さなストレスから。<br>答えは、あなたの中にすでにある。<br>私は、それを一緒に言葉にし、仕組みに変える参謀です。</div>
     <div class="svc-essence reveal" style="margin-top:24px;">
