@@ -840,6 +840,14 @@
 </footer>
 
 <script>
+  // fix: browsers restore the previous scroll position on reload by default,
+  // so reloading while scrolled near the bottom (e.g. pricing/FAQ/CTA) landed
+  // there instead of the top. Disable that and let our own hash-jump logic
+  // below handle intentional deep-links (e.g. "../#contact") explicitly.
+  if('scrollRestoration' in history){
+    history.scrollRestoration='manual';
+  }
+
   // fix: html{scroll-behavior:smooth} can prevent the browser's native
   // jump-to-anchor on page load, so CTA links like "../#contact" from other
   // pages landed at the top of this page instead of the contact form.
