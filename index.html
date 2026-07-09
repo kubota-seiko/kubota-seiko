@@ -300,6 +300,11 @@
   .manual-card-icon svg{width:24px;height:24px;}
   .manual-card-title{font-size:18px;font-weight:800;color:var(--ink);margin-bottom:12px;}
   .manual-card-body{font-size:14px;color:var(--sub);line-height:1.9;max-width:520px;margin:0 auto;}
+  .vision-card{max-width:640px;margin:32px auto 0;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:left;}
+  .vision-card-label{font-size:12px;letter-spacing:.1em;color:#7C9169;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
+  .vision-card p{font-size:14px;color:var(--ink);line-height:1.9;margin-bottom:12px;}
+  .vision-card p:last-child{margin-bottom:0;}
+  .vision-card p.note{font-size:12px;color:var(--sub);margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 
   /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
   .line-fab-wrap{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
@@ -441,6 +446,9 @@
     padding:21px 44px;border-radius:2px;font-size:16px;font-weight:600;transition:transform .25s,box-shadow .25s;
   }
   .cta-btn:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(255,255,255,.18);color:var(--ink);}
+  .cta-list{list-style:none;text-align:left;max-width:480px;margin:0 auto 32px;padding:0;color:rgba(255,255,255,.82);font-size:14px;line-height:2.0;}
+  .cta-list li{position:relative;padding-left:20px;}
+  .cta-list li::before{content:"・";position:absolute;left:0;color:#8FBE79;}
   .consult-form{max-width:540px;margin:40px auto 0;text-align:left;display:flex;flex-direction:column;gap:14px;}
   .consult-form input,.consult-form textarea,.consult-form select{width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,.22);border-radius:4px;background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px;}
   .consult-form input::placeholder,.consult-form textarea::placeholder{color:rgba(255,255,255,.5);}
@@ -557,7 +565,7 @@
     </div>
     <p class="hero-insight" style="margin-top:40px;">頭では分かっているのに、<br>言葉にならない。<br><br>AIに聞いても、<br>仕事に活かせない。<br><br>スタッフに伝えたいのに、<br>うまく整理できない。<br><br><span class="hero-pivot">そんな<span class="small-word">小さな</span>ストレスから、<br>一緒に仕組みに変えていきます。</span></p>
     <h1><span class="role-tag">参謀･</span>窪田成功が、<br><span style="display:inline-block;transform:translateX(0.5em);">一緒に整理します。</span></h1>
-    <p class="hero-closing">PDF・AI・Googleドライブの<span class="small-word">小さな</span>つまずきから、<br>思考整理・チーム共有・売上導線まで。<br>まずは今、目の前で止まっていることから一緒に整えます。</p>
+    <p class="hero-closing"><span class="small-word">小さな</span>ストレスの奥には、<br>自分しか分からないままになっている<br>判断や仕事の流れが隠れていることがあります。<br><br>今、目の前で止まっていることから一緒に整理し、<br>言葉・手順・仕組みとして残せる形に変えていきます。</p>
     <p class="hero-cta-reassure">何から話せばいいか分からなくても大丈夫です。<br>まずは、今困っていることをそのまま送ってください。</p>
     <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">LINEで無料相談する <span class="arr">→</span></a>
     <p style="margin-top:20px;font-size:13px;color:var(--sub);">無料・LINEで気軽に</p>
@@ -656,6 +664,8 @@
       <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><p>スタッフや外注先に、うまく伝えられていない</p></div>
       <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span><p>PDF・Excel・Googleドライブなど、<span class="small-word">小さな</span>つまずきが放置されている</p></div>
       <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></span><p>同じトラブルやミスが、繰り返し起きている</p></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="M21 2l-9.6 9.6"></path><path d="M15.5 7.5l3 3L22 7l-3-3"></path></svg></span><p>自分しか分からない判断や仕事の流れが増えている</p></div>
+      <div class="pain-card reveal"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></span><p>もし自分が急に動けなくなったら、家族やスタッフが困るかもしれないと感じる</p></div>
     </div>
     <p class="pain-sub reveal" style="text-align:center;max-width:620px;margin:36px auto 0;font-size:14px;color:var(--sub);line-height:2;">飲食店・個人店主の方からは、こんなご相談もあります。<br>メニューを考えるのが毎回しんどい ・ 接客は好きだけど、裏側の事務作業が後回しになる ・ 忙しさに追われて、雑務がどんどん溜まっていく</p>
     <p class="pain-lead-out reveal" style="text-align:center;max-width:580px;margin:32px auto 0;font-size:15px;color:var(--ink);line-height:2;">ひとつでも当てはまったなら、<span style="color:var(--gold);font-weight:700;">このページは、あなたのために書いています。</span><br>同じように悩んでいる方が浮かんだら、その方にもぜひ見せてあげてください。</p>
@@ -744,19 +754,37 @@
         <div class="svc-price"><span class="yen">¥</span>16,500<small>/30分</small></div>
         <p class="svc-desc">初回以降の単発相談です。<span class="small-word">小さな</span>ストレスを継続して整理したい方向けの、単発メニューです。</p>
       </div>
-      <div class="svc-card feat reveal">
+      <div class="svc-card reveal">
         <div class="svc-name">月1回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月</small></div>
         <p class="svc-desc">毎月60分×1回の伴走に加え、簡易LINE相談付き。頭の中を継続的に整理し、次の一手を決め続けるプランです。</p>
       </div>
-      <div class="svc-card reveal">
+      <div class="svc-card feat reveal">
         <div class="svc-name">月2回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月</small></div>
-        <p class="svc-desc">毎月60分×2回の伴走に加え、簡易LINE相談付き。1回目で整理し、2回目で実行後の調整・確認を行う中核プランです。</p>
+        <p class="svc-desc">毎月60分×2回の伴走に加え、簡易LINE相談付き。<br>1回目で頭の中や現場の詰まりを整理し、2回目で実行後の調整・確認を行う中核プランです。<br><br><span class="small-word">小さな</span>ストレスをその場限りで終わらせず、言葉・手順・テンプレート・ルールに変えて、継続的に現実を動かしていきたい方におすすめです。</p>
       </div>
     </div>
     <p class="svc-payment-note reveal">お支払い方法・日程変更・キャンセル規定は、お申し込み前に個別にご案内します。</p>
     <p class="svc-note reveal">サービス選びに迷う場合は、まずは<a href="https://lin.ee/Qr9byp1" class="line-cta" style="text-decoration:underline;" target="_blank" rel="noopener">LINEで無料相談</a>だけでも大丈夫です。<br>内容を確認した上で、必要な場合は「初回スポット相談(¥5,500)」からご案内します。<a href="sanbo/" style="text-decoration:underline;">感覚を仕組みにする参謀について詳しく見る →</a></p>
+    <div class="svc-essence reveal">
+      <p class="label">相談後に残るもの</p>
+      <p style="margin-bottom:16px;">ただ話して終わりではありません。状況に応じて、今後も使える形に整えていきます。</p>
+      <ul class="principle-list">
+        <li>AIへの質問テンプレート</li>
+        <li>スタッフへの共有文</li>
+        <li>Google Driveの整理ルール</li>
+        <li>PDFやExcelの保存手順</li>
+        <li>売上導線の見直しメモ</li>
+        <li>頭の中にある判断基準の言語化</li>
+        <li>毎回説明していることの簡易マニュアル化</li>
+        <li>もしもの時の引き継ぎメモ</li>
+      </ul>
+      <p style="margin-top:16px;"><span class="small-word">小さな</span>ストレスを、その場限りの解決で終わらせず、次から迷わない仕組みに変えていきます。</p>
+    </div>
+    <div class="hero-reassure reveal" style="max-width:640px;margin-top:24px;">
+      <p><b>受付枠と現在の価格について</b><br>このサービスは、テンプレートや教材を一方的にお渡しするものではなく、お一人おひとりの状況を伺いながら、感覚・判断基準・違和感を一緒に整理し、言葉や手順、仕組みに落とし込んでいく伴走型のサービスです。<br><br>そのため、同時に深く関われる人数には限りがあります。月額伴走プランは、品質維持のため月3〜5名まで。再構築プログラムは、原則として月1社までの受付です。<br><br>また、現在の価格はサービス設計初期の提供価格です。今後、事例・実績・提供範囲が整い次第、価格を見直す可能性があります。<br><br>ご検討中の方は、まずはLINEで現在の受付状況をご確認ください。</p>
+    </div>
   </div>
 </section>
 
@@ -803,8 +831,14 @@
       <p>リーダーは、日々たくさんの判断をしながら、感覚と経験で前に進んでこられたのではないでしょうか。頭の中には、判断基準も、アイデアも、想いもある。でもそれを言葉にできず、人に渡せず、仕組みにもできない。その結果、すべてを一人で抱え込んでしまうことがあります。</p>
       <p>私は、リーダーが「こんなこと聞いていいのかな」と思ってしまう瞬間を、何度も見てきました。実は、その<span class="small-word">小さな</span>違和感こそが、経営のボトルネックであることが少なくありません。だから私は、大きな経営課題ではなく、<span class="small-word">小さな</span>ストレスから一緒に整理します。</p>
       <p class="inline-subhead">父の死が、今の仕事につながった</p>
-      <p>このテーマに向き合うきっかけは、画家である父の死でした。誰にも本音を相談できないまま、一人で抱え込み、旅立った父を見て、今の仕事につながる想いが生まれました。</p>
-      <p>私がしたいのは、あなたの頭の中を、隣で一緒に言語化すること。そして、整理した思考を、AIやテンプレート、ルールという“仕組み”に変えることです。そうすれば、あなたは一人で抱え込まなくてよくなります。</p>
+      <p>このテーマに向き合うきっかけは、画家である父の死でした。</p>
+      <p>父は、絵と画集を残してくれていました。そこには、父が何を見て、何を感じ、何を表現して生きてきたのかが残っていました。</p>
+      <p>その一方で、負債も残っていました。</p>
+      <p>そのとき私は、残すということは、きれいな想いだけを残すことではないのだと知りました。</p>
+      <p>作品、想い、判断、仕事、お金、契約、負債。良いものも、向き合う必要があるものも含めて、残された人が迷わないように整えておくこと。</p>
+      <p>お金や書類だけではなく、その人の頭の中にあった想い、判断、経験が言葉になっていないことが、残された人にとって大きな負担になることを実感しました。</p>
+      <p>だから私は、あなたの頭の中を、隣で一緒に言語化したいのです。</p>
+      <p>整理した思考を、AIやテンプレート、ルール、マニュアルという“仕組み”に変えること。それは、あなた自身を楽にするだけではなく、大切な人や現場を迷わせないための準備にもなります。</p>
       <p class="inline-subhead">私自身も、<span class="small-word">小さな</span>違和感を抱えてきた</p>
       <p>私自身、ADHD・ASDの傾向があります。人より忘れっぽかったり、思うようにいかなかったり、「こんなこと聞いていいのかな」と迷う感覚を、日常的に味わってきました。だからこそ、リーダーやメンバーが一人で抱えている“小さすぎて相談しにくい”違和感に、人一倍気づくことができます。</p>
       <p>曖昧な指示のまま、止まってしまう痛みも知っています。だからこそ、感覚や経験に頼っていたことを、言葉と手順に変えることにこだわります。それは誰かを縛るためではなく、曖昧さで止まってしまう人が、一人で抱え込まなくていいようにするためです。</p>
@@ -898,7 +932,16 @@
     <div class="manual-card reveal">
       <span class="manual-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="13" y2="18"></line></svg></span>
       <p class="manual-card-title">頭の中をマニュアルにする</p>
-      <p class="manual-card-body">社長・店長・担当者の中にある「感覚でやっていること」「毎回説明していること」「その人にしか分からない判断」を、対話から言葉・手順・確認ポイントに変えていきます。<br>属人化していた知見が、組織で使える仕組みに変わります。</p>
+      <p class="manual-card-body"><b><span class="small-word">自分</span>しか分からないままにしない。</b><br>社長・店長・担当者の中にある「感覚でやっていること」「毎回説明していること」「その人にしか分からない判断」を、対話から言葉・手順・確認ポイントに変えていきます。属人化していた知見が、組織で使える仕組みに変わります。<br><br>でも、それが言葉になっていないままだと、本人が急に動けなくなったとき、現場や大切な人が困ってしまいます。仕組みは、人を縛るためではなく、想いを孤独にさせないためにあります。</p>
+    </div>
+    <div class="vision-card reveal">
+      <p class="vision-card-label">目指している変化</p>
+      <p>最初は、<span class="small-word">小さな</span>ストレスの相談でした。</p>
+      <p>PDFが見つからない。スタッフにうまく伝えられない。自分しか分からない仕事が増えている。</p>
+      <p>でも整理していくうちに、その<span class="small-word">小さな</span>ストレスの奥には、「もし自分が急に動けなくなったら、残された人は困らないだろうか」という不安があることに気づきました。</p>
+      <p>窪田さんと一緒に、頭の中にあった判断基準や仕事の流れを言葉にし、手順やマニュアルとして残していくことで、自分も、家族も、スタッフも安心できる形が少しずつ見えてきました。</p>
+      <p>これは単なる業務整理ではなく、大切な人を迷わせないための準備だと感じました。</p>
+      <p class="note">※現在、実際のご相談を通じて、事例・体験談・成果物サンプルを順次整理しています。掲載許可をいただいたものから、今後ご紹介していきます。</p>
     </div>
     <div class="reveal center-block" style="margin-top:64px;">
       <p class="eyebrow">Voice</p>
@@ -931,6 +974,7 @@
   <div class="wrap reveal" style="max-width:680px;text-align:center;margin:0 auto;">
     <p class="eyebrow">Statement</p>
     <p class="brand-statement-body">リーダーも、メンバーも。<br>一人で抱えなくていい。<br><span class="small-word">小さな</span>ストレスも、<br>言葉にならない違和感も、<br>頭の中の判断や経験も。<br>私はそれらを一緒に整理し、<br>言葉と手順に変え、<br>組織で使える仕組みへ変えていきます。</p>
+    <p class="brand-statement-body" style="margin-top:24px;"><span class="small-word">小さな</span>ストレスは、<br>「もし自分が急に動けなくなったら、<br>これはどうなるんだろう」という<br>深い不安にもつながっています。<br><br>だから私は、目の前の<span class="small-word">小さな</span>違和感から一緒に整理し、<br>あなたの思考・感覚・判断・仕事の流れを、<br>残された人が受け取れる形に変えていきます。</p>
     <p class="brand-statement-mission">目指しているのは、<br>問題を解決することだけではありません。<br>リーダーも、メンバーも。<br>人の中にある想いを、孤独にさせないこと。</p>
     <p class="brand-statement-body" style="font-size:16px;margin-top:24px;">感覚を言語化。そして、仕組みへ。<br>その翻訳を専門にする参謀は、私です。</p>
     <p class="brand-statement-mission" style="margin-top:24px;">共に、自分らしく輝き続ける未来を<br>現実化させていきましょう!</p>
@@ -981,11 +1025,27 @@
 <section class="cta" id="contact">
   <div class="wrap reveal">
     <p class="cta-eyebrow">本格伴走をご希望の方へ</p>
-    <h2>再構築プログラム<br>650,000円〜応相談</h2>
-    <p><span class="small-word">小さな</span>ストレスの奥に、<br>事業全体の整理や大きな経営課題が必要だと感じた場合は、<br>本格伴走として一緒に再構築していきます。</p>
-    <p>「事業・思考・発信の再構築プログラム」など、<br>上位の伴走をお考えの方向けに、<br>正式なお申し込み前の無料相談を行っています。<br><br>深く合う方だけにご提案したいため、<br>まずは今の状況を伺わせてください。</p>
-    <p style="font-size:13px;color:rgba(255,255,255,.6);max-width:480px;margin:-4px auto 6px;text-align:center;"><span class="small-word">小さな</span>ご相談は、まずLINEの無料相談をご利用ください。</p>
-    <p style="max-width:480px;margin:0 auto 22px;text-align:center;"><a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;font-weight:700;font-size:14px;text-decoration:underline;" target="_blank" rel="noopener">LINEで申し込む →</a></p>
+    <h2>想いと仕組みの<br>再構築プログラム</h2>
+    <p style="font-weight:700;color:#fff;">初期提供価格 650,000円〜<br>通常想定価格 1,100,000円〜</p>
+    <p><span class="small-word">小さな</span>ストレスから、命の引き継ぎまで。<br>あなたの思考と感覚を、<br>残された人が受け取れる形に整える参謀です。</p>
+    <p>社長・店主・リーダーの頭の中にある判断基準、仕事の流れ、想い、売上導線、スタッフへの伝え方を、<br>短期間で一気に整理し、言葉・手順・テンプレート・マニュアルとして残していく本格伴走プログラムです。</p>
+    <p>本人の頭の中にしかないものは、本人が話せるうちにしか残せません。<br>日々の忙しさの中では、マニュアル化や引き継ぎはどうしても後回しになります。<br>だからこそ、必要なタイミングで一気に整理します。</p>
+    <p>これは単なる業務改善ではなく、<br>大切な人や現場を迷わせないための、事業と想いの引き継ぎ設計です。</p>
+    <ul class="cta-list">
+      <li>事業の判断基準メモ</li>
+      <li>業務フロー</li>
+      <li>スタッフ共有マニュアル</li>
+      <li>Google Drive整理ルール</li>
+      <li>AI質問テンプレート</li>
+      <li>LINE返信テンプレート</li>
+      <li>売上導線マップ</li>
+      <li>もしもの時の引き継ぎメモ</li>
+      <li>サービス説明文</li>
+      <li>想い、理念の言語化</li>
+    </ul>
+    <p>深く伴走するサービスのため、原則として月1社までの受付です。</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.6);max-width:480px;margin:-4px auto 6px;text-align:center;">現在はサービス設計初期の提供価格として、650,000円〜で受付しています。<br>今後、事例・提供範囲・伴走内容の拡充に応じて、標準価格を1,100,000円〜へ見直す予定です。</p>
+    <p style="max-width:480px;margin:0 auto 22px;text-align:center;"><a href="https://lin.ee/Qr9byp1" class="line-cta" style="color:#fff;font-weight:700;font-size:14px;text-decoration:underline;" target="_blank" rel="noopener">LINEで受付状況を確認する →</a></p>
     <p style="font-size:13px;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 6px;text-align:center;">お名前・メールアドレス・モヤモヤの3つだけで送信できます。<br>その他は任意です。</p>
     <form id="consultForm" class="consult-form">
       <input type="hidden" name="access_key" value="1fcf43ff-4b51-4dfd-a45a-7147974cc0af">
