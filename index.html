@@ -187,6 +187,18 @@
   .hero-cta-row{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:56px;}
   .hero-cta-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--ink);padding:20px 38px;border-radius:2px;font-size:15px;font-weight:500;border:1.5px solid var(--line);transition:border-color .25s,color .25s;}
   .hero-cta-outline:hover{border-color:var(--gold);color:var(--gold);}
+  .qc-block{max-width:600px;margin:56px auto 0;padding:32px 28px;background:var(--soft);border-radius:20px;text-align:left;}
+  .qc-question{font-size:19px;font-weight:700;margin-bottom:6px;}
+  .qc-sub{font-size:13px;color:var(--sub);margin-bottom:22px;}
+  .qc-options{display:flex;flex-direction:column;gap:10px;}
+  .qc-option{display:block;width:100%;text-align:left;padding:16px 20px;background:#FFFFFF;border:1px solid var(--line);border-radius:14px;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;font-family:inherit;}
+  .qc-option:hover{border-color:#7C9169;transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.05);}
+  .qc-option.selected{border-color:#7C9169;background:#EAF0E2;}
+  .qc-result{margin-top:22px;padding:22px 24px;background:#FFFFFF;border-left:3px solid #7C9169;border-radius:4px;}
+  .qc-result-label{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .qc-result-text{font-size:14px;color:var(--sub);line-height:1.9;}
+  .qc-continue{display:inline-block;margin-top:16px;font-size:14px;color:#3F5F38;text-decoration:underline;}
+  @media(max-width:640px){.qc-block{padding:24px 20px;margin-top:40px;}.qc-question{font-size:17px;}}
   .topic-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
   .topic-card{display:flex;align-items:center;gap:18px;padding:22px 26px;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink);}
   .topic-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06);border-color:#D8E3D0;color:var(--ink);}
@@ -564,6 +576,22 @@
     <div class="hero-cta-row">
       <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">30分無料診断を申し込む <span class="arr">→</span></a>
       <a href="#svc" class="hero-cta-outline">サービスを見る</a>
+    </div>
+    <div class="qc-block reveal" id="quickCheck">
+      <p class="qc-question">あなたの仕事は、どこで止まっていますか？</p>
+      <p class="qc-sub">一番近いものを選んでください。</p>
+      <div class="qc-options" id="qcOptions">
+        <button type="button" class="qc-option" data-answer="office">① 事務・データ整理</button>
+        <button type="button" class="qc-option" data-answer="line">② LINE・文章・伝え方</button>
+        <button type="button" class="qc-option" data-answer="ai">③ AI活用</button>
+        <button type="button" class="qc-option" data-answer="staff">④ スタッフ共有・属人化</button>
+        <button type="button" class="qc-option" data-answer="unknown">⑤ 自分でも分からない</button>
+      </div>
+      <div class="qc-result" id="qcResult" style="display:none;">
+        <p class="qc-result-label" id="qcResultLabel"></p>
+        <p class="qc-result-text" id="qcResultText"></p>
+        <a href="#topics" class="qc-continue">続きを見る ↓</a>
+      </div>
     </div>
     <p class="hero-insight" style="margin-top:40px;">LINE返信、PDF、AI、Googleドライブ、事務作業。<br><br>見積もりや提案文、<br>売上導線まで。<br><br>頭では分かっているのに、<br>言葉や仕組みにならない。<br><br><span class="hero-pivot">そんな<span class="small-word">小さな</span>ストレスから、<br>一緒に整えていきます。</span></p>
     <h1><span class="role-tag">参謀･</span>窪田成功が、<br><span style="display:inline-block;transform:translateX(0.5em);">一緒に整理します。</span></h1>
@@ -1418,6 +1446,51 @@
       }
     });
   });
+
+  // Hero quick check (1-question diagnostic)
+  (function(){
+    var qcAnswers = {
+      office: {
+        label: 'あなたの詰まりは「情報の置き場所」にあるかもしれません。',
+        text: '能力の問題ではなく、PDF・Excel・Googleドライブなどの情報が、まだ流れになっていない状態です。'
+      },
+      line: {
+        label: 'あなたの詰まりは「言語化」にあるかもしれません。',
+        text: '文章力ではなく、頭の中の順番がまだ整理されていない状態です。'
+      },
+      ai: {
+        label: 'あなたの詰まりは「伝え方」にあるかもしれません。',
+        text: 'AIの性能ではなく、感覚をAIに伝わる言葉にする手前で止まっている状態です。'
+      },
+      staff: {
+        label: 'あなたの詰まりは「頭の中にしかない基準」にあるかもしれません。',
+        text: 'あなたにしか分からない判断が、まだ言葉や手順になっていない状態です。'
+      },
+      unknown: {
+        label: 'それも、よくあることです。',
+        text: '何がストレスの正体か分からないまま、なんとなく違和感だけが積み重なっている状態かもしれません。まずは話しながら一緒に整理するところから始められます。'
+      }
+    };
+    document.querySelectorAll('.qc-option').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var key = btn.getAttribute('data-answer');
+        var ans = qcAnswers[key];
+        if(!ans) return;
+        document.querySelectorAll('.qc-option').forEach(function(b){b.classList.remove('selected');});
+        btn.classList.add('selected');
+        document.getElementById('qcResultLabel').textContent = ans.label;
+        document.getElementById('qcResultText').textContent = ans.text;
+        var resultEl = document.getElementById('qcResult');
+        resultEl.style.display = 'block';
+        if (typeof gtag === 'function') {
+          gtag('event','quick_check_answer',{'answer':key});
+        }
+        setTimeout(function(){
+          resultEl.scrollIntoView({behavior:'smooth', block:'center'});
+        }, 50);
+      });
+    });
+  })();
 </script>
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
 <div class="line-fab-wrap">
