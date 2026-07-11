@@ -578,14 +578,15 @@
       <a href="#svc" class="hero-cta-outline">サービスを見る</a>
     </div>
     <div class="qc-block reveal" id="quickCheck">
-      <p class="qc-question">あなたの仕事は、どこで止まっていますか？</p>
-      <p class="qc-sub">一番近いものを選んでください。</p>
+      <p class="qc-question">今、どんなことで手が止まっていますか？</p>
+      <p class="qc-sub">「これ、私かも」と思うものを1つ選んでください。</p>
       <div class="qc-options" id="qcOptions">
-        <button type="button" class="qc-option" data-answer="office">① 事務・データ整理</button>
-        <button type="button" class="qc-option" data-answer="line">② LINE・文章・伝え方</button>
-        <button type="button" class="qc-option" data-answer="ai">③ AI活用</button>
-        <button type="button" class="qc-option" data-answer="staff">④ スタッフ共有・属人化</button>
-        <button type="button" class="qc-option" data-answer="unknown">⑤ 自分でも分からない</button>
+        <button type="button" class="qc-option" data-answer="who">「これ、誰に聞けばいいんやろ…」と思うことがある</button>
+        <button type="button" class="qc-option" data-answer="stuck">やることは分かっているのに進まない</button>
+        <button type="button" class="qc-option" data-answer="ai">AIを使っているのに、余計に時間がかかる</button>
+        <button type="button" class="qc-option" data-answer="repeat">同じ説明を何度もしている</button>
+        <button type="button" class="qc-option" data-answer="chores">本業より雑務に追われている</button>
+        <button type="button" class="qc-option" data-answer="unknown">何が問題なのか、自分でも分からない</button>
       </div>
       <div class="qc-result" id="qcResult" style="display:none;">
         <p class="qc-result-label" id="qcResultLabel"></p>
@@ -1433,21 +1434,25 @@
   // Hero quick check (1-question diagnostic)
   (function(){
     var qcAnswers = {
-      office: {
-        label: 'あなたの詰まりは「情報の置き場所」にあるかもしれません。',
-        text: '能力の問題ではなく、PDF・Excel・Googleドライブなどの情報が、まだ流れになっていない状態です。'
+      who: {
+        label: 'その感覚、大事なサインです。',
+        text: '「聞いていいのかどうか」で立ち止まっている状態です。相手がいないのではなく、聞き方や頼み方が、まだ言葉になっていないだけかもしれません。'
       },
-      line: {
-        label: 'あなたの詰まりは「言語化」にあるかもしれません。',
-        text: '文章力ではなく、頭の中の順番がまだ整理されていない状態です。'
+      stuck: {
+        label: 'それは、意志の弱さではありません。',
+        text: 'やることが分かっていても、順番や進め方が整理されていないと、頭が動いても手が止まります。'
       },
       ai: {
-        label: 'あなたの詰まりは「伝え方」にあるかもしれません。',
-        text: 'AIの性能ではなく、感覚をAIに伝わる言葉にする手前で止まっている状態です。'
+        label: 'AIの使い方ではなく、伝え方の問題かもしれません。',
+        text: '感覚をAIに伝わる言葉にする手前で、時間がかかっている状態です。'
       },
-      staff: {
-        label: 'あなたの詰まりは「頭の中にしかない基準」にあるかもしれません。',
-        text: 'あなたにしか分からない判断が、まだ言葉や手順になっていない状態です。'
+      repeat: {
+        label: 'それは、まだ言葉になっていないサインです。',
+        text: '頭の中にある判断基準が、まだ誰にでも分かる手順になっていない状態かもしれません。'
+      },
+      chores: {
+        label: 'よくあることです。',
+        text: '小さな雑務ひとつひとつは大したことがなくても、積み重なると本業に使う時間を奪っていきます。'
       },
       unknown: {
         label: 'それも、よくあることです。',
