@@ -1276,8 +1276,14 @@
   // jump-to-anchor on page load, so CTA links like "../#contact" from other
   // pages landed at the top of this page instead of the contact form.
   // Temporarily disable smooth scrolling to perform the initial jump, then restore it.
+  // But if the user simply reloads this same page (e.g. after clicking a nav
+  // link like "プロフィール" which sets #prof in the URL), skip the hash jump
+  // so a reload always returns to the top page instead of re-jumping to that section.
   (function(){
     if(!location.hash) return;
+    var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    var isReload = navEntry ? navEntry.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+    if(isReload) return;
     var target=document.querySelector(location.hash);
     if(!target) return;
     var html=document.documentElement;
