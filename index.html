@@ -303,6 +303,12 @@
   .case-name{font-size:17px;font-weight:700;}
   .case-tag{display:inline-block;margin-left:10px;font-size:11px;font-weight:700;background:var(--soft);color:var(--sub);padding:3px 10px;border-radius:12px;vertical-align:middle;}
   @media(max-width:760px){.case-flow{grid-template-columns:1fr;}.case-card{padding:30px 22px;}}
+  .case-categories{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:820px;margin:16px auto 0;}
+  .case-categories .cat{background:var(--soft);border-radius:12px;padding:20px 18px;text-align:left;}
+  .case-categories .cat-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .case-categories .cat-desc{font-size:12.5px;color:var(--sub);line-height:1.7;}
+  .case-topics{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:760px;margin:24px auto 0;}
+  @media(max-width:640px){.case-categories,.case-topics{grid-template-columns:1fr;}}
   .manual-card{max-width:640px;margin:40px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:center;}
   .manual-card-icon{width:48px;height:48px;border-radius:50%;background:#EAF0E2;color:#7C9169;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
   .manual-card-icon svg{width:24px;height:24px;}
@@ -771,8 +777,25 @@
   <div class="wrap">
     <div class="reveal center-block">
       <p class="eyebrow">Case</p>
-      <h2 class="sec-title"><span class="small-word">小さな</span>ストレスが、仕組みに変わった瞬間</h2>
-      <p class="sec-lead">個人店主様の事務整理事例をご紹介します。</p>
+      <h2 class="sec-title"><span class="small-word">小さな</span>ストレスから、<br>仕事の進み方が変わった事例。</h2>
+      <p class="sec-lead">最初の相談は、PDF、LINE、見積書、優先順位など、<span class="small-word">小さな</span>困りごとから始まります。<br>話を整理していくと、単なる操作や作業の問題ではなく、仕事の流れ、判断基準、伝え方に、本当の詰まりが見つかることがあります。<br>ここでは、実際に行った支援の一例をご紹介します。</p>
+    </div>
+    <div class="reveal center-block" style="margin-top:24px;">
+      <p class="case-voice-label" style="text-align:center;">対応できる領域</p>
+    </div>
+    <div class="case-categories reveal">
+      <div class="cat">
+        <p class="cat-title">1. 事務・業務改善</p>
+        <p class="cat-desc">PDF、LINE、保存ルール、手順、マニュアルなど</p>
+      </div>
+      <div class="cat">
+        <p class="cat-title">2. 思考整理・意思決定</p>
+        <p class="cat-desc">優先順位、今やること・やらないこと、進め方の整理など</p>
+      </div>
+      <div class="cat">
+        <p class="cat-title">3. 事業・営業支援</p>
+        <p class="cat-desc">見積書、価格、提案文、発信、サービス導線など</p>
+      </div>
     </div>
     <div class="case-card reveal">
       <div class="case-card-head">
@@ -781,78 +804,84 @@
           <div class="case-name">飲食店店主様<span class="case-tag">モニター</span></div>
         </div>
       </div>
-      <p class="case-lead">本業は好き。でも、事務仕事になると止まってしまう。</p>
+      <p class="case-lead">本業は好き。でも、事務作業になると手が止まる。</p>
       <div class="case-flow">
         <div class="case-block">
-          <span class="case-label">Before</span>
+          <span class="case-label">相談前</span>
           <ul>
-            <li>ExcelをPDFへ変換したが、保存先が分からない</li>
-            <li>PDFが送れていないことに気付かなかった</li>
-            <li>LINEをPCへ入れたい</li>
-            <li>誰に聞けばいいか分からなかった</li>
+            <li>ExcelからPDFへ変換したが、保存先が分からない</li>
+            <li>お客様へPDFを送れていないことに気づかなかった</li>
+            <li>LINEをパソコンでも使いたい</li>
+            <li>誰に聞けばよいか分からず、そのまま止まっていた</li>
           </ul>
         </div>
         <div class="case-block">
-          <span class="case-label">提案</span>
+          <span class="case-label">一緒に行ったこと</span>
           <ul>
-            <li>画面共有で一緒に確認</li>
-            <li>PDF保存場所の仕組みを整理</li>
-            <li>Excel・PDFの使い分けを整理</li>
-            <li>今後迷わないルールを作成</li>
+            <li>画面共有で現在の操作状況を確認</li>
+            <li>PDFの保存場所を決定</li>
+            <li>ExcelとPDFの使い分けを整理</li>
+            <li>送信前後の確認ポイントを整理</li>
+            <li>今後迷わないための簡単なルールを作成</li>
           </ul>
         </div>
         <div class="case-block">
-          <span class="case-label">After</span>
+          <span class="case-label">相談後</span>
           <ul>
             <li>PDFの保存場所が分かり、迷わず作業できるようになった</li>
-            <li>お客様に、必要なファイルを確実に送れるようになった</li>
-            <li>LINEをPCでも使えるようになり、確認の手間が減った</li>
-            <li>「これは聞いていいのかな」と迷わず、聞ける相手ができた</li>
+            <li>必要なファイルをお客様へ送れる状態になった</li>
+            <li>LINEをパソコンでも確認できるようになった</li>
+            <li>分からないことを、そのまま抱え込まず相談できるようになった</li>
           </ul>
         </div>
       </div>
+      <div class="hero-reassure reveal" style="max-width:640px;margin:28px auto 0;text-align:left;">
+        <p class="case-voice-label">本当の詰まり</p>
+        <p style="margin-top:8px;">一つひとつの操作能力ではなく、</p>
+        <ul class="principle-list" style="margin:10px 0;">
+          <li>ファイルをどこへ保存するか</li>
+          <li>ExcelとPDFをどう使い分けるか</li>
+          <li>送信できたかをどう確認するか</li>
+        </ul>
+        <p>という、作業全体の流れが決まっていないことが、繰り返し迷う原因になっていました。</p>
+      </div>
+      <div style="margin-top:28px;">
+        <p class="case-voice-label">相談後に残ったもの</p>
+        <ul class="principle-list" style="margin-top:10px;">
+          <li>PDFの保存ルール</li>
+          <li>ExcelとPDFの使い分け</li>
+          <li>送信時の確認ポイント</li>
+          <li>次回から迷わない作業の流れ</li>
+        </ul>
+      </div>
+      <p class="case-voice-body" style="font-style:normal;margin-top:28px;font-size:15px;line-height:1.9;color:var(--ink);">解決したのは、一回のパソコン操作だけではありません。<br>どこで迷い、何を決めておけば次から止まらないのかを整理したことで、本業へ戻りやすい仕事の流れが残りました。</p>
       <div class="case-voice">
         <p class="case-voice-label">お客様の声</p>
-        <p class="case-voice-body">(モニター許可確認後に掲載予定)</p>
+        <p class="case-voice-body" style="font-style:normal;font-size:13px;">※掲載許可をいただいた事例・ご感想から、順次追加しています。</p>
       </div>
     </div>
-    <p class="svc-note reveal" style="margin-top:20px;">※本事例はモニター実施中のため、詳細は本人確認・掲載許可取得後に正式掲載します。</p>
-    <div class="manual-card reveal">
-      <span class="manual-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="13" y2="18"></line></svg></span>
-      <p class="manual-card-title">頭の中を、次から迷わない形にする</p>
-      <p class="manual-card-body"><b><span class="small-word">自分</span>しか分からないままにしない。</b><br>社長・店長・担当者の中にある「感覚でやっていること」「毎回説明していること」「その人にしか分からない判断」を、対話から言葉・手順・確認ポイントに変えていきます。属人化していた知見が、組織で使える仕組みに変わります。<br><br>マニュアルを作ることが目的ではなく、次から迷わない状態をつくることが目的です。<br><br>でも、それが言葉になっていないままだと、本人が急に動けなくなったとき、現場や大切な人が困ってしまいます。仕組みは、人を縛るためではなく、想いを孤独にさせないためにあります。</p>
+    <div class="reveal center-block" style="margin-top:56px;">
+      <p class="eyebrow">相談例</p>
+      <h3 class="sec-title" style="font-size:22px;">まだ事例としてご紹介できる段階ではありませんが、<br>こんなテーマもご相談いただけます。</h3>
     </div>
-    <div class="vision-card reveal">
-      <p class="vision-card-label">目指している変化</p>
-      <p><span class="small-word">小さな</span>ストレスの相談から始まり、頭の中にあった判断基準や仕事の流れを言葉にしていく中で、「もし自分が急に動けなくなったら、残された人は困らないだろうか」という不安に気づかれる方がいます。</p>
-      <p>単なる業務整理ではなく、大切な人を迷わせないための準備につながっていくことを目指しています。</p>
-      <p class="note">※現在、実際のご相談を通じて、事例・体験談・成果物サンプルを順次整理しています。掲載許可をいただいたものから、今後ご紹介していきます。</p>
-    </div>
-    <!-- 2026-07-09: 想いと仕組みの引き継ぎ設計への深化に伴い、直後の流れが急に変わるため一時的に非表示(要相談)
-    <div class="reveal center-block" style="margin-top:64px;">
-      <p class="eyebrow">Voice</p>
-      <h2 class="sec-title">事例に見る、変化の兆し。</h2>
-      <p class="sec-lead">詳しい経緯は<a href="cases.html" style="text-decoration:underline;">事例ページ</a>でご覧いただけます。</p>
-    </div>
-    <div class="test-grid">
-      <div class="test-card reveal">
-        <div class="quote">"</div>
-        <p class="body">答えは"外"ではなく、ご本人の中にありました。整理されると、人は自分の足元にある宝に気づき、自分の意志で動き出せます。</p>
-        <div class="who"><div class="av">01</div><div><b>Case 01</b><span>迷い→本音→決断→現実が動く</span></div></div>
+    <div class="case-topics reveal">
+      <div class="svc-card">
+        <div class="svc-name">思考整理・意思決定の相談例</div>
+        <ul class="principle-list" style="margin-top:14px;">
+          <li>やりたいことが複数あり、優先順位が決まらない</li>
+          <li>今やることと、今はやらないことを整理したい</li>
+          <li>一般的な方法では動けず、自分に合う進め方を見つけたい</li>
+        </ul>
       </div>
-      <div class="test-card reveal">
-        <div class="quote">"</div>
-        <p class="body">動けないのは、意志が弱いからではありません。本当の動機が、まだ言葉になっていないだけ。見えた瞬間、人は自分で前に進めます。</p>
-        <div class="who"><div class="av">02</div><div><b>Case 02</b><span>迷い→本当の動機→役割の再定義→仕組み化</span></div></div>
-      </div>
-      <div class="test-card reveal">
-        <div class="quote">"</div>
-        <p class="body">人は、誰かに引っ張られて動くのではありません。自分の言葉でビジョンを掴んだとき、内側から動き出します。</p>
-        <div class="who"><div class="av">03</div><div><b>Case 03</b><span>ビジョン→言語化→覚悟→実行</span></div></div>
+      <div class="svc-card">
+        <div class="svc-name">事業・営業支援の相談例</div>
+        <ul class="principle-list" style="margin-top:14px;">
+          <li>見積書や提案文を毎回一から考えている</li>
+          <li>サービスの価格や伝え方を整理したい</li>
+          <li>発信から申し込みまでの導線を見直したい</li>
+        </ul>
       </div>
     </div>
-    <p class="svc-note reveal">すべての事例を<a href="cases.html" style="text-decoration:underline;">事例ページ</a>で見る →</p>
-    -->
   </div>
 </section>
 
