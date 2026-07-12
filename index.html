@@ -189,18 +189,11 @@
   .hero-cta-row{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:56px;}
   .hero-cta-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--ink);padding:20px 38px;border-radius:2px;font-size:15px;font-weight:500;border:1.5px solid var(--line);transition:border-color .25s,color .25s;}
   .hero-cta-outline:hover{border-color:var(--gold);color:var(--gold);}
-  .qc-block{max-width:600px;margin:56px auto 0;padding:32px 28px;background:var(--soft);border-radius:20px;text-align:left;}
-  .qc-question{font-size:19px;font-weight:700;margin-bottom:6px;}
-  .qc-sub{font-size:13px;color:var(--sub);margin-bottom:22px;}
-  .qc-options{display:flex;flex-direction:column;gap:10px;}
-  .qc-option{display:block;width:100%;text-align:left;padding:16px 20px;background:#FFFFFF;border:1px solid var(--line);border-radius:14px;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;font-family:inherit;}
-  .qc-option:hover{border-color:#7C9169;transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.05);}
-  .qc-option.selected{border-color:#7C9169;background:#EAF0E2;}
-  .qc-result{margin-top:22px;padding:22px 24px;background:#FFFFFF;border-left:3px solid #7C9169;border-radius:4px;}
-  .qc-result-label{font-size:16px;font-weight:700;margin-bottom:8px;}
-  .qc-result-text{font-size:14px;color:var(--sub);line-height:1.9;}
-  .qc-continue{display:inline-block;margin-top:16px;font-size:14px;color:#3F5F38;text-decoration:underline;}
-  @media(max-width:640px){.qc-block{padding:24px 20px;margin-top:40px;}.qc-question{font-size:17px;}}
+  .check-list{max-width:680px;margin:32px auto 0;display:flex;flex-direction:column;gap:14px;text-align:left;}
+  .check-item{display:flex;align-items:flex-start;gap:16px;padding:22px 26px;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;}
+  .check-num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:rgba(184,146,79,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-family:"Inter",sans-serif;margin-top:2px;}
+  .check-item p{font-size:15.5px;line-height:1.8;color:var(--ink);}
+  @media(max-width:640px){.check-item{padding:18px 20px;gap:12px;}.check-item p{font-size:15px;}}
   .topic-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
   .topic-card{display:flex;align-items:center;gap:18px;padding:22px 26px;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink);}
   .topic-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06);border-color:#D8E3D0;color:var(--ink);}
@@ -579,23 +572,6 @@
     <p class="hero-subcopy">本業に集中したい<br>個人事業主・店主・ひとり社長へ。</p>
     <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" style="margin:4px auto 0;" target="_blank" rel="noopener">30分無料診断を申し込む <span class="arr">→</span></a>
     <p style="font-size:12.5px;color:var(--sub);margin:10px auto 0;">LINE追加後、「無料診断希望」とお送りください。</p>
-    <div class="qc-block reveal" id="quickCheck">
-      <p class="qc-question">今、どんなことで手が止まっていますか？</p>
-      <p class="qc-sub">「これ、私かも」と思うものを1つ選んでください。</p>
-      <div class="qc-options" id="qcOptions">
-        <button type="button" class="qc-option" data-answer="who">「これ、誰に聞けばいいんやろ…」と思うことがある</button>
-        <button type="button" class="qc-option" data-answer="stuck">やることは分かっているのに進まない</button>
-        <button type="button" class="qc-option" data-answer="ai">AIを使っているのに、余計に時間がかかる</button>
-        <button type="button" class="qc-option" data-answer="repeat">同じ説明を何度もしている</button>
-        <button type="button" class="qc-option" data-answer="chores">本業より雑務に追われている</button>
-        <button type="button" class="qc-option" data-answer="unknown">何が問題なのか、自分でも分からない</button>
-      </div>
-      <div class="qc-result" id="qcResult" style="display:none;">
-        <p class="qc-result-label" id="qcResultLabel"></p>
-        <p class="qc-result-text" id="qcResultText"></p>
-        <a href="#pain" class="qc-continue">続きを見る ↓</a>
-      </div>
-    </div>
     <p class="hero-cta-reassure">何から話せばいいか分からなくても大丈夫です。<br>今困っていることを伺いながら、一緒に見える化していきます。</p>
   </div>
 </section>
@@ -605,55 +581,23 @@
   <div class="wrap">
     <div class="reveal center-block">
       <p class="eyebrow">Check</p>
-      <h2 class="sec-title">こんな「何か違う」を<br>抱えていませんか?</h2>
-      <p class="sec-lead">やった方がいいことは分かっている。でも、なぜか進まない。<br>AIも使っている。発信もしている。相談もしている。<br>それでも、自分の仕事が本当に進化している感覚がない。<br><br>そんな時は、努力が足りないのではなく、<br>今の方法が自分の感覚に合っていないのかもしれません。</p>
+      <h2 class="sec-title">今、こんなことで<br>手が止まっていませんか？</h2>
+      <p class="sec-lead">本業に集中したい個人事業主・店主・ひとり社長の方から、<br>実際によくいただくお悩みです。<br><br>ひとつでも「これは自分だ」と感じるものがあれば、<br>今の方法を見直すタイミングかもしれません。</p>
     </div>
-    <div class="topic-list" style="margin-top:32px;">
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"></path></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">LINEやDMの返信を考えるだけで時間がかかる</span>→ 自分の言葉のまま、伝わる返信に整える</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">PDFやデータの置き場所が毎回分からなくなる</span>→ 迷わない保存ルールを一緒に作る</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"></path><circle cx="8" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="16" cy="12" r="1" fill="currentColor" stroke="none"></circle></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">AIを使っているが、仕事が楽にならない</span>→ 自分専用のAI活用方法を設計する</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="13" y2="18"></line></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">やりたいことが多すぎて進まない</span>→ 願望を否定せず、進化の順番を整理する</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 20h8"></path><path d="M12 17v3"></path></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">見積もりや提案文を毎回一から考えている</span>→ 使い回せるテンプレートに整える</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">スタッフに毎回同じ説明をしている</span>→ 判断基準を言葉とマニュアルにする</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">事務作業になると、なぜか手が止まる</span>→ 本業に集中できる流れに整える</span>
-        <span class="topic-arrow">→</span>
-      </a>
-      <a class="topic-card reveal" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">
-        <span class="topic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polygon points="15 9 13 13 9 15 11 11 15 9" fill="currentColor" stroke="currentColor"></polygon></svg></span>
-        <span class="topic-text"><span style="display:block;font-weight:400;font-size:13px;color:var(--sub);margin-bottom:3px;">発信しているが、申し込みにつながらない</span>→ 自分らしさを失わない導線を整える</span>
-        <span class="topic-arrow">→</span>
-      </a>
+    <div class="check-list reveal">
+      <div class="check-item reveal"><span class="check-num">1</span><p>「やらなきゃ」と分かっているのに、気づけば何日も後回しにしている作業がある</p></div>
+      <div class="check-item reveal"><span class="check-num">2</span><p>なんとなく仕事が回っていない気がするけれど、どこが原因か自分でも説明できない</p></div>
+      <div class="check-item reveal"><span class="check-num">3</span><p>AIに聞いてはみるものの、結局自分でやり直すことが多く、時間があまり変わらない</p></div>
+      <div class="check-item reveal"><span class="check-num">4</span><p>スタッフやお客様に、同じ説明を毎回一から繰り返している</p></div>
+      <div class="check-item reveal"><span class="check-num">5</span><p>接客や制作より、事務作業やLINEの返信に一日の多くを使ってしまう</p></div>
+      <div class="check-item reveal"><span class="check-num">6</span><p>本やセミナーで学んだやり方を試しても、なぜか自分にはしっくりこない</p></div>
     </div>
-    <div class="wrap reveal center-block" style="max-width:640px;margin-top:36px;">
-      <p style="font-size:14px;color:var(--sub);line-height:2;">一般的な正解が、自分の正解とは限りません。<br>違和感を無視すると、止まりやすくなります。<br>頑張りを増やす前に、まず止まっている理由を一緒に整理しましょう。</p>
+    <div class="hero-reassure reveal" style="max-width:600px;margin:36px auto 0;">
+      <p>何から話せばいいか分からなくても大丈夫です。<br>今困っていることを伺いながら、どこで止まっているのかを一緒に整理します。</p>
     </div>
-    <p class="pain-lead-out reveal" style="text-align:center;max-width:580px;margin:32px auto 0;font-size:15px;color:var(--ink);line-height:2;">ひとつでも当てはまったなら、<span style="color:var(--gold);font-weight:700;">このページは、あなたのために書いています。</span></p>
+    <div class="wrap reveal center-block" style="margin-top:28px;">
+      <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" target="_blank" rel="noopener">今、どこで止まっているかを相談する <span class="arr">→</span></a>
+    </div>
   </div>
 </section>
 
@@ -1334,54 +1278,6 @@
     });
   });
 
-  // Hero quick check (1-question diagnostic)
-  (function(){
-    var qcAnswers = {
-      who: {
-        label: 'その感覚、大事なサインです。',
-        text: '「聞いていいのかどうか」で立ち止まっている状態です。相手がいないのではなく、聞き方や頼み方が、まだ言葉になっていないだけかもしれません。'
-      },
-      stuck: {
-        label: 'それは、意志の弱さではありません。',
-        text: 'やることが分かっていても、順番や進め方が整理されていないと、頭が動いても手が止まります。'
-      },
-      ai: {
-        label: 'AIの使い方ではなく、伝え方の問題かもしれません。',
-        text: '感覚をAIに伝わる言葉にする手前で、時間がかかっている状態です。'
-      },
-      repeat: {
-        label: 'それは、まだ言葉になっていないサインです。',
-        text: '頭の中にある判断基準が、まだ誰にでも分かる手順になっていない状態かもしれません。'
-      },
-      chores: {
-        label: 'よくあることです。',
-        text: '小さな雑務ひとつひとつは大したことがなくても、積み重なると本業に使う時間を奪っていきます。'
-      },
-      unknown: {
-        label: 'それも、よくあることです。',
-        text: '何がストレスの正体か分からないまま、なんとなく違和感だけが積み重なっている状態かもしれません。まずは話しながら一緒に整理するところから始められます。'
-      }
-    };
-    document.querySelectorAll('.qc-option').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var key = btn.getAttribute('data-answer');
-        var ans = qcAnswers[key];
-        if(!ans) return;
-        document.querySelectorAll('.qc-option').forEach(function(b){b.classList.remove('selected');});
-        btn.classList.add('selected');
-        document.getElementById('qcResultLabel').textContent = ans.label;
-        document.getElementById('qcResultText').textContent = ans.text;
-        var resultEl = document.getElementById('qcResult');
-        resultEl.style.display = 'block';
-        if (typeof gtag === 'function') {
-          gtag('event','quick_check_answer',{'answer':key});
-        }
-        setTimeout(function(){
-          resultEl.scrollIntoView({behavior:'smooth', block:'center'});
-        }, 50);
-      });
-    });
-  })();
 </script>
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
 <div class="line-fab-wrap">
