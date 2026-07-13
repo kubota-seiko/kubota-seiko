@@ -63,6 +63,12 @@
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
+  .share-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .cta-outline{font-family:inherit;font-size:15px;font-weight:500;padding:15px 30px;border-radius:2px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;}
+  .cta-outline:hover{background:var(--ink);color:#fff;}
+  .cta-outline.copied{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .cta-fill{font-family:inherit;font-size:15px;font-weight:500;padding:16px 32px;border-radius:2px;border:none;background:var(--ink);color:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s;}
+  .cta-fill:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
   .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
   .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
   @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
@@ -206,6 +212,17 @@
   </div>
 </section>
 
+<!-- SHARE -->
+<section style="background:var(--soft);">
+  <div class="wrap reveal" style="text-align:center;max-width:640px;margin:0 auto;">
+    <p style="color:var(--sub);font-size:16px;line-height:1.9;margin:0;">もし「この人に読んでほしいな」と思う方がいたら、<br>このページを送っていただけると嬉しいです。</p>
+    <div class="share-actions">
+      <button type="button" class="cta-fill" id="shareBtn">共有する</button>
+      <button type="button" class="cta-outline" id="copyBtn">リンクをコピー</button>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p>窪田 成功 ／ 思考整理の参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../for-leaders/">小さなチームを持つリーダーへ</a>　｜　<a href="../cases.html">事例</a></p>
@@ -227,6 +244,37 @@
       }
     });
   });
+
+  var shareBtn = document.getElementById('shareBtn');
+  var copyBtn = document.getElementById('copyBtn');
+
+  function copyLink(){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      var original = copyBtn.textContent;
+      copyBtn.textContent = 'コピーしました';
+      copyBtn.classList.add('copied');
+      setTimeout(function(){
+        copyBtn.textContent = original;
+        copyBtn.classList.remove('copied');
+      }, 1800);
+    }).catch(function(){
+      alert('コピーに失敗しました。お手数ですが、URLを手動でコピーしてください。');
+    });
+  }
+
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      var shareData = { title: document.title, url: window.location.href };
+      if(navigator.share){
+        navigator.share(shareData).catch(function(){});
+      } else {
+        copyLink();
+      }
+    });
+  }
+  if(copyBtn){
+    copyBtn.addEventListener('click', copyLink);
+  }
 </script>
 <a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
 
