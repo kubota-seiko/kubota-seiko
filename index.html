@@ -366,6 +366,36 @@
   .svc-desc{color:var(--sub);font-size:14px;margin-top:14px;padding-top:18px;border-top:1px solid var(--line);}
   .svc-note{text-align:center;color:var(--sub);font-size:14px;margin-top:32px;}
   .svc-payment-note{text-align:center;color:var(--sub);font-size:13px;margin-top:24px;}
+  .svc-resv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff !important;padding:14px 22px;border-radius:2px;font-size:14px;font-weight:500;margin-top:16px;width:100%;border:none;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;text-decoration:none;}
+  .svc-resv-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.16);}
+  .svc-consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--ink) !important;border:1px solid var(--ink);padding:13px 22px;border-radius:2px;font-size:14px;font-weight:500;margin-top:12px;width:100%;transition:background .2s,color .2s;text-decoration:none;}
+  .svc-consult-btn:hover{background:var(--ink);color:#fff !important;}
+  .svc-invoice-note{background:var(--soft);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin-top:16px;font-size:13px;color:var(--sub);line-height:1.9;text-align:left;}
+  .svc-invoice-note b{color:var(--ink);}
+  .resv-overlay{position:fixed;inset:0;background:rgba(26,26,26,.55);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;}
+  .resv-overlay.open{display:flex;}
+  .resv-modal{background:#fff;border-radius:16px;max-width:440px;width:100%;max-height:88vh;overflow-y:auto;padding:36px 30px;position:relative;}
+  .resv-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:var(--soft);color:var(--ink);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .resv-service-name{font-size:16px;font-weight:700;color:var(--ink);text-align:center;}
+  .resv-service-price{font-family:"Inter",sans-serif;font-size:22px;font-weight:700;color:var(--gold);text-align:center;margin-top:4px;margin-bottom:24px;}
+  .resv-heading{font-size:14px;font-weight:700;text-align:center;margin-bottom:18px;color:var(--ink);}
+  .resv-methods{display:flex;flex-direction:column;gap:12px;}
+  .resv-method-btn{display:flex;align-items:flex-start;gap:12px;text-align:left;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;width:100%;}
+  .resv-method-btn:hover{border-color:var(--gold);background:var(--soft);}
+  .resv-method-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--gold);flex:0 0 auto;margin-top:2px;}
+  .resv-method-btn strong{display:block;font-size:14px;color:var(--ink);margin-bottom:2px;}
+  .resv-method-btn small{display:block;font-size:12.5px;color:var(--sub);}
+  .resv-back{display:block;margin:20px auto 0;background:none;border:none;color:var(--sub);font-size:13px;text-decoration:underline;cursor:pointer;font-family:inherit;}
+  .resv-bank-box{background:var(--soft);border-radius:10px;padding:20px 22px;margin-top:4px;text-align:left;}
+  .resv-bank-box p{font-size:14px;color:var(--ink);line-height:2.0;}
+  .resv-bank-box p b{color:var(--gold);}
+  .resv-note{font-size:12.5px;color:var(--sub);margin-top:16px;line-height:1.8;text-align:center;}
+  .resv-confirm-btn{display:block;width:100%;background:var(--ink);color:#fff;padding:15px 20px;border-radius:2px;font-size:14px;font-weight:500;margin-top:20px;border:none;cursor:pointer;font-family:inherit;text-align:center;}
+  .resv-done-heading{font-size:18px;font-weight:700;text-align:center;color:var(--ink);margin-bottom:14px;}
+  .resv-done-body{font-size:14px;color:var(--sub);line-height:1.9;text-align:center;margin-bottom:24px;}
+  .resv-step{text-align:center;}
+  .resv-error{font-size:13px;color:#B23B3B;text-align:center;margin-top:12px;}
+  @media(max-width:480px){.resv-modal{padding:28px 20px;}}
   .faq-list{max-width:720px;margin:56px auto 0;display:flex;flex-direction:column;gap:28px;text-align:center;}
   .faq-item{border-bottom:1px solid var(--line);padding-bottom:28px;}
   .faq-item:last-child{border-bottom:0;padding-bottom:0;}
@@ -654,6 +684,7 @@
         <div class="svc-price"><span class="yen">¥</span>5,500<small>/約60分(税込)</small></div>
         <p class="svc-desc">窪田成功の有料セッションを、初めて受ける方向け。<br>一つの相談テーマを実際に整理し、次に何をするかを具体的に決めます。必要に応じて、文章のたたき台、AIへの質問や指示、簡単な手順、スタッフへの共有文、次の行動リストなどを一緒に作ります。</p>
         <p class="svc-desc" style="margin-top:14px;"><small style="color:var(--sub);">※お一人様1回限り<br>※継続サポートは含まれません</small></p>
+        <button type="button" class="svc-resv-btn resv-trigger" data-service="first-spot" data-name="初回スポット相談" data-price="5,500">予約する <span class="arr">→</span></button>
       </div>
       <div class="svc-card reveal">
         <div class="svc-name">通常スポット相談<br><small style="display:block;font-weight:600;color:var(--gold);font-size:12px;margin-top:4px;letter-spacing:.02em;">— 進化の設計セッション —</small></div>
@@ -668,21 +699,26 @@
           <li>次の具体的な一歩</li>
         </ul>
         <p class="svc-desc" style="margin-top:14px;"><small style="color:var(--sub);">※セッション後の継続的なLINE伴走は含まれません</small></p>
+        <button type="button" class="svc-resv-btn resv-trigger" data-service="regular-spot" data-name="通常スポット相談" data-price="16,500">予約する <span class="arr">→</span></button>
       </div>
       <div class="svc-card feat reveal">
         <div class="svc-name">月1回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月(税込)</small></div>
         <p class="svc-desc">毎月一度、頭の中と進捗を整理し、次の一手を決めたい方向け。<br>約90分×1回のセッションに加え、簡易LINE相談付き。その月の優先順位、行動内容、必要に応じた文章や手順が残ります。</p>
+        <button type="button" class="svc-resv-btn resv-trigger" data-service="monthly-1" data-name="月1回伴走プラン" data-price="33,000">予約する <span class="arr">→</span></button>
       </div>
       <div class="svc-card reveal">
         <div class="svc-name">月2回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月(税込)</small></div>
         <p class="svc-desc">実行と振り返りを月内で回し、改善まで進めたい方向け。<br>約90分×2回のセッションに加え、簡易LINE相談付き。1回目で課題と行動を整理し、2回目で進捗確認、改善、軌道修正まで伴走します。</p>
+        <button type="button" class="svc-resv-btn resv-trigger" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">予約する <span class="arr">→</span></button>
       </div>
       <div class="svc-card reveal">
         <div class="svc-name">月4回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>110,000<small>/月(税込)</small></div>
         <p class="svc-desc">週1回のペースで、判断、発信、仕組みづくりを継続的に整理したい方向け。<br>約90分×4回の伴走に加え、簡易LINE相談付き。外部脳のような伴走として、実行中に出てくる迷いや課題を継続的に整理します。</p>
+        <div class="svc-invoice-note"><b>相談 → 内容確認 → 請求書発行 → 銀行振込</b>のお手続きとなります。<br>まずはLINEにてご相談ください。</div>
+        <a href="https://lin.ee/Qr9byp1" class="svc-consult-btn line-cta" target="_blank" rel="noopener">LINEで相談する <span class="arr">→</span></a>
       </div>
       <!-- 2026-07-12 一時非表示: トップページの情報量を絞る方針のため。削除ではなくコメントアウト。個別案内で対応。
       <div class="svc-card reveal">
@@ -1207,6 +1243,190 @@
   });
 
 </script>
+
+<!-- Reservation Modal -->
+<div class="resv-overlay" id="resvOverlay">
+  <div class="resv-modal">
+    <button type="button" class="resv-close" id="resvClose" aria-label="閉じる">×</button>
+
+    <div class="resv-step" id="resvStepSelect">
+      <p class="resv-service-name" id="resvName1"></p>
+      <p class="resv-service-price" id="resvPrice1"></p>
+      <p class="resv-heading">お支払い方法をお選びください</p>
+      <div class="resv-methods">
+        <button type="button" class="resv-method-btn" id="resvChoosePaypal">
+          <span class="resv-method-radio"></span>
+          <span><strong>PayPal（カード決済・推奨）</strong><small>クレジットカードで今すぐお支払いいただけます</small></span>
+        </button>
+        <button type="button" class="resv-method-btn" id="resvChooseBank">
+          <span class="resv-method-radio"></span>
+          <span><strong>銀行振込</strong><small>ゆうちょ銀行口座へのお振込みです</small></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="resv-step" id="resvStepPaypal" style="display:none;">
+      <p class="resv-service-name" id="resvName2"></p>
+      <p class="resv-service-price" id="resvPrice2"></p>
+      <div id="paypalButtonContainer"></div>
+      <p class="resv-error" id="resvPaypalError" style="display:none;"></p>
+      <button type="button" class="resv-back" id="resvBackFromPaypal">← 支払い方法を選び直す</button>
+    </div>
+
+    <div class="resv-step" id="resvStepBank" style="display:none;">
+      <p class="resv-service-name" id="resvName3"></p>
+      <p class="resv-service-price" id="resvPrice3"></p>
+      <div class="resv-bank-box">
+        <p><b>ゆうちょ銀行</b></p>
+        <p>記号：14030</p>
+        <p>番号：71260631</p>
+        <p>口座名義：Eternal株式会社</p>
+      </div>
+      <p class="resv-note">上記口座へお振込みください。<br>お振込みが確認でき次第、LINEにて日程のご案内をいたします。</p>
+      <button type="button" class="resv-confirm-btn" id="resvConfirmBank">この内容で予約する</button>
+      <button type="button" class="resv-back" id="resvBackFromBank">← 支払い方法を選び直す</button>
+    </div>
+
+    <div class="resv-step" id="resvStepDone" style="display:none;">
+      <p class="resv-done-heading">ご予約ありがとうございます。</p>
+      <p class="resv-done-body" id="resvDoneBody"></p>
+      <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" style="width:100%;justify-content:center;" target="_blank" rel="noopener">LINEで日程を相談する →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('resvOverlay');
+  if(!overlay) return;
+  var stepSelect = document.getElementById('resvStepSelect');
+  var stepPaypal = document.getElementById('resvStepPaypal');
+  var stepBank = document.getElementById('resvStepBank');
+  var stepDone = document.getElementById('resvStepDone');
+  var closeBtn = document.getElementById('resvClose');
+  var currentService = null;
+  var paypalLoaded = false;
+  var paypalLoading = null;
+  var PAYPAL_CLIENT_ID = 'AYHtMvZIavnkIrK8LQpPmaa1iyABjl25eBz7emy3OTv4aM3DxkGzzd_8PNenok_bu21WzooALOan4g5F';
+
+  function showStep(step){
+    [stepSelect, stepPaypal, stepBank, stepDone].forEach(function(s){ s.style.display = (s === step) ? 'block' : 'none'; });
+  }
+
+  function openModal(service){
+    currentService = service;
+    document.getElementById('resvName1').textContent = service.name;
+    document.getElementById('resvPrice1').textContent = '￥' + service.price;
+    document.getElementById('resvName2').textContent = service.name;
+    document.getElementById('resvPrice2').textContent = '￥' + service.price;
+    document.getElementById('resvName3').textContent = service.name;
+    document.getElementById('resvPrice3').textContent = '￥' + service.price;
+    showStep(stepSelect);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.resv-trigger').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      openModal({
+        id: btn.getAttribute('data-service'),
+        name: btn.getAttribute('data-name'),
+        price: btn.getAttribute('data-price')
+      });
+      if(typeof gtag==='function'){
+        gtag('event','reservation_open',{'service_id': btn.getAttribute('data-service')});
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+
+  document.getElementById('resvChooseBank').addEventListener('click', function(){
+    showStep(stepBank);
+  });
+  document.getElementById('resvBackFromBank').addEventListener('click', function(){
+    showStep(stepSelect);
+  });
+
+  function loadPaypalSdk(){
+    if(paypalLoaded) return Promise.resolve();
+    if(paypalLoading) return paypalLoading;
+    paypalLoading = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://www.paypal.com/sdk/js?client-id=' + PAYPAL_CLIENT_ID + '&currency=JPY&intent=capture&locale=ja_JP';
+      s.onload = function(){ paypalLoaded = true; resolve(); };
+      s.onerror = function(){ reject(new Error('sdk load failed')); };
+      document.body.appendChild(s);
+    });
+    return paypalLoading;
+  }
+
+  document.getElementById('resvChoosePaypal').addEventListener('click', function(){
+    showStep(stepPaypal);
+    var container = document.getElementById('paypalButtonContainer');
+    var errBox = document.getElementById('resvPaypalError');
+    errBox.style.display = 'none';
+    container.innerHTML = '<p style="font-size:13px;color:var(--sub);">読み込み中...</p>';
+    loadPaypalSdk().then(function(){
+      container.innerHTML = '';
+      window.paypal.Buttons({
+        style: { layout:'vertical', color:'black', shape:'rect', label:'pay' },
+        createOrder: function(){
+          return fetch('/api/paypal-create-order', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ serviceId: currentService.id })
+          }).then(function(res){
+            if(!res.ok) throw new Error('order-create-failed');
+            return res.json();
+          }).then(function(data){ return data.id; });
+        },
+        onApprove: function(data){
+          return fetch('/api/paypal-capture-order', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ orderID: data.orderID })
+          }).then(function(res){
+            if(!res.ok) throw new Error('capture-failed');
+            return res.json();
+          }).then(function(){
+            document.getElementById('resvDoneBody').textContent = currentService.name + '（￥' + currentService.price + '）のお支払いが完了しました。日程については、LINEにてご相談ください。';
+            showStep(stepDone);
+            if(typeof gtag==='function'){
+              gtag('event','reservation_paid',{'service_id': currentService.id, 'method':'paypal'});
+            }
+          });
+        },
+        onError: function(err){
+          errBox.textContent = '決済処理中にエラーが発生しました。お手数ですが、時間をおいて再度お試しいただくか、LINEにてご連絡ください。';
+          errBox.style.display = 'block';
+        },
+        onCancel: function(){}
+      }).render('#paypalButtonContainer');
+    }).catch(function(){
+      container.innerHTML = '<p style="font-size:13px;color:#B23B3B;">決済フォームの読み込みに失敗しました。お手数ですが、時間をおいて再度お試しください。</p>';
+    });
+  });
+  document.getElementById('resvBackFromPaypal').addEventListener('click', function(){
+    showStep(stepSelect);
+  });
+
+  document.getElementById('resvConfirmBank').addEventListener('click', function(){
+    document.getElementById('resvDoneBody').textContent = currentService.name + '（￥' + currentService.price + '）のご予約を承りました。ゆうちょ銀行口座へお振込みください。お振込み確認後、LINEにて日程をご案内いたします。';
+    showStep(stepDone);
+    if(typeof gtag==='function'){
+      gtag('event','reservation_confirmed',{'service_id': currentService.id, 'method':'bank'});
+    }
+  });
+})();
+</script>
+
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
 <div class="line-fab-wrap">
   <p class="line-fab-note"><span class="small-word">小さな</span>相談も大丈夫です</p>
