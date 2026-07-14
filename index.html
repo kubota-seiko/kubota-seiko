@@ -372,6 +372,9 @@
   .svc-resv-btn-group .svc-resv-btn{margin-top:0;}
   .svc-card-highlight{animation:svcCardPulse 1.8s ease-out 2;box-shadow:0 0 0 3px var(--gold) !important;}
   @keyframes svcCardPulse{0%{box-shadow:0 0 0 3px var(--gold);}50%{box-shadow:0 0 0 7px rgba(184,146,79,.25);}100%{box-shadow:0 0 0 3px var(--gold);}}
+  .svc-copy-link{display:block;width:100%;margin-top:8px;padding:8px;background:none;border:none;font-family:inherit;font-size:12px;color:var(--sub);cursor:pointer;text-align:center;text-decoration:underline;text-underline-offset:2px;transition:color .2s;}
+  .svc-copy-link:hover{color:var(--gold);}
+  .svc-copy-link.copied{color:var(--gold);text-decoration:none;font-weight:600;}
   .svc-resv-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--ink);padding:13px 22px;border-radius:2px;font-size:14px;font-weight:500;border:1px solid var(--line);cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;width:100%;}
   .svc-resv-btn-outline:hover{border-color:var(--ink);background:var(--soft);}
   .svc-consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--ink) !important;border:1px solid var(--ink);padding:13px 22px;border-radius:2px;font-size:14px;font-weight:500;margin-top:12px;width:100%;transition:background .2s,color .2s;text-decoration:none;}
@@ -700,6 +703,7 @@
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="first-spot" data-name="初回スポット相談" data-price="5,500">PayPalで予約する <span class="arr">→</span></button>
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="first-spot" data-name="初回スポット相談" data-price="5,500">銀行振込で予約する</button>
         </div>
+        <button type="button" class="svc-copy-link" data-copy-service="first-spot">🔗 このプランの支払いリンクをコピー</button>
       </div>
       <div class="svc-card reveal" id="svc-card-regular-spot">
         <div class="svc-name">通常スポット相談<br><small style="display:block;font-weight:600;color:var(--gold);font-size:12px;margin-top:4px;letter-spacing:.02em;">— 進化の設計セッション —</small></div>
@@ -718,6 +722,7 @@
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="regular-spot" data-name="通常スポット相談" data-price="16,500">PayPalで予約する <span class="arr">→</span></button>
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="regular-spot" data-name="通常スポット相談" data-price="16,500">銀行振込で予約する</button>
         </div>
+        <button type="button" class="svc-copy-link" data-copy-service="regular-spot">🔗 このプランの支払いリンクをコピー</button>
       </div>
       <div class="svc-card feat reveal" id="svc-card-monthly-1">
         <div class="svc-name">月1回伴走プラン</div>
@@ -727,6 +732,7 @@
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="monthly-1" data-name="月1回伴走プラン" data-price="33,000">PayPalで予約する <span class="arr">→</span></button>
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="monthly-1" data-name="月1回伴走プラン" data-price="33,000">銀行振込で予約する</button>
         </div>
+        <button type="button" class="svc-copy-link" data-copy-service="monthly-1">🔗 このプランの支払いリンクをコピー</button>
       </div>
       <div class="svc-card reveal" id="svc-card-monthly-2">
         <div class="svc-name">月2回伴走プラン</div>
@@ -736,6 +742,7 @@
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">PayPalで予約する <span class="arr">→</span></button>
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">銀行振込で予約する</button>
         </div>
+        <button type="button" class="svc-copy-link" data-copy-service="monthly-2">🔗 このプランの支払いリンクをコピー</button>
       </div>
       <div class="svc-card reveal">
         <div class="svc-name">月4回伴走プラン</div>
@@ -1438,6 +1445,33 @@
 
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+
+  // 各料金カードの「支払いリンクをコピー」ボタン
+  document.querySelectorAll('.svc-copy-link').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var svcId = btn.getAttribute('data-copy-service');
+      var url = location.origin + '/?service=' + svcId + '#svc';
+      var original = btn.textContent;
+      function showCopied(){
+        btn.textContent = 'コピーしました';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(showCopied).catch(function(){
+          alert('コピーに失敗しました。お手数ですが、URLを手動でコピーしてください。');
+        });
+      } else {
+        alert('お使いのブラウザではコピー機能に対応していません。');
+      }
+      if(typeof gtag==='function'){
+        gtag('event','payment_link_copy',{'service_id': svcId});
+      }
+    });
+  });
 
   // 個別支払いリンク対応: ?service=xxx が付いている場合、該当カードへ自動スクロール+ハイライト
   (function(){
