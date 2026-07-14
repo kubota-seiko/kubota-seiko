@@ -379,6 +379,12 @@
   .resv-service-name{font-size:16px;font-weight:700;color:var(--ink);text-align:center;}
   .resv-service-price{font-family:"Inter",sans-serif;font-size:22px;font-weight:700;color:var(--gold);text-align:center;margin-top:4px;margin-bottom:24px;}
   .resv-heading{font-size:14px;font-weight:700;text-align:center;margin-bottom:18px;color:var(--ink);}
+  .resv-form-fields{margin-bottom:18px;text-align:left;}
+  .resv-label{display:block;font-size:12.5px;color:var(--sub);margin-bottom:6px;margin-top:14px;}
+  .resv-label:first-child{margin-top:0;}
+  .resv-required{color:#B23B3B;font-size:11px;margin-left:6px;}
+  .resv-input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box;}
+  .resv-input:focus{outline:none;border-color:var(--gold);}
   .resv-methods{display:flex;flex-direction:column;gap:12px;}
   .resv-method-btn{display:flex;align-items:flex-start;gap:12px;text-align:left;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;width:100%;}
   .resv-method-btn:hover{border-color:var(--gold);background:var(--soft);}
@@ -1276,6 +1282,12 @@
     <div class="resv-step" id="resvStepBank" style="display:none;">
       <p class="resv-service-name" id="resvName3"></p>
       <p class="resv-service-price" id="resvPrice3"></p>
+      <div class="resv-form-fields">
+        <label class="resv-label" for="resvBankName">お名前<span class="resv-required">必須</span></label>
+        <input type="text" id="resvBankName" class="resv-input" placeholder="山田 太郎" autocomplete="name">
+        <label class="resv-label" for="resvBankEmail">メールアドレス</label>
+        <input type="email" id="resvBankEmail" class="resv-input" placeholder="example@mail.com" autocomplete="email">
+      </div>
       <div class="resv-bank-box">
         <p><b>ゆうちょ銀行</b></p>
         <p>記号：14030</p>
@@ -1283,6 +1295,7 @@
         <p>口座名義：Eternal株式会社</p>
       </div>
       <p class="resv-note">上記口座へお振込みください。<br>お振込みが確認でき次第、LINEにて日程のご案内をいたします。</p>
+      <p class="resv-error" id="resvBankError" style="display:none;"></p>
       <button type="button" class="resv-confirm-btn" id="resvConfirmBank">この内容で予約する</button>
       <button type="button" class="resv-back" id="resvBackFromBank">← 支払い方法を選び直す</button>
     </div>
@@ -1321,6 +1334,9 @@
     document.getElementById('resvPrice2').textContent = '￥' + service.price;
     document.getElementById('resvName3').textContent = service.name;
     document.getElementById('resvPrice3').textContent = '￥' + service.price;
+    document.getElementById('resvBankName').value = '';
+    document.getElementById('resvBankEmail').value = '';
+    document.getElementById('resvBankError').style.display = 'none';
     showStep(stepSelect);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1391,7 +1407,7 @@
           return fetch('/api/paypal-capture-order', {
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({ orderID: data.orderID })
+            body: JSON.stringify({ orderID: data.orderID, serviceId: currentService.id })
           }).then(function(res){
             if(!res.ok) throw new Error('capture-failed');
             return res.json();
@@ -1418,11 +1434,45 @@
   });
 
   document.getElementById('resvConfirmBank').addEventListener('click', function(){
-    document.getElementById('resvDoneBody').textContent = currentService.name + '（￥' + currentService.price + '）のご予約を承りました。ゆうちょ銀行口座へお振込みください。お振込み確認後、LINEにて日程をご案内いたします。';
-    showStep(stepDone);
-    if(typeof gtag==='function'){
-      gtag('event','reservation_confirmed',{'service_id': currentService.id, 'method':'bank'});
+    var nameInput = document.getElementById('resvBankName');
+    var emailInput = document.getElementById('resvBankEmail');
+    var errBox = document.getElementById('resvBankError');
+    var btn = document.getElementById('resvConfirmBank');
+    var name = nameInput.value.trim();
+    var email = emailInput.value.trim();
+    errBox.style.display = 'none';
+    if(!name){
+      errBox.textContent = 'お名前をご入力ください。';
+      errBox.style.display = 'block';
+      return;
     }
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+    fetch('/api/reserve-bank', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ serviceId: currentService.id, name: name, email: email })
+    }).then(function(res){
+      return res.json().catch(function(){ return {}; }).then(function(data){ return { ok: res.ok, data: data }; });
+    }).then(function(result){
+      btn.disabled = false;
+      btn.textContent = 'この内容で予約する';
+      if(!result.ok){
+        errBox.textContent = '送信に失敗しました。お手数ですが、時間をおいて再度お試しいただくか、LINEにてご連絡ください。';
+        errBox.style.display = 'block';
+        return;
+      }
+      document.getElementById('resvDoneBody').textContent = currentService.name + '（￥' + currentService.price + '）のご予約を承りました。ゆうちょ銀行口座へお振込みください。お振込み確認後、LINEにて日程をご案内いたします。';
+      showStep(stepDone);
+      if(typeof gtag==='function'){
+        gtag('event','reservation_confirmed',{'service_id': currentService.id, 'method':'bank'});
+      }
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'この内容で予約する';
+      errBox.textContent = '通信エラーが発生しました。お手数ですが、時間をおいて再度お試しください。';
+      errBox.style.display = 'block';
+    });
   });
 })();
 </script>
