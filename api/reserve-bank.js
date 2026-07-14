@@ -3,6 +3,8 @@
 // Misoca連携(任意): MISOCA_CLIENT_ID / MISOCA_CLIENT_SECRET / MISOCA_REFRESH_TOKEN が
 // 設定されている場合のみ、Misoca上へ請求書(未入金)を自動作成します。
 // Misoca側が未設定・エラーの場合でも、予約自体は成功として扱います(顧客対応をブロックしない)。
+// 重要: レスポンスを返した後の処理はVercel側で実行が保証されないため、
+// Misoca連携は必ずレスポンスを返す前にawaitで完了させること。
 
 const MISOCA_API_BASE = 'https://app.misoca.jp/api/v3';
 const MISOCA_OAUTH_BASE = 'https://app.misoca.jp/oauth2';
@@ -80,6 +82,20 @@ async function createMisocaInvoice(accessToken, contactId, itemName, amount) {
   return res.json();
 }
 
+async function syncToMisoca(service, name, email) {
+  try {
+    const misocaToken = await getMisocaAccessToken();
+    if (!misocaToken) return 'skipped-not-configured';
+    const contact = await createMisocaContact(misocaToken, name, email);
+    await createMisocaInvoice(misocaToken, contact.id, service.name, service.amount);
+    console.log('[misoca] unpaid invoice created for', name);
+    return 'created';
+  } catch (err) {
+    console.error('[misoca] reserve-bank sync failed:', err.message || err);
+    return 'failed';
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'method not allowed' });
@@ -99,19 +115,9 @@ module.exports = async (req, res) => {
       res.status(400).json({ error: 'name required' });
       return;
     }
-    // まず予約受付は成功として返す(Misoca連携が原因で予約自体が失敗しないように)
-    res.status(200).json({ ok: true });
-
-    // レスポンス送信後にMisoca連携を試みる
-    try {
-      const misocaToken = await getMisocaAccessToken();
-      if (!misocaToken) return;
-      const contact = await createMisocaContact(misocaToken, name, email);
-      await createMisocaInvoice(misocaToken, contact.id, service.name, service.amount);
-      console.log('[misoca] unpaid invoice created for', serviceId, name);
-    } catch (err) {
-      console.error('[misoca] reserve-bank sync failed:', err.message || err);
-    }
+    // Misoca連携はレスポンスを返す前に完了させる(Vercelは応答後の処理継続を保証しないため)
+    const misocaStatus = await syncToMisoca(service, name, email);
+    res.status(200).json({ ok: true, misoca: misocaStatus });
   } catch (err) {
     console.error(err);
     if (!res.headersSent) {

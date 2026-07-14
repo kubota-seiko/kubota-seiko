@@ -3,6 +3,8 @@
 // Misoca連携(任意): MISOCA_CLIENT_ID / MISOCA_CLIENT_SECRET / MISOCA_REFRESH_TOKEN が
 // 設定されている場合のみ、決済完了後にMisoca上へ請求書(支払い済み)を自動作成します。
 // Misoca側が未設定・エラーの場合でも、決済自体の成功レスポンスには影響しません。
+// 重要: レスポンスを返した後の処理はVercel側で実行が保証されないため、
+// Misoca連携は必ずレスポンスを返す前にawaitで完了させること。
 
 const PAYPAL_API_BASE = process.env.PAYPAL_API_BASE || 'https://api-m.sandbox.paypal.com';
 const MISOCA_API_BASE = 'https://app.misoca.jp/api/v3';
@@ -114,16 +116,18 @@ async function createMisocaInvoice(accessToken, contactId, itemName, amount, mar
 
 async function syncToMisoca(serviceId, payerName, payerEmail) {
   const service = SERVICES[serviceId];
-  if (!service) return;
+  if (!service) return 'skipped-unknown-service';
   try {
     const misocaToken = await getMisocaAccessToken();
-    if (!misocaToken) return; // 未設定なら何もしない
+    if (!misocaToken) return 'skipped-not-configured';
     const contact = await createMisocaContact(misocaToken, payerName, payerEmail);
     await createMisocaInvoice(misocaToken, contact.id, service.name, service.amount, true);
-    console.log('[misoca] invoice created for', serviceId, payerName);
+    console.log('[misoca] paid invoice created for', serviceId, payerName);
+    return 'created';
   } catch (err) {
     // Misoca連携の失敗は決済結果に影響させない(ログのみ)
     console.error('[misoca] sync failed:', err.message || err);
+    return 'failed';
   }
 }
 
@@ -155,19 +159,22 @@ module.exports = async (req, res) => {
       return;
     }
     const captureData = await captureRes.json();
-    res.status(200).json({ status: captureData.status, id: captureData.id });
 
-    // レスポンス送信後にMisoca連携を実行(顧客の待ち時間に影響させない)
+    // Misoca連携はレスポンスを返す前に完了させる(Vercelは応答後の処理継続を保証しないため)
+    let misocaStatus = 'skipped-no-service';
     try {
       const payer = captureData.payer || {};
       const payerName = [payer.name && payer.name.surname, payer.name && payer.name.given_name].filter(Boolean).join(' ') || (payer.email_address || '');
       const payerEmail = payer.email_address || '';
       if (serviceId) {
-        await syncToMisoca(serviceId, payerName, payerEmail);
+        misocaStatus = await syncToMisoca(serviceId, payerName, payerEmail);
       }
     } catch (err) {
       console.error('[misoca] post-capture sync error:', err.message || err);
+      misocaStatus = 'failed';
     }
+
+    res.status(200).json({ status: captureData.status, id: captureData.id, misoca: misocaStatus });
   } catch (err) {
     console.error(err);
     if (!res.headersSent) {
