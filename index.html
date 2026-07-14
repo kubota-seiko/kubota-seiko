@@ -370,6 +370,8 @@
   .svc-resv-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.16);}
   .svc-resv-btn-group{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
   .svc-resv-btn-group .svc-resv-btn{margin-top:0;}
+  .svc-card-highlight{animation:svcCardPulse 1.8s ease-out 2;box-shadow:0 0 0 3px var(--gold) !important;}
+  @keyframes svcCardPulse{0%{box-shadow:0 0 0 3px var(--gold);}50%{box-shadow:0 0 0 7px rgba(184,146,79,.25);}100%{box-shadow:0 0 0 3px var(--gold);}}
   .svc-resv-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--ink);padding:13px 22px;border-radius:2px;font-size:14px;font-weight:500;border:1px solid var(--line);cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;width:100%;}
   .svc-resv-btn-outline:hover{border-color:var(--ink);background:var(--soft);}
   .svc-consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--ink) !important;border:1px solid var(--ink);padding:13px 22px;border-radius:2px;font-size:14px;font-weight:500;margin-top:12px;width:100%;transition:background .2s,color .2s;text-decoration:none;}
@@ -500,7 +502,7 @@
     <nav class="nav-links">
       <a href="#stats">実績</a>
       <a href="#pain">チェック</a>
-      <a href="#svc">サービス</a>
+      <a href="#svc">料金</a>
       <a href="#prof">プロフィール</a>
       <a href="story/">ストーリー</a>
       <a href="#voice">事例</a>
@@ -689,7 +691,7 @@
         <p class="svc-desc" style="margin-top:14px;"><small style="color:var(--sub);">※初めての方限定です。過去にご相談・セッションを受けたことがある方は、初回スポット相談または通常スポット相談をご利用ください<br>※具体的な解決、文章作成、手順作成、AI設定、詳細な進化設計までは行いません</small></p>
         <a href="https://lin.ee/Qr9byp1" class="hero-cta line-cta" style="margin-top:16px;padding:14px 22px;font-size:14px;width:100%;justify-content:center;" target="_blank" rel="noopener">30分無料診断を申し込む <span class="arr">→</span></a>
       </div>
-      <div class="svc-card reveal">
+      <div class="svc-card reveal" id="svc-card-first-spot">
         <div class="svc-name">初回スポット相談</div>
         <div class="svc-price"><span class="yen">¥</span>5,500<small>/約60分(税込)</small></div>
         <p class="svc-desc">窪田成功の有料セッションを、初めて受ける方向け。<br>一つの相談テーマを実際に整理し、次に何をするかを具体的に決めます。必要に応じて、文章のたたき台、AIへの質問や指示、簡単な手順、スタッフへの共有文、次の行動リストなどを一緒に作ります。</p>
@@ -699,7 +701,7 @@
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="first-spot" data-name="初回スポット相談" data-price="5,500">銀行振込で予約する</button>
         </div>
       </div>
-      <div class="svc-card reveal">
+      <div class="svc-card reveal" id="svc-card-regular-spot">
         <div class="svc-name">通常スポット相談<br><small style="display:block;font-weight:600;color:var(--gold);font-size:12px;margin-top:4px;letter-spacing:.02em;">— 進化の設計セッション —</small></div>
         <div class="svc-price"><span class="yen">¥</span>16,500<small>/約60分(税込)</small></div>
         <p class="svc-desc">過去に窪田成功のセッションを受けたことがあり、単発で相談したい方向け。<br>やりたいこと、違和感、現在地を整理し、自分に合う次の一手を設計します。</p>
@@ -717,7 +719,7 @@
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="regular-spot" data-name="通常スポット相談" data-price="16,500">銀行振込で予約する</button>
         </div>
       </div>
-      <div class="svc-card feat reveal">
+      <div class="svc-card feat reveal" id="svc-card-monthly-1">
         <div class="svc-name">月1回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月(税込)</small></div>
         <p class="svc-desc">毎月一度、頭の中と進捗を整理し、次の一手を決めたい方向け。<br>約90分×1回のセッションに加え、簡易LINE相談付き。その月の優先順位、行動内容、必要に応じた文章や手順が残ります。</p>
@@ -726,7 +728,7 @@
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="monthly-1" data-name="月1回伴走プラン" data-price="33,000">銀行振込で予約する</button>
         </div>
       </div>
-      <div class="svc-card reveal">
+      <div class="svc-card reveal" id="svc-card-monthly-2">
         <div class="svc-name">月2回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月(税込)</small></div>
         <p class="svc-desc">実行と振り返りを月内で回し、改善まで進めたい方向け。<br>約90分×2回のセッションに加え、簡易LINE相談付き。1回目で課題と行動を整理し、2回目で進捗確認、改善、軌道修正まで伴走します。</p>
@@ -1436,6 +1438,29 @@
 
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+
+  // 個別支払いリンク対応: ?service=xxx が付いている場合、該当カードへ自動スクロール+ハイライト
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var targetService = params.get('service');
+    var validIds = ['first-spot','regular-spot','monthly-1','monthly-2'];
+    if(!targetService || validIds.indexOf(targetService) === -1) return;
+    var card = document.getElementById('svc-card-' + targetService);
+    if(!card) return;
+    function doScrollToCard(){
+      card.scrollIntoView({behavior:'auto', block:'center'});
+      card.classList.add('svc-card-highlight');
+      setTimeout(function(){ card.classList.remove('svc-card-highlight'); }, 4000);
+      if(typeof gtag==='function'){
+        gtag('event','payment_link_open',{'service_id': targetService});
+      }
+    }
+    if(document.readyState === 'complete'){
+      setTimeout(doScrollToCard, 300);
+    } else {
+      window.addEventListener('load', function(){ setTimeout(doScrollToCard, 300); });
+    }
+  })();
 
   document.getElementById('resvBackFromPaypal').addEventListener('click', closeModal);
 
