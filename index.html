@@ -274,6 +274,16 @@
   .case-categories .cat-desc{font-size:12.5px;color:var(--sub);line-height:1.7;}
   .case-topics{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:760px;margin:24px auto 0;}
   @media(max-width:640px){.case-categories,.case-topics{grid-template-columns:1fr;}}
+  .case-artifact{margin-top:36px;padding-top:32px;border-top:1px solid var(--line);}
+  .artifact-sample{max-width:420px;margin:20px auto 0;}
+  .artifact-sample img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.06);display:block;}
+  .artifact-caption{text-align:center;margin-top:12px;font-size:12.5px;color:var(--sub);line-height:1.8;}
+  .artifact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:820px;margin:28px auto 0;}
+  .artifact-item{background:var(--soft);border-radius:10px;padding:16px 12px;text-align:center;font-size:13px;color:var(--ink);}
+  .artifact-item.ready{background:#FBF3E3;border:1px solid #E4D3AC;font-weight:600;}
+  .artifact-item .ai-icon{font-size:20px;display:block;margin-bottom:6px;}
+  .artifact-item .ai-status{display:block;margin-top:4px;font-size:11px;color:var(--sub);font-weight:400;}
+  @media(max-width:640px){.artifact-grid{grid-template-columns:1fr 1fr;}}
   .vision-card{max-width:640px;margin:32px auto 0;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:left;}
   .vision-card-label{font-size:12px;letter-spacing:.1em;color:#7C9169;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
   .vision-card p{font-size:14px;color:var(--ink);line-height:1.9;margin-bottom:12px;}
@@ -871,6 +881,27 @@
       <div class="case-voice">
         <p class="case-voice-label">お客様の声</p>
         <p class="case-voice-body">「人に相談するほどでもないと思える小さなストレスが、解消されずに慢性化していました。どんな小さなことでもいいと言ってもらえたので、安心して相談できました。もし相談していなかったら、いつもと変わらず、ストレス過多な日々だったと思います。」<br><span style="font-size:13px;color:var(--sub);">— I様(飲食店店主)</span></p>
+      </div>
+      <div class="case-artifact">
+        <div style="text-align:center;">
+          <p class="case-voice-label">実際に作成した成果物(一例)</p>
+          <p style="margin-top:8px;font-size:14px;color:var(--sub);">相談して終わりではありません。<br>現場で使える「仕組み」として残します。</p>
+        </div>
+        <div class="artifact-sample">
+          <a href="images/case-sample-shinjin-checklist.jpg" target="_blank" rel="noopener">
+            <img src="images/case-sample-shinjin-checklist.jpg" alt="新人育成チェックシートのサンプル" loading="lazy">
+          </a>
+          <p class="artifact-caption">営業用サンプル:新人育成チェックシート<br>※実際の事例をもとに匿名化したサンプルです。実際には業種・会社に合わせてオーダーメイドで設計します。</p>
+        </div>
+        <div class="artifact-grid">
+          <div class="artifact-item ready"><span class="ai-icon">📝</span>新人育成チェックシート</div>
+          <div class="artifact-item"><span class="ai-icon">📋</span>業務マニュアル<span class="ai-status">準備中</span></div>
+          <div class="artifact-item"><span class="ai-icon">💬</span>LINE返信テンプレート<span class="ai-status">準備中</span></div>
+          <div class="artifact-item"><span class="ai-icon">🤖</span>AI活用テンプレート<span class="ai-status">準備中</span></div>
+          <div class="artifact-item"><span class="ai-icon">📁</span>Google Drive運用ルール<span class="ai-status">準備中</span></div>
+          <div class="artifact-item"><span class="ai-icon">📈</span>利益改善チェックシート<span class="ai-status">準備中</span></div>
+        </div>
+        <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--ink);line-height:1.9;">必要なのは、テンプレートではありません。<br>あなたのお店・会社に合わせた「次から迷わない仕組み」です。</p>
       </div>
     </div>
     <div class="reveal center-block" style="margin-top:56px;">
