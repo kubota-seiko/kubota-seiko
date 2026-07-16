@@ -492,7 +492,16 @@
   /* responsive */
   @media(max-width:900px){
     :root{--gap:100px;}
-    .nav-links{display:none;}
+    .nav-links{
+      display:none;position:absolute;top:72px;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:4px;
+      background:#fff;border-bottom:1px solid var(--line);
+      padding:14px 28px 20px;box-shadow:0 16px 28px rgba(0,0,0,.08);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{width:100%;padding:10px 0;font-size:15px;border-bottom:1px solid var(--line);}
+    .nav-links a:last-child{border-bottom:0;}
+    .nav-links .nav-cta{margin-top:8px;text-align:center;}
     .menu-btn{display:block;}
     .hero{padding-top:118px;}
     .hero-grid{grid-template-columns:1fr;gap:40px;}
@@ -1206,9 +1215,13 @@
     nav.classList.toggle('scrolled',window.scrollY>10);
   });
 
-  // mobile menu -> jump to contact (simple)
+  // mobile menu toggle
+  var navLinks = document.querySelector('.nav-links');
   document.getElementById('menuBtn').addEventListener('click',function(){
-    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
   });
 
   // copy page link for the "share with someone" prompt
