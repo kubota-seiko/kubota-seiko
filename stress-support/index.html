@@ -91,18 +91,19 @@
 
   /* pain cards (index.htmlと共通) */
   .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:40px;}
-  .pain-card{border:1px solid var(--line);border-radius:4px;padding:26px 26px;display:flex;gap:16px;align-items:flex-start;transition:border-color .25s,transform .25s;}
-  .pain-card:hover{border-color:var(--ink);transform:translateY(-3px);}
-  .pain-card .chk{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:14px;}
+  .pain-card{border:1px solid var(--line);border-radius:16px;padding:26px 26px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s,transform .2s,box-shadow .2s;}
+  .pain-card:hover{border-color:#D8E3D0;transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06);}
+  .pain-card .chk{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#EAF0E2;display:flex;align-items:center;justify-content:center;color:#7C9169;font-weight:700;font-size:14px;}
   .pain-card p{font-size:15px;font-weight:500;}
 
   /* table */
-  table.dtable{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px;}
-  table.dtable th,table.dtable td{border:1px solid var(--line);padding:14px 16px;text-align:left;vertical-align:top;}
-  table.dtable th{background:var(--soft);font-weight:700;width:34%;}
+  table.dtable{width:100%;border-collapse:separate;border-spacing:0;margin-top:32px;font-size:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  table.dtable th,table.dtable td{border-bottom:1px solid var(--line);padding:14px 16px;text-align:left;vertical-align:top;}
+  table.dtable tr:last-child th,table.dtable tr:last-child td{border-bottom:none;}
+  table.dtable th{background:#EAF0E2;color:#3F4F38;font-weight:700;width:34%;}
 
   /* box */
-  .box{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:30px 32px;margin-top:32px;}
+  .box{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin-top:32px;}
   .box h3{font-size:15px;margin-bottom:14px;}
   .box h3.no-top{margin-top:0;}
   .box ul{padding-left:1.2em;margin-bottom:8px;}
@@ -131,6 +132,9 @@
     .pain-grid{grid-template-columns:1fr;}
     .box-cols{grid-template-columns:1fr;}
     .nav-right a:not(.nav-cta){display:none;}
+  }
+  @media(max-width:420px){
+    .brand span{display:none;}
   }
 </style>
 </head>
@@ -326,6 +330,7 @@
 <footer>
   <div class="wrap">
     <p>窪田 成功 ／ 感覚を仕組みにする参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../sanbo/">感覚を仕組みにする参謀</a>　｜　<a href="../cases.html">事例</a></p>
+    <p style="margin-top:8px;"><a href="https://tally.so/r/MeqZL0" target="_blank" rel="noopener">ホームページへのご意見・ご感想はこちら</a></p>
   </div>
 </footer>
 
