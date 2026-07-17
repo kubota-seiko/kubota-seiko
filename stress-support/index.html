@@ -125,6 +125,12 @@
   footer a{color:var(--sub);text-decoration:underline;}
   .feedback-btn{display:inline-block;margin-top:14px;padding:8px 20px;border:1px solid var(--gold);border-radius:2px;color:var(--gold) !important;font-size:13px;font-weight:500;text-decoration:none !important;transition:background .2s,color .2s;}
   .feedback-btn:hover{background:var(--gold);color:#fff !important;}
+  .share-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .cta-outline{font-family:inherit;font-size:15px;font-weight:500;padding:15px 30px;border-radius:2px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s;}
+  .cta-outline:hover{background:var(--ink);color:#fff;}
+  .cta-outline.copied{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .cta-fill{font-family:inherit;font-size:15px;font-weight:500;padding:16px 32px;border-radius:2px;border:none;background:var(--ink);color:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s;}
+  .cta-fill:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -330,6 +336,17 @@
   </div>
 </section>
 
+<!-- SHARE -->
+<section style="background:var(--soft);">
+  <div class="wrap reveal" style="text-align:center;max-width:640px;margin:0 auto;">
+    <p style="color:var(--sub);font-size:16px;line-height:1.9;margin:0;">もし「これ、あの人にも役立ちそうだな」と思う方がいたら、<br>このページを送っていただけると嬉しいです。</p>
+    <div class="share-actions">
+      <button type="button" class="cta-fill" id="shareBtn">共有する</button>
+      <button type="button" class="cta-outline" id="copyBtn">リンクをコピー</button>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p>窪田 成功 ／ 感覚を仕組みにする参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../sanbo/">感覚を仕組みにする参謀</a>　｜　<a href="../cases.html">事例</a></p>
@@ -353,6 +370,35 @@
       }
     });
   });
+
+  var shareBtn = document.getElementById('shareBtn');
+  var copyBtn = document.getElementById('copyBtn');
+  function copyPageLink(){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      var original = copyBtn.textContent;
+      copyBtn.textContent = 'コピーしました';
+      copyBtn.classList.add('copied');
+      setTimeout(function(){
+        copyBtn.textContent = original;
+        copyBtn.classList.remove('copied');
+      }, 1800);
+    }).catch(function(){
+      alert('コピーに失敗しました。お手数ですが、URLを手動でコピーしてください。');
+    });
+  }
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      var shareData = { title: document.title, url: window.location.href };
+      if(navigator.share){
+        navigator.share(shareData).catch(function(){});
+      } else {
+        copyPageLink();
+      }
+    });
+  }
+  if(copyBtn){
+    copyBtn.addEventListener('click', copyPageLink);
+  }
 </script>
 <!-- LINE公式アカウント開設後、下記URLを友だち追加URLに差し替えてください -->
 <a href="https://lin.ee/Qr9byp1" class="line-fab line-cta" target="_blank" rel="noopener">LINEで相談する →</a>
