@@ -70,23 +70,24 @@
   .nav-right a:hover{color:var(--ink);}
   .nav-cta{background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:2px;font-size:13px;}
 
-  .shero{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:720px;padding:0;overflow:hidden;}
+  .shero{position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:stretch;min-height:720px;padding:0;overflow:hidden;}
   .shero-copy{padding:150px 56px 60px 28px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
-  .shero-copy h1{font-size:clamp(26px,3.4vw,40px);letter-spacing:.02em;}
-  .shero-copy .lead{max-width:520px;margin-top:22px;font-size:16px;color:var(--ink);}
+  .shero-copy h1{font-size:clamp(30px,4.4vw,50px);letter-spacing:.02em;font-weight:800;line-height:1.35;}
+  .shero-copy .lead{max-width:540px;margin-top:24px;font-size:16.5px;line-height:1.9;color:var(--ink);}
   .badge-monitor{display:inline-block;background:var(--soft);border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:18px;}
   .shero-visual{position:relative;overflow:hidden;background:#eee;min-height:320px;}
-  .shero-visual iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:none;opacity:1;transition:opacity .7s ease;}
+  .shero-visual iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:none;opacity:1;transition:opacity .7s ease;filter:brightness(.82) saturate(.8) blur(1px);}
+  .shero-visual::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.22);z-index:1;pointer-events:none;}
   .hero-bg-controls{position:absolute;left:16px;right:16px;bottom:16px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;}
   .hero-bg-controls .hbc-label{font-size:11px;letter-spacing:.05em;color:var(--gold);background:rgba(255,255,255,.95);border:1px solid var(--gold);padding:5px 12px;border-radius:999px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;text-align:center;}
   .hero-bg-controls .hbc-label a{color:var(--ink);text-decoration:underline;}
   .hero-bg-controls .hs-dots{display:flex;gap:6px;}
   .hero-bg-controls .hs-dots button{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);border:none;padding:0;cursor:pointer;}
   .hero-bg-controls .hs-dots button.active{background:var(--gold);}
-  @media(max-width:900px){.shero{display:block;min-height:auto;}.shero-copy{padding:130px 28px 40px;}.shero-visual{height:340px;min-height:0;}}
-  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
-  .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
-  .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
+  @media(max-width:900px){.shero{display:block;min-height:auto;grid-template-columns:none;}.shero-copy{padding:130px 28px 40px;}.shero-visual{height:340px;min-height:0;}}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:19px 38px;border-radius:2px;font-size:16.5px;font-weight:700;letter-spacing:.02em;box-shadow:0 10px 24px rgba(0,0,0,.14);transition:transform .25s,box-shadow .25s;margin-top:30px;}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.2);}
+  .cta-secondary{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--sub);text-decoration:underline;opacity:.85;}
   .shero .cta-secondary,.shero .note{text-shadow:0 1px 3px rgba(255,255,255,.85);}
   /* LINE CTA (URLはプレースホルダー。LINE公式アカウント開設後に一括置換してください) */
   .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
@@ -185,7 +186,7 @@
     <iframe id="hsFrame" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/" loading="lazy" title="ダリさんのLP事例スライドショー" tabindex="-1"></iframe>
     <div class="hero-bg-controls">
       <div class="hbc-label">
-        <span>モニター制作事例:</span>
+        <span>対話とAIで形にした一例:</span>
         <span id="hsCaption">Okaeri（Dari）トップページ</span>
         <a id="hsLink" href="https://bold-salad-1d95.co-eternal-0358.workers.dev/" target="_blank" rel="noopener">別タブで開く →</a>
       </div>
