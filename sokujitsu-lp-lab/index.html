@@ -70,20 +70,21 @@
   .nav-right a:hover{color:var(--ink);}
   .nav-cta{background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:2px;font-size:13px;}
 
-  .shero{padding:150px 0 40px;}
+  .shero{position:relative;overflow:hidden;padding:150px 0 70px;min-height:660px;display:flex;align-items:center;}
   .shero h1{font-size:clamp(26px,5vw,42px);letter-spacing:.03em;max-width:760px;}
   .shero .lead{max-width:640px;margin-top:22px;font-size:16px;color:var(--ink);}
   .badge-monitor{display:inline-block;background:var(--soft);border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:18px;}
-  .hero-slideshow{margin-top:32px;max-width:640px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;}
-  .hero-slideshow .hs-label{padding:10px 16px;font-size:12px;letter-spacing:.06em;color:var(--gold);font-weight:700;background:var(--soft);border-bottom:1px solid var(--line);}
-  .hero-slideshow .hs-frame-wrap{position:relative;width:100%;height:320px;background:#fff;}
-  .hero-slideshow .hs-frame-wrap iframe{width:100%;height:100%;border:none;display:block;}
-  .hero-slideshow .hs-caption{padding:12px 16px;font-size:13px;color:var(--sub);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
-  .hero-slideshow .hs-caption a{color:var(--ink);text-decoration:underline;white-space:nowrap;}
-  .hero-slideshow .hs-dots{display:flex;gap:6px;justify-content:center;padding:10px 16px;}
-  .hero-slideshow .hs-dots button{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;padding:0;cursor:pointer;}
-  .hero-slideshow .hs-dots button.active{background:var(--gold);}
-  @media(max-width:700px){.hero-slideshow .hs-frame-wrap{height:220px;}}
+  .hero-bg-slideshow{position:absolute;inset:0;z-index:0;}
+  .hero-bg-slideshow iframe{width:100%;height:100%;border:none;display:block;pointer-events:none;}
+  .hero-bg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.87) 55%,rgba(255,255,255,.95) 100%);pointer-events:none;}
+  .shero > .wrap{position:relative;z-index:2;}
+  .hero-bg-controls{position:absolute;left:0;right:0;bottom:20px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .hero-bg-controls .hbc-label{font-size:11px;letter-spacing:.05em;color:var(--gold);background:rgba(255,255,255,.92);border:1px solid var(--gold);padding:5px 14px;border-radius:999px;display:flex;align-items:center;gap:8px;}
+  .hero-bg-controls .hbc-label a{color:var(--ink);text-decoration:underline;}
+  .hero-bg-controls .hs-dots{display:flex;gap:6px;}
+  .hero-bg-controls .hs-dots button{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;padding:0;cursor:pointer;}
+  .hero-bg-controls .hs-dots button.active{background:var(--gold);}
+  @media(max-width:700px){.shero{min-height:560px;padding:130px 0 60px;}.hero-bg-controls .hbc-label{font-size:10px;padding:4px 10px;flex-wrap:wrap;justify-content:center;text-align:center;}}
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
@@ -171,6 +172,10 @@
 
 <!-- HERO -->
 <section class="shero">
+  <div class="hero-bg-slideshow" aria-hidden="true">
+    <iframe id="hsFrame" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/" loading="lazy" title="ダリさんのLP事例スライドショー(背景)" tabindex="-1"></iframe>
+  </div>
+  <div class="hero-bg-overlay"></div>
   <div class="wrap reveal">
     <p class="eyebrow">即日LPラボ [思考整理の参謀 スピード版]</p>
     <span class="badge-monitor">モニター募集中</span>
@@ -179,18 +184,14 @@
     <a href="https://lin.ee/Qr9byp1" class="cta line-cta" target="_blank" rel="noopener">モニターに申し込む →</a><br>
     <a href="https://lin.ee/Qr9byp1" class="cta-secondary line-cta" target="_blank" rel="noopener">まず無料相談する →</a>
     <p class="note">※クリックするとLINEでの無料相談に進みます。</p>
-
-    <div class="hero-slideshow reveal">
-      <div class="hs-label">モニター制作事例 — ダリさんのLPを実際に埋め込み表示</div>
-      <div class="hs-frame-wrap">
-        <iframe id="hsFrame" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/" loading="lazy" title="ダリさんのLP事例スライドショー"></iframe>
-      </div>
-      <div class="hs-caption">
-        <span id="hsCaption">Okaeri（Dari）トップページ</span>
-        <a id="hsLink" href="https://bold-salad-1d95.co-eternal-0358.workers.dev/" target="_blank" rel="noopener">別タブで開く →</a>
-      </div>
-      <div class="hs-dots" id="hsDots"></div>
+  </div>
+  <div class="hero-bg-controls">
+    <div class="hbc-label">
+      <span>モニター制作事例:</span>
+      <span id="hsCaption">Okaeri（Dari）トップページ</span>
+      <a id="hsLink" href="https://bold-salad-1d95.co-eternal-0358.workers.dev/" target="_blank" rel="noopener">別タブで開く →</a>
     </div>
+    <div class="hs-dots" id="hsDots"></div>
   </div>
 </section>
 
