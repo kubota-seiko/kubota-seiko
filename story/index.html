@@ -76,17 +76,20 @@
   /* トップページ由来のコンテンツ用クラス(index.htmlのデザインを踏襲) */
   .small-word{font-size:0.62em;font-weight:inherit;letter-spacing:0;}
   .vision-card{max-width:640px;margin:32px auto 0;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:left;}
+  @media(max-width:700px){.vision-card{margin-left:28px;margin-right:28px;}}
   .vision-card-label{font-size:12px;letter-spacing:.1em;color:#7C9169;font-weight:700;margin-bottom:14px;text-transform:uppercase;}
   .vision-card p{font-size:14px;color:var(--ink);line-height:1.9;margin-bottom:12px;}
   .vision-card p:last-child{margin-bottom:0;}
-  .story-body{max-width:700px;margin:16px auto 0;}
+  .story-body{max-width:756px;margin:16px auto 0;padding:0 28px;}
   .story-body p{font-size:17px;line-height:2.0;margin-bottom:32px;color:var(--ink);}
   .story-body p:last-child{margin-bottom:0;}
   .inline-subhead{font-size:15px;font-weight:700;color:var(--ink);margin:24px 0 10px;}
-  .story-quote{max-width:760px;margin:40px auto 0;font-size:clamp(20px,3.2vw,28px);font-weight:700;line-height:1.5;border-left:3px solid var(--gold);padding-left:24px;color:var(--accent);}
+  .story-quote{max-width:760px;margin:40px auto 0;font-size:clamp(20px,3.2vw,28px);font-weight:700;line-height:1.5;color:var(--accent);padding:0 28px;}
+  .story-quote .sq-in{display:block;border-left:3px solid var(--gold);padding-left:24px;}
   .story-quote small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:14px;letter-spacing:.04em;}
   .story-quote.sub{max-width:760px;margin:32px auto 0;font-size:clamp(16px,2.2vw,20px);font-weight:600;color:var(--ink);border-left-color:var(--sub);}
   .svc-essence{background:#fff;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:34px 38px;margin:48px auto 8px;max-width:700px;}
+  @media(max-width:760px){.svc-essence{margin-left:28px;margin-right:28px;}}
   .svc-essence .label{font-size:12px;letter-spacing:.15em;color:var(--gold);font-weight:700;margin-bottom:10px;}
   .svc-essence p{font-size:15px;line-height:1.9;color:var(--ink);}
   .principle-list{list-style:none;padding:0;margin:0;text-align:left;}
@@ -122,7 +125,7 @@
     <div class="nav-right">
       <a href="../">TOPへ戻る</a>
       <a href="../cases.html">事例</a>
-      <a href="https://tally.so/r/zxog7M" class="nav-cta line-cta" target="_blank" rel="noopener">小さなストレス診断をする(3分)</a>
+      <a href="/stress-check/" class="nav-cta line-cta">小さなストレス診断をする(3分)</a>
     </div>
   </div>
 </header>
@@ -188,8 +191,8 @@
     <p>私は先生になりたいわけではありません。答えを教える人ではなく、一緒に整理し、仕組みに変え、リーダーが自分で判断できる状態をつくる。だから「コンサルタント」ではなく、「参謀」という言葉を選んでいます。</p>
     <p>リーダーは、孤独です。けれど、一人で抱え続ける必要はありません。その孤独を少しずつほどき、想いを言葉と仕組みに変えていくこと。自分らしく輝き続ける未来を伴走すること。それが、私がこの仕事を続ける理由です。</p>
   </div>
-  <p class="story-quote sub reveal">「答えは外にあるのではなく、本人の中にある。私は、それを見つけやすくする仕組みを一緒につくる。」</p>
-  <p class="story-quote reveal">「リーダーも、メンバーも。想いを、孤独にさせない。」<small>― 窪田 成功</small></p>
+  <p class="story-quote sub reveal"><span class="sq-in">「答えは外にあるのではなく、本人の中にある。私は、それを見つけやすくする仕組みを一緒につくる。」</span></p>
+  <p class="story-quote reveal"><span class="sq-in">「リーダーも、メンバーも。想いを、孤独にさせない。」<small>― 窪田 成功</small></span></p>
 </section>
 
 <!-- BRAND STATEMENT -->
@@ -209,7 +212,7 @@
   <div class="wrap reveal" style="text-align:center;">
     <h2 class="sec-title">まずは、今どこで止まっているかを一緒に見つけます。</h2>
     <p class="sec-lead" style="margin:0 auto;">3分の小さなストレス診断から、今の状況を整理し、次に何を整えると進みやすいかを明確にしていきます。</p>
-    <a href="https://tally.so/r/zxog7M" class="cta line-cta" target="_blank" rel="noopener">小さなストレス診断をする(3分) →</a><br>
+    <a href="/stress-check/" class="cta line-cta">小さなストレス診断をする(3分) →</a><br>
     <a href="../" class="cta-secondary">TOPページへ戻る →</a>
   </div>
 </section>
@@ -228,7 +231,7 @@
 <footer>
   <div class="wrap">
     <p>窪田 成功 ／ 思考整理の参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../for-leaders/">小さなチームを持つリーダーへ</a>　｜　<a href="../cases.html">事例</a>　｜　<a href="../company/">会社概要</a>　｜　<a href="../tokushoho/">特定商取引法に基づく表記</a></p>
-    <p style="margin-top:14px;"><a href="https://tally.so/r/KYND97" target="_blank" rel="noopener" class="feedback-btn">ホームページへのご意見・ご感想はこちら</a>　<a href="/kaizen/" style="font-size:12.5px;text-decoration:underline;">いただいた声と改善報告</a></p>
+    <p style="margin-top:14px;"><a href="/feedback/" class="feedback-btn">ホームページへのご意見・ご感想はこちら</a>　<a href="/kaizen/" style="font-size:12.5px;text-decoration:underline;">いただいた声と改善報告</a></p>
   </div>
 </footer>
 
@@ -279,7 +282,7 @@
     copyBtn.addEventListener('click', copyLink);
   }
 </script>
-<a href="https://tally.so/r/zxog7M" class="line-fab line-cta" target="_blank" rel="noopener">小さなストレス診断をする(3分) →</a>
+<a href="/stress-check/" class="line-fab line-cta">小さなストレス診断をする(3分) →</a>
 
 </body>
 </html>

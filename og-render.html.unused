@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1200px;height:630px;overflow:hidden;}
+  body{
+    font-family:'Hiragino Kaku Gothic Pro','Noto Sans JP','Yu Gothic',system-ui,sans-serif;
+    background:#FFFFFF;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .icon-row{display:flex;gap:14px;margin-bottom:36px;}
+  .icon-row .dot{width:14px;height:14px;border-radius:50%;background:#EAF0E2;border:2px solid #C9C9C1;}
+  .icon-row .dot:nth-child(1){border-color:#C9C9C1;}
+  .icon-row .dot:nth-child(2){border-color:#BFBFB5;}
+  .icon-row .dot:nth-child(3){border-color:#A9C79A;}
+  .icon-row .dot:nth-child(4){border-color:#8FBE79;background:#EAF0E2;}
+  .icon-row .dot:nth-child(5){border-color:#7C9169;background:#EAF0E2;}
+  .headline{
+    font-size:56px;
+    font-weight:800;
+    color:#1A1A1A;
+    text-align:center;
+    line-height:1.45;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#EAF0E2;
+    color:#3F4F38;
+    padding:4px 26px;
+    border-radius:999px;
+  }
+  .pill-dot{width:12px;height:12px;border-radius:50%;background:#7C9169;display:inline-block;}
+  .sub{
+    margin-top:28px;
+    font-size:22px;
+    font-weight:500;
+    color:#666666;
+  }
+  .byline{
+    margin-top:44px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:18px;
+    font-weight:700;
+    color:#1A1A1A;
+  }
+  .byline .sep{color:#C9C9C1;font-weight:400;}
+  .byline .role{font-weight:500;color:#666666;font-size:16px;}
+</style>
+</head>
+<body>
+  <div class="icon-row">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+  <p class="headline">小さなストレスが、<br><span class="pill"><span class="pill-dot"></span>仕組み</span>に変わる。</p>
+  <p class="sub">PDF・AI・伝達のつまずきから、売上導線まで。</p>
+  <div class="byline">
+    <span>窪田成功</span><span class="sep">|</span><span class="role">感覚を仕組みにする参謀</span>
+  </div>
+</body>
+</html>
