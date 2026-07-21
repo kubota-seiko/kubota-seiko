@@ -9,8 +9,18 @@ module.exports = async (req, res) => {
   }
   try {
     const token = process.env.LINE_CHANNEL_ACCESS_TOKEN;
-    const to = process.env.LINE_NOTIFY_USER_ID;
-    if (!token || !to) {
+    // 宛先はクエリ ?to=kubota,itoi,dari で指定(省略時は窪田さんのみ)
+    const MAP = {
+      kubota: process.env.LINE_NOTIFY_USER_ID,
+      itoi: process.env.LINE_NOTIFY_USER_ID_ITOI,
+      dari: process.env.LINE_NOTIFY_USER_ID_DARI
+    };
+    const toParam = (req.query && req.query.to) || 'kubota';
+    const recipients = String(toParam)
+      .split(',')
+      .map((k) => MAP[k.trim()])
+      .filter(Boolean);
+    if (!token || recipients.length === 0) {
       res.status(500).json({ error: 'env not configured' });
       return;
     }
@@ -44,13 +54,13 @@ module.exports = async (req, res) => {
       '【' + formName + '】新しい送信がありました\n\n' + lines.join('\n\n')
     ).slice(0, 4900);
 
-    const lineRes = await fetch('https://api.line.me/v2/bot/message/push', {
+    const lineRes = await fetch('https://api.line.me/v2/bot/message/multicast', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token
       },
-      body: JSON.stringify({ to: to, messages: [{ type: 'text', text: text }] })
+      body: JSON.stringify({ to: recipients, messages: [{ type: 'text', text: text }] })
     });
 
     if (!lineRes.ok) {
