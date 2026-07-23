@@ -542,6 +542,12 @@
   .ba-cta-btn{display:inline-block;margin-top:20px;font-size:15px;font-weight:500;padding:14px 30px;border-radius:2px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background .2s,color .2s;}
   .ba-cta-btn:hover{background:var(--ink);color:#fff;}
   @media(max-width:760px){.ba-grid{grid-template-columns:1fr;max-width:460px;}}
+  .seat-badge{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:13px;font-weight:500;padding:5px 13px;border-radius:20px;background:var(--soft);}
+  .seat-dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto;}
+  .seat-green{color:#3B6D11;} .seat-green .seat-dot{background:#7C9169;}
+  .seat-amber{color:#8A6A00;} .seat-amber .seat-dot{background:#D9A22E;}
+  .seat-red{color:#A8443B;} .seat-red .seat-dot{background:#C0574B;}
+  .seat-full{color:var(--sub);} .seat-full .seat-dot{background:#B4B2A9;}
 </style>
 </head>
 <body>
@@ -789,6 +795,7 @@
       <div class="svc-card reveal" id="svc-card-regular-spot">
         <div class="svc-name">通常スポット相談<br><small style="display:block;font-weight:600;color:var(--gold);font-size:12px;margin-top:4px;letter-spacing:.02em;">— 進化の設計セッション —</small></div>
         <div class="svc-price"><span class="yen">¥</span>16,500<small>/約60分(税込)</small></div>
+        <p class="seat-badge seat-green"><span class="seat-dot"></span>残席4名</p>
         <p class="svc-desc">過去に窪田成功のセッションを受けたことがあり、単発で相談したい方向け。<br>やりたいこと、違和感、現在地を整理し、自分に合う次の一手を設計します。</p>
         <ul class="principle-list" style="margin-top:14px;">
           <li>現在地</li>
@@ -808,6 +815,7 @@
       <div class="svc-card feat reveal" id="svc-card-monthly-1">
         <div class="svc-name">月1回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>33,000<small>/月(税込)</small></div>
+        <p class="seat-badge seat-green"><span class="seat-dot"></span>残席4名</p>
         <p class="svc-desc">毎月一度、頭の中と進捗を整理し、次の一手を決めたい方向け。<br>約90分×1回のセッションに加え、簡易LINE相談付き。その月の優先順位、行動内容、必要に応じた文章や手順が残ります。</p>
         <div class="svc-resv-btn-group">
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="monthly-1" data-name="月1回伴走プラン" data-price="33,000">PayPalで予約する <span class="arr">→</span></button>
@@ -818,6 +826,7 @@
       <div class="svc-card reveal" id="svc-card-monthly-2">
         <div class="svc-name">月2回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月(税込)</small></div>
+        <p class="seat-badge seat-amber"><span class="seat-dot"></span>残席2名</p>
         <p class="svc-desc">実行と振り返りを月内で回し、改善まで進めたい方向け。<br>約90分×2回のセッションに加え、簡易LINE相談付き。1回目で課題と行動を整理し、2回目で進捗確認、改善、軌道修正まで伴走します。</p>
         <div class="svc-resv-btn-group">
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">PayPalで予約する <span class="arr">→</span></button>
@@ -860,7 +869,7 @@
       <p style="margin-top:16px;"><span class="small-word">小さな</span>ストレスを、その場限りの解決で終わらせず、次から迷わない形に変えていきます。</p>
     </div>
     <div class="hero-reassure reveal" style="max-width:640px;margin-top:24px;">
-      <p><b>受付枠と現在の価格について</b><br>月額伴走プランは、品質維持のため月3〜5名までとしています。現在の価格は今後見直す可能性がありますので、ご検討中の方はLINEで受付状況をご確認ください。</p>
+      <p><b>受付枠と現在の価格について</b><br>一人ひとりに十分な時間を確保するため、枠を限定しています。満席の場合はキャンセル待ちとなります。現在の価格は今後見直す可能性がありますので、ご検討中の方はLINEで受付状況をご確認ください。</p>
     </div>
   </div>
 </section>
