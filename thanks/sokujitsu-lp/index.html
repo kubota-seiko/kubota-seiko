@@ -19,20 +19,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{{--bg:#FFFFFF;--ink:#1A1A1A;--gold:#B8924F;--sub:#666666;--line:#ECECEC;--soft:#F7F7F8;}}
-  *{{margin:0;padding:0;box-sizing:border-box;}}
-  body{{font-family:"Noto Sans JP","Inter",sans-serif;color:var(--ink);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;}}
-  a{{color:inherit;}}
-  .wrap{{max-width:640px;margin:0 auto;padding:120px 28px 60px;text-align:center;}}
-  .check{{width:64px;height:64px;border-radius:50%;background:var(--soft);border:2px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 26px;}}
-  h1{{font-size:clamp(22px,4.5vw,28px);line-height:1.5;margin-bottom:16px;}}
-  p.lead{{color:var(--sub);font-size:15px;margin-bottom:12px;}}
-  .btns{{margin-top:34px;display:flex;flex-direction:column;gap:14px;align-items:center;}}
-  .btn{{display:inline-block;padding:15px 32px;border-radius:2px;font-size:15px;font-weight:500;}}
-  .btn-line{{background:#06C755;color:#fff;}}
-  .btn-out{{border:1.5px solid var(--line);color:var(--ink);}}
-  footer{{border-top:1px solid var(--line);padding:26px 0;text-align:center;font-size:12.5px;color:var(--sub);margin-top:40px;}}
-  footer a{{text-decoration:underline;}}
+  :root{--bg:#FFFFFF;--ink:#1A1A1A;--gold:#B8924F;--sub:#666666;--line:#ECECEC;--soft:#F7F7F8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Noto Sans JP","Inter",sans-serif;color:var(--ink);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:640px;margin:0 auto;padding:120px 28px 60px;text-align:center;}
+  .check{width:64px;height:64px;border-radius:50%;background:var(--soft);border:2px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 26px;}
+  h1{font-size:clamp(22px,4.5vw,28px);line-height:1.5;margin-bottom:16px;}
+  p.lead{color:var(--sub);font-size:15px;margin-bottom:12px;}
+  .btns{margin-top:34px;display:flex;flex-direction:column;gap:14px;align-items:center;}
+  .btn{display:inline-block;padding:15px 32px;border-radius:2px;font-size:15px;font-weight:500;}
+  .btn-line{background:#06C755;color:#fff;}
+  .btn-out{border:1.5px solid var(--line);color:var(--ink);}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;font-size:12.5px;color:var(--sub);margin-top:40px;}
+  footer a{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -49,21 +49,21 @@
 
 <script src="/js/track.js" defer></script>
 <script>
-(function(){{
-  function fire(){{
-    if(typeof window.ksTrack !== 'function'){{ setTimeout(fire, 120); return; }}
+(function(){
+  function fire(){
+    if(typeof window.ksTrack !== 'function'){ setTimeout(fire, 120); return; }
     var q = new URLSearchParams(window.location.search);
-    var params = {{
+    var params = {
       form_name: 'sokujitsu_lp_application',
       source_page: q.get('source_page') || '',
       button_position: q.get('button_position') || '',
       entry_intent: q.get('entry_intent') || ''
-    }};
+    };
     params.lead_type = 'sokujitsu_lp_application';
     window.ksTrack('generate_lead', params);
-  }}
+  }
   fire();
-}})();
+})();
 </script>
 </body>
 </html>
