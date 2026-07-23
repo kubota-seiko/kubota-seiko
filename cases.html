@@ -142,6 +142,15 @@
   .cta-outline.copied{background:var(--gold);border-color:var(--gold);color:#fff;}
   .cta-fill{font-family:inherit;font-size:15px;font-weight:500;padding:16px 32px;border-radius:2px;border:none;background:var(--ink);color:#fff;cursor:pointer;transition:transform .25s,box-shadow .25s;}
   .cta-fill:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
+  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:40px auto 0;}
+  .ba-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 22px;text-align:left;}
+  .ba-label{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fff;padding:4px 13px;border-radius:20px;margin-bottom:12px;}
+  .ba-label.before{background:#9B9B93;}
+  .ba-label.after{background:#7C9169;}
+  .ba-text{font-size:14.5px;line-height:1.85;color:var(--ink);}
+  .ba-before .ba-text{color:var(--sub);}
+  .ba-arrow{color:var(--gold);font-size:20px;line-height:1;text-align:center;margin:14px 0;}
+  @media(max-width:760px){.ba-grid{grid-template-columns:1fr;max-width:460px;}}
 </style>
 </head>
 <body>
@@ -225,6 +234,32 @@
       <p>感覚で続けてこられた飲食店が、対話を通じて「仕組み」へ。値上げや組織づくりまで、現実がどう動いたか——。ご本人への取材を経て、詳細を公開予定です。</p>
     </article>
 
+  </div>
+</section>
+
+<!-- ご相談イメージ 一覧(2026-07-23 追加。トップの3枚が溜まっていく先。匿名・一般化) -->
+<section id="soudan-cases">
+  <div class="wrap reveal" style="text-align:center;">
+    <p class="eyebrow">ご相談イメージ</p>
+    <h2>こんな状態から、ご相談いただいています。</h2>
+    <p style="color:var(--sub);font-size:15px;line-height:1.9;max-width:600px;margin:14px auto 0;">詳しい事例のほかにも、日々こんなご相談をいただいています。<br>まだうまく言葉にできない迷いや違和感でも大丈夫です。</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">やりたいことはあるものの、考えが頭の中に散らばっていて、何から始めればよいか分からない。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">話しながら考えを整理することで、優先順位が明確になり、最初に取り組む行動が決まった。</p></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">自分では考えているつもりでも、何度も同じところで迷い、なかなか決断できない。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">迷っている理由と言葉になっていなかった本音が整理され、自分で納得して判断できるようになった。</p></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">スタッフや周囲に伝えたいことはあるが、うまく説明できず、毎回自分で抱え込んでいる。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">頭の中にある考えを言語化し、共有できる文章や仕組みに落とし込める状態になった。</p></div>
+      </div>
+    </div>
   </div>
 </section>
 

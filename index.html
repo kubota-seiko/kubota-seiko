@@ -526,6 +526,22 @@
     .prof-grid{grid-template-columns:1fr;gap:36px;}
     .prof-photo{max-width:340px;aspect-ratio:1/1;min-height:0;}
   }
+
+  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:44px auto 0;}
+  .ba-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 22px;text-align:left;}
+  .ba-label{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fff;padding:4px 13px;border-radius:20px;margin-bottom:12px;}
+  .ba-label.before{background:#9B9B93;}
+  .ba-label.after{background:#7C9169;}
+  .ba-text{font-size:14.5px;line-height:1.85;color:var(--ink);}
+  .ba-before .ba-text{color:var(--sub);}
+  .ba-arrow{color:var(--gold);font-size:20px;line-height:1;text-align:center;margin:14px 0;}
+  .ba-more{text-align:center;margin-top:30px;}
+  .ba-more a{font-size:14px;color:var(--gold);text-decoration:underline;}
+  .ba-cta{max-width:600px;margin:40px auto 0;text-align:center;}
+  .ba-cta p{color:var(--sub);font-size:15px;line-height:1.9;}
+  .ba-cta-btn{display:inline-block;margin-top:20px;font-size:15px;font-weight:500;padding:14px 30px;border-radius:2px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background .2s,color .2s;}
+  .ba-cta-btn:hover{background:var(--ink);color:#fff;}
+  @media(max-width:760px){.ba-grid{grid-template-columns:1fr;max-width:460px;}}
 </style>
 </head>
 <body>
@@ -641,6 +657,39 @@
     <p style="margin-top:14px;"><b>そのうえで、今やること・今はやらないことを分け、自分に合う次の一手を明確にします。</b></p>
     <p style="margin-top:14px;">必要に応じて、その答えを文章、行動、AIへの指示、スタッフへの共有、手順や仕組みなど、仕事で使える形へ整えていきます。</p>
     <p style="margin-top:14px;">目指しているのは、誰かの正解に従うことではありません。<br>あなた自身が納得して判断し、自分に合う形で進み続けられる状態をつくることです。</p>
+  </div>
+</section>
+
+<!-- ご相談イメージ / Before-After(2026-07-23 追加。参謀とはの後、自己認識を促す。匿名・一般化した相談イメージ) -->
+<section id="cases-ba">
+  <div class="wrap">
+    <div class="reveal center-block">
+      <p class="eyebrow">ご相談イメージ</p>
+      <h2 class="sec-title">こんな状態から、<br>ご相談いただいています。</h2>
+      <p class="sec-lead" style="margin-top:14px;">大きな問題になる前の、まだうまく言葉にできない迷いや違和感でも大丈夫です。<br>対話を通じて、頭の中を整理し、次に進める状態をつくります。</p>
+    </div>
+    <div class="ba-grid reveal">
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">やりたいことはあるものの、考えが頭の中に散らばっていて、何から始めればよいか分からない。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">話しながら考えを整理することで、優先順位が明確になり、最初に取り組む行動が決まった。</p></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">自分では考えているつもりでも、何度も同じところで迷い、なかなか決断できない。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">迷っている理由と言葉になっていなかった本音が整理され、自分で納得して判断できるようになった。</p></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">スタッフや周囲に伝えたいことはあるが、うまく説明できず、毎回自分で抱え込んでいる。</p></div>
+        <div class="ba-arrow">↓</div>
+        <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">頭の中にある考えを言語化し、共有できる文章や仕組みに落とし込める状態になった。</p></div>
+      </div>
+    </div>
+    <div class="ba-more reveal"><a href="cases.html#soudan-cases">ご相談事例をもっと見る →</a></div>
+    <div class="ba-cta reveal">
+      <p>「自分の場合も相談してよいのか分からない」という段階でも大丈夫です。<br>今感じている<span class="small-word">小さな</span>迷いや違和感から、お聞かせください。</p>
+      <a class="ba-cta-btn" href="#svc">相談メニューを見る</a>
+    </div>
   </div>
 </section>
 
