@@ -475,7 +475,9 @@
 .works-tag{display:inline-block;font-size:11px;color:#3B6D11;background:#EAF3DE;border:1px solid #C0DD97;border-radius:20px;padding:1px 9px;margin:4px 0;}
 .works-tag.dev{color:#8A6A00;background:#FBF3DC;border-color:#EADFB8;}
 .site-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:4px;max-width:720px;}
-.site-frame{width:100%;height:260px;border:0;border-bottom:1px solid var(--line);display:block;}
+.site-frame{width:100%;height:300px;border:0;display:block;}
+.site-frame-wrap{position:relative;line-height:0;border-bottom:1px solid var(--line);}
+.site-frame-fade{position:absolute;left:0;right:0;bottom:0;height:64px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff);pointer-events:none;}
 .site-body{padding:20px 22px;}
 .site-scope{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-top:14px;}
 .site-scope .l{font-size:9.5px;font-weight:700;color:#5F5E5A;letter-spacing:.06em;}
@@ -524,7 +526,10 @@
     <div style="margin-top:36px;"><span class="works-cat s">⭐ 複数ページ・サイト構築事例</span></div>
     <p class="works-cat-desc">基本プランから発展し、トップページ＋上記3つのLPを束ねる、サービス全体の導線設計まで対応した事例です。</p>
     <div class="site-card">
-      <iframe class="site-frame" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/" loading="lazy" title="Okaeri（Dari）トップページ"></iframe>
+      <div class="site-frame-wrap">
+        <iframe class="site-frame" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/" loading="lazy" title="Okaeri（Dari）トップページ"></iframe>
+        <div class="site-frame-fade"></div>
+      </div>
       <div class="site-body">
         <p class="works-title">Okaeri（ダリさん）サービスサイト</p>
         <span class="works-tag dev">計4ページ・導線設計</span>
