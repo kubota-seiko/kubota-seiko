@@ -866,6 +866,8 @@
 </footer>
 
 <script>
+  if('scrollRestoration' in history){history.scrollRestoration='manual';}
+  (function(){var n=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0]);var r=(n&&n.type==='reload')||(performance.navigation&&performance.navigation.type===1);if(r){window.scrollTo(0,0);}})();
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.14});
