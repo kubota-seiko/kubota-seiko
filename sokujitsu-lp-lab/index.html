@@ -349,6 +349,117 @@
   </div>
 </section>
 
+<style>
+.scope-sec{background:var(--soft);}
+.scope-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:18px;max-width:760px;}
+.scope-chip{background:#FCFAF5;border:1px solid #EEE7D6;border-radius:8px;padding:10px;text-align:center;}
+.scope-chip .l{font-size:11px;color:var(--gold);font-weight:700;}
+.scope-chip .v{font-size:13px;font-weight:500;margin-top:3px;line-height:1.4;}
+.scope-note{font-size:12px;color:var(--sub);margin-top:10px;}
+.scope-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px;max-width:760px;}
+.scope-group{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+.scope-group h3{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.scope-group h3 i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;}
+.scope-group ul{list-style:none;margin:0;padding:0;}
+.scope-group li{font-size:13.5px;line-height:1.75;padding-left:18px;position:relative;}
+.scope-group li::before{content:"\2713";color:#7C9169;position:absolute;left:0;font-size:12px;top:2px;}
+.scope-group .gnote{font-size:11.5px;color:var(--sub);line-height:1.6;margin-top:8px;border-top:1px dashed var(--line);padding-top:7px;}
+.scope-opt{background:#F5F4F1;border:1px solid #E2E0D8;border-radius:10px;padding:16px 18px;margin-top:20px;max-width:760px;}
+.scope-opt h3{font-size:14px;font-weight:700;color:#5F5E5A;margin:0 0 10px;}
+.scope-opt ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.85;color:#444;}
+.scope-opt details{margin-top:10px;}
+.scope-opt summary{cursor:pointer;font-size:13px;color:var(--gold);font-weight:500;}
+.scope-opt .cnote{font-size:11.5px;color:#888;margin-top:10px;}
+.scope-qa{margin-top:20px;display:grid;gap:8px;max-width:760px;}
+.scope-qa details{background:#fff;border:1px solid var(--line);border-radius:8px;}
+.scope-qa summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--ink);padding:12px 14px;list-style:none;}
+.scope-qa summary::-webkit-details-marker{display:none;}
+.scope-qa summary::before{content:"\ff0b";color:var(--gold);margin-right:8px;font-weight:700;}
+.scope-qa details[open] summary::before{content:"\ff0d";}
+.scope-qa .a{font-size:13px;color:var(--sub);line-height:1.8;padding:0 14px 14px;}
+</style>
+
+<!-- SCOPE (55,000円に含まれる範囲 / 2026-07-26 集約新設) -->
+<section class="scope-sec" data-section="scope">
+  <div class="wrap reveal">
+    <p class="eyebrow">Scope</p>
+    <h2 class="sec-title">55,000円で、ここまで形にします。</h2>
+    <p class="sec-lead">対話で頭の中を整理し、文章・デザイン・公開まで。まず市場に出せるLPを、ここまで一緒に形にします。</p>
+
+    <div class="scope-chips">
+      <div class="scope-chip"><div class="l">ボリューム</div><div class="v">LP 1本・1ページ<br>(8〜10セクション)</div></div>
+      <div class="scope-chip"><div class="l">ヒアリング</div><div class="v">最大120分</div></div>
+      <div class="scope-chip"><div class="l">基本修正</div><div class="v">1回<br>(初稿提出後7日以内)</div></div>
+      <div class="scope-chip"><div class="l">スピード</div><div class="v">原則1日で<br>公開できる形に</div></div>
+    </div>
+    <p class="scope-note">※内容や素材の準備状況により、初稿・公開時期は前後します。</p>
+
+    <div class="scope-groups">
+      <div class="scope-group">
+        <h3><i></i>整理する</h3>
+        <ul>
+          <li>オンラインヒアリング</li>
+          <li>商品・ターゲット・訴求内容の整理</li>
+        </ul>
+        <p class="gnote">ヒアリングは最大120分です。</p>
+      </div>
+      <div class="scope-group">
+        <h3><i></i>言葉にする</h3>
+        <ul>
+          <li>キャッチコピー・本文の作成</li>
+          <li>LP構成の作成</li>
+        </ul>
+      </div>
+      <div class="scope-group">
+        <h3><i></i>形にする</h3>
+        <ul>
+          <li>LPデザイン／スマートフォン対応</li>
+          <li>AI画像またはフリー素材の選定</li>
+        </ul>
+        <p class="gnote">AI画像は最大3〜5点です。</p>
+      </div>
+      <div class="scope-group">
+        <h3><i></i>公開する</h3>
+        <ul>
+          <li>基本となる申込み導線の設置</li>
+          <li>指定環境での公開作業</li>
+          <li>初稿確認後の基本修正1回</li>
+        </ul>
+        <p class="gnote">申込み導線は、LINE・メール・既存の予約／決済ページへのリンクや埋め込みまで(同じ申込み先へのCTAをページ内に複数設置することも含みます)。決済・予約・カート機能の新規構築は別途。修正は初稿提出後7日以内に1回(軽微修正)です。</p>
+      </div>
+    </div>
+
+    <div class="scope-opt">
+      <h3>必要に応じて、別途ご相談いただけること</h3>
+      <ul>
+        <li>写真・動画の撮影／ロゴ・イラストの新規制作</li>
+        <li>予約・決済・カートなど、機能そのものの新規構築</li>
+        <li>公開後の継続的な改善・更新(スポット相談または伴走サービスで対応)</li>
+        <li>コンセプト・構成・商品内容の大幅な変更</li>
+      </ul>
+      <details>
+        <summary>そのほかの項目を見る</summary>
+        <ul style="margin-top:8px;">
+          <li>独自ドメイン取得・サーバー契約・DNS設定</li>
+          <li>WordPressや既存サイトへの組み込み</li>
+          <li>メールアドレス設定</li>
+          <li>会員サイト・複雑なフォーム</li>
+          <li>広告運用・SNS広告・SEO対策</li>
+        </ul>
+      </details>
+      <p class="cnote">「できません」ではなく、必要に応じて専門家と連携して別途ご相談いただけます。</p>
+    </div>
+
+    <div class="scope-qa">
+      <details><summary>LPは何本・何ページですか?</summary><p class="a">LP1本・1ページ(8〜10セクション)、1商品・1サービスが基本です。複数ページ・複数商品は別途ご相談ください。</p></details>
+      <details><summary>修正はどこまで含まれますか?</summary><p class="a">初稿提出後7日以内に1回。誤字・表現・写真差し替え・色や余白などの軽微な修正が対象で、コンセプトや構成の作り直しは別途になります。</p></details>
+      <details><summary>文章や写真の素材がなくても大丈夫ですか?</summary><p class="a">文章はこちらで作成します。画像はAI生成またはフリー素材で用意します。写真・ロゴの新規撮影・制作は別途です。</p></details>
+      <details><summary>公開したあとの修正は?</summary><p class="a">初稿を確認し、基本修正を行ったうえで公開します。その後の改善は、必要に応じてスポット相談や伴走サービスで対応します。</p></details>
+    </div>
+  </div>
+</section>
+
+
 <section>
   <div class="wrap reveal">
     <p class="eyebrow">Features</p>
@@ -516,23 +627,7 @@
         <p class="compare-price"><strong>55,000</strong>円（税込）</p>
         <p class="compare-desc">対話による整理から、言葉・構成・デザイン・公開可能なLPまで進める制作サービスです。</p>
 
-        <p class="compare-sub-h">含まれるもの</p>
-        <ul class="compare-list">
-          <li>オンラインでの対話ヒアリング</li>
-          <li>コンセプト整理・言葉にする作業</li>
-          <li>LP構成・文章・デザイン作成</li>
-          <li>初稿作成・公開支援</li>
-        </ul>
-
-        <p class="compare-sub-h">含まれていないもの</p>
-        <ul class="compare-list">
-          <li>ロゴ・写真・動画などの素材制作</li>
-          <li>広告運用・集客代行</li>
-          <li>システム開発・会員サイト制作</li>
-          <li>サーバー・ドメインなどの契約費用</li>
-          <li>大幅な追加制作・継続的な更新作業</li>
-        </ul>
-        <p class="compare-note">※必要な場合は、別途ご相談のうえ対応いたします。</p>
+        <p class="compare-note">詳しい対応範囲は、上の「55,000円で、ここまで形にします。」をご確認ください。</p>
 
         <p class="compare-output">成果物:公開できるLP</p>
         <p class="compare-note">※モニター条件は、この下のセクションでご確認いただけます。</p>
