@@ -77,18 +77,16 @@
   .shero-copy h1{font-size:clamp(30px,4.4vw,50px);letter-spacing:.02em;font-weight:800;line-height:1.35;}
   .shero-copy .lead{max-width:540px;margin-top:36px;font-size:16.5px;line-height:1.9;color:var(--ink);}
   .badge-monitor{display:inline-block;background:var(--soft);border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:18px;}
-  .shero-visual{position:relative;background:#fff;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:24px 0;}
+  .shero-visual{position:relative;overflow:hidden;background:#fff;min-height:320px;}
   .shero-visual iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:none;opacity:1;transition:opacity .7s ease;}
-  .sv-photo{position:relative;width:100%;}
-  .sv-photo img{display:block;width:100%;height:auto;object-fit:contain;}
-  .shero-visual .compare-mini{margin:20px auto 0;max-width:400px;width:calc(100% - 56px);}
+  .shero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 25%;display:block;}
   .hero-bg-controls{position:absolute;left:16px;right:16px;top:16px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;}
   .hero-bg-controls .hbc-label{font-size:11px;letter-spacing:.05em;color:var(--gold);background:rgba(255,255,255,.95);border:1px solid var(--gold);padding:5px 12px;border-radius:999px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;text-align:center;}
   .hero-bg-controls .hbc-label a{color:var(--ink);text-decoration:underline;}
   .hero-bg-controls .hs-dots{display:flex;gap:6px;}
   .hero-bg-controls .hs-dots button{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);border:none;padding:0;cursor:pointer;}
   .hero-bg-controls .hs-dots button.active{background:var(--gold);}
-  @media(max-width:900px){.shero{display:block;min-height:auto;grid-template-columns:none;}.shero-copy{padding:130px 28px 40px;}.shero-visual{height:auto;min-height:0;padding:24px 0;}}
+  @media(max-width:900px){.shero{display:block;min-height:auto;grid-template-columns:none;}.shero-copy{padding:130px 28px 40px;}.shero-visual{height:340px;min-height:0;}}
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:19px 38px;border-radius:2px;font-size:16.5px;font-weight:700;letter-spacing:.02em;box-shadow:0 10px 24px rgba(0,0,0,.14);transition:transform .25s,box-shadow .25s;margin-top:30px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.2);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--sub);text-decoration:underline;opacity:.85;}
@@ -251,26 +249,21 @@
         <div class="cm-line cm-normal"><span>即日LPラボ 通常</span><b>110,000円〜</b></div>
         <div class="cm-line cm-monitor"><span>キャンペーン価格</span><b>55,000円〜<small>（税込）</small></b></div>
       </div>
-      <p class="cm-note">※料金は制作範囲により変動します。</p>
-    </div>
-  </div>
-  <div class="shero-visual">
-    <div class="sv-photo">
-      <img src="/images/kubota-working.jpg" alt="ノートPCで作業する思考整理の参謀・窪田成功" loading="eager">
-      <div class="hero-bg-controls">
-        <div class="hbc-label">
-          <span><b>思考整理の参謀・窪田成功</b></span>
-          <span>思考整理 × AI × LP制作</span>
-        </div>
-      </div>
-    </div>
-    <div class="compare-mini cm-in-visual reveal">
       <div class="cm-block">
         <p class="cm-head">納期</p>
         <div class="cm-line cm-market"><span>一般的な納期</span><b>2週間〜1ヶ月</b></div>
         <div class="cm-line cm-monitor"><span>即日LPラボ</span><b>最短即日<small>(初稿)</small></b></div>
       </div>
-      <p class="cm-note">※最短即日は初稿(たたき台)で、公開は内容により前後します。</p>
+      <p class="cm-note">※料金・納期は制作範囲により変動します。最短即日は初稿(たたき台)で、公開は内容により前後します。</p>
+    </div>
+  </div>
+  <div class="shero-visual">
+    <img src="/images/kubota-working.jpg" alt="ノートPCで作業する思考整理の参謀・窪田成功" loading="eager">
+    <div class="hero-bg-controls">
+      <div class="hbc-label">
+        <span><b>思考整理の参謀・窪田成功</b></span>
+        <span>思考整理 × AI × LP制作</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1082,7 +1075,7 @@
 <section data-section="bottom_cta">
   <div class="wrap reveal" style="text-align:center;">
     <span class="badge-monitor">7月30日入金分までキャンペーン受付中</span>
-    <p style="font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;line-height:1.9;">本業は、あなたが。<br>伝えることは、一緒に。</p>
+    <p style="font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;line-height:1.9;">本業は、御社が。<br>伝えることは、一緒に。</p>
     <h2 class="sec-title">まずは、お試しください。</h2>
     <p class="try-body" style="max-width:620px;margin:0 auto;">継続契約の縛りや解約金はありません。「少し違うな」と感じたら、ご自身のタイミングで終了できます。もちろん、「もっと一緒に進めたい」と思っていただけたら、その後も継続してサポートします。</p>
     <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" class="cta line-cta" data-cta-label="sokujitsu_campaign_bottom">LINEでキャンペーンに早速申し込む →</a><br>
