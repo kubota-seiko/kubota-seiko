@@ -691,68 +691,96 @@
 .camp-usage-h{font-size:15px;font-weight:700;margin-bottom:10px;}
 .camp-usage p{font-size:13.5px;color:var(--sub);line-height:1.95;margin-bottom:10px;}
 .camp-usage p:last-child{margin-bottom:0;}
+.camp-keyfacts{max-width:640px;margin:18px 0 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.camp-fact{display:flex;gap:14px;padding:14px 18px;border-top:1px solid var(--line);font-size:14px;align-items:baseline;}
+.camp-fact:first-child{border-top:none;}
+.camp-fact-l{flex:0 0 84px;font-weight:700;color:var(--gold);font-size:13px;}
+.camp-fact-v{flex:1;color:var(--ink);line-height:1.7;}
+.camp-cta-summary{max-width:640px;margin:26px 0 0;text-align:center;font-size:15px;font-weight:700;color:var(--ink);line-height:1.9;}
+.camp-details{max-width:720px;margin:18px auto 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.camp-details>summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:700;font-size:14px;color:var(--ink);}
+.camp-details>summary::-webkit-details-marker{display:none;}
+.camp-details-title::before{content:"＋";color:var(--gold);margin-right:8px;font-weight:700;}
+.camp-details[open] .camp-details-title::before{content:"－";}
+.camp-details-body{padding:6px 20px 20px;border-top:1px solid var(--line);}
+.camp-details-body h4{font-size:13.5px;font-weight:700;color:var(--ink);margin:16px 0 6px;}
+.camp-details-body h4:first-child{margin-top:8px;}
+.camp-details-body>p{font-size:13px;color:var(--sub);line-height:1.9;margin:0;}
+.camp-details-body .camp-flow{margin-top:8px;}
+.camp-details-note{font-size:11.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:10px;margin-top:14px;}
+.confirm-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:22px;max-width:720px;}
+.confirm-h{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 12px;}
+.confirm-list{list-style:none;margin:0;padding:0;}
+.confirm-list li{font-size:13.5px;line-height:1.8;padding-left:28px;position:relative;margin-bottom:12px;color:var(--ink);}
+.confirm-list li:last-child{margin-bottom:0;}
+.confirm-list li::before{content:"☐";position:absolute;left:0;top:-2px;font-size:19px;color:var(--gold);}
 </style>
 <section data-section="entry">
   <div class="wrap reveal">
     <p class="eyebrow">Campaign</p>
     <h2 class="sec-title">ホームページ公開キャンペーン</h2>
-    <p class="sec-lead">ホームページの公開を記念した、期間限定のキャンペーンです。LINE公式アカウントから、先行予約 → ご入金 → 制作 の流れで進みます。7月30日の着金順でキャンペーン価格（55,000円〜）が確定します。</p>
-
-    <div class="camp-flow">
-      <ol>
-        <li><span class="camp-step">1</span><span>LINE公式アカウントに登録<small class="camp-date">まずは、LINE公式アカウントへご登録ください。</small></span></li>
-        <li><span class="camp-step">2</span><span>先行予約フォームを送信<small class="camp-date">LINEより、ホームページ公開キャンペーンの先行予約フォームをご案内します。</small></span></li>
-        <li><span class="camp-step">3</span><span>入金方法をご案内<small class="camp-date">内容を確認後、LINEにてお振込先をご案内します。</small></span></li>
-        <li><span class="camp-step">4</span><span>ご入金・価格確定<small class="camp-date">2026年7月30日の銀行営業時間内に着金が確認できた順で、キャンペーン価格（下記）が確定します。</small></span></li>
-        <li><span class="camp-step">5</span><span>制作日の調整<small class="camp-date">ご入金確認後、LINEにて制作日程を調整します。制作後も、公開や改善のご相談はそのままLINEでサポートします。</small></span></li>
-      </ol>
-    </div>
+    <p class="sec-lead">ホームページの公開を記念した、期間限定のキャンペーンです。</p>
 
     <div class="camp-price">
-      <p class="camp-price-h">キャンペーン価格（着金順で確定）</p>
+      <p class="camp-price-h">キャンペーン価格</p>
       <div class="camp-tier"><span>着金 1〜10名</span><b>55,000円<small>（税込）</small></b></div>
       <div class="camp-tier"><span>着金 11〜20名</span><b>66,000円<small>（税込）</small></b></div>
       <div class="camp-tier"><span>着金 21名以降</span><b>77,000円<small>（税込）</small></b></div>
-      <p class="camp-note">キャンペーン価格は、継続フォローセッション（月額33,000円）のご利用を前提とした特別価格です。<br>価格は<b>お申し込み順ではなく、銀行営業時間内に着金が確認できた順で確定</b>します（お申し込みだけでは確定しません）。30名を超えた場合でも、期間内に着金が確認できた方は77,000円（税込）を適用します。2026年8月以降のキャンペーン内容・価格は未定です。</p>
     </div>
 
-    <style>
-.confirm-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:22px;max-width:720px;}
-.confirm-h{font-size:14px;font-weight:700;color:var(--ink);margin:0 0 12px;}
-.confirm-h.opt{margin-top:4px;color:var(--sub);}
-.confirm-list{list-style:none;margin:0 0 16px;padding:0;}
-.confirm-list li{font-size:13.5px;line-height:1.8;padding-left:28px;position:relative;margin-bottom:12px;color:var(--ink);}
-.confirm-list li:last-child{margin-bottom:0;}
-.confirm-list li::before{content:"\2610";position:absolute;left:0;top:-2px;font-size:19px;color:var(--gold);}
-.confirm-list.opt li::before{color:#B4B2A9;}
-.confirm-note{font-size:11.5px;color:var(--sub);line-height:1.75;margin-top:6px;border-top:1px solid var(--line);padding-top:10px;}
-</style>
-<div class="confirm-box">
-  <p class="confirm-h">お申し込み前の確認事項（必須）</p>
-  <ul class="confirm-list">
-    <li>本キャンペーン価格は、継続フォローセッション（月額33,000円）のご利用を前提とした特別価格であることを理解しました。</li>
-    <li>継続フォローセッションを終了した場合、以後の追加LP制作はキャンペーン価格ではなく、その時点の通常料金が適用されることに同意します。</li>
-    <li>制作スケジュールは、ご入金確認後に調整することを理解しました。</li>
-    <li>制作には既存ホームページの情報・写真・文章などの素材を活用するため、自社ホームページを保有していることを確認しました。</li>
-  </ul>
-  <p class="confirm-h opt">ご希望をお聞かせください（任意）</p>
-  <ul class="confirm-list opt">
-    <li>継続フォローセッション（月額33,000円）の年間一括払いについて、割引を含めたお見積もりを希望します。</li>
-    <li>現時点では月額払いを希望します。</li>
-  </ul>
-  <p class="confirm-note">※上記の内容は、LINEでご案内する先行予約フォームで、あらためてご確認・ご回答いただきます。</p>
-</div>
+    <div class="camp-keyfacts">
+      <div class="camp-fact"><span class="camp-fact-l">受付期限</span><span class="camp-fact-v">2026年7月30日 銀行営業時間内 着金分まで</span></div>
+      <div class="camp-fact"><span class="camp-fact-l">対象</span><span class="camp-fact-v">既にホームページをお持ちの事業者様</span></div>
+      <div class="camp-fact"><span class="camp-fact-l">継続条件</span><span class="camp-fact-v">公開後の伴走（月額33,000円）のご利用を前提とした特別価格です。</span></div>
+    </div>
+
+    <div class="confirm-box">
+      <p class="confirm-h">お申し込み前のご確認</p>
+      <ul class="confirm-list">
+        <li>キャンペーン価格は、伴走（月額33,000円）の利用を前提としています</li>
+        <li>制作日は、ご入金後に調整します</li>
+        <li>既存ホームページの情報・写真・文章を活用して制作します</li>
+      </ul>
+    </div>
+
+    <p class="camp-cta-summary">キャンペーン価格 55,000円〜（税込）<br>受付は 2026年7月30日 着金分まで</p>
     <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" class="cta compare-cta line-cta" data-cta-label="sokujitsu_campaign_entry">LINEでキャンペーンに早速申し込む →</a>
-    <p class="camp-cta-notes">※お申し込みだけでは価格は確定しません。<br>※価格は、銀行営業時間内に着金が確認できた順で確定します。<br>※2026年8月以降のキャンペーン内容・価格は未定です。</p>
 
-    <p class="compare-output" style="margin-top:22px;">成果物:公開できるLP</p>
-    <p class="compare-note">詳しい対応範囲は、上の「55,000円〜で、ここまで形にします。」をご確認ください。</p>
+    <details class="camp-details">
+      <summary><span class="camp-details-title">キャンペーン詳細を見る</span></summary>
+      <div class="camp-details-body">
+        <h4>価格の決まり方・30名を超えた場合</h4>
+        <p>価格は、お申し込み順ではなく、銀行営業時間内に着金が確認できた順で確定します（お申し込みだけでは確定しません）。30名を超えた場合でも、期間内に着金が確認できた方は77,000円（税込）を適用します。2026年8月以降のキャンペーン内容・価格は未定です。</p>
 
-    <div class="camp-usage">
-      <p class="camp-usage-h">キャンペーン価格のご利用について</p>
-      <p>今回のホームページ公開キャンペーンは、「7月中に制作しなければならないキャンペーン」ではありません。2026年7月30日までにご入金いただくことで、<b>キャンペーン価格で制作できる権利を確保</b>できます。</p>
-      <p>制作時期は、ご都合に合わせて後日ご相談ください（制作開始は2026年12月末までを対象とします）。「今すぐLPは必要ないけれど、今後サービスを公開する予定がある」「秋以降の新サービスに合わせて制作したい」という方も、キャンペーン価格のままご利用いただけます。</p>
-    </div>
+        <h4>制作日・制作可能期間</h4>
+        <p>「7月中に制作しなければならないキャンペーン」ではありません。2026年7月30日までにご入金いただくことで、キャンペーン価格で制作できる権利を確保できます。制作日は、ご入金確認後にLINEで調整します（制作開始は2026年12月末までを対象）。「今すぐLPは必要ないが、今後公開する予定がある」「秋以降の新サービスに合わせたい」という方も、キャンペーン価格のままご利用いただけます。</p>
+
+        <h4>お支払い（一括／月額）</h4>
+        <p>継続フォローセッション（月額33,000円）は、月額払い、または年間一括払い（割引を含めたお見積り可）からお選びいただけます。ご希望は、LINEでご案内する先行予約フォームでお伺いします。</p>
+
+        <h4>継続終了後の価格</h4>
+        <p>継続フォローセッションを終了された場合、以後の追加LP制作はキャンペーン価格ではなく、その時点の通常料金が適用されます。</p>
+
+        <h4>制作スケジュール（お申し込みの流れ）</h4>
+        <div class="camp-flow">
+          <ol>
+            <li><span class="camp-step">1</span><span>LINE公式アカウントに登録<small class="camp-date">まずは、LINE公式アカウントへご登録ください。</small></span></li>
+            <li><span class="camp-step">2</span><span>先行予約フォームを送信<small class="camp-date">LINEより、ホームページ公開キャンペーンの先行予約フォームをご案内します。</small></span></li>
+            <li><span class="camp-step">3</span><span>入金方法をご案内<small class="camp-date">内容を確認後、LINEにてお振込先をご案内します。</small></span></li>
+            <li><span class="camp-step">4</span><span>ご入金・価格確定<small class="camp-date">2026年7月30日の銀行営業時間内に着金が確認できた順で、キャンペーン価格が確定します。</small></span></li>
+            <li><span class="camp-step">5</span><span>制作日の調整<small class="camp-date">ご入金確認後、LINEにて制作日程を調整します。制作後も、公開や改善のご相談はそのままLINEでサポートします。</small></span></li>
+          </ol>
+        </div>
+
+        <h4>ご利用条件（ホームページ保有）</h4>
+        <p>制作には既存ホームページの情報・写真・文章などの素材を活用するため、自社ホームページを保有していることが前提です。</p>
+
+        <h4>成果物・対応範囲</h4>
+        <p>成果物は「公開できるLP」です。詳しい対応範囲は、上の「55,000円〜で、ここまで形にします。」をご確認ください。</p>
+
+        <p class="camp-details-note">※上記の内容は、LINEでご案内する先行予約フォームで、あらためてご確認・ご回答いただきます。</p>
+      </div>
+    </details>
 
     <p style="margin-top:24px;font-size:13.5px;color:var(--sub);line-height:1.9;">商品や方向性がまだ固まっていない方は、<a href="#which-one" style="color:var(--gold);text-decoration:underline;">ページ下部の「今の状態に合う方をお選びください。」</a>をご覧ください。</p>
   </div>
