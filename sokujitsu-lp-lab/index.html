@@ -1007,6 +1007,15 @@
 <!-- BUDGET (年間予算のイメージ / 2026-07-27) -->
 <style>
 .budget-sec{background:var(--soft);}
+.budget-acc{max-width:760px;margin:8px auto 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.budget-acc>summary{cursor:pointer;list-style:none;padding:18px 20px;display:block;}
+.budget-acc>summary::-webkit-details-marker{display:none;}
+.budget-acc-title{display:block;font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.6;}
+.budget-acc-title::before{content:"\ff0b";color:var(--gold);margin-right:8px;font-weight:700;}
+.budget-acc[open] .budget-acc-title::before{content:"\ff0d";}
+.budget-acc-note{display:block;font-size:12.5px;color:var(--sub);line-height:1.8;margin-top:8px;}
+.budget-acc-body{padding:16px 20px 22px;border-top:1px solid var(--line);}
+.budget-acc-body .sec-title{margin-top:6px;}
 .budget-compare{margin-top:24px;max-width:720px;}
 .budget-row{margin-bottom:20px;}
 .budget-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px;}
@@ -1034,7 +1043,13 @@
 <section class="budget-sec" data-section="budget">
   <div class="wrap reveal">
     <p class="eyebrow">Annual Budget</p>
-    <h2 class="sec-title">年間予算で、比べてみる。</h2>
+    <details class="budget-acc">
+      <summary>
+        <span class="budget-acc-title">年間で継続した場合の料金例を見る</span>
+        <span class="budget-acc-note">公開後も継続的にLPを改善・追加したい方向けの参考シミュレーションです。初回のお申し込み時に、年間契約をする必要はありません。</span>
+      </summary>
+      <div class="budget-acc-body">
+        <h2 class="sec-title">年間予算で、比べてみる。</h2>
     <p class="sec-lead">例えば、季節ごとに新商品やキャンペーンを案内するために、四半期に1枚・年間4枚のLPを制作する場合。</p>
 
     <div class="budget-compare">
@@ -1061,6 +1076,8 @@
     </div>
 
     <p class="budget-notes">※上記は、年間4枚のLP制作と月額伴走を12か月利用した場合のシミュレーションです。<br>※年間契約ではありません。追加LP・伴走サービスは、必要に応じてご利用いただけます。<br>※市場価格は、制作内容・ページの長さ・調査範囲・撮影・広告運用・修正回数などによって異なります。</p>
+      </div>
+    </details>
   </div>
 </section>
 
