@@ -553,6 +553,14 @@
   @media(max-width:760px){.ba-more-inner{grid-template-columns:1fr;}}
   .faq-more[open] summary{margin-bottom:28px;}
   .faq-more-inner{display:flex;flex-direction:column;gap:28px;}
+  .lpworks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 6px;}
+  @media(max-width:700px){.lpworks-grid{grid-template-columns:1fr;}}
+  .lpworks-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;text-align:left;}
+  .lpworks-frame{width:100%;height:280px;border:none;border-bottom:1px solid var(--line);background:#fff;pointer-events:none;}
+  .lpworks-meta{padding:14px 16px;}
+  .lpworks-meta .t{font-size:13.5px;font-weight:700;margin-bottom:4px;}
+  .lpworks-meta .d{font-size:12.5px;color:var(--sub);line-height:1.7;margin-bottom:8px;}
+  .lpworks-meta a{font-size:12.5px;text-decoration:underline;color:var(--gold);}
   .ba-cta{max-width:600px;margin:40px auto 0;text-align:center;}
   .ba-cta p{color:var(--sub);font-size:15px;line-height:1.9;}
   .ba-cta-btn{display:inline-block;margin-top:20px;font-size:15px;font-weight:500;padding:14px 30px;border-radius:2px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background .2s,color .2s;}
@@ -752,34 +760,23 @@
       <div class="case-card-head">
         <div class="case-avatar">LP</div>
         <div>
-          <div class="case-name">即日LPラボ<span class="case-tag">主な支援事例</span></div>
+          <div class="case-name">即日LPラボ<span class="case-tag">制作事例</span></div>
         </div>
       </div>
       <p class="case-lead">商品はある。でも、うまく伝えられない。</p>
-      <div class="case-flow">
-        <div class="case-block">
-          <span class="case-label">相談前</span>
-          <ul>
-            <li>サービスの内容はあるが、何を一番伝えればよいか決まっていない</li>
-            <li>説明するたびに言葉が変わる</li>
-            <li>発信しても、申し込みまでの流れが分かりにくい</li>
-          </ul>
+      <p style="font-size:14.5px;line-height:1.9;color:var(--ink);margin-top:12px;">まとまっていない構想を伺いながら、サービスの価値、届けたい相手、伝える順番を整理。<br>文章、構成、デザイン、申込導線まで、実際に公開できるLPへ形にしました。</p>
+      <div class="lpworks-grid">
+        <div class="lpworks-card">
+          <iframe class="lpworks-frame" scrolling="no" tabindex="-1" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/retreat" loading="lazy" title="笠置山イワクラリトリート"></iframe>
+          <div class="lpworks-meta"><p class="t">笠置山イワクラリトリート</p><p class="d">2泊3日のリトリートLP。世界観・内容・申込まで1ページで。</p><a href="https://bold-salad-1d95.co-eternal-0358.workers.dev/retreat?utm_source=kubota_seiko&utm_medium=portfolio&utm_campaign=top_case&utm_content=iwakura_retreat" target="_blank" rel="noopener" data-track-event="portfolio_click" data-track-name="iwakura_retreat_top">実際のページを見る →</a></div>
         </div>
-        <div class="case-block">
-          <span class="case-label">一緒に整理したこと</span>
-          <ul>
-            <li>誰に届けたいサービスなのか</li>
-            <li>このサービスだから得られる変化</li>
-            <li>申し込みまでの導線</li>
-          </ul>
+        <div class="lpworks-card">
+          <iframe class="lpworks-frame" scrolling="no" tabindex="-1" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/plant" loading="lazy" title="植物と過ごす2時間"></iframe>
+          <div class="lpworks-meta"><p class="t">植物と過ごす2時間</p><p class="d">寄せ植え体験セミナーのLP。魅力から申込まで1ページで。</p><a href="https://bold-salad-1d95.co-eternal-0358.workers.dev/plant?utm_source=kubota_seiko&utm_medium=portfolio&utm_campaign=top_case&utm_content=plant_seminar" target="_blank" rel="noopener" data-track-event="portfolio_click" data-track-name="plant_seminar_top">実際のページを見る →</a></div>
         </div>
-        <div class="case-block">
-          <span class="case-label">形になったもの</span>
-          <ul>
-            <li>サービスの価値が伝わる文章</li>
-            <li>スマートフォンで読みやすいLP</li>
-            <li>公開後に改善できる土台</li>
-          </ul>
+        <div class="lpworks-card">
+          <iframe class="lpworks-frame" scrolling="no" tabindex="-1" src="https://bold-salad-1d95.co-eternal-0358.workers.dev/session" loading="lazy" title="ThetaHealing 基礎DNAセミナー"></iframe>
+          <div class="lpworks-meta"><p class="t">ThetaHealing® 基礎DNA</p><p class="d">3日間の講座LP。内容から申込まで1ページで。</p><a href="https://bold-salad-1d95.co-eternal-0358.workers.dev/session?utm_source=kubota_seiko&utm_medium=portfolio&utm_campaign=top_case&utm_content=thetahealing_basic_dna" target="_blank" rel="noopener" data-track-event="portfolio_click" data-track-name="thetahealing_basic_dna_top">実際のページを見る →</a></div>
         </div>
       </div>
       <p class="case-voice-body" style="font-style:normal;margin-top:28px;font-size:15px;line-height:1.9;color:var(--ink);">一度ページを作って終わりではありません。<br>対話の中で整理した言葉や判断基準が残るため、今後の発信、営業、サービス改善にも使えるようになります。</p>
