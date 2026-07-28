@@ -374,6 +374,13 @@
   .svc-card.premium{border-color:var(--accent);position:relative;box-shadow:0 14px 34px rgba(26,26,46,.12);}
   .svc-card.premium::after{content:"本格伴走・要相談";position:absolute;top:20px;right:20px;background:var(--accent);color:#fff;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.06em;}
   .svc-name{font-size:18px;font-weight:700;margin-bottom:6px;}
+  .svc-more{margin:32px 0 0;}
+  .svc-more>summary{cursor:pointer;list-style:none;max-width:420px;margin:0 auto;display:flex;align-items:center;justify-content:center;padding:16px 22px;background:#fff;border:1px solid var(--line);border-radius:10px;font-weight:700;font-size:15px;color:var(--ink);text-align:center;transition:border-color .2s,box-shadow .2s;}
+  .svc-more>summary::-webkit-details-marker{display:none;}
+  .svc-more>summary:hover{border-color:#7C9169;box-shadow:0 6px 18px rgba(124,145,105,.12);}
+  .svc-more-label::before{content:"＋";color:var(--gold);font-weight:700;margin-right:8px;}
+  .svc-more[open] .svc-more-label::before{content:"－";}
+  .svc-more-grid{margin-top:28px !important;}
   .svc-price{font-family:"Inter",sans-serif;font-size:30px;font-weight:700;margin:10px 0 4px;}
   .svc-price .yen{margin-right:4px;}
   .svc-price small{font-size:14px;color:var(--sub);font-weight:500;font-family:"Noto Sans JP";}
@@ -823,7 +830,12 @@
         </div>
         <button type="button" class="svc-copy-link" data-copy-service="monthly-1">🔗 このプランの支払いリンクをコピー</button>
       </div>
-      <div class="svc-card reveal" id="svc-card-monthly-2">
+    </div>
+
+    <details class="svc-more">
+      <summary><span class="svc-more-label">継続・集中サポートの料金を見る</span></summary>
+      <div class="svc-grid svc-more-grid">
+      <div class="svc-card" id="svc-card-monthly-2">
         <div class="svc-name">月2回伴走プラン</div>
         <div class="svc-price"><span class="yen">¥</span>55,000<small>/月(税込)</small></div>
         <p class="seat-badge seat-amber"><span class="seat-dot"></span>残席2名</p>
@@ -831,7 +843,9 @@
         <div class="svc-resv-btn-group">
           <button type="button" class="svc-resv-btn resv-trigger-paypal" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">PayPalで予約する <span class="arr">→</span></button>
           <button type="button" class="svc-resv-btn-outline resv-trigger-bank" data-service="monthly-2" data-name="月2回伴走プラン" data-price="55,000">銀行振込で予約する</button>
-        </div>
+    
+      </div>
+    </details>
         <button type="button" class="svc-copy-link" data-copy-service="monthly-2">🔗 このプランの支払いリンクをコピー</button>
       </div>
       <div class="svc-card reveal">
