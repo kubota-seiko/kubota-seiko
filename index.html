@@ -544,6 +544,15 @@
   .ba-arrow{color:var(--gold);font-size:20px;line-height:1;text-align:center;margin:14px 0;}
   .ba-more{text-align:center;margin-top:30px;}
   .ba-more a{font-size:14px;color:var(--gold);text-decoration:underline;}
+  .ba-single{max-width:620px;margin:44px auto 0;}
+  .ba-more-toggle{max-width:620px;margin:16px auto 0;}
+  .ba-more-toggle summary,.faq-more summary{cursor:pointer;list-style:none;text-align:center;font-size:14px;font-weight:700;color:var(--gold);padding:12px 18px;border:1px solid var(--line);border-radius:999px;}
+  .ba-more-toggle summary::-webkit-details-marker,.faq-more summary::-webkit-details-marker{display:none;}
+  .ba-more-toggle[open] summary{margin-bottom:20px;}
+  .ba-more-inner{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:760px){.ba-more-inner{grid-template-columns:1fr;}}
+  .faq-more[open] summary{margin-bottom:28px;}
+  .faq-more-inner{display:flex;flex-direction:column;gap:28px;}
   .ba-cta{max-width:600px;margin:40px auto 0;text-align:center;}
   .ba-cta p{color:var(--sub);font-size:15px;line-height:1.9;}
   .ba-cta-btn{display:inline-block;margin-top:20px;font-size:15px;font-weight:500;padding:14px 30px;border-radius:2px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:background .2s,color .2s;}
@@ -623,7 +632,7 @@
     </div>
     <p class="hero-kicker">思考整理の参謀・窪田成功</p>
     <h1 class="hero-headline" style="position:relative;left:0.5em;">頭の中に、空白を。</h1>
-    <p class="hero-subcopy">本業に集中したい<br>個人事業主・店主・ひとり社長、<br>現場を支えるスタッフへ。</p>
+    <p class="hero-subcopy">本業に集中したい<br>個人事業主・店主・ひとり社長、<br><span class="small-word">小さな</span>チームのリーダーへ。</p>
     <p class="hero-tagline"><span class="small-word">小さな</span>ストレスを整理し、<br>AI・言葉・仕組みで、<br>本業に集中できる形へ。</p>
     <p class="hero-supplement">頭の中には考えがあるのに、うまく整理できない。<br>やるべきことは分かっているのに、なぜか手が止まる。<br>そんな言葉にならない違和感から、今の状況と次の一手を一緒に整理します。<br>必要に応じて、AI・言葉・手順も使いながら。</p>
     <a href="/stress-check/" class="hero-cta line-cta hero-cta-lg" style="margin:32px auto 0;" data-track-event="navigation_click" data-track-name="stress_check_page" data-track-position="hero"><span class="small-word">小さな</span>ストレス診断をする(3分) <span class="arr">→</span></a>
@@ -710,6 +719,7 @@
   <div class="wrap reveal center-block" style="max-width:720px;">
     <p class="eyebrow">参謀とは</p>
     <h2 class="sec-title">参謀とは、<br>あなたの隣で一緒に考える人です。</h2>
+    <p class="sec-lead" style="margin-top:14px;">頭の中に空白が生まれると、本当に大切なことを考えられるようになります。<br>そのために、迷いや違和感を整理し、現実で使える形へ変えていきます。</p>
   </div>
   <div class="vision-card reveal" style="margin-top:8px;">
     <p>窪田成功は、一方的に正解を教えるのではありません。</p>
@@ -724,27 +734,32 @@
 <section id="cases-ba">
   <div class="wrap">
     <div class="reveal center-block">
-      <p class="eyebrow">ご相談イメージ</p>
+      <p class="eyebrow">ご相談前によくある状態</p>
       <h2 class="sec-title">このような状態から、<br>ご相談いただいています。</h2>
       <p class="sec-lead" style="margin-top:14px;">大きな問題になる前の、まだうまく言葉にできない迷いや違和感でも大丈夫です。<br>対話を通じて、頭の中を整理し、次に進める状態をつくります。</p>
     </div>
-    <div class="ba-grid reveal">
+    <div class="ba-single reveal">
       <div class="ba-card">
         <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">合わないと感じる環境で、うまくいかないのは自分のせいなのか、価値観が違うだけなのかが分からず、やり取りするほど「私がおかしいのかもしれない」と自分を責めてしまう。何が普通なのかも見えなくなり、身動きが取れずにいた。</p></div>
         <div class="ba-arrow">↓</div>
         <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">話すうちに、抱えていたモヤモヤが一つずつ整理され、頭の中がすっきりとクリアになった。「自分の価値観を大事にしていい」と思えたことで、無理に自分を抑え込む必要はないと分かり、自分に合う方へ踏み出す決心がついた。</p></div>
       </div>
-      <div class="ba-card">
+    </div>
+    <details class="ba-more-toggle reveal">
+      <summary>ご相談前によくある状態を、あと2件見る　＋</summary>
+      <div class="ba-more-inner">
+        <div class="ba-card">
         <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">大事なことを何度伝えても現場になかなか浸透せず、同じ注意を毎日のように繰り返していた。「どうして分かってくれないのか」「誰も自分の言うことを聞いてくれない」という思いばかりがふくらみ、気づけば自分自身が一番すり減っていた。</p></div>
         <div class="ba-arrow">↓</div>
         <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">対話を通して、「誰も聞いてくれない」と感じていた出来事の見え方が変わり、相手を責める気持ちがほどけていった。問題の根っこが整理され、まず土台から整えればいいと分かって、力みが抜け、進む方向がはっきりしてきた。</p></div>
       </div>
-      <div class="ba-card">
+        <div class="ba-card">
         <div class="ba-block ba-before"><span class="ba-label before">相談前</span><p class="ba-text">行動は止めていないし、むしろ人よりたくさん動いている。それなのに、動けば動くほど自分が本当は何を求めているのかが分からなくなっていた。気づけば「動くこと」自体が目的になり、うまくいかない理由も見えないまま、迷いだけが静かに積み重なっていた。</p></div>
         <div class="ba-arrow">↓</div>
         <div class="ba-block ba-after"><span class="ba-label after">相談後</span><p class="ba-text">対話を通して頭の中が整理され、自分が本当に望む働き方や暮らしの輪郭が少しずつはっきりしてきた。ずっと感じていた迷いが軽くなり、次の一歩を、誰かの正解ではなく自分の言葉で、納得して選べるようになった。</p></div>
       </div>
-    </div>
+      </div>
+    </details>
     <div class="ba-more reveal"><a href="cases.html#soudan-cases">ご相談事例をもっと見る →</a></div>
     <div class="ba-cta reveal">
       <p>「自分の場合も相談してよいのか分からない」という段階でも大丈夫です。<br>今感じている<span class="small-word">小さな</span>迷いや違和感から、お聞かせください。</p>
@@ -828,7 +843,7 @@
 <section id="voice">
   <div class="wrap">
     <div class="reveal center-block">
-      <p class="eyebrow">Case</p>
+      <p class="eyebrow">実際の支援事例</p>
       <h2 class="sec-title"><span class="small-word">小さな</span>ストレスから、<br>仕事の進み方が変わった事例。</h2>
       <p class="sec-lead">最初の相談は、PDF、LINE、見積書、優先順位など、<span class="small-word">小さな</span>困りごとから始まります。<br>話を整理していくと、単なる操作や作業の問題ではなく、仕事の流れ、判断基準、伝え方に、本当の詰まりが見つかることがあります。<br>ここでは、実際に行った支援の一例をご紹介します。</p>
     </div>
@@ -906,14 +921,7 @@
           </a>
           <p class="artifact-caption">営業用サンプル:新人育成チェックシート<br>※実際の事例をもとに匿名化したサンプルです。実際には業種・会社に合わせてオーダーメイドで設計します。</p>
         </div>
-        <div class="artifact-grid">
-          <div class="artifact-item ready"><span class="ai-icon">📝</span>新人育成チェックシート</div>
-          <div class="artifact-item"><span class="ai-icon">📋</span>業務マニュアル<span class="ai-status">準備中</span></div>
-          <div class="artifact-item"><span class="ai-icon">💬</span>LINE返信テンプレート<span class="ai-status">準備中</span></div>
-          <div class="artifact-item"><span class="ai-icon">🤖</span>AI活用テンプレート<span class="ai-status">準備中</span></div>
-          <div class="artifact-item"><span class="ai-icon">📁</span>Google Drive運用ルール<span class="ai-status">準備中</span></div>
-          <div class="artifact-item"><span class="ai-icon">📈</span>利益改善チェックシート<span class="ai-status">準備中</span></div>
-        </div>
+        <p style="text-align:center;margin-top:20px;font-size:14px;color:var(--sub);line-height:1.9;">そのほか、業務マニュアル・LINE返信テンプレート・AI活用ルール・Google Drive運用ルール・利益改善チェックシートなど、状況に合わせて作成します。</p>
         <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--ink);line-height:1.9;">必要なのは、テンプレートではありません。<br>あなたのお店・会社に合わせた「次から迷わない仕組み」です。</p>
       </div>
     </div>
@@ -960,19 +968,19 @@
       <div class="stat reveal">
         <svg class="stat-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
         <div class="num">10,000<small>件以上</small></div>
-        <div class="lbl">個別セッション実績</div>
+        <div class="lbl">個別相談・セッション</div>
         <p class="stat-desc">まとまっていない思いや悩みを、対話から整理してきた実績です。</p>
       </div>
       <div class="stat reveal">
         <svg class="stat-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
         <div class="num">220<small>名以上</small></div>
-        <div class="lbl">新規受講生</div>
+        <div class="lbl">講座の新規受講生</div>
         <p class="stat-desc">ご紹介を中心に、シータヒーリング®基礎DNA講座を届けてきました。</p>
       </div>
       <div class="stat reveal">
         <svg class="stat-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M2 13h20"></path></svg>
         <div class="num">法人経営</div>
-        <div class="lbl">Eternal株式会社 代表取締役</div>
+        <div class="lbl">Eternal株式会社 代表取締役(2019年3月創業)</div>
         <p class="stat-desc">自らも会社を経営し、判断、発信、売上、チーム、事務の課題に向き合っています。</p>
       </div>
     </div>
@@ -1040,18 +1048,23 @@
         <p class="faq-q">Q. 無料診断では何をしますか?</p>
         <p class="faq-a">まず3分の<span class="small-word">小さな</span>ストレス診断にご記入いただき、内容をもとに20分の無料診断(Zoom、難しい場合はLINE通話)で、今の状況とどこで止まっているのかを確認します。<br>具体的な解決、文章作成、手順作成、AI設定などは有料相談で行います。<br>なお、無料診断は初めてご相談いただく方限定です。過去にご相談いただいたことがある方は、初回モニター相談または単発相談をご利用ください。</p>
       </div>
-      <div class="faq-item reveal">
+      <details class="faq-more reveal">
+        <summary>よくあるご質問を、もっと見る　＋</summary>
+        <div class="faq-more-inner">
+      <div class="faq-item">
         <p class="faq-q">Q. 無料診断と有料相談の違いは何ですか?</p>
         <p class="faq-a">無料診断は、現在地と相談テーマを確認する時間です。<br>有料相談では、一つの課題を実際に整理し、次の行動や、必要に応じた文章・手順・AIへの指示まで一緒に作ります。</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <p class="faq-q">Q. AIやパソコンが苦手でも大丈夫ですか?</p>
         <p class="faq-a">はい。<br>専門用語を前提にせず、実際の画面や仕事の流れを確認しながら進めます。<br>AIやパソコンを使うこと自体ではなく、本業に集中しやすい状態をつくることが目的です。</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <p class="faq-q">Q. 継続サービスを無理に勧められませんか?</p>
         <p class="faq-a">無理に勧めることはありません。<br>無料診断で状況を確認し、必要がある場合だけ、合うサービスをご案内します。<br>その場で申し込む必要もありません。</p>
       </div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
