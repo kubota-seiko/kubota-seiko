@@ -63,6 +63,7 @@
   .sec-lead{color:var(--sub);font-size:16px;line-height:1.9;max-width:680px;}
 
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);}
+  section[id]{scroll-margin-top:78px;}
   .nav-in{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:66px;}
   .brand{font-weight:700;font-size:16px;letter-spacing:.04em;}
   .brand span{color:var(--sub);font-weight:400;font-size:12px;margin-left:8px;}
@@ -215,9 +216,13 @@
 
 <header class="nav">
   <div class="nav-in">
-    <a href="../" class="brand">窪田成功<span>思考整理の参謀</span></a>
+    <a href="../" class="brand">即日LPラボ<span>窪田成功</span></a>
     <div class="nav-right">
-      <a href="../">TOPへ戻る</a>
+      <a href="#about">サービス</a>
+      <a href="#scope">料金</a>
+      <a href="#flow">制作の流れ</a>
+      <a href="#works">事例</a>
+      <a href="#entry">キャンペーン</a>
       <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" class="nav-cta line-cta" data-cta-label="sokujitsu_campaign_nav">LINEで早速申し込む</a>
     </div>
   </div>
@@ -368,7 +373,7 @@
 </section>
 
 <!-- ABOUT (このサービスで得られるもの) -->
-<section data-section="about">
+<section data-section="about" id="about">
   <div class="wrap reveal">
     <p class="eyebrow">About</p>
     <h2 class="sec-title">このサービスで得られるもの。</h2>
@@ -434,7 +439,7 @@
 </style>
 
 <!-- SCOPE (55,000円に含まれる範囲 / 2026-07-26 集約・整理版) -->
-<section class="scope-sec" data-section="scope">
+<section class="scope-sec" data-section="scope" id="scope">
   <div class="wrap reveal">
     <p class="eyebrow">Scope</p>
     <h2 class="sec-title">55,000円（税込）で、ここまで形にします。</h2>
@@ -569,7 +574,7 @@
 .site-links{font-size:12.5px;color:var(--sub);margin-top:14px;line-height:2;}
 .site-links a{color:var(--gold);}
 </style>
-<section data-section="works">
+<section data-section="works" id="works">
   <div class="wrap">
     <p class="eyebrow">Works</p>
     <h2 class="sec-title">制作事例。</h2>
@@ -741,7 +746,7 @@
 .foryou-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;}
 @media(max-width:640px){.foryou-list{grid-template-columns:1fr;}}
 </style>
-<section data-section="entry">
+<section data-section="entry" id="entry">
   <div class="wrap reveal">
     <p class="eyebrow">Campaign</p>
     <h2 class="sec-title">ホームページ公開キャンペーン</h2>
