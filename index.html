@@ -632,6 +632,52 @@
   </div>
 </section>
 
+<!-- 3状態セレクター(悩み別に3入口へ振り分け。2026-07-29追加) -->
+<style>
+  .state-router{padding:60px 0 12px;}
+  .state-router .sr-head{text-align:center;margin-bottom:34px;}
+  .state-router .sr-eyebrow{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.14em;margin-bottom:10px;}
+  .state-router h2{font-size:clamp(21px,3.4vw,29px);font-weight:800;color:var(--ink);line-height:1.5;}
+  .sr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto;}
+  @media(max-width:760px){.sr-grid{grid-template-columns:1fr;}}
+  .sr-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 22px 24px;text-align:center;transition:transform .25s,box-shadow .25s,border-color .25s;}
+  .sr-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.08);border-color:var(--gold);}
+  .sr-emoji{font-size:34px;line-height:1;margin-bottom:14px;}
+  .sr-state{font-size:17.5px;font-weight:800;color:var(--ink);line-height:1.6;margin-bottom:10px;}
+  .sr-desc{font-size:13px;color:var(--sub);line-height:1.8;margin-bottom:20px;flex:1;}
+  .sr-go{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700;color:var(--gold);border-top:1px solid var(--line);padding-top:16px;margin-top:auto;}
+  .sr-go .arr{transition:transform .25s;}
+  .sr-card:hover .sr-go .arr{transform:translateX(4px);}
+</style>
+<section class="state-router" id="state-router">
+  <div class="wrap reveal">
+    <div class="sr-head">
+      <p class="sr-eyebrow">START HERE</p>
+      <h2>あなたは今、どの状態ですか？</h2>
+    </div>
+    <div class="sr-grid">
+      <a href="/start/" class="sr-card">
+        <div class="sr-emoji">🧠</div>
+        <div class="sr-state">頭の中が<br>整理できない</div>
+        <div class="sr-desc">何から始めればいいか分からない。AIもうまく使えない。仕事が止まっている。まずは一緒に整理するところから。</div>
+        <div class="sr-go"><span>相談する</span><span class="arr">→</span></div>
+      </a>
+      <a href="/startup/" class="sr-card">
+        <div class="sr-emoji">🌱</div>
+        <div class="sr-state">商品を<br>育てたい</div>
+        <div class="sr-desc">構想はある。言葉にして、発信して、少しずつ形にしたい。1年かけて事業に育てる伴走プラン。</div>
+        <div class="sr-go"><span>スタートアップ応援</span><span class="arr">→</span></div>
+      </a>
+      <a href="/sokujitsu-lp-lab/" class="sr-card">
+        <div class="sr-emoji">🚀</div>
+        <div class="sr-state">商品はある。<br>すぐ形にしたい</div>
+        <div class="sr-desc">商品はできている。あとは、伝わるページ。対話したその日に、LPの形へ。</div>
+        <div class="sr-go"><span>即日LPラボ</span><span class="arr">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- よくある悩み(旧Check/Pain + Topics + Why を統合。トップページ構成整理[10セクション化]Phase Aにより統合、2026-07-13) -->
 <section id="pain">
   <div class="wrap">
