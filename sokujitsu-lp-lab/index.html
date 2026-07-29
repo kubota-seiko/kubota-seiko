@@ -1033,13 +1033,14 @@
 <style>
 .diff-lead{font-size:14px;color:var(--sub);line-height:1.9;max-width:680px;margin-top:8px;}
 .diff-wrap{margin-top:22px;max-width:760px;overflow-x:auto;}
-.diff-table{width:100%;border-collapse:collapse;font-size:13px;}
+.diff-table{width:100%;border-collapse:collapse;font-size:13px;min-width:660px;}
 .diff-table th,.diff-table td{padding:11px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.65;}
 .diff-table thead th{font-size:12px;font-weight:700;background:var(--soft);}
 .diff-table thead th.dcol-lab{background:#FBF3DC;color:#8A6A00;}
-.diff-table td.dcol-item{font-weight:700;color:var(--ink);width:20%;white-space:nowrap;}
-.diff-table td.dcol-gen{color:var(--sub);width:40%;}
-.diff-table td.dcol-lab{color:var(--ink);width:40%;background:#FCFAF5;font-weight:500;}
+.diff-table td.dcol-item{font-weight:700;color:var(--ink);width:16%;white-space:nowrap;}
+.diff-table td.dcol-gen{color:var(--sub);width:28%;}
+.diff-table td.dcol-self{color:var(--sub);width:28%;}
+.diff-table td.dcol-lab{color:var(--ink);width:28%;background:#FCFAF5;font-weight:500;}
 .diff-close{font-size:14px;line-height:1.95;max-width:700px;margin-top:20px;}
 .diff-note{font-size:11.5px;color:var(--sub);line-height:1.8;margin-top:12px;}
 @media(max-width:560px){.diff-table{font-size:11.5px;}.diff-table th,.diff-table td{padding:9px 8px;}.diff-table td.dcol-item{white-space:normal;}}
@@ -1047,18 +1048,19 @@
 <section data-section="diff">
   <div class="wrap reveal">
     <p class="eyebrow">Compare</p>
-    <h2 class="sec-title">一般的なLP制作との違い。</h2>
-    <p class="diff-lead">他社との優劣ではなく、進め方の違いとしてご覧ください。価格だけでなく、時間・改善・追加制作の面でも変わります。</p>
+    <h2 class="sec-title">自分で作る・外注する場合との違い。</h2>
+    <p class="diff-lead">自分で作る場合・他社に外注する場合との、優劣ではなく進め方の違いです。価格だけでなく、一番の負担・時間・改善の面でも変わります。</p>
     <div class="diff-wrap">
       <table class="diff-table">
-        <thead><tr><th>比較項目</th><th>一般的なLP制作</th><th class="dcol-lab">即日LPラボ</th></tr></thead>
+        <thead><tr><th>比較項目</th><th>自分で作る</th><th>一般的なLP制作</th><th class="dcol-lab">即日LPラボ</th></tr></thead>
         <tbody>
-          <tr><td class="dcol-item">初回LP制作</td><td class="dcol-gen">15〜30万円以上が目安</td><td class="dcol-lab">55,000円（税込・キャンペーン価格）</td></tr>
-          <tr><td class="dcol-item">納期</td><td class="dcol-gen">約1〜3か月</td><td class="dcol-lab">対話後、短期間で公開を目指す</td></tr>
-          <tr><td class="dcol-item">公開後</td><td class="dcol-gen">納品で終了することも多い</td><td class="dcol-lab">月額伴走で改善を継続</td></tr>
-          <tr><td class="dcol-item">修正・改善</td><td class="dcol-gen">都度見積もり・追加費用の場合も</td><td class="dcol-lab">軽微な改善は伴走内で対応</td></tr>
-          <tr><td class="dcol-item">新しいLP</td><td class="dcol-gen">新規見積もり・再発注</td><td class="dcol-lab">契約価格で追加制作可能</td></tr>
-          <tr><td class="dcol-item">年間運用</td><td class="dcol-gen">案件ごとに依頼</td><td class="dcol-lab">作る → 育てる → 増やす を継続</td></tr>
+          <tr><td class="dcol-item">一番の負担</td><td class="dcol-self">何を書くか決められず止まりがち</td><td class="dcol-gen">要件を言葉にして伝える必要</td><td class="dcol-lab">対話で一緒に引き出す</td></tr>
+          <tr><td class="dcol-item">初回LP制作</td><td class="dcol-self">ツール代のみ（時間はかかる）</td><td class="dcol-gen">15〜30万円以上が目安</td><td class="dcol-lab">55,000円（税込・キャンペーン価格）</td></tr>
+          <tr><td class="dcol-item">納期</td><td class="dcol-self">数週間〜停滞しがち</td><td class="dcol-gen">約1〜3か月</td><td class="dcol-lab">対話後、短期間で公開を目指す</td></tr>
+          <tr><td class="dcol-item">公開後</td><td class="dcol-self">自分で更新</td><td class="dcol-gen">納品で終了することも多い</td><td class="dcol-lab">自分で更新＋月額伴走で改善</td></tr>
+          <tr><td class="dcol-item">修正・改善</td><td class="dcol-self">自分で試行錯誤</td><td class="dcol-gen">都度見積もり・追加費用の場合も</td><td class="dcol-lab">軽微な改善は伴走内で対応</td></tr>
+          <tr><td class="dcol-item">新しいLP</td><td class="dcol-self">また一から作り直し</td><td class="dcol-gen">新規見積もり・再発注</td><td class="dcol-lab">契約価格で追加制作可能</td></tr>
+          <tr><td class="dcol-item">年間運用</td><td class="dcol-self">手が回らず放置しがち</td><td class="dcol-gen">案件ごとに依頼</td><td class="dcol-lab">作る → 育てる → 増やす を継続</td></tr>
         </tbody>
       </table>
     </div>
