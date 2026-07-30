@@ -968,10 +968,18 @@
   // link like "プロフィール" which sets #prof in the URL), skip the hash jump
   // so a reload always returns to the top page instead of re-jumping to that section.
   (function(){
-    if(!location.hash) return;
     var navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
     var isReload = navEntry ? navEntry.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
-    if(isReload) return;
+    if(isReload){
+      // reload always returns to the very top (strip any #hash so the browser
+      // does not natively jump to a section, then force scroll to 0)
+      if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
+      window.scrollTo(0,0);
+      window.addEventListener('load', function(){ window.scrollTo(0,0); });
+      return;
+    }
+    // intentional deep-link (navigate) with hash: jump to it
+    if(!location.hash) return;
     var target=document.querySelector(location.hash);
     if(!target) return;
     var html=document.documentElement;
