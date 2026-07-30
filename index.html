@@ -136,8 +136,7 @@
   .menu-btn{display:none;background:none;border:0;font-size:22px;cursor:pointer;color:var(--ink);}
 
   /* hero */
-  .hero{padding-top:140px;padding-bottom:var(--gap);position:relative;background-image:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.05) 60%, #FFFFFF 94%), url('images/hero-bg-sky.jpg');background-size:cover;background-position:8% center;background-repeat:no-repeat;}
-  @media(max-width:640px){.hero{background-image:linear-gradient(to bottom, rgba(255,255,255,.78) 0%, rgba(255,255,255,.82) 60%, #FFFFFF 94%), url('images/hero-bg-sky.jpg');}}
+  .hero{padding-top:140px;padding-bottom:var(--gap);position:relative;background:#fff;}
   .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;}
   .hero h1{font-size:clamp(34px,6vw,62px);letter-spacing:.03em;}
   .hero h1 .light{display:block;font-size:.4em;font-weight:600;color:var(--gold);letter-spacing:.2em;margin-bottom:18px;font-family:"Noto Sans JP",sans-serif;}
@@ -593,16 +592,35 @@
   </div>
 </header>
 
-<!-- HERO (写真なし・テキスト中央 / 2026-07-30) -->
+<!-- HERO (文字左・写真右 2カラム / 白背景 / 2026-07-30) -->
+<style>
+.hero-2col{display:flex;align-items:center;gap:40px;text-align:left;max-width:1080px;}
+.hero-2col .hero-text{flex:1 1 52%;min-width:0;}
+.hero-2col .hero-photo{flex:1 1 44%;min-width:0;}
+.hero-2col .hero-photo img{width:100%;height:auto;display:block;border-radius:16px;}
+.hero-2col .hero-kicker,.hero-2col .hero-headline,.hero-2col .hero-tagline,.hero-2col .hero-supplement,.hero-2col .hero-spine,.hero-2col .hero-cta-reassure{text-align:left;margin-left:0;margin-right:0;}
+.hero-2col .hero-spine{font-size:clamp(15px,2.2vw,19px);font-weight:700;color:var(--gold);letter-spacing:.03em;margin:0 0 24px;}
+.hero-2col .hero-cta{margin:8px 0 0;}
+@media(max-width:820px){
+  .hero-2col{flex-direction:column;gap:8px;text-align:center;}
+  .hero-2col .hero-text,.hero-2col .hero-photo{flex:1 1 100%;width:100%;}
+  .hero-2col .hero-photo{max-width:340px;margin:20px auto 0;}
+  .hero-2col .hero-kicker,.hero-2col .hero-headline,.hero-2col .hero-tagline,.hero-2col .hero-supplement,.hero-2col .hero-spine,.hero-2col .hero-cta-reassure{text-align:center;}
+  .hero-2col .hero-cta{margin:8px auto 0;}
+}
+</style>
 <section class="hero" id="top">
-  <div class="wrap hero-simple reveal">
-    <p class="hero-kicker">思考整理の参謀・窪田成功</p>
-    <h1 class="hero-headline">導線を整理して、<br>ホームページをリニューアル。</h1>
-    <p class="hero-tagline">サービスが増え、情報が複雑になったホームページを、<br>「誰に・何を・どの順番で伝えるか」から整理します。</p>
-    <p class="hero-supplement">今あるホームページを見たうえで、リニューアル後の導線設計案をご提案します。まずは、今のホームページのどこを残し、どこを整理するかを一緒に見つけます。</p>
-    <p style="font-size:clamp(15px,2.2vw,19px);font-weight:700;color:var(--gold);letter-spacing:.03em;margin:0 auto 26px;">AIで速く、人が深く、公開まで。</p>
-    <a href="#hp-shindan" class="hero-cta hero-cta-lg" style="margin:32px auto 0;" data-cta-label="hero_to_shindan">ホームページ導線診断を受ける <span class="arr">→</span></a>
-    <p class="hero-cta-reassure">いきなり制作を依頼する必要はありません。</p>
+  <div class="wrap hero-2col reveal">
+    <div class="hero-text">
+      <p class="hero-kicker">思考整理の参謀・窪田成功</p>
+      <h1 class="hero-headline">導線を整理して、<br>ホームページをリニューアル。</h1>
+      <p class="hero-tagline">サービスが増え、情報が複雑になったホームページを、「誰に・何を・どの順番で伝えるか」から整理します。</p>
+      <p class="hero-supplement">今あるホームページを見たうえで、リニューアル後の導線設計案をご提案します。まずは、今のホームページのどこを残し、どこを整理するかを一緒に見つけます。</p>
+      <p class="hero-spine">AIで速く、人が深く、公開まで。</p>
+      <a href="#hp-shindan" class="hero-cta hero-cta-lg" data-cta-label="hero_to_shindan">ホームページ導線診断を受ける <span class="arr">→</span></a>
+      <p class="hero-cta-reassure">いきなり制作を依頼する必要はありません。</p>
+    </div>
+    <div class="hero-photo"><img src="/images/hero-kubota.jpg" alt="思考整理の参謀・窪田成功" loading="eager"></div>
   </div>
 </section>
 
