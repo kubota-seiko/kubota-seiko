@@ -1,155 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQKZ2M8B6S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HQKZ2M8B6S');
-</script>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="page-version" content="202607_v1_launch">
-<title>小さなストレスチェック｜思考整理の参謀・窪田成功</title>
-<meta name="description" content="頭の中にある考えを、3分で言葉にする「小さなストレスチェック」。ともに進化していきたい方へ、窪田成功からのご案内です。">
-<link rel="canonical" href="https://kubota-seiko.com/shindan/">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="小さなストレスチェック｜窪田成功">
-<meta property="og:description" content="3分で、今の状況と次の一歩が見えてきます。ともに進化していきたい方へ。">
+<title>無料診断メニュー｜思考整理の参謀 窪田成功</title>
+<meta name="description" content="ホームページ・SNSの導線をAIが無料診断。URLや貼り付けだけで、現状の課題と改善の方向性をその場で受け取り、PDFで持ち帰れます。">
+<meta property="og:title" content="無料診断メニュー｜思考整理の参謀 窪田成功">
+<meta property="og:description" content="ホームページ・SNSの導線をAIが無料診断。その場でPDFに保存できます。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://kubota-seiko.com/shindan/">
-<meta property="og:image" content="https://kubota-seiko.com/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="小さなストレスチェック｜窪田成功">
-<meta name="twitter:description" content="3分で、今の状況と次の一歩が見えてきます。ともに進化していきたい方へ。">
-<meta name="twitter:image" content="https://kubota-seiko.com/images/og-image.jpg">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="/images/favicon-32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/images/favicon-16.png" sizes="16x16">
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQKZ2M8B6S"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HQKZ2M8B6S');</script>
 <style>
-  :root{
-    --bg:#FFFFFF;--ink:#1A1A1A;--accent:#1A1A2E;--gold:#B8924F;
-    --sub:#666666;--line:#ECECEC;--soft:#F7F7F8;--gap:96px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:"Noto Sans JP","Inter",sans-serif;color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-  h1,h2,h3{line-height:1.4;font-weight:700;letter-spacing:.02em;}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 28px;}
-  section{padding:var(--gap) 0;}
-  .eyebrow{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600;}
-  .center-block{text-align:center;}
-
-  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);}
-  .nav-in{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:66px;}
-  .brand{font-weight:700;font-size:16px;letter-spacing:.04em;}
-  .brand span{color:var(--sub);font-weight:400;font-size:12px;margin-left:8px;}
-  .nav-right{display:flex;gap:22px;align-items:center;}
-  .nav-right a{font-size:14px;color:var(--sub);transition:color .2s;}
-  .nav-right a:hover{color:var(--ink);}
-  .nav-cta{background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:2px;font-size:13px;}
-
-  .shero{padding:150px 0 40px;}
-  .shero h1{font-size:clamp(26px,5vw,42px);letter-spacing:.03em;max-width:760px;}
-  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:2px;font-size:15px;font-weight:500;transition:transform .25s,box-shadow .25s;margin-top:28px;}
-  .cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.16);}
-  .cta-secondary{display:inline-block;margin-top:16px;font-size:14px;color:var(--sub);text-decoration:underline;}
-  .line-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#06C755;color:#fff !important;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 10px 24px rgba(6,199,85,.35);transition:transform .2s,box-shadow .2s;}
-  .line-fab:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(6,199,85,.45);color:#fff !important;}
-  @media(max-width:480px){.line-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px;}}
-
-  .vision-card{max-width:640px;margin:32px auto 0;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:32px 30px;text-align:left;}
-  .vision-card p{font-size:15px;color:var(--ink);line-height:1.9;margin-bottom:14px;}
-  .vision-card p:last-child{margin-bottom:0;}
-
-  footer{padding:48px 0;border-top:1px solid var(--line);text-align:center;}
-  footer p{color:var(--sub);font-size:13px;}
-  footer a{color:var(--sub);text-decoration:underline;}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
-  .reveal.in{opacity:1;transform:none;}
-
-  @media(max-width:700px){
-    :root{--gap:56px;}
-    .nav-right a:not(.nav-cta){display:none;}
-  }
-  @media(max-width:420px){
-    .brand span{display:none;}
-  }
-  .small-word{font-size:0.62em;font-weight:inherit;letter-spacing:0;}
+:root{--ink:#1A1A1A;--sub:#666;--faint:#8C8C8C;--line:#ECECEC;--soft:#F7F8F5;--gold:#B8924F;--gold-l:#F4EFE5;}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.9;font-feature-settings:"palt";-webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{max-width:960px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;}
+.brand{text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;letter-spacing:.03em;}
+.brand span{color:var(--sub);font-weight:400;font-size:12px;margin-left:8px;}
+.nav a.back{font-size:13px;color:var(--sub);text-decoration:none;}
+.hero{background:linear-gradient(180deg,#fff,var(--soft));padding:54px 0 30px;text-align:center;}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:0 0 12px;}
+h1{font-size:clamp(24px,4.4vw,34px);line-height:1.4;font-weight:800;margin:0 0 14px;}
+.lead{font-size:15.5px;color:var(--sub);line-height:2.0;max-width:600px;margin:0 auto;}
+section{padding:14px 0 64px;}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+@media(max-width:640px){.cards{grid-template-columns:1fr;}}
+.dcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:26px 24px;text-decoration:none;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s;}
+.dcard:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(0,0,0,.05);}
+.dcard .ic{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:10px;}
+.dcard h2{font-size:19px;font-weight:800;margin:0 0 8px;line-height:1.4;}
+.dcard p{font-size:13.5px;color:var(--sub);line-height:1.85;margin:0 0 18px;flex:1;}
+.dcard .go{align-self:flex-start;background:var(--gold);color:#fff;font-weight:700;font-size:14px;border-radius:10px;padding:11px 20px;}
+.who{font-size:12px;color:var(--faint);margin:12px 2px 0;}
+.note{max-width:560px;margin:28px auto 0;text-align:center;color:var(--faint);font-size:12.5px;line-height:1.85;}
+.common{max-width:600px;margin:30px auto 0;background:var(--soft);border-radius:12px;padding:18px 20px;font-size:13.5px;color:var(--sub);line-height:1.9;text-align:center;}
+footer.site{background:var(--soft);border-top:1px solid var(--line);padding:30px 0;text-align:center;}
+footer.site a{color:var(--sub);text-decoration:none;font-size:13px;margin:0 10px;}
+footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
 </style>
 </head>
 <body>
-
-<header class="nav">
-  <div class="nav-in">
-    <a href="../" class="brand">窪田成功<span>思考整理の参謀</span></a>
-    <div class="nav-right">
-      <a href="../">TOPへ戻る</a>
-      <a href="/stress-check/" class="nav-cta line-cta"><span class="small-word">小さな</span>ストレスチェックをする(3分)</a>
-    </div>
+<header class="site">
+  <div class="nav">
+    <a href="/" class="brand">窪田成功<span>思考整理の参謀</span></a>
+    <a href="/" class="back">← トップへ戻る</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="shero">
-  <div class="wrap reveal center-block">
-    <p class="eyebrow"><span class="small-word">小さな</span>ストレスチェック</p>
-    <h1>ともに進化していきたい、<br>あなたへ。</h1>
-  </div>
-</section>
-
-<section style="padding-top:0;">
-  <div class="vision-card reveal">
-    <p>頭の中には考えがあるのに、うまく整理できない。<br>やるべきことは分かっているのに、なぜか手が止まる。</p>
-    <p>そんな言葉にならない<span class="small-word">小さな</span>ストレスや違和感を、3分で書き出してみませんか。</p>
-    <p>今の状況を見える化し、次の一歩を一緒に見つけていきます。</p>
-    <p><b>正解を書く必要はありません。「今の自分」をそのまま教えてください。</b></p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="padding-top:0;">
-  <div class="wrap reveal" style="text-align:center;">
-    <a href="/stress-check/" class="cta line-cta"><span class="small-word">小さな</span>ストレスチェックをする(3分) →</a><br>
-    <p style="font-size:13px;color:var(--sub);margin-top:14px;">無理にサービスを勧めることはありません。</p>
-    <a href="../" class="cta-secondary">思考整理の参謀・窪田成功について見る →</a>
-  </div>
-</section>
-
-<footer>
+<section class="hero">
   <div class="wrap">
-    <p>窪田 成功 ／ 思考整理の参謀 ・ Eternal株式会社　｜　<a href="../">TOPへ戻る</a>　｜　<a href="../story/">ストーリー</a>　｜　<a href="../cases.html">事例</a>　｜　<a href="../company/">会社概要</a>　｜　<a href="../tokushoho/">特定商取引法に基づく表記</a></p>
+    <p class="eyebrow">Free Check</p>
+    <h1>無料診断メニュー</h1>
+    <p class="lead">ホームページやSNSの「導線」をAIが無料で診断します。何を残し、何を整理し、どこで次の行動につなげるべきか——現状の課題と改善の方向性を、その場でPDFにして受け取れます。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+      <a class="dcard" href="/#hp-shindan" data-cta-label="hub_to_hp">
+        <div class="ic">01 — ホームページ</div>
+        <h2>ホームページ導線診断</h2>
+        <p>今あるホームページのURLを入れると、AIが「何を残し、何を整理し、どのページへ案内すべきか」を診断します。<span class="who">経営者・士業・法人の方に。</span></p>
+        <span class="go">診断する →</span>
+      </a>
+      <a class="dcard" href="/sns-shindan/" data-cta-label="hub_to_sns">
+        <div class="ic">02 — SNS</div>
+        <h2>SNS導線診断</h2>
+        <p>Instagram・X・Facebook・noteのプロフィールと投稿を貼り付けると、「誰に何の人か伝わるか・次の行動へ導けているか・発信の軸」を診断します。<span class="who">個人事業主・スモールビジネスの方に。</span></p>
+        <span class="go">診断する →</span>
+      </a>
+    </div>
+    <p class="note">※診断はこれから順次追加していきます。</p>
+    <div class="common">どの診断も、結果はその場で表示され、PDFで持ち帰れます。<br>さらに詳しい設計図・改善提案は、LINEからの個別相談で承ります。</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <a href="/">トップ</a>・<a href="/sns-shindan/">SNS診断</a>・<a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">LINEで相談</a>
+    <div class="cp">© Eternal株式会社</div>
   </div>
 </footer>
-
-<script>
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el,i){
-    el.style.transitionDelay=(i%3*0.08)+'s';
-    io.observe(el);
-  });
-  document.querySelectorAll('.line-cta').forEach(function(el){
-    el.addEventListener('click', function(){
-      if(typeof gtag==='function'){
-        gtag('event','line_click',{'page_location':location.href});
-      }
-    });
-  });
-</script>
-<a href="/stress-check/" class="line-fab line-cta"><span class="small-word">小さな</span>ストレスチェックをする(3分) →</a>
-
-<script src="/js/track.js" defer></script>
 </body>
 </html>
