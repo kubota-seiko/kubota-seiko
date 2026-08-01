@@ -625,18 +625,96 @@
 </section>
 
 <!-- ホームページ導線診断 (提案型営業の入口 / 2026-07-30) -->
+<style id="shindan-css">
+.sh-form{max-width:560px;margin:26px auto 0;text-align:left;}
+.sh-form input,.sh-form textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:15px;font-family:inherit;margin-bottom:10px;background:#fff;color:var(--ink);}
+.sh-form textarea{min-height:62px;resize:vertical;}
+.sh-btn{display:block;width:100%;background:var(--gold);color:#fff;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;}
+.sh-btn:hover{opacity:.92;}
+.sh-mini{color:var(--faint);font-size:12.5px;margin:10px 2px 0;line-height:1.8;}
+.sh-loading{max-width:560px;margin:24px auto 0;color:var(--sub);font-size:14px;}
+.sh-result{max-width:680px;margin:30px auto 0;text-align:left;}
+.sh-note-sample{background:#FFF7E6;border:1px solid #F0D9A0;color:#8A6A00;font-size:12.5px;border-radius:8px;padding:10px 12px;margin-bottom:16px;line-height:1.7;}
+.sh-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:26px 24px;}
+.sh-card .sh-eyebrow{font-size:11px;letter-spacing:.18em;color:var(--gold);font-weight:700;margin:0 0 6px;}
+.sh-card h3{font-size:20px;font-weight:800;margin:0 0 6px;}
+.sh-url{color:var(--sub);font-size:13px;margin:0 0 18px;word-break:break-all;}
+.sh-lead-block{background:var(--soft);border-radius:10px;padding:14px 16px;margin:0 0 18px;font-size:14px;line-height:1.85;}
+.sh-finding{border-top:1px solid var(--line);padding:16px 0;}
+.sh-finding:last-child{padding-bottom:2px;}
+.sh-finding h4{font-size:15.5px;font-weight:700;margin:0 0 8px;}
+.sh-row{font-size:13.5px;line-height:1.8;margin:4px 0;}
+.sh-row b{color:var(--gold);font-weight:700;}
+.sh-cta-row{margin-top:22px;text-align:center;}
+.sh-cta-row .sh-pdf{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--gold);font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;cursor:pointer;font-family:inherit;margin:6px;}
+.sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
+</style>
 <section id="hp-shindan" style="background:var(--soft);">
   <div class="wrap reveal" style="text-align:center;">
     <p class="eyebrow">Free Check</p>
     <h2 class="sec-title">ホームページ導線診断</h2>
-    <p style="max-width:640px;margin:14px auto 0;line-height:2.0;">今あるホームページのURLをお送りください。<br>「何を残し、何を整理し、どのページへ案内するべきか」を確認し、現状の導線課題をご案内します。</p>
-    <p style="max-width:640px;margin:14px auto 0;color:var(--sub);line-height:2.0;">いきなり制作を依頼する必要はありません。まずは、今のホームページがどのような状態かを一緒に整理します。</p>
-    <div style="margin-top:24px;">
-      <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" class="line-cta" data-cta-label="hp_shindan" style="display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 28px;border-radius:12px;">LINEでホームページを見てもらう →</a>
+    <p style="max-width:640px;margin:14px auto 0;line-height:2.0;">今あるホームページのURLを入れると、AIが「何を残し、何を整理し、どのページへ案内すべきか」を診断します。<br>結果はその場で表示され、PDFで保存して持ち帰れます。</p>
+    <p style="max-width:640px;margin:14px auto 0;color:var(--sub);line-height:2.0;">いきなり制作を依頼する必要はありません。まずは、今のホームページの状態を整理するところから。</p>
+    <div class="sh-form">
+      <input id="shUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://あなたのサイトのURL">
+      <textarea id="shNote" placeholder="気になっていること（任意）"></textarea>
+      <button id="shRun" type="button" class="sh-btn">診断する</button>
+      <p class="sh-mini">※無料。結果はその場で表示・PDFで保存できます。画像中心のサイトは自動診断が難しい場合があります。</p>
     </div>
-    <p style="max-width:640px;margin:16px auto 0;color:var(--faint);font-size:12.5px;line-height:1.85;">※内容や募集状況により、簡易診断または個別相談でのご案内となります。<br>※詳細なサイト設計図・改善提案書の作成は、個別相談または有料診断の対象となる場合があります。</p>
+    <div id="shResult" class="sh-result" hidden></div>
   </div>
 </section>
+<script id="shindan-js">
+(function(){
+  var runBtn=document.getElementById('shRun');
+  if(!runBtn)return;
+  var pdfLoaded=false;
+  function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+  function esc(t){var d=document.createElement('div');d.textContent=(t==null?'':t);return d.innerHTML;}
+  function exportPdf(){
+    var el=document.getElementById('shReportCard');
+    var go=function(){html2pdf().set({margin:[10,8],filename:'ホームページ導線診断書.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save();};
+    if(pdfLoaded){go();return;}
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(function(){pdfLoaded=true;go();}).catch(function(){alert('PDFの生成に失敗しました。時間をおいて再度お試しください。');});
+  }
+  function render(data){
+    var f=data.findings.map(function(x){return '<div class="sh-finding"><h4>'+esc(x.t)+'</h4>'+
+      '<p class="sh-row"><b>現状：</b>'+esc(x.now)+'</p>'+
+      '<p class="sh-row"><b>影響：</b>'+esc(x.eff)+'</p>'+
+      '<p class="sh-row"><b>改善：</b>'+esc(x.fix)+'</p></div>';}).join('');
+    var html='';
+    if(data.sample){html+='<div class="sh-note-sample">※これはサンプル表示です。本番では、入力されたサイトをAIが解析して診断します。</div>';}
+    html+='<div class="sh-card" id="shReportCard">'+
+      '<p class="sh-eyebrow">HOMEPAGE 導線診断書</p>'+
+      '<h3>ホームページ導線診断書</h3>'+
+      '<p class="sh-url">対象サイト：'+esc(data.url)+'</p>'+
+      '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
+    '</div>'+
+    '<div class="sh-cta-row">'+
+      '<a class="sh-pdf" id="shPdf" role="button">PDFで保存する</a>'+
+      '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">この診断をもとに提案を受け取る（LINE）→</a>'+
+    '</div>';
+    var r=document.getElementById('shResult');
+    r.innerHTML=html;r.hidden=false;
+    document.getElementById('shPdf').addEventListener('click',exportPdf);
+    r.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  var SAMPLE={sample:true,url:'https://example.com',
+    summary:'第一印象は伝わる一方で、「何を提供しているか」「次に何をすればよいか」が入口で分かりにくく、詳細ページへの導線が途切れている状態が見受けられました。',
+    findings:[
+      {t:'トップページに情報が集まりすぎている',now:'サービス・実績・想いが1ページに詰め込まれ、優先順位が読み取りにくい状態です。',eff:'初めて訪れた方が「自分向けか」を判断できず、途中で離脱しやすくなります。',fix:'トップは入口に絞り、詳細は各サービスページへ分けて案内する。'},
+      {t:'各サービスへの入口が弱い',now:'メニューやトップから、それぞれのサービス詳細への導線が目立ちません。',eff:'興味を持った方が「奥に何があるか」に辿り着けず、行き止まりになりがちです。',fix:'ヘッダーとトップに「サービス一覧」を設け、各詳細へ明確に導く。'},
+      {t:'問い合わせまでの導線が遠い',now:'相談・申し込みの入口がページ下部にしかなく、途中で見つけにくい状態です。',eff:'行動したい気持ちが高まった瞬間に、行き先が見つからず冷めてしまいます。',fix:'各セクションの区切りに、無理のない問い合わせ導線を配置する。'}
+    ]};
+  runBtn.addEventListener('click',function(){
+    var url=(document.getElementById('shUrl').value||'').trim();
+    if(!url){document.getElementById('shUrl').focus();return;}
+    var r=document.getElementById('shResult');
+    r.hidden=false;r.innerHTML='<div class="sh-loading">サイトを確認しています…</div>';
+    setTimeout(function(){var d={};for(var k in SAMPLE){d[k]=SAMPLE[k];}d.url=url;render(d);},900);
+  });
+})();
+</script>
 
 <!-- 3状態セレクター(悩み別に3入口へ振り分け。2026-07-29追加) -->
 <style>
