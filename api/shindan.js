@@ -167,6 +167,7 @@ module.exports = async (req, res) => {
       });
     } catch (e) {
       res.status(200).json({ ok: false, error: 'ai_request_failed',
+        detail: String((e && e.message) || e).slice(0, 300),
         message: 'ただいま診断が混み合っています。少し時間をおいてお試しください。' });
       return;
     }
