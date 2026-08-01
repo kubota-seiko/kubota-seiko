@@ -120,9 +120,17 @@ module.exports = async (req, res) => {
     }
 
     // 3) Claude API で診断生成
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = (process.env.ANTHROPIC_API_KEY || '').trim();
     if (!apiKey) {
-      res.status(500).json({ ok: false, error: 'ANTHROPIC_API_KEY not set' });
+      res.status(500).json({ ok: false, error: 'ANTHROPIC_API_KEY not set',
+        message: '診断の準備が整っていません。しばらくしてからお試しください。' });
+      return;
+    }
+    // 環境変数の値がAPIキー以外(日本語混入・異常な長さ)ならヘッダー例外を避けて明示的に返す
+    if (!/^[\x21-\x7E]+$/.test(apiKey) || apiKey.length > 250) {
+      res.status(500).json({ ok: false, error: 'bad_api_key',
+        detail: 'len=' + apiKey.length + ' ascii=' + /^[\x21-\x7E]+$/.test(apiKey),
+        message: '診断の設定に問題があります。運営者へご連絡ください。' });
       return;
     }
     const model = process.env.SHINDAN_MODEL || 'claude-haiku-4-5-20251001';
