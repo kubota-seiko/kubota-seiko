@@ -648,6 +648,7 @@
 .sh-cta-row{margin-top:22px;text-align:center;}
 .sh-cta-row .sh-pdf{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--gold);font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;cursor:pointer;font-family:inherit;margin:6px;}
 .sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
+.sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px;font-size:14px;line-height:1.9;}
 </style>
 <section id="hp-shindan" style="background:var(--soft);">
   <div class="wrap reveal" style="text-align:center;">
@@ -668,38 +669,47 @@
 (function(){
   var runBtn=document.getElementById('shRun');
   if(!runBtn)return;
+  var resultEl=document.getElementById('shResult');
   var pdfLoaded=false;
   function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
   function esc(t){var d=document.createElement('div');d.textContent=(t==null?'':t);return d.innerHTML;}
+  function track(ev,params){if(window.gtag){try{window.gtag('event',ev,params||{});}catch(e){}}}
   function exportPdf(){
     var el=document.getElementById('shReportCard');
-    var go=function(){html2pdf().set({margin:[10,8],filename:'ホームページ導線診断書.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save();};
+    var go=function(){html2pdf().set({margin:[10,8],filename:'ホームページ導線診断書.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save();track('shindan_pdf_save',{});};
     if(pdfLoaded){go();return;}
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(function(){pdfLoaded=true;go();}).catch(function(){alert('PDFの生成に失敗しました。時間をおいて再度お試しください。');});
   }
-  function render(data){
+  function ctaRow(withPdf){
+    return '<div class="sh-cta-row">'+
+      (withPdf?'<a class="sh-pdf" id="shPdf" role="button">PDFで保存する</a>':'')+
+      '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">'+(withPdf?'この診断をもとに提案を受け取る（LINE）→':'個別の導線診断を相談する（LINE）→')+'</a>'+
+    '</div>';
+  }
+  function renderReport(data,isSample){
     var f=data.findings.map(function(x){return '<div class="sh-finding"><h4>'+esc(x.t)+'</h4>'+
       '<p class="sh-row"><b>現状：</b>'+esc(x.now)+'</p>'+
       '<p class="sh-row"><b>影響：</b>'+esc(x.eff)+'</p>'+
       '<p class="sh-row"><b>改善：</b>'+esc(x.fix)+'</p></div>';}).join('');
     var html='';
-    if(data.sample){html+='<div class="sh-note-sample">※これはサンプル表示です。本番では、入力されたサイトをAIが解析して診断します。</div>';}
+    if(isSample){html+='<div class="sh-note-sample">※これはローカル環境のサンプル表示です。本番では、入力されたサイトをAIが解析して診断します。</div>';}
     html+='<div class="sh-card" id="shReportCard">'+
       '<p class="sh-eyebrow">HOMEPAGE 導線診断書</p>'+
       '<h3>ホームページ導線診断書</h3>'+
       '<p class="sh-url">対象サイト：'+esc(data.url)+'</p>'+
       '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
-    '</div>'+
-    '<div class="sh-cta-row">'+
-      '<a class="sh-pdf" id="shPdf" role="button">PDFで保存する</a>'+
-      '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">この診断をもとに提案を受け取る（LINE）→</a>'+
-    '</div>';
-    var r=document.getElementById('shResult');
-    r.innerHTML=html;r.hidden=false;
+      '<p class="sh-mini" style="text-align:left;margin-top:16px;">※本診断はAIによる自動診断です。詳しい設計図・改善提案は個別診断で承ります。</p>'+
+    '</div>'+ctaRow(true);
+    resultEl.innerHTML=html;resultEl.hidden=false;
     document.getElementById('shPdf').addEventListener('click',exportPdf);
-    r.scrollIntoView({behavior:'smooth',block:'start'});
+    resultEl.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  var SAMPLE={sample:true,url:'https://example.com',
+  function renderMessage(msg){
+    resultEl.innerHTML='<div class="sh-result-msg">'+esc(msg)+'</div>'+ctaRow(false);
+    resultEl.hidden=false;
+    resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  var SAMPLE={url:'https://example.com',
     summary:'第一印象は伝わる一方で、「何を提供しているか」「次に何をすればよいか」が入口で分かりにくく、詳細ページへの導線が途切れている状態が見受けられました。',
     findings:[
       {t:'トップページに情報が集まりすぎている',now:'サービス・実績・想いが1ページに詰め込まれ、優先順位が読み取りにくい状態です。',eff:'初めて訪れた方が「自分向けか」を判断できず、途中で離脱しやすくなります。',fix:'トップは入口に絞り、詳細は各サービスページへ分けて案内する。'},
@@ -709,9 +719,24 @@
   runBtn.addEventListener('click',function(){
     var url=(document.getElementById('shUrl').value||'').trim();
     if(!url){document.getElementById('shUrl').focus();return;}
-    var r=document.getElementById('shResult');
-    r.hidden=false;r.innerHTML='<div class="sh-loading">サイトを確認しています…</div>';
-    setTimeout(function(){var d={};for(var k in SAMPLE){d[k]=SAMPLE[k];}d.url=url;render(d);},900);
+    var note=(document.getElementById('shNote').value||'').trim();
+    resultEl.hidden=false;
+    resultEl.innerHTML='<div class="sh-loading">サイトを確認しています…（20秒ほどかかる場合があります）</div>';
+    runBtn.disabled=true;runBtn.textContent='診断中…';
+    track('shindan_run',{site_url:url.slice(0,120)});
+    fetch('/api/shindan',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({url:url,note:note})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d&&d.ok&&d.findings&&d.findings.length){renderReport(d,false);track('shindan_success',{site_url:url.slice(0,120)});}
+        else if(d&&d.thin){renderMessage(d.message||'このサイトは自動診断が難しいため、個別の導線診断をおすすめします。');track('shindan_thin',{});}
+        else{renderMessage((d&&d.message)||'うまく診断できませんでした。個別診断をご利用ください。');track('shindan_error',{});}
+      })
+      .catch(function(){
+        var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+        if(local){var s={};for(var k in SAMPLE){s[k]=SAMPLE[k];}s.url=url;renderReport(s,true);}
+        else{renderMessage('通信に問題が発生しました。時間をおいて再度お試しください。');}
+      })
+      .then(function(){runBtn.disabled=false;runBtn.textContent='診断する';});
   });
 })();
 </script>
