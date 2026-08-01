@@ -1,5 +1,6 @@
 {
   "functions": {
-    "api/shindan.js": { "maxDuration": 60 }
+    "api/shindan.js": { "maxDuration": 60 },
+    "api/sns-shindan.js": { "maxDuration": 60 }
   }
 }
