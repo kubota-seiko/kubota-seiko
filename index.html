@@ -839,6 +839,19 @@
 .seiju-btn.primary{background:var(--gold);color:#fff;}
 .seiju-btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
 .seiju-note{font-size:12px;color:var(--sub);text-align:center;margin:16px auto 0;line-height:1.8;max-width:600px;}
+.zoom-photo{margin:0;}
+.zoom-ph{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#1f2937;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.12);}
+.zoom-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.zoom-bar{display:flex;align-items:center;gap:7px;background:#111827;color:#cbd5e1;font-size:11px;font-weight:600;padding:8px 12px;}
+.zoom-dot{width:8px;height:8px;border-radius:50%;background:#ef4444;}
+.zoom-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;height:calc(100% - 62px);}
+.zoom-tile{background:linear-gradient(160deg,#334155,#1e293b);border-radius:8px;position:relative;display:flex;align-items:flex-end;justify-content:center;padding:10px;}
+.zoom-tile:before{content:"\1F464";position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:30px;opacity:.35;}
+.zoom-tile span{font-size:11px;color:#e2e8f0;background:rgba(0,0,0,.55);border-radius:5px;padding:3px 8px;font-weight:600;}
+.zoom-note{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10.5px;color:#94a3b8;}
+.zoom-photo figcaption{font-size:11.5px;color:var(--sub);margin-top:10px;text-align:center;}
+.seiju-online{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-top:12px;}
+.seiju-online .odot{width:9px;height:9px;border-radius:50%;background:#2E9E5B;flex:0 0 auto;}
 </style>
 <section id="voice">
   <div class="wrap">
@@ -849,18 +862,28 @@
     </div>
 
     <!-- Seiju国際知財事務所 リニューアル事例(掲載許可済み。Before/After画像は差し込み予定) -->
-    <div class="seiju-case reveal no-photo">
+    <div class="seiju-case reveal">
       <span class="seiju-badge">CASE ｜ 士業サイトのリニューアル</span>
       <!-- Zone A -->
       <div class="seiju-a">
-        <div class="seiju-photo-wrap">
-          <div class="seiju-photo">ツーショット写真<br>（差し込み予定）</div>
-          <p class="seiju-photocap">Seiju国際知財事務所にて／対話による思考整理の様子</p>
+        <div class="seiju-photo-wrap" style="text-align:center;">
+          <figure class="zoom-photo">
+            <div class="zoom-ph">
+              <div class="zoom-bar"><span class="zoom-dot"></span>Zoom ミーティング</div>
+              <div class="zoom-grid">
+                <div class="zoom-tile"><span>北村 光司 先生</span></div>
+                <div class="zoom-tile"><span>窪田 成功</span></div>
+              </div>
+              <div class="zoom-note">Zoomでのツーショット（後日差し込み）</div>
+            </div>
+            <figcaption>Zoomでの対話の様子 ／ <b style="color:var(--ink);">オンラインで完結</b></figcaption>
+          </figure>
+          <span class="seiju-online"><span class="odot"></span>オンライン完結（Zoom等）で全国どこからでも</span>
         </div>
         <div>
           <h3 class="seiju-h">「見た目のリニューアル」ではなく、<br>「<mark>相談の質</mark>」が変わる思考整理。</h3>
           <p class="seiju-role">Seiju国際知財事務所 代表弁理士 北村 光司 先生 ✕ 思考整理の参謀 窪田 成功</p>
-          <p class="seiju-sub">堅苦しくなりがちな知財の世界で、「何を守り、何を活かすか」という独自の立ち位置を対話で言語化。着手からわずか3日で、選ばれるWebへ可視化しました。</p>
+          <p class="seiju-sub">堅苦しくなりがちな知財の世界で、「何を守り、何を活かすか」という独自の立ち位置を、オンライン（Zoom）での対話で言語化。着手からわずか3日で、選ばれるWebへ可視化しました。</p>
         </div>
       </div>
       <!-- Zone B: Before/After -->
@@ -900,6 +923,7 @@
         <a href="#hp-shindan" class="seiju-btn primary" data-track-event="navigation_click" data-track-name="seiju_case_to_shindan" data-track-position="case">自分のサイトも無料で導線診断してみる（3分）→</a>
         <a href="renewal/" class="seiju-btn secondary" data-track-event="navigation_click" data-track-name="seiju_case_to_renewal" data-track-position="case">本格ホームページリニューアル（55万円〜）を見る →</a>
       </div>
+      <p class="seiju-note" style="color:var(--ink);font-weight:600;">初回のご相談も、Zoom等でオンライン対応が可能です。全国どこからでもご相談いただけます。</p>
       <p class="seiju-note">※Seiju様サイトはリニューアルの最終チェック中です（一般公開前）。掲載内容は北村先生のご確認後、順次更新いたします。</p>
     </div>
 
