@@ -791,12 +791,114 @@
 
 <!-- VOICE / CASES (愛媛県焼肉店店主様の詳細事例 + 短い声、を1セクションに統合) -->
 <!-- 今後、事例が増えた場合はこの.case-cardブロックを複製して追加してください(1事例=1.case-card) -->
+<style id="seiju-css">
+.seiju-case{border:1px solid var(--line);border-radius:20px;padding:34px 30px;background:#fff;margin:0 0 30px;}
+.seiju-badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--gold);background:var(--soft);border-radius:999px;padding:6px 14px;margin-bottom:16px;}
+.seiju-a{display:grid;grid-template-columns:0.82fr 1fr;gap:28px;align-items:center;}
+.seiju-photo-wrap{}
+.seiju-photo{background:var(--soft);border:1px dashed #cfcfcf;border-radius:14px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:12.5px;text-align:center;padding:16px;line-height:1.7;}
+.seiju-photo img{width:100%;height:100%;object-fit:cover;border-radius:14px;}
+.seiju-photocap{font-size:11.5px;color:var(--sub);margin:8px 2px 0;text-align:center;}
+.seiju-h{font-size:clamp(19px,2.5vw,25px);font-weight:800;line-height:1.55;margin:0 0 14px;}
+.seiju-h mark{background:linear-gradient(transparent 58%, #EFE3C8 58%);color:inherit;padding:0 2px;}
+.seiju-role{font-size:12.5px;color:var(--sub);font-weight:700;margin:0 0 14px;line-height:1.7;}
+.seiju-sub{font-size:14px;line-height:1.95;color:var(--ink);margin:0;}
+@media(max-width:720px){.seiju-a{grid-template-columns:1fr;}}
+.seiju-ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:30px 0 0;}
+.seiju-shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--soft);}
+.seiju-shot a{display:block;}
+.seiju-shot img{width:100%;display:block;}
+.seiju-shot .ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:12.5px;text-align:center;padding:12px;line-height:1.7;}
+.seiju-shot .cap{font-size:11.5px;color:var(--sub);padding:8px 12px;border-top:1px solid var(--line);}
+.seiju-arrow{text-align:center;font-weight:800;color:var(--gold);font-size:15px;white-space:nowrap;line-height:1.3;}
+.seiju-arrow small{display:block;font-size:10.5px;color:var(--sub);font-weight:600;}
+@media(max-width:720px){.seiju-ba{grid-template-columns:1fr;}.seiju-arrow{transform:rotate(90deg);margin:2px 0;}}
+.seiju-cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;}
+.seiju-cmp .c{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;}
+.seiju-cmp .lab{font-size:12px;font-weight:800;letter-spacing:.06em;margin:0 0 8px;}
+.seiju-cmp .before .lab{color:#B0524B;}
+.seiju-cmp .after .lab{color:#3F7A4F;}
+.seiju-cmp .speed .lab{color:var(--gold);}
+.seiju-cmp p{font-size:13px;line-height:1.85;color:var(--ink);margin:0;}
+@media(max-width:720px){.seiju-cmp{grid-template-columns:1fr;}}
+.seiju-int-head{margin:34px 0 0;}
+.seiju-int-head .e{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin:0 0 4px;}
+.seiju-int-head .t{font-size:15px;font-weight:700;color:var(--ink);margin:0;}
+.seiju-quote{background:var(--soft);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px;margin:16px 0 0;font-size:15px;line-height:1.98;color:var(--ink);}
+.seiju-quote b{color:var(--gold);}
+.seiju-quote .by{display:block;margin-top:14px;font-size:12.5px;color:var(--sub);font-weight:700;}
+.seiju-qa{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;}
+.seiju-qa .qa{border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+.seiju-qa .q{font-size:12.5px;font-weight:700;color:var(--gold);margin:0 0 6px;}
+.seiju-qa .a{font-size:13px;line-height:1.9;color:var(--ink);margin:0;}
+@media(max-width:720px){.seiju-qa{grid-template-columns:1fr;}}
+.seiju-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;}
+.seiju-btn{display:inline-block;text-decoration:none;font-weight:700;font-size:14.5px;border-radius:12px;padding:14px 24px;}
+.seiju-btn.primary{background:var(--gold);color:#fff;}
+.seiju-btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
+.seiju-note{font-size:12px;color:var(--sub);text-align:center;margin:16px auto 0;line-height:1.8;max-width:600px;}
+</style>
 <section id="voice">
   <div class="wrap">
     <div class="reveal center-block">
       <p class="eyebrow">実際の支援事例</p>
       <h2 class="sec-title">対話から、その日のうちに<br>伝わる形へ。</h2>
       <p class="sec-lead">最初から、伝えたいことが整理されている必要はありません。<br>まとまっていない話を伺いながら、サービスの価値、届けたい相手、伝える順番を整理し、実際に使えるページへ形にします。</p>
+    </div>
+
+    <!-- Seiju国際知財事務所 リニューアル事例(掲載許可済み。Before/After画像は差し込み予定) -->
+    <div class="seiju-case reveal">
+      <span class="seiju-badge">CASE ｜ 士業サイトのリニューアル</span>
+      <!-- Zone A -->
+      <div class="seiju-a">
+        <div class="seiju-photo-wrap">
+          <div class="seiju-photo">ツーショット写真<br>（差し込み予定）</div>
+          <p class="seiju-photocap">Seiju国際知財事務所にて／対話による思考整理の様子</p>
+        </div>
+        <div>
+          <h3 class="seiju-h">「見た目のリニューアル」ではなく、<br>「<mark>相談の質</mark>」が変わる思考整理。</h3>
+          <p class="seiju-role">Seiju国際知財事務所 代表弁理士 北村 光司 先生 ✕ 思考整理の参謀 窪田 成功</p>
+          <p class="seiju-sub">堅苦しくなりがちな知財の世界で、「何を守り、何を活かすか」という独自の立ち位置を対話で言語化。着手からわずか3日で、選ばれるWebへ可視化しました。</p>
+        </div>
+      </div>
+      <!-- Zone B: Before/After -->
+      <div class="seiju-ba">
+        <div class="seiju-shot">
+          <div class="ph">BEFORE 画像<br>（旧サイト・差し込み予定）</div>
+          <div class="cap">BEFORE ｜ 旧サイト（seijuip.jp）</div>
+        </div>
+        <div class="seiju-arrow">→<small>3日間で</small></div>
+        <div class="seiju-shot">
+          <div class="ph">AFTER 画像<br>（新サイト第1版・差し込み予定）</div>
+          <div class="cap">AFTER ｜ 新サイト（第1版）</div>
+        </div>
+      </div>
+      <div class="seiju-cmp">
+        <div class="c before"><p class="lab">BEFORE</p><p>新着情報とメニュー中心で、事務所の"考え方"や強みが伝わらず、相談の手前で離脱・価格比較されていた。</p></div>
+        <div class="c after"><p class="lab">AFTER（3日で制作）</p><p>入口で「その強みは、当たり前になっていませんか。」と問いかけ。独自の立ち位置が一目で伝わり、相談導線まで一本化。</p></div>
+        <div class="c speed"><p class="lab">SPEED</p><p>通常1〜3ヶ月かかる設計を、集中対話とAI実装により、着手からわずか3日間で可視化。</p></div>
+      </div>
+      <!-- Zone C: お客様の声 -->
+      <div class="seiju-int-head">
+        <p class="e">お客様の声 ／ INTERVIEW</p>
+        <p class="t">依頼された弁理士ご本人に、伺いました。</p>
+      </div>
+      <div class="seiju-quote">
+        本人の気づいていない可能性にアプローチする私たちの知財業務と、窪田社長の仕事は似ています。<b>「医師が自分で自分は手術できない」</b>のと同様で、そのメンタルの発掘・整理を窪田社長にお願いしました。<b>潜在意識の部分が言語化され、Webから発信できるパワー</b>を、ぜひ実感してみてください。
+        <span class="by">—— Seiju国際知財事務所 代表弁理士 北村 光司 先生</span>
+      </div>
+      <div class="seiju-qa">
+        <div class="qa"><p class="q">Q. 以前のお悩みは？</p><p class="a">一般のお客様をWebから集客していなかったので表示をシンプルにしていたのですが、自分の考えや活動が伝わりにくく、サイトに"やる気の無さ"が漂っているのが気がかりでした。</p></div>
+        <div class="qa"><p class="q">Q. なぜ窪田さんを選んだのか？</p><p class="a">以前スピーチ原稿を見てもらった際、観点の変更提案のおかげで聴衆に非常に響くスピーチができました。個性を引き出す能力において深い信頼があったため、お願いしました。</p></div>
+        <div class="qa"><p class="q">Q. 対話の体験と、3日間のスピード感は？</p><p class="a">自分自身の棚卸しを半日で行う決意をし、それがわずか3日で思考整理されたWebサイトとして形になった時は、長年のモヤモヤが一気に晴れる感動がありました。</p></div>
+        <div class="qa"><p class="q">Q. 導線が整った手応えは？</p><p class="a">私や事務所の説明労力が大幅に軽減されるため、今後より積極的に本業や活動に参加できる手応えを感じています。</p></div>
+      </div>
+      <!-- Zone D: CTA -->
+      <div class="seiju-cta">
+        <a href="#hp-shindan" class="seiju-btn primary" data-track-event="navigation_click" data-track-name="seiju_case_to_shindan" data-track-position="case">自分のサイトも無料で導線診断してみる（3分）→</a>
+        <a href="renewal/" class="seiju-btn secondary" data-track-event="navigation_click" data-track-name="seiju_case_to_renewal" data-track-position="case">本格ホームページリニューアル（55万円〜）を見る →</a>
+      </div>
+      <p class="seiju-note">※Seiju様サイトはリニューアルの最終チェック中です（一般公開前）。掲載内容は北村先生のご確認後、順次更新いたします。</p>
     </div>
 
     <div class="case-card reveal">
