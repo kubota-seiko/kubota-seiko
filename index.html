@@ -650,6 +650,19 @@
 .sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
 .sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px;font-size:14px;line-height:1.9;}
 </style>
+<div class="hero-proof-stripe">
+  <div class="proof-content">
+    <a class="proof-avatar" href="#case-seiju" aria-label="Seiju国際知財事務所の事例へ">
+      <img src="images/Kitamura1.jpg" alt="北村光司先生と窪田成功">
+      <span class="online-dot"></span>
+    </a>
+    <div class="proof-text">
+      <p class="proof-tag">弁理士歴30年・大阪地裁 鑑定評価実績 ｜ 完全紹介制</p>
+      <p class="proof-quote">「医師が自分では手術できない」——対話による思考整理で、3日で選ばれるWebへ。<span class="proof-src">Seiju国際知財事務所（弁理士 北村光司先生）</span></p>
+    </div>
+    <a href="#case-seiju" class="proof-link">事例を見る<span class="arrow">↓</span></a>
+  </div>
+</div>
 <section id="hp-shindan" style="background:var(--soft);">
   <div class="wrap reveal" style="text-align:center;">
     <p class="eyebrow">Free Check</p>
@@ -863,6 +876,34 @@
 .seiju-ext:hover{color:#1F2937;}
 .seiju-ext svg{opacity:.75;}
 .seiju-verify{text-align:center;font-size:11.5px;color:var(--sub);margin:12px 0 0;}
+/* Zone A main photo + Zoom overlay */
+.seiju-mainphoto{margin:0;}
+.seiju-mainphoto .ph{position:relative;display:block;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);}
+.seiju-mainphoto .ph img{width:100%;display:block;}
+.seiju-zoombadge{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:6px;background:rgba(17,24,39,.82);color:#fff;font-size:11.5px;font-weight:700;padding:6px 11px;border-radius:8px;}
+.seiju-zoombadge .zdot{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 2px rgba(255,255,255,.25);}
+.seiju-mainphoto figcaption{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;color:var(--sub);margin-top:10px;}
+.seiju-mainphoto figcaption .cam{opacity:.7;flex:0 0 auto;}
+/* Zone C process photo + quote */
+.seiju-quote-wrap{display:grid;grid-template-columns:0.82fr 1.18fr;gap:22px;align-items:center;margin-top:4px;}
+.seiju-processphoto{margin:0;}
+.seiju-processphoto img{width:100%;border-radius:12px;display:block;box-shadow:0 8px 22px rgba(0,0,0,.06);}
+.seiju-processphoto figcaption{font-size:11.5px;color:var(--sub);text-align:center;margin-top:8px;}
+@media(max-width:720px){.seiju-quote-wrap{grid-template-columns:1fr;gap:16px;}}
+/* Hero proof stripe (FV直下 信頼アンカー) */
+.hero-proof-stripe{background:#F7FAF8;border-top:1px solid #EDF2F0;border-bottom:1px solid #EDF2F0;padding:12px 20px;}
+.hero-proof-stripe .proof-content{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;}
+.proof-avatar{position:relative;flex-shrink:0;display:block;line-height:0;}
+.proof-avatar img{width:66px;height:46px;border-radius:8px;object-fit:cover;border:1.5px solid var(--gold);}
+.proof-avatar .online-dot{position:absolute;bottom:-3px;right:-3px;width:12px;height:12px;background:#22C55E;border:2px solid #fff;border-radius:50%;}
+.proof-text{flex-grow:1;min-width:0;}
+.proof-tag{font-size:11px;font-weight:700;color:var(--gold);margin:0 0 2px;letter-spacing:.03em;}
+.proof-quote{font-size:13px;color:var(--ink);font-weight:600;margin:0;line-height:1.5;}
+.proof-quote .proof-src{color:var(--sub);font-weight:500;font-size:11.5px;margin-left:6px;}
+.proof-link{font-size:12px;font-weight:700;color:var(--sub);text-decoration:none;white-space:nowrap;padding:7px 13px;background:#fff;border:1px solid var(--line);border-radius:8px;transition:all .2s ease;display:inline-flex;align-items:center;gap:4px;flex:0 0 auto;}
+.proof-link .arrow{font-weight:800;}
+.proof-link:hover{color:var(--ink);border-color:var(--gold);}
+@media(max-width:640px){.hero-proof-stripe .proof-content{flex-wrap:wrap;gap:10px 12px;}.proof-text{width:calc(100% - 82px);}.proof-quote .proof-src{display:block;margin-left:0;}.proof-link{width:100%;justify-content:center;margin-top:2px;}}
 </style>
 <section id="voice">
   <div class="wrap">
@@ -873,25 +914,21 @@
     </div>
 
     <!-- Seiju国際知財事務所 リニューアル事例(掲載許可済み。Before/After画像は差し込み予定) -->
-    <div class="seiju-case reveal">
+    <div class="seiju-case reveal" id="case-seiju">
       <span class="seiju-badge">CASE ｜ 士業サイトのリニューアル</span>
       <!-- Zone A -->
       <div class="seiju-a">
-        <div class="seiju-photo-wrap" style="text-align:center;">
-          <figure class="zoom-photo">
-            <div class="zoom-ph">
-              <div class="zoom-bar"><span class="zoom-dot"></span>Zoom ミーティング</div>
-              <img src="images/case-seiju-2shot.jpg" alt="Seiju国際知財事務所 代表弁理士 北村光司先生と、思考整理の参謀 窪田成功のZoom対話の様子" loading="lazy">
-            </div>
-            <figcaption>対話の様子 ／ <b style="color:var(--ink);">Zoom・対面どちらも対応</b></figcaption>
+        <div class="seiju-photo-wrap">
+          <figure class="seiju-mainphoto">
+            <span class="ph"><img src="images/Kitamura1.jpg" alt="Seiju国際知財事務所 代表弁理士 北村光司先生と、思考整理の参謀 窪田成功の対面での対話" loading="lazy"><span class="seiju-zoombadge"><span class="zdot"></span>全国Zoom対応</span></span>
+            <figcaption><svg class="cam" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>Seiju国際知財事務所にて ／ 対話による思考整理（対面・Zoom対応）</figcaption>
           </figure>
-          <span class="seiju-online"><span class="odot"></span>Zoom・対面どちらでも対応可能（全国対応）</span>
         </div>
         <div>
           <h3 class="seiju-h">「見た目のリニューアル」ではなく、<br>「<mark>相談の質</mark>」が変わる思考整理。</h3>
           <p class="seiju-role">Seiju国際知財事務所 代表弁理士 北村 光司 先生 ✕ 思考整理の参謀 窪田 成功</p>
           <div class="seiju-creds"><span>弁理士歴30年以上</span><span>大阪地裁 鑑定評価実績</span><span>完全紹介制</span></div>
-          <p class="seiju-sub">弁理士歴30年以上・地裁鑑定の実績を持つ知財の重鎮であっても、自社の強みの「言語化」には第三者の視点が必要でした。「何を守り、何を活かすか」という独自の立ち位置を、オンライン（Zoom）での対話で一気に整理し、着手からわずか3日で、選ばれるWebへ可視化しました。</p>
+          <p class="seiju-sub">弁理士歴30年以上・地裁鑑定の実績を持つ知財の重鎮であっても、自社の強みの「言語化」には第三者の視点が必要でした。「何を守り、何を活かすか」という独自の立ち位置を、対面とオンラインでの対話で一気に整理し、着手からわずか3日で、選ばれるWebへ可視化しました。</p>
         </div>
       </div>
       <!-- Zone B: Before/After -->
@@ -924,9 +961,12 @@
           <li>領域：特許・意匠・商標・営業秘密保護／チームビルディング型 企業研修</li>
         </ul>
       </div>
-      <div class="seiju-quote">
+      <div class="seiju-quote-wrap">
+        <figure class="seiju-processphoto"><img src="images/Kitamura.jpg" alt="北村光司先生と窪田成功が対面で一緒に思考整理を進める様子" loading="lazy"><figcaption>対話で思考を深めていく様子</figcaption></figure>
+        <div class="seiju-quote">
         本人の気づいていない可能性にアプローチする私たちの知財業務と、窪田社長の仕事は似ています。<b>「医師が自分で自分は手術できない」</b>のと同様で、そのメンタルの発掘・整理を窪田社長にお願いしました。<b>潜在意識の部分が言語化され、Webから発信できるパワー</b>を、ぜひ実感してみてください。
         <span class="by">—— Seiju国際知財事務所 代表弁理士 北村 光司 先生</span>
+        </div>
       </div>
       <div class="seiju-qa">
         <div class="qa"><p class="q">Q. 以前のお悩みは？</p><p class="a">一般のお客様をWebから集客していなかったので表示をシンプルにしていたのですが、自分の考えや活動が伝わりにくく、サイトに"やる気の無さ"が漂っているのが気がかりでした。</p></div>
