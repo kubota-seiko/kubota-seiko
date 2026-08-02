@@ -840,8 +840,8 @@
 .seiju-btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
 .seiju-note{font-size:12px;color:var(--sub);text-align:center;margin:16px auto 0;line-height:1.8;max-width:600px;}
 .zoom-photo{margin:0;}
-.zoom-ph{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#1f2937;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.12);}
-.zoom-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.zoom-ph{border-radius:14px;overflow:hidden;background:#111827;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.12);}
+.zoom-ph img{width:100%;height:auto;object-fit:contain;display:block;}
 .zoom-bar{display:flex;align-items:center;gap:7px;background:#111827;color:#cbd5e1;font-size:11px;font-weight:600;padding:8px 12px;}
 .zoom-dot{width:8px;height:8px;border-radius:50%;background:#ef4444;}
 .zoom-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;height:calc(100% - 62px);}
@@ -881,11 +881,7 @@
           <figure class="zoom-photo">
             <div class="zoom-ph">
               <div class="zoom-bar"><span class="zoom-dot"></span>Zoom ミーティング</div>
-              <div class="zoom-grid">
-                <div class="zoom-tile"><span>北村 光司 先生</span></div>
-                <div class="zoom-tile"><span>窪田 成功</span></div>
-              </div>
-              <div class="zoom-note">Zoomでのツーショット（後日差し込み）</div>
+              <img src="images/case-seiju-2shot.jpg" alt="Seiju国際知財事務所 代表弁理士 北村光司先生と、思考整理の参謀 窪田成功のZoom対話の様子" loading="lazy">
             </div>
             <figcaption>Zoomでの対話の様子 ／ <b style="color:var(--ink);">オンラインで完結</b></figcaption>
           </figure>
