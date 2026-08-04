@@ -725,11 +725,23 @@
   function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
   function esc(t){var d=document.createElement('div');d.textContent=(t==null?'':t);return d.innerHTML;}
   function track(ev,params){if(window.gtag){try{window.gtag('event',ev,params||{});}catch(e){}}}
+  function isCanvasBlank(c){try{var x=c.getContext('2d');var w=c.width,h=c.height;if(!w||!h)return true;var d=x.getImageData(0,0,w,h).data;var nw=0;for(var i=0;i<d.length;i+=4){if(!(d[i]>248&&d[i+1]>248&&d[i+2]>248)){nw++;if(nw>200)return false;}}return true;}catch(e){return false;}}
+  function printFallback(el,title){var w=window.open('','_blank');if(!w){alert('PDFとして保存するには、ブラウザのポップアップを許可してください。');return;}var css='body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#1A1A1A;line-height:1.9;padding:28px;max-width:720px;margin:0 auto;}h3{font-size:20px;margin:0 0 8px;}.sh-eyebrow{color:#B8924F;font-weight:700;letter-spacing:.18em;font-size:11px;margin:0 0 6px;}.sh-url{color:#666;font-size:13px;margin:0 0 16px;word-break:break-all;}.sh-lead-block{background:#F7F8F5;border-radius:10px;padding:14px 16px;margin:0 0 16px;font-size:14px;}.sh-finding{border-top:1px solid #eee;padding:14px 0;}.sh-finding h4{font-size:15px;margin:0 0 8px;}.sh-row{font-size:13.5px;margin:4px 0;}.sh-row b{color:#B8924F;}.sh-mini{color:#8C8C8C;font-size:12px;margin-top:14px;}';w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+title+'</title><style>'+css+'</style></head><body>'+el.outerHTML+'<scr'+'ipt>window.onload=function(){setTimeout(function(){try{window.focus();}catch(e){}window.print();},350);};<\/scr'+'ipt></body></html>');w.document.close();}
   function exportPdf(){
-    var el=document.getElementById('shReportCard');
-    var go=function(){html2pdf().set({margin:[10,8],filename:'ホームページ導線診断書.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(el).save();track('shindan_pdf_save',{});};
-    if(pdfLoaded){go();return;}
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(function(){pdfLoaded=true;go();}).catch(function(){alert('PDFの生成に失敗しました。時間をおいて再度お試しください。');});
+    var el=document.getElementById('shReportCard'); if(!el)return; track('shindan_pdf_save',{});
+    var TITLE='ホームページ導線診断書';
+    var run=function(){
+      var sy=window.pageYOffset||0;
+      var fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
+      fonts.catch(function(){}).then(function(){window.scrollTo(0,0);return new Promise(function(r){setTimeout(r,80);});})
+      .then(function(){return html2canvas(el,{scale:1,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0});})
+      .then(function(c){
+        if(isCanvasBlank(c)){window.scrollTo(0,sy);printFallback(el,TITLE);return;}
+        return html2pdf().set({margin:[10,8],filename:TITLE+'.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0,windowWidth:document.documentElement.clientWidth},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(el).save().then(function(){window.scrollTo(0,sy);});
+      }).catch(function(){window.scrollTo(0,sy);printFallback(el,TITLE);});
+    };
+    if(window.html2pdf&&window.html2canvas){run();return;}
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(function(){run();}).catch(function(){alert('PDFの生成に失敗しました。時間をおいて再度お試しください。');});
   }
   function ctaRow(withPdf){
     return '<div class="sh-cta-row">'+
