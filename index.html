@@ -656,6 +656,14 @@
 .sh-cta-row .sh-pdf{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--gold);font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;cursor:pointer;font-family:inherit;margin:6px;}
 .sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
 .sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px;font-size:14px;line-height:1.9;}
+.sh-lead{margin-top:20px;border:1px solid var(--gold);background:#F4EFE5;border-radius:14px;padding:20px 20px 18px;text-align:left;}
+.sh-lead h4{font-size:16px;font-weight:800;margin:0 0 6px;color:var(--ink);}
+.sh-lead p.d{font-size:13px;color:var(--sub);margin:0 0 14px;line-height:1.8;}
+.sh-lead input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit;margin-bottom:8px;background:#fff;color:var(--ink);}
+.sh-lead .lead-btn{display:block;width:100%;background:var(--gold);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px;}
+.sh-lead .lead-btn:hover{opacity:.92;}
+.sh-lead .mini{font-size:11.5px;color:#8C8C8C;margin:8px 2px 0;line-height:1.7;}
+.sh-lead .done{font-size:14px;color:var(--ink);line-height:1.9;margin:0 0 4px;}
 </style>
 <!-- NEW CASE: 大山太徳様(キャッチ直下) -->
 <section class="newcase" id="new-case">
@@ -722,6 +730,7 @@
   if(!runBtn)return;
   var resultEl=document.getElementById('shResult');
   var pdfLoaded=false;
+  var lastNote='';
   function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
   function esc(t){var d=document.createElement('div');d.textContent=(t==null?'':t);return d.innerHTML;}
   function track(ev,params){if(window.gtag){try{window.gtag('event',ev,params||{});}catch(e){}}}
@@ -761,6 +770,28 @@
       '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">'+(withPdf?'この診断をもとに提案を受け取る（LINE）→':'個別の導線診断を相談する（LINE）→')+'</a>'+
     '</div>';
   }
+  function leadBlock(){
+    return '<div class="sh-lead" id="shLead">'+
+      '<h4>無料で「あなたのサイト専用の改善提案」を1つ受け取る</h4>'+
+      '<p class="d">この診断結果をもとに、窪田があなたのサイトに合わせた改善案を1つ、個別にお送りします。（無理な売り込みはしません）</p>'+
+      '<input type="email" id="leadEmail" placeholder="メールアドレス（必須）" autocomplete="email">'+
+      '<input type="text" id="leadContact" placeholder="サイトURL・SNS等（任意）">'+
+      '<input type="text" id="leadName" placeholder="お名前（任意）" autocomplete="name">'+
+      '<button class="lead-btn" id="leadBtn">改善提案を受け取る →</button>'+
+      '<p class="mini">※メールだけでもOK。いただいた情報は、提案のためだけに使います。</p>'+
+    '</div>';
+  }
+  function submitLead(data){
+    var em=(document.getElementById('leadEmail').value||'').trim();
+    if(!em||em.indexOf('@')<1){document.getElementById('leadEmail').focus();return;}
+    var contact=(document.getElementById('leadContact').value||'').trim(); if(!contact&&data&&data.url)contact=data.url;
+    var body={source:'hp',email:em,contact:contact,name:(document.getElementById('leadName').value||'').trim(),platform:'',note:lastNote||'',summary:(data&&data.summary)||''};
+    var btn=document.getElementById('leadBtn'); btn.disabled=true; btn.textContent='送信中…';
+    track('shindan_lead',{});
+    fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json();}).catch(function(){return {ok:true};})
+      .then(function(){var el=document.getElementById('shLead');if(el){el.innerHTML='<h4>受け付けました。ありがとうございます。</h4>'+'<p class="done">数日以内に、窪田より「あなたのサイト専用の改善提案」をメールでお送りします。<br>お急ぎの方は、LINEからもご相談いただけます。</p>'+'<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;">LINEで相談する →</a>';}});
+  }
   function renderReport(data,isSample){
     var f=data.findings.map(function(x){return '<div class="sh-finding"><h4>'+esc(x.t)+'</h4>'+
       '<p class="sh-row"><b>現状：</b>'+esc(x.now)+'</p>'+
@@ -774,9 +805,10 @@
       '<p class="sh-url">対象サイト：'+esc(data.url)+'</p>'+
       '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
       '<p class="sh-mini" style="text-align:left;margin-top:16px;">※本診断はAIによる自動診断です。詳しい設計図・改善提案は個別診断で承ります。</p>'+
-    '</div>'+ctaRow(true);
+    '</div>'+leadBlock()+ctaRow(true);
     resultEl.innerHTML=html;resultEl.hidden=false;
     document.getElementById('shPdf').addEventListener('click',exportPdf);
+    var _lb=document.getElementById('leadBtn'); if(_lb){_lb.addEventListener('click',function(){submitLead(data);});}
     resultEl.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function renderMessage(msg){
@@ -794,7 +826,7 @@
   runBtn.addEventListener('click',function(){
     var url=(document.getElementById('shUrl').value||'').trim();
     if(!url){document.getElementById('shUrl').focus();return;}
-    var note=(document.getElementById('shNote').value||'').trim();
+    var note=(document.getElementById('shNote').value||'').trim(); lastNote=note;
     resultEl.hidden=false;
     resultEl.innerHTML='<div class="sh-loading">サイトを確認しています…（20秒ほどかかる場合があります）</div>';
     runBtn.disabled=true;runBtn.textContent='診断中…';

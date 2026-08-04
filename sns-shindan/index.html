@@ -41,6 +41,14 @@ section{padding:8px 0 60px;}
 .sh-loading{max-width:560px;margin:24px auto 0;color:var(--sub);font-size:14px;text-align:center;}
 .sh-result{max-width:640px;margin:26px auto 0;text-align:left;}
 .sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:14px;line-height:1.9;}
+.sh-lead{margin-top:20px;border:1px solid var(--gold);background:var(--gold-l);border-radius:14px;padding:20px 20px 18px;}
+.sh-lead h4{font-size:16px;font-weight:800;margin:0 0 6px;color:var(--ink);}
+.sh-lead p.d{font-size:13px;color:var(--sub);margin:0 0 14px;line-height:1.8;}
+.sh-lead input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit;margin-bottom:8px;background:#fff;color:var(--ink);}
+.sh-lead .lead-btn{display:block;width:100%;background:var(--gold);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px;}
+.sh-lead .lead-btn:hover{opacity:.92;}
+.sh-lead .mini{font-size:11.5px;color:var(--faint);margin:8px 2px 0;line-height:1.7;}
+.sh-lead .done{font-size:14px;color:var(--ink);line-height:1.9;margin:0 0 4px;}
 .sh-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:26px 24px;}
 .sh-card .sh-eyebrow{font-size:11px;letter-spacing:.18em;color:var(--gold);font-weight:700;margin:0 0 6px;}
 .sh-card h3{font-size:20px;font-weight:800;margin:0 0 6px;}
@@ -127,6 +135,7 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
   if(!runBtn)return;
   var resultEl=document.getElementById('snsResult');
   var pdfLoaded=false;
+  var lastPayload=null;
   function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
   function esc(t){var d=document.createElement('div');d.textContent=(t==null?'':t);return d.innerHTML;}
   function track(ev,params){if(window.gtag){try{window.gtag('event',ev,params||{});}catch(e){}}}
@@ -166,6 +175,27 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
       '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="sns_shindan_result_line">'+(withPdf?'この診断をもとに相談する（LINE）→':'SNSの導線を相談する（LINE）→')+'</a>'+
     '</div>';
   }
+  function leadBlock(){
+    return '<div class="sh-lead" id="snsLead">'+
+      '<h4>無料で「あなた専用の改善提案」を1つ受け取る</h4>'+
+      '<p class="d">この診断結果をもとに、窪田があなたのSNSに合わせた改善案を1つ、個別にお送りします。（無理な売り込みはしません）</p>'+
+      '<input type="email" id="leadEmail" placeholder="メールアドレス（必須）" autocomplete="email">'+
+      '<input type="text" id="leadContact" placeholder="SNSアカウント（@）またはURL（任意・あると精度UP）">'+
+      '<input type="text" id="leadName" placeholder="お名前（任意）" autocomplete="name">'+
+      '<button class="lead-btn" id="leadBtn">改善提案を受け取る →</button>'+
+      '<p class="mini">※メールだけでもOK。いただいた情報は、提案のためだけに使います。</p>'+
+    '</div>';
+  }
+  function submitLead(data){
+    var em=(document.getElementById('leadEmail').value||'').trim();
+    if(!em||em.indexOf('@')<1){document.getElementById('leadEmail').focus();return;}
+    var body={source:'sns',email:em,contact:(document.getElementById('leadContact').value||'').trim(),name:(document.getElementById('leadName').value||'').trim(),platform:(data&&data.platform)||'',note:(lastPayload&&lastPayload.note)||'',summary:(data&&data.summary)||''};
+    var btn=document.getElementById('leadBtn'); btn.disabled=true; btn.textContent='送信中…';
+    track('sns_shindan_lead',{});
+    fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json();}).catch(function(){return {ok:true};})
+      .then(function(){var el=document.getElementById('snsLead');if(el){el.innerHTML='<h4>受け付けました。ありがとうございます。</h4>'+'<p class="done">数日以内に、窪田より「あなた専用の改善提案」をメールでお送りします。<br>お急ぎの方は、LINEからもご相談いただけます。</p>'+'<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;">LINEで相談する →</a>';}});
+  }
   function renderReport(data){
     var f=data.findings.map(function(x){return '<div class="sh-finding"><h4>'+esc(x.t)+'</h4>'+
       '<p class="sh-row"><b>現状：</b>'+esc(x.now)+'</p>'+
@@ -177,9 +207,10 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
       (data.platform?'<p class="sh-url">対象：'+esc(data.platform)+'</p>':'')+
       '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
       '<p class="sh-mini" style="text-align:left;margin-top:16px;">※本診断はAIによる自動診断です。SNSからの着地先（HP・LP）まで含めた導線の整理は、個別相談で承ります。</p>'+
-    '</div>'+ctaRow(true);
+    '</div>'+leadBlock()+ctaRow(true);
     resultEl.innerHTML=html;resultEl.hidden=false;
     document.getElementById('snsPdf').addEventListener('click',exportPdf);
+    var _lb=document.getElementById('leadBtn'); if(_lb){_lb.addEventListener('click',function(){submitLead(data);});}
     resultEl.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function renderMessage(msg){
@@ -196,6 +227,7 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
       purpose:(document.getElementById('snsPurpose').value||''),
       note:(document.getElementById('snsNote').value||'').trim()
     };
+    lastPayload=payload;
     resultEl.hidden=false;resultEl.innerHTML='<div class="sh-loading">発信内容を読み解いています…（20秒ほどかかる場合があります）</div>';
     runBtn.disabled=true;runBtn.textContent='診断中…';
     track('sns_shindan_run',{platform:payload.platform});
