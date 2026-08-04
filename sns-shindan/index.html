@@ -65,6 +65,16 @@ section{padding:8px 0 60px;}
 footer.site{background:var(--soft);border-top:1px solid var(--line);padding:30px 0;text-align:center;}
 footer.site a{color:var(--sub);text-decoration:none;font-size:13px;margin:0 10px;}
 footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
+/* スクショ入力（OCR） */
+.sh-ocr-intro{max-width:560px;margin:2px auto 4px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--sub);line-height:1.85;}
+.sh-ocr-intro b{color:var(--ink);}
+.sh-ocr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px;}
+.sh-ocr-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px dashed var(--gold);color:var(--gold);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;line-height:1.3;}
+.sh-ocr-btn:hover{background:var(--gold-l);}
+.sh-ocr-btn:disabled{opacity:.55;cursor:default;}
+.sh-ocr-prog{font-size:12px;color:var(--sub);line-height:1.6;}
+.sh-ocr-prog.done{color:#3B6D11;}
+.sh-ocr-prog.err{color:#A8443B;}
 </style>
 </head>
 <body>
@@ -86,6 +96,8 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
 <section>
   <div class="wrap">
     <div class="sh-form">
+      <p class="sh-ocr-intro">プロフィールや投稿は、<b>文字のコピペ</b>でも、<b>スクショ（画像）</b>からでも入力できます。スクショはこの画面の中で文字を読み取るので、<b>画像そのものは送信されません</b>。読み取った文字はあとから手直しできます。<br><span style="color:var(--faint);">※読み取りには数秒〜十数秒ほどかかることがあります。文字がはっきり写ったスクショほど精度が上がります。</span></p>
+
       <label>SNSの種類 <span class="hint">任意</span></label>
       <select id="snsPlatform">
         <option value="">選んでください</option>
@@ -96,11 +108,21 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
         <option>その他</option>
       </select>
 
-      <label>プロフィール文<span class="req">必須</span> <span class="hint">アカウントの自己紹介欄をそのままコピペ</span></label>
+      <label>プロフィール文<span class="req">必須</span> <span class="hint">コピペ、またはスクショから読み取り</span></label>
       <textarea id="snsProfile" rows="4" placeholder="例：〇〇県で美容室を経営／30代女性の髪の悩みに寄り添う／…"></textarea>
+      <div class="sh-ocr">
+        <button type="button" class="sh-ocr-btn" data-target="snsProfile">📷 スクショから読み取る</button>
+        <input type="file" accept="image/*" class="sh-ocr-file" data-target="snsProfile" hidden>
+        <span class="sh-ocr-prog" data-for="snsProfile"></span>
+      </div>
 
-      <label>最近の投稿を2〜3個 <span class="hint">投稿の本文を貼り付け（あると精度が上がります）</span></label>
+      <label>最近の投稿を2〜3個 <span class="hint">コピペ、またはスクショから読み取り（あると精度が上がります）</span></label>
       <textarea id="snsPosts" rows="6" placeholder="投稿1：…&#10;&#10;投稿2：…&#10;&#10;投稿3：…"></textarea>
+      <div class="sh-ocr">
+        <button type="button" class="sh-ocr-btn" data-target="snsPosts">📷 スクショから読み取る（複数OK）</button>
+        <input type="file" accept="image/*" multiple class="sh-ocr-file" data-target="snsPosts" hidden>
+        <span class="sh-ocr-prog" data-for="snsPosts"></span>
+      </div>
 
       <label>発信の主な目的 <span class="hint">任意</span></label>
       <select id="snsPurpose">
@@ -239,6 +261,94 @@ footer.site .cp{font-size:12px;color:var(--faint);margin-top:12px;}
       })
       .catch(function(){renderMessage('通信に問題が発生しました。時間をおいて再度お試しください。');})
       .then(function(){runBtn.disabled=false;runBtn.textContent='診断する';});
+  });
+})();
+</script>
+
+<!-- スクショ入力（ブラウザ内OCR / Tesseract.js）。診断APIには読み取った「文字」だけを送るため、裏側(/api/sns-shindan)の変更は不要。 -->
+<script>
+(function(){
+  var btns=document.querySelectorAll('.sh-ocr-btn');
+  if(!btns.length) return;
+  var TESSERACT_SRC='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+  var workerPromise=null;   // Tesseractワーカーは1回だけ作って使い回す
+  var progressCb=null;      // 現在読み取り中の欄へ進捗を渡すための受け皿
+
+  function loadScript(src){
+    return new Promise(function(res,rej){
+      if(window.Tesseract) return res();
+      var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);
+    });
+  }
+  function getWorker(){
+    if(workerPromise) return workerPromise;
+    workerPromise=loadScript(TESSERACT_SRC).then(function(){
+      return Tesseract.createWorker(['jpn','eng'],1,{logger:function(m){ if(progressCb) progressCb(m); }});
+    }).catch(function(e){ workerPromise=null; throw e; });
+    return workerPromise;
+  }
+  // 日本語OCRは文字の間に空白が入りやすいので整える
+  function cleanup(t){
+    if(!t) return '';
+    for(var i=0;i<2;i++){ t=t.replace(/([^\x00-\x7F])[ \t]+([^\x00-\x7F])/g,'$1$2'); }
+    t=t.replace(/[ \t]{2,}/g,' ');
+    t=t.replace(/\n{3,}/g,'\n\n');
+    return t.trim();
+  }
+  function setProg(el,msg,cls){
+    el.textContent=msg||'';
+    el.className='sh-ocr-prog'+(cls?(' '+cls):'');
+  }
+  function track(ev,params){ if(window.gtag){ try{ window.gtag('event',ev,params||{}); }catch(e){} } }
+
+  function recognize(fileList,targetId,progEl,btn){
+    var files=Array.prototype.slice.call(fileList).filter(function(f){return f&&f.type&&f.type.indexOf('image/')===0;});
+    if(!files.length){ setProg(progEl,'画像ファイルを選んでください。','err'); return; }
+    btn.disabled=true;
+    setProg(progEl,'準備中…（初回は読み取り用データの読み込みに少し時間がかかります）');
+    track('sns_shindan_ocr_start',{target:targetId,count:files.length});
+    getWorker().then(function(worker){
+      var out=[];
+      var seq=Promise.resolve();
+      files.forEach(function(file,idx){
+        seq=seq.then(function(){
+          progressCb=function(m){
+            if(m&&m.status==='recognizing text'){
+              var head=(files.length>1)?('('+(idx+1)+'/'+files.length+') '):'';
+              setProg(progEl,'読み取り中 '+head+Math.round((m.progress||0)*100)+'%');
+            }
+          };
+          return worker.recognize(file).then(function(r){ out.push((r&&r.data&&r.data.text||'').trim()); });
+        });
+      });
+      return seq.then(function(){
+        progressCb=null;
+        var text=cleanup(out.filter(Boolean).join('\n\n'));
+        var ta=document.getElementById(targetId);
+        if(!text){ setProg(progEl,'文字を読み取れませんでした。別のスクショか、コピペでお試しください。','err'); return; }
+        ta.value = ta.value.trim() ? (ta.value.trim()+'\n\n'+text) : text;
+        ta.dispatchEvent(new Event('input',{bubbles:true}));
+        setProg(progEl,'読み取り完了。内容を確認して、必要なら手直しできます。','done');
+        try{ ta.focus(); }catch(e){}
+        track('sns_shindan_ocr_done',{target:targetId,count:files.length});
+      });
+    }).catch(function(){
+      progressCb=null;
+      setProg(progEl,'読み取りに失敗しました。お手数ですが、コピペで入力してください。','err');
+      track('sns_shindan_ocr_error',{target:targetId});
+    }).then(function(){ btn.disabled=false; });
+  }
+
+  btns.forEach(function(btn){
+    var target=btn.getAttribute('data-target');
+    var fileInput=document.querySelector('.sh-ocr-file[data-target="'+target+'"]');
+    var progEl=document.querySelector('.sh-ocr-prog[data-for="'+target+'"]');
+    if(!fileInput||!progEl) return;
+    btn.addEventListener('click',function(){ fileInput.click(); });
+    fileInput.addEventListener('change',function(){
+      if(fileInput.files&&fileInput.files.length){ recognize(fileInput.files,target,progEl,btn); }
+      fileInput.value='';
+    });
   });
 })();
 </script>
