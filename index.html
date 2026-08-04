@@ -730,18 +730,30 @@
   function exportPdf(){
     var el=document.getElementById('shReportCard'); if(!el)return; track('shindan_pdf_save',{});
     var TITLE='ホームページ導線診断書';
-    var run=function(){
+    var build=function(){
       var sy=window.pageYOffset||0;
       var fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
-      fonts.catch(function(){}).then(function(){window.scrollTo(0,0);return new Promise(function(r){setTimeout(r,80);});})
-      .then(function(){return html2canvas(el,{scale:1,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0});})
-      .then(function(c){
-        if(isCanvasBlank(c)){window.scrollTo(0,sy);printFallback(el,TITLE);return;}
-        return html2pdf().set({margin:[10,8],filename:TITLE+'.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0,windowWidth:document.documentElement.clientWidth},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(el).save().then(function(){window.scrollTo(0,sy);});
+      fonts.catch(function(){}).then(function(){window.scrollTo(0,0);return new Promise(function(r){setTimeout(r,60);});})
+      .then(function(){return html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollX:0,scrollY:0,windowWidth:document.documentElement.scrollWidth,windowHeight:document.documentElement.scrollHeight});})
+      .then(function(canvas){
+        window.scrollTo(0,sy);
+        if(isCanvasBlank(canvas)){printFallback(el,TITLE);return;}
+        var JsPDF=(window.jspdf&&window.jspdf.jsPDF)?window.jspdf.jsPDF:null; if(!JsPDF){printFallback(el,TITLE);return;}
+        var pdf=new JsPDF({unit:'mm',format:'a4',orientation:'portrait'});
+        var pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
+        var m=8, iw=pw-m*2, ih=canvas.height*iw/canvas.width;
+        var img=canvas.toDataURL('image/jpeg',0.95);
+        var pageH=ph-m*2, hLeft=ih, pos=m;
+        pdf.addImage(img,'JPEG',m,pos,iw,ih); hLeft-=pageH;
+        while(hLeft>0){ pdf.addPage(); pos=m-(ih-hLeft); pdf.addImage(img,'JPEG',m,pos,iw,ih); hLeft-=pageH; }
+        pdf.save(TITLE+'.pdf');
       }).catch(function(){window.scrollTo(0,sy);printFallback(el,TITLE);});
     };
-    if(window.html2pdf&&window.html2canvas){run();return;}
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(function(){run();}).catch(function(){alert('PDFの生成に失敗しました。時間をおいて再度お試しください。');});
+    var need=[];
+    if(typeof window.html2canvas!=='function') need.push('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if(!(window.jspdf&&window.jspdf.jsPDF)) need.push('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    if(!need.length){build();return;}
+    Promise.all(need.map(loadScript)).then(build).catch(function(){printFallback(el,TITLE);});
   }
   function ctaRow(withPdf){
     return '<div class="sh-cta-row">'+
