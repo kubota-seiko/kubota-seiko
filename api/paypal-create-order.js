@@ -8,7 +8,9 @@ const SERVICES = {
   'first-spot': { name: '初回スポット相談', amount: '5500' },
   'regular-spot': { name: '通常スポット相談', amount: '16500' },
   'monthly-1': { name: '月1回伴走プラン', amount: '33000' },
-  'monthly-2': { name: '月2回伴走プラン', amount: '55000' }
+  'monthly-2': { name: '月2回伴走プラン', amount: '55000' },
+  'lp-planning': { name: '企画整理セッション', amount: '16500' },
+  'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: '55000' }
 };
 
 async function getAccessToken() {
