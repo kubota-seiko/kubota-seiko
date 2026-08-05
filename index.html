@@ -750,11 +750,12 @@
         var JsPDF=(window.jspdf&&window.jspdf.jsPDF)?window.jspdf.jsPDF:null; if(!JsPDF){printFallback(el,TITLE);return;}
         var pdf=new JsPDF({unit:'mm',format:'a4',orientation:'portrait'});
         var pw=pdf.internal.pageSize.getWidth(), ph=pdf.internal.pageSize.getHeight();
-        var m=8, iw=pw-m*2, ih=canvas.height*iw/canvas.width;
+        var m=8, aw=pw-m*2, ah=ph-m*2;
+        var ratio=Math.min(aw/canvas.width, ah/canvas.height);
+        var iw=canvas.width*ratio, ih=canvas.height*ratio;
+        var x=(pw-iw)/2, y=m;
         var img=canvas.toDataURL('image/jpeg',0.95);
-        var pageH=ph-m*2, hLeft=ih, pos=m;
-        pdf.addImage(img,'JPEG',m,pos,iw,ih); hLeft-=pageH;
-        while(hLeft>0){ pdf.addPage(); pos=m-(ih-hLeft); pdf.addImage(img,'JPEG',m,pos,iw,ih); hLeft-=pageH; }
+        pdf.addImage(img,'JPEG',x,y,iw,ih);
         pdf.save(TITLE+'.pdf');
       }).catch(function(){window.scrollTo(0,sy);printFallback(el,TITLE);});
     };
