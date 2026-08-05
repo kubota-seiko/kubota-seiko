@@ -82,6 +82,7 @@
   .shero-visual{position:relative;overflow:hidden;background:#fff;min-height:320px;}
   .shero-visual iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:none;opacity:1;transition:opacity .7s ease;}
   .shero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 25%;display:block;}
+  .shero-visual video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;display:block;}
   .hero-bg-controls{position:absolute;left:16px;right:16px;top:16px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;}
   .hero-bg-controls .hbc-label{font-size:11px;letter-spacing:.05em;color:var(--gold);background:rgba(255,255,255,.95);border:1px solid var(--gold);padding:5px 12px;border-radius:999px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;text-align:center;}
   .hero-bg-controls .hbc-label a{color:var(--ink);text-decoration:underline;}
@@ -89,6 +90,7 @@
   .hero-bg-controls .hs-dots button{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);border:none;padding:0;cursor:pointer;}
   .hero-bg-controls .hs-dots button.active{background:var(--gold);}
   @media(max-width:900px){.shero{display:block;min-height:auto;grid-template-columns:none;}.shero-copy{padding:130px 0 40px;}.shero-visual{height:340px;min-height:0;}.hero-bg-controls{top:auto;bottom:12px;}}
+  @media(max-width:900px){.shero-visual{height:auto;min-height:0;aspect-ratio:9/16;max-height:78vh;width:100%;}}
   .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff !important;padding:19px 38px;border-radius:2px;font-size:16.5px;font-weight:700;letter-spacing:.02em;box-shadow:0 10px 24px rgba(0,0,0,.14);transition:transform .25s,box-shadow .25s;margin-top:30px;}
   .cta:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.2);}
   .cta-secondary{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--sub);text-decoration:underline;opacity:.85;}
@@ -264,13 +266,9 @@
     </div>
   </div>
   <div class="shero-visual">
-    <img src="/images/kubota-working.jpg" alt="ノートPCで作業する思考整理の参謀・窪田成功" loading="eager">
-    <div class="hero-bg-controls">
-      <div class="hbc-label">
-        <span><b>思考整理の参謀・窪田成功</b></span>
-        <span>思考整理 × AI × LP制作</span>
-      </div>
-    </div>
+    <video class="shero-video" controls playsinline preload="none" poster="/images/arita-taiken-poster.jpg">
+      <source src="/videos/arita-taiken.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
@@ -657,31 +655,6 @@
     </div>
 
     <p style="margin-top:20px;font-size:13px;color:var(--sub);">今後も、1ページLPの事例を順次このページに追加していきます。</p>
-  </div>
-</section>
-
-<!-- VOICE / 体験者の声 -->
-<style>
-.voice-sec{background:var(--soft);}
-.voice-card{max-width:720px;margin:32px auto 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 28px;box-shadow:0 8px 24px rgba(0,0,0,.04);text-align:left;}
-.voice-quote{font-size:15.5px;line-height:2.05;color:var(--ink);}
-.voice-quote p{margin:0 0 14px;}
-.voice-quote p:last-child{margin-bottom:0;}
-.voice-name{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;font-weight:700;color:var(--ink);text-align:right;}
-@media(max-width:640px){.voice-card{padding:26px 20px;}.voice-quote{font-size:14.5px;}}
-</style>
-<section class="voice-sec" data-section="voice">
-  <div class="wrap reveal" style="text-align:center;">
-    <p class="eyebrow">Voice</p>
-    <h2 class="sec-title">体験者の声。</h2>
-    <div class="voice-card">
-      <div class="voice-quote">
-        <p>「株式会社三住建設の代表取締役、有田三千子です。今、即日LPを体験させてもらいました。デモでも何でもなく、私が本当に作りたかった商品・サービスを、窪田さんと話しながら、目の前でLPにしてもらいました。会話の中でどんどんブラッシュアップされ、LPが変わっていくのを体感して、本当に驚きました。</p>
-        <p>今までChatGPTと何度壁打ちをしても、たどり着けなかったところに、2時間ほどの対話で見事に言語化された感覚があります。出来上がったものを見て、自分からお願いしたいと思うほどのLPになりました。</p>
-        <p>一番の値打ちは、叩き台から始まって、その叩き台を見ながら会話する中で、LPがどんどん良くなっていくこと。本当に魔法のようでした。会話の中で形が変わっていく体験は初めてで、こんなふうにしてもらえる人がいるなんて、普通のホームページ制作では考えられませんでした。」</p>
-      </div>
-      <p class="voice-name">株式会社三住建設　代表取締役・有田 三千子 様</p>
-    </div>
   </div>
 </section>
 
