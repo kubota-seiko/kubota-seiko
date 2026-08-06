@@ -253,14 +253,12 @@
     <div class="hero-video-block reveal">
       <p class="hvb-head">「魔法のようでした。」</p>
       <p class="hvb-sub">「ChatGPTでもダメだったのに…」2時間の対話でLPが完成した、リアルな感想。（1分28秒）</p>
-      <div class="hvb-player hvb-soon">
-        <div class="hvb-soon-inner">
-          <span class="hvb-soon-badge">Coming Soon</span>
-          <p class="hvb-soon-text">体験動画は近日公開予定です。</p>
-        </div>
+      <div class="hvb-player" id="aritaPlayer" style="background-image:url('/images/arita-taiken-poster.jpg');background-size:cover;background-position:center;">
+        <button type="button" class="hvb-play" aria-label="動画を再生"></button>
       </div>
       <p class="hvb-name">株式会社三住建設 代表取締役・有田 三千子 氏</p>
     </div>
+    <script>(function(){var p=document.getElementById('aritaPlayer');if(!p)return;var b=p.querySelector('.hvb-play');b.addEventListener('click',function(){var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/iUtF6ADe5Rw?autoplay=1&playsinline=1&rel=0';f.title='体験者の声｜株式会社三住建設 有田三千子氏';f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0;';p.innerHTML='';p.appendChild(f);});})();</script>
     <p style="font-size:15px;font-weight:700;color:var(--ink);margin-top:14px;max-width:620px;">55,000円（税込）<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:6px;">（原則1日・最短即日で初稿）</span></p>
     <div class="hero-flow" style="margin-top:18px;max-width:620px;background:#FCFAF5;border:1px solid #EEE7D6;border-radius:8px;padding:14px 14px 12px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
