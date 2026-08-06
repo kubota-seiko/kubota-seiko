@@ -86,6 +86,10 @@
   .hvb-play::before{content:"";display:block;width:0;height:0;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #1A1A1A;margin-left:4px;}
   .hvb-play:hover{transform:translate(-50%,-50%) scale(1.06);background:#fff;}
   .hvb-name{font-size:12.5px;font-weight:700;color:var(--ink);margin-top:10px;}
+  .hvb-soon{background:linear-gradient(135deg,#F7F4EC,#EFE9DA);border:1px dashed var(--gold);box-shadow:none;cursor:default;display:flex;align-items:center;justify-content:center;}
+  .hvb-soon-inner{text-align:center;padding:20px;}
+  .hvb-soon-badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 12px;border-radius:999px;}
+  .hvb-soon-text{margin-top:12px;font-size:13px;color:var(--sub);line-height:1.7;font-weight:600;}
   .shero-copy .lead{max-width:540px;margin-top:36px;font-size:16.5px;line-height:1.9;color:var(--ink);}
   .badge-monitor{display:inline-block;background:var(--soft);border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:18px;}
   .shero-visual{position:relative;overflow:hidden;background:#fff;min-height:320px;}
@@ -248,13 +252,15 @@
     <p style="font-size:15px;font-weight:700;color:var(--ink);line-height:1.85;margin-top:16px;max-width:620px;">経営者の頭の中にある商品・サービス・企画を、対話したその日に、伝わるLPの形へ。</p>
     <div class="hero-video-block reveal">
       <p class="hvb-head">「魔法のようでした。」</p>
-      <p class="hvb-sub">体験者のリアルな声。（1分28秒）</p>
-      <div class="hvb-player" id="aritaPlayer" style="background-image:url('/images/arita-taiken-poster.jpg');background-size:cover;background-position:center;">
-        <button type="button" class="hvb-play" aria-label="動画を再生"></button>
+      <p class="hvb-sub">「ChatGPTでもダメだったのに…」2時間の対話でLPが完成した、リアルな感想。（1分28秒）</p>
+      <div class="hvb-player hvb-soon">
+        <div class="hvb-soon-inner">
+          <span class="hvb-soon-badge">Coming Soon</span>
+          <p class="hvb-soon-text">体験動画は近日公開予定です。</p>
+        </div>
       </div>
       <p class="hvb-name">株式会社三住建設 代表取締役・有田 三千子 氏</p>
     </div>
-    <script>(function(){var p=document.getElementById('aritaPlayer');if(!p)return;var b=p.querySelector('.hvb-play');b.addEventListener('click',function(){var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/iUtF6ADe5Rw?autoplay=1&playsinline=1&rel=0';f.title='体験者の声｜株式会社三住建設 有田三千子氏';f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0;';p.innerHTML='';p.appendChild(f);});})();</script>
     <p style="font-size:15px;font-weight:700;color:var(--ink);margin-top:14px;max-width:620px;">55,000円（税込）<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:6px;">（原則1日・最短即日で初稿）</span></p>
     <div class="hero-flow" style="margin-top:18px;max-width:620px;background:#FCFAF5;border:1px solid #EEE7D6;border-radius:8px;padding:14px 14px 12px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
