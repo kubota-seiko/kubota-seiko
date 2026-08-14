@@ -657,6 +657,7 @@
 .sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
 .sh-cta-row .sh-line-send{display:inline-block;background:#06C755;color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;cursor:pointer;}
 .sh-cta-row .sh-line-send:hover{opacity:.92;}
+.sh-cta-row .sh-line-note{flex-basis:100%;width:100%;text-align:center;font-size:12.5px;color:#2f7a1e;margin:8px 2px 0;line-height:1.7;}
 .sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px;font-size:14px;line-height:1.9;}
 .sh-lead{margin-top:20px;border:1px solid var(--gold);background:#F4EFE5;border-radius:14px;padding:20px 20px 18px;text-align:left;}
 .sh-lead h4{font-size:16px;font-weight:800;margin:0 0 6px;color:var(--ink);}
@@ -866,16 +867,20 @@
   function sendToLine(data){
     track('shindan_line_send',{});
     var text=buildLineText(data);
-    if(text.length>1600){text=text.slice(0,1580)+'…（続きはPDFでご確認ください）';}
-    var url='https://line.me/R/msg/text/?'+encodeURIComponent(text);
-    var w=window.open(url,'_blank');
-    if(!w){location.href=url;}
+    var ok=false;
+    try{var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();ok=document.execCommand('copy');document.body.removeChild(ta);}catch(e){ok=false;}
+    if(navigator.clipboard&&navigator.clipboard.writeText){try{navigator.clipboard.writeText(text);ok=true;}catch(e){}}
+    var note=document.getElementById('shLineNote');
+    if(note){note.textContent=ok?'診断結果をコピーしました。開いたLINEのトーク画面に貼り付けて送信してください。':'コピーできませんでした。お手数ですが「PDFで保存」してLINEに送ってください。';note.style.display='block';}
+    var w=window.open('https://lin.ee/Qr9byp1','_blank','noopener');
+    if(!w){location.href='https://lin.ee/Qr9byp1';}
   }
   function ctaRow(withPdf,withLineSend){
     return '<div class="sh-cta-row">'+
       (withPdf?'<a class="sh-pdf" id="shPdf" role="button">PDFで保存する</a>':'')+
-      (withLineSend?'<a class="sh-line-send" id="shLineSend" role="button">診断結果をLINEに送る →</a>':'')+
+      (withLineSend?'<a class="sh-line-send" id="shLineSend" role="button">診断結果をコピー → LINEを開く</a>':'')+
       '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">'+(withPdf?'この診断をもとに提案を受け取る（LINE）→':'個別の導線診断を相談する（LINE）→')+'</a>'+
+      (withLineSend?'<p class="sh-line-note" id="shLineNote" style="display:none;"></p>':'')+
     '</div>';
   }
   function leadBlock(){
