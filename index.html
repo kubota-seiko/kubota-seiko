@@ -655,6 +655,8 @@
 .sh-cta-row{margin-top:22px;text-align:center;}
 .sh-cta-row .sh-pdf{display:inline-block;background:#fff;border:1px solid var(--gold);color:var(--gold);font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;cursor:pointer;font-family:inherit;margin:6px;}
 .sh-cta-row .sh-line{display:inline-block;background:var(--gold);color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;}
+.sh-cta-row .sh-line-send{display:inline-block;background:#06C755;color:#fff;font-weight:700;border-radius:10px;padding:12px 22px;font-size:14px;text-decoration:none;margin:6px;cursor:pointer;}
+.sh-cta-row .sh-line-send:hover{opacity:.92;}
 .sh-result-msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px;font-size:14px;line-height:1.9;}
 .sh-lead{margin-top:20px;border:1px solid var(--gold);background:#F4EFE5;border-radius:14px;padding:20px 20px 18px;text-align:left;}
 .sh-lead h4{font-size:16px;font-weight:800;margin:0 0 6px;color:var(--ink);}
@@ -854,9 +856,25 @@
     if(!need.length){build();return;}
     Promise.all(need.map(loadScript)).then(build).catch(function(){printFallback(el,TITLE);});
   }
-  function ctaRow(withPdf){
+  function buildLineText(data){
+    var t='【ホームページ導線診断書】\n対象サイト：'+((data&&data.url)||'')+'\n\n■総評\n'+((data&&data.summary)||'');
+    var fs=(data&&data.findings)||[];
+    for(var i=0;i<fs.length;i++){var x=fs[i];t+='\n\n■'+(i+1)+'. '+x.t+'\n・現状：'+x.now+'\n・改善：'+x.fix;}
+    t+='\n\n────────\n無料相談・詳しい改善提案はこちら\nhttps://lin.ee/Qr9byp1\n診断：思考整理の参謀・窪田成功 https://kubota-seiko.com/';
+    return t;
+  }
+  function sendToLine(data){
+    track('shindan_line_send',{});
+    var text=buildLineText(data);
+    if(text.length>1600){text=text.slice(0,1580)+'…（続きはPDFでご確認ください）';}
+    var url='https://line.me/R/msg/text/?'+encodeURIComponent(text);
+    var w=window.open(url,'_blank');
+    if(!w){location.href=url;}
+  }
+  function ctaRow(withPdf,withLineSend){
     return '<div class="sh-cta-row">'+
       (withPdf?'<a class="sh-pdf" id="shPdf" role="button">PDFで保存する</a>':'')+
+      (withLineSend?'<a class="sh-line-send" id="shLineSend" role="button">診断結果をLINEに送る →</a>':'')+
       '<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" data-cta-label="shindan_result_line">'+(withPdf?'この診断をもとに提案を受け取る（LINE）→':'個別の導線診断を相談する（LINE）→')+'</a>'+
     '</div>';
   }
@@ -895,9 +913,10 @@
       '<p class="sh-url">対象サイト：'+esc(data.url)+'</p>'+
       '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
       '<p class="sh-mini" style="text-align:left;margin-top:16px;">※本診断はAIによる自動診断です。詳しい設計図・改善提案は個別診断で承ります。</p>'+
-    '</div>'+leadBlock()+ctaRow(true);
+    '</div>'+leadBlock()+ctaRow(true,true);
     resultEl.innerHTML=html;resultEl.hidden=false;
     document.getElementById('shPdf').addEventListener('click',exportPdf);
+    var _ls=document.getElementById('shLineSend'); if(_ls){_ls.addEventListener('click',function(){sendToLine(data);});}
     var _lb=document.getElementById('leadBtn'); if(_lb){_lb.addEventListener('click',function(){submitLead(data);});}
     resultEl.scrollIntoView({behavior:'smooth',block:'start'});
   }
