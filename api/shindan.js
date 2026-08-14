@@ -158,9 +158,12 @@ module.exports = async (req, res) => {
       '【本文抜粋】\n' + sig.text.slice(0, 9000);
 
     let apiRes;
+    const aiCtrl = new AbortController();
+    const aiTimer = setTimeout(() => aiCtrl.abort(), 30000); // AI応答が遅い/固まった場合の保険(30秒)
     try {
       apiRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
+        signal: aiCtrl.signal,
         headers: {
           'x-api-key': apiKey,
           'anthropic-version': '2023-06-01',
@@ -174,10 +177,13 @@ module.exports = async (req, res) => {
         })
       });
     } catch (e) {
-      res.status(200).json({ ok: false, error: 'ai_request_failed',
+      const aborted = e && (e.name === 'AbortError' || /abort/i.test(String(e.message || '')));
+      res.status(200).json({ ok: false, error: aborted ? 'ai_timeout' : 'ai_request_failed',
         detail: String((e && e.message) || e).slice(0, 300),
-        message: 'ただいま診断が混み合っています。少し時間をおいてお試しください。' });
+        message: 'ただいま診断が混み合っています。少し時間をおいて、もう一度お試しください。' });
       return;
+    } finally {
+      clearTimeout(aiTimer);
     }
 
     if (!apiRes.ok) {
@@ -186,7 +192,12 @@ module.exports = async (req, res) => {
         message: 'うまく診断できませんでした。個別診断をご利用ください。' });
       return;
     }
-    const aiJson = await apiRes.json();
+    let aiJson;
+    try { aiJson = await apiRes.json(); } catch (e) {
+      res.status(200).json({ ok: false, error: 'ai_bad_json',
+        message: 'うまく診断できませんでした。少し時間をおいてお試しいただくか、個別診断をご利用ください。' });
+      return;
+    }
     const textOut = (aiJson.content && aiJson.content[0] && aiJson.content[0].text) || '';
     const parsed = parseJsonLoose(textOut);
     if (!parsed || !Array.isArray(parsed.findings) || parsed.findings.length === 0) {
