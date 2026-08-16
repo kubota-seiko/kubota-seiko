@@ -80,6 +80,64 @@ function parseJsonLoose(s) {
   return null;
 }
 
+// 診断結果を Supabase に保存する(おまけ機能・失敗しても診断は止めない)。
+//   - 使う環境変数: SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY (サーバー専用)
+//   - @supabase/supabase-js は入れず、既存コード同様に PostgREST を素の
+//     fetch で叩く(依存追加ゼロ)。service_role キーで RLS をバイパスして書込。
+//   - どちらかの環境変数が未設定なら丸ごとスキップして null を返す。
+//   - insert 失敗・タイムアウトは握りつぶし null を返す(診断は必ず返る)。
+// 戻り値: 保存できた場合は session_id(uuid)、それ以外は null。
+async function saveDiagnosisToSupabase({ url, diagnosis, utm, incomingSessionId }) {
+  const base = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
+  const key = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+  if (!base || !key) return null; // 未設定 → 保存スキップ(従来通りの挙動)
+
+  const headers = {
+    'apikey': key,
+    'Authorization': 'Bearer ' + key,
+    'content-type': 'application/json'
+  };
+  // 保存が診断レスポンスを大きく遅らせないための保険(4秒)
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    // 呼び出し側から有効な session_id が来ていれば再利用(新規作成しない)
+    let sessionId = (typeof incomingSessionId === 'string' &&
+      /^[0-9a-fA-F-]{36}$/.test(incomingSessionId)) ? incomingSessionId : null;
+
+    if (!sessionId) {
+      const sres = await fetch(base + '/rest/v1/sessions', {
+        method: 'POST', signal: ctrl.signal,
+        headers: Object.assign({}, headers, { 'Prefer': 'return=representation' }),
+        body: JSON.stringify(utm || {}) // UTM が無ければ {} → 各列 null で1行作成
+      });
+      if (!sres.ok) throw new Error('session insert http ' + sres.status);
+      const srow = await sres.json();
+      sessionId = srow && srow[0] && srow[0].id;
+      if (!sessionId) throw new Error('session id missing');
+    }
+
+    const dres = await fetch(base + '/rest/v1/diagnoses', {
+      method: 'POST', signal: ctrl.signal,
+      headers: Object.assign({}, headers, { 'Prefer': 'return=minimal' }),
+      body: JSON.stringify({
+        session_id: sessionId,
+        source_url: String(url || '').slice(0, 2000), // ユーザー入力の丸ごと保存を避ける最小健全化
+        diagnosis_json: diagnosis
+      })
+    });
+    if (!dres.ok) throw new Error('diagnosis insert http ' + dres.status);
+
+    return sessionId;
+  } catch (e) {
+    // 秘密値を含めない安全なログのみ。診断の返却は妨げない。
+    try { console.error('[shindan] supabase save skipped:', String((e && e.message) || e).slice(0, 200)); } catch (_) {}
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ ok: false, error: 'method not allowed' });
@@ -213,12 +271,33 @@ module.exports = async (req, res) => {
       fix: String(f.fix || '').slice(0, 300)
     }));
 
-    res.status(200).json({
+    const diagnosis = {
       ok: true,
       url,
       summary: String(parsed.summary || '').slice(0, 500),
       findings
-    });
+    };
+
+    // --- Supabase 保存(おまけ)。失敗しても診断結果は必ず返す ---
+    // リクエストに UTM が来ていれば sessions に記録(無ければ null)
+    const utm = {};
+    for (const k of ['source', 'medium', 'campaign', 'content', 'term']) {
+      const v = body[k];
+      if (typeof v === 'string' && v.trim()) utm[k] = v.trim().slice(0, 200);
+    }
+    let sessionId = null;
+    try {
+      sessionId = await saveDiagnosisToSupabase({
+        url,
+        diagnosis,
+        utm,
+        incomingSessionId: body.session_id
+      });
+    } catch (_) { sessionId = null; } // 二重の安全弁(ヘルパーは通常 throw しない)
+
+    // 既存フィールドは一切壊さず session_id を1つ追加(保存できなければ null)
+    diagnosis.session_id = sessionId || null;
+    res.status(200).json(diagnosis);
   } catch (e) {
     res.status(500).json({ ok: false, error: 'server_error', message: String(e && e.message || e).slice(0, 200) });
   }
