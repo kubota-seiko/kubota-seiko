@@ -66,7 +66,58 @@ function renderSection(sec) {
   return '<section class="sec sec-' + type + '">' + heading + body + items + '</section>';
 }
 
-function renderLp(lp, status) {
+// 公開セクション(status!='published' のときだけ描画)。¥9,800 の公開決済導線。
+// clientId(公開値)が無ければ決済不可の案内を出す(画面は壊さない)。
+function publishSectionHtml(clientId) {
+  const inner = clientId
+    ? '<div id="paypal-btn"></div><div id="pay-msg" class="pub-msg"></div>'
+    : '<p class="pub-msg">現在オンライン決済が利用できません。お手数ですが管理者にご連絡ください。</p>';
+  return '<section class="pub-box">' +
+    '<h2 class="pub-h">このLPを公開する</h2>' +
+    '<p class="pub-d">¥9,800（税込）で本公開します。公開するとPREVIEW表示が外れ、誰でも閲覧できる公開URLになります。</p>' +
+    inner +
+    '</section>';
+}
+
+// PayPal JS SDK 読み込み + ボタン。client-id はサーバーの PAYPAL_CLIENT_ID(公開値)を
+// URLエンコードして埋め込む。client-secret 等の秘密値は一切出さない。
+function publishButtonScript(slug, clientId) {
+  const sdkSrc = 'https://www.paypal.com/sdk/js?client-id=' +
+    encodeURIComponent(clientId) + '&currency=JPY&intent=capture';
+  const slugJson = JSON.stringify(String(slug || '')); // slug は英数-_ のみ(検証済み)
+  return '<script src="' + sdkSrc + '"></script>' +
+    '<script>(function(){' +
+    'var SLUG=' + slugJson + ';' +
+    'var msg=document.getElementById("pay-msg");' +
+    'function show(t){if(msg){msg.textContent=t;}}' +
+    'if(!window.paypal||!paypal.Buttons){show("現在オンライン決済が利用できません。お手数ですが管理者にご連絡ください。");return;}' +
+    'paypal.Buttons({' +
+    // createOrder: create-order へ serviceId=lp-publish + slug。返却キーは id。
+    'createOrder:function(){' +
+    'return fetch("/api/paypal-create-order",{method:"POST",headers:{"content-type":"application/json"},' +
+    'body:JSON.stringify({serviceId:"lp-publish",slug:SLUG})})' +
+    '.then(function(r){if(!r.ok){throw new Error("create "+r.status);}return r.json();})' +
+    '.then(function(d){if(!d||!d.id){throw new Error("no order id");}return d.id;});' +
+    '},' +
+    // onApprove: capture-order へ orderID。結果を3分岐(いずれの失敗でも再決済を促さない)。
+    'onApprove:function(data){' +
+    'show("ご決済を確認しています…");' +
+    'return fetch("/api/paypal-capture-order",{method:"POST",headers:{"content-type":"application/json"},' +
+    'body:JSON.stringify({orderID:data.orderID})})' +
+    '.then(function(r){if(!r.ok){throw new Error("capture http "+r.status);}return r.json();})' +
+    '.then(function(d){' +
+    'if(d&&d.published===true){show("公開が完了しました！ページを更新します");setTimeout(function(){location.reload();},1500);}' +
+    'else{show("ご決済は完了しましたが公開処理に失敗しました。お手数ですが管理者にご連絡ください。");}' +
+    '})' +
+    // 通信失敗 / 非2xx / JSON取得失敗 → 決済状態は不明扱い。再決済を促さない。
+    '.catch(function(){show("ご決済の確認中に問題が発生しました。二重にお支払いにならないよう、そのままお待ちいただくか管理者にご連絡ください。");});' +
+    '},' +
+    'onError:function(){show("エラーが発生しました。しばらくしてからお試しください。");}' +
+    '}).render("#paypal-btn");' +
+    '})();</script>';
+}
+
+function renderLp(lp, status, slug) {
   const meta = (lp && lp.meta) || {};
   const title = meta.title || lp.headline || 'ランディングページ';
   const description = meta.description || lp.subheadline || '';
@@ -83,6 +134,11 @@ function renderLp(lp, status) {
     '<div class="preview-bar">PREVIEW（未公開）— このページはまだ公開されていません</div>';
 
   const robots = isPublished ? '' : '<meta name="robots" content="noindex">';
+
+  // 公開セクション: published 以外のときだけ表示(追加のみ・既存描画は変更しない)
+  const paypalClientId = (process.env.PAYPAL_CLIENT_ID || '').trim();
+  const pubHtml = isPublished ? '' : publishSectionHtml(paypalClientId);
+  const pubScript = (!isPublished && paypalClientId) ? publishButtonScript(slug, paypalClientId) : '';
 
   return '<!doctype html><html lang="ja"><head>' +
     '<meta charset="utf-8">' +
@@ -107,6 +163,11 @@ function renderLp(lp, status) {
     '.cta-btn{display:inline-block;background:#e8501e;color:#fff;font-weight:800;font-size:18px;text-decoration:none;padding:16px 40px;border-radius:999px;box-shadow:0 6px 18px rgba(232,80,30,.35);max-width:100%}' +
     '.cta-btn:active{transform:translateY(1px)}' +
     '.foot{text-align:center;color:#9aa5b1;font-size:12px;padding:24px 0}' +
+    '.pub-box{background:#fff;border:2px solid #e8501e;border-radius:16px;padding:28px 24px;margin:26px 0 8px;text-align:center}' +
+    '.pub-h{font-size:20px;font-weight:800;margin:0 0 10px;color:#111827}' +
+    '.pub-d{font-size:14px;color:#52606d;margin:0 0 18px;line-height:1.8}' +
+    '.pub-msg{font-size:14px;margin:14px 0 0;font-weight:700;min-height:1em;color:#374151}' +
+    '#paypal-btn{max-width:420px;margin:0 auto}' +
     '@media(max-width:520px){.headline{font-size:24px}.hero{padding:40px 0 24px}.sec{padding:22px 18px}}' +
     '</style></head><body>' +
     previewBar +
@@ -116,10 +177,12 @@ function renderLp(lp, status) {
     (lp.subheadline ? '<p class="subheadline">' + esc(lp.subheadline) + '</p>' : '') +
     '</header>' +
     '<main>' + sectionsHtml + '</main>' +
+    pubHtml +
     '<div class="foot">© kubota-seiko.com</div>' +
     '</div>' +
     '<div class="cta-wrap"><a class="cta-btn" href="' + esc(ctaHref) + '"' +
     (ctaHref === '#' ? '' : ' target="_blank" rel="noopener"') + '>' + esc(ctaLabel) + '</a></div>' +
+    pubScript +
     '</body></html>';
 }
 
@@ -165,7 +228,7 @@ module.exports = async (req, res) => {
     }
 
     // 3) HTML を組み立てて返す
-    const html = renderLp(row.lp_json, row.status);
+    const html = renderLp(row.lp_json, row.status, row.slug);
     sendHtml(res, 200, html);
   } catch (e) {
     console.error('[lp] server error:', String((e && e.message) || e).slice(0, 200));
