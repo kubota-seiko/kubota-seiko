@@ -107,7 +107,123 @@ function makeSlug() {
   return crypto.randomBytes(12).toString('base64url').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 16);
 }
 
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+// その session の最新 LP(あれば)を返す。冪等化・GET の存在確認に使用。
+async function getExistingLp(base, headers, sessionId) {
+  return pgGetOne(base, headers,
+    '/rest/v1/lps?select=id,slug,status&session_id=eq.' + encodeURIComponent(sessionId) +
+    '&order=created_at.desc&limit=1');
+}
+
+// その session の最新 Tally 回答(あれば)を返す。
+async function getLatestTally(base, headers, sessionId) {
+  return pgGetOne(base, headers,
+    '/rest/v1/tally_responses?select=response_json&session_id=eq.' + encodeURIComponent(sessionId) +
+    '&order=created_at.desc&limit=1');
+}
+
+function escHtml(v) {
+  return String(v == null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function sendHtml(res, status, html) {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.status(status).send(html);
+}
+
+// 秘密値を含まない簡易 HTML(GET のエラー等)
+function simpleHtml(title) {
+  return '<!doctype html><html lang="ja"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<meta name="robots" content="noindex"><title>' + escHtml(title) + '</title></head>' +
+    '<body style="font-family:system-ui,-apple-system,\'Segoe UI\',sans-serif;max-width:600px;margin:80px auto;padding:0 24px;text-align:center;color:#333;line-height:1.9">' +
+    '<p style="font-size:19px;font-weight:700;margin-bottom:8px">' + escHtml(title) + '</p>' +
+    '<p><a href="https://kubota-seiko.com/" style="color:#2563eb;text-decoration:none">kubota-seiko.com へ戻る</a></p>' +
+    '</body></html>';
+}
+
+// 「作成中」ページ。同一オリジンの POST /api/generate-lp を1回投げ、
+// 成功 {ok,slug} で /api/lp?slug=... へ遷移。失敗時は「もう一度」ボタン。
+function waitingPage(sessionId) {
+  const sid = JSON.stringify(sessionId); // sessionId は UUID 検証済み
+  return '<!doctype html><html lang="ja"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<meta name="robots" content="noindex">' +
+    '<title>あなた専用のLPを作成しています…</title><style>' +
+    'body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans JP",Meiryo,sans-serif;background:#f8fafc;color:#1f2933;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}' +
+    '.box{max-width:480px;padding:32px 24px}' +
+    '.spinner{width:52px;height:52px;margin:0 auto 24px;border:5px solid #e4e7eb;border-top-color:#e8501e;border-radius:50%;animation:spin 1s linear infinite}' +
+    '@keyframes spin{to{transform:rotate(360deg)}}' +
+    'h1{font-size:20px;font-weight:800;margin:0 0 10px}' +
+    'p{color:#52606d;font-size:15px;line-height:1.85;margin:0 0 8px}' +
+    '.retry{display:none;margin-top:18px}' +
+    '.btn{display:inline-block;background:#e8501e;color:#fff;font-weight:700;text-decoration:none;border:0;font-size:15px;padding:13px 28px;border-radius:999px;cursor:pointer}' +
+    '</style></head><body><div class="box">' +
+    '<div class="spinner" id="sp"></div>' +
+    '<h1 id="ttl">あなた専用のLPを作成しています</h1>' +
+    '<p id="msg">診断内容をもとに、AIがLPを組み立てています。30〜60秒ほどお待ちください…</p>' +
+    '<div class="retry" id="retry"><p>時間がかかっています。もう一度お試しください。</p>' +
+    '<button class="btn" id="retryBtn">もう一度作成する</button></div>' +
+    '<script>(function(){var SID=' + sid + ';' +
+    'function fail(){document.getElementById("sp").style.display="none";' +
+    'document.getElementById("ttl").textContent="うまく作成できませんでした";' +
+    'document.getElementById("msg").style.display="none";' +
+    'document.getElementById("retry").style.display="block";}' +
+    'function go(){fetch("/api/generate-lp",{method:"POST",headers:{"content-type":"application/json"},' +
+    'body:JSON.stringify({session_id:SID})}).then(function(r){return r.json();})' +
+    '.then(function(d){if(d&&d.ok&&d.slug){location.href="/api/lp?slug="+encodeURIComponent(d.slug);}else{fail();}})' +
+    '.catch(fail);}' +
+    'document.getElementById("retryBtn").addEventListener("click",function(){' +
+    'document.getElementById("sp").style.display="block";' +
+    'document.getElementById("ttl").textContent="あなた専用のLPを作成しています";' +
+    'document.getElementById("msg").style.display="block";' +
+    'document.getElementById("retry").style.display="none";go();});' +
+    'go();})();</script></div></body></html>';
+}
+
+// (A) GET /api/generate-lp?session_id=<uuid>
+//   既存LPあり → 302 /api/lp?slug=... / 無し → 作成中HTML(ブラウザがPOSTを発火)
+async function handleGet(req, res) {
+  try {
+    const sessionId = String((req.query && req.query.session_id) || '').trim();
+    if (!UUID_RE.test(sessionId)) {
+      sendHtml(res, 400, simpleHtml('リンクが正しくありません'));
+      return;
+    }
+    const base = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
+    const key = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+    if (!base || !key) {
+      sendHtml(res, 500, simpleHtml('ただいま準備中です'));
+      return;
+    }
+    const headers = supabaseHeaders(key);
+    let lp;
+    try {
+      lp = await getExistingLp(base, headers, sessionId);
+    } catch (e) {
+      console.error('[generate-lp GET] lp lookup failed:', String((e && e.message) || e).slice(0, 200));
+      sendHtml(res, 500, simpleHtml('ただいま表示できません'));
+      return;
+    }
+    if (lp && lp.slug) {
+      // 再訪は同じLPへ(二重生成なし)
+      res.statusCode = 302;
+      res.setHeader('Location', '/api/lp?slug=' + encodeURIComponent(lp.slug));
+      res.end();
+      return;
+    }
+    sendHtml(res, 200, waitingPage(sessionId));
+  } catch (e) {
+    console.error('[generate-lp GET] error:', String((e && e.message) || e).slice(0, 200));
+    sendHtml(res, 500, simpleHtml('ただいま表示できません'));
+  }
+}
+
 module.exports = async (req, res) => {
+  if (req.method === 'GET') { return handleGet(req, res); }
   if (req.method !== 'POST') {
     res.status(405).json({ ok: false, error: 'method_not_allowed' });
     return;
@@ -151,6 +267,20 @@ module.exports = async (req, res) => {
       return;
     }
 
+    // 1c) 冪等化: 既にこの session の LP があれば生成せず既存を返す(二重生成防止)
+    let existingLp;
+    try {
+      existingLp = await getExistingLp(base, headers, sessionId);
+    } catch (e) {
+      console.error('[generate-lp] existing lp lookup failed:', String((e && e.message) || e).slice(0, 200));
+      res.status(500).json({ ok: false, error: 'lp_lookup_failed' });
+      return;
+    }
+    if (existingLp && existingLp.slug) {
+      res.status(200).json({ ok: true, lp_id: existingLp.id, slug: existingLp.slug, status: existingLp.status || 'draft' });
+      return;
+    }
+
     // 2) 最新の診断 / Tally 回答を取得(service_role)
     let diagnosisJson = null, tallyJson = null;
     try {
@@ -158,9 +288,14 @@ module.exports = async (req, res) => {
         '/rest/v1/diagnoses?select=diagnosis_json&session_id=eq.' + encodeURIComponent(sessionId) +
         '&order=created_at.desc&limit=1');
       diagnosisJson = d ? d.diagnosis_json : null;
-      const t = await pgGetOne(base, headers,
-        '/rest/v1/tally_responses?select=response_json&session_id=eq.' + encodeURIComponent(sessionId) +
-        '&order=created_at.desc&limit=1');
+      let t = await getLatestTally(base, headers, sessionId);
+      if (!t) {
+        // Tally 保存待ち: 最大12秒(2秒間隔)。timeout しても診断のみで生成を続行。
+        for (let i = 0; i < 6 && !t; i++) {
+          await sleep(2000);
+          t = await getLatestTally(base, headers, sessionId);
+        }
+      }
       tallyJson = t ? t.response_json : null;
     } catch (e) {
       console.error('[generate-lp] source fetch failed:', String((e && e.message) || e).slice(0, 200));
