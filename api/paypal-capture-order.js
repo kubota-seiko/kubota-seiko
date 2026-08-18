@@ -161,12 +161,14 @@ async function publishLp(slug) {
         'apikey': key,
         'Authorization': 'Bearer ' + key,
         'content-type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Prefer': 'return=representation'
       },
       body: JSON.stringify({ status: 'published' })
     });
     if (!r.ok) throw new Error('lps patch http ' + r.status);
-    return true;
+    // 更新された行の配列を確認。1件以上更新できたときだけ true(該当slugが無ければ0件=false)
+    const rows = await r.json().catch(() => null);
+    return Array.isArray(rows) && rows.length > 0;
   } catch (e) {
     console.error('[lp-publish] update failed:', String((e && e.message) || e).slice(0, 200));
     return false;
