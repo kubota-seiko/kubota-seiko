@@ -220,7 +220,7 @@ module.exports = async (req, res) => {
 
     let apiRes;
     const aiCtrl = new AbortController();
-    const aiTimer = setTimeout(() => aiCtrl.abort(), 30000);
+    const aiTimer = setTimeout(() => aiCtrl.abort(), 60000);
     try {
       apiRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
