@@ -72,9 +72,21 @@ function publishSectionHtml(clientId) {
   const inner = clientId
     ? '<div id="paypal-btn"></div><div id="pay-msg" class="pub-msg"></div>'
     : '<p class="pub-msg">現在オンライン決済が利用できません。お手数ですが管理者にご連絡ください。</p>';
+  // 購入直前表示(法務)。PayPal公開ボタンの直前に表示する。テキストは固定文言。
+  const disclosure = '<div class="pub-legal"><p>' +
+    '9,800円(税込)／LP1本。AIによる自動生成・公開サービスです。初回生成1回＋再生成1回を含みます。' +
+    '決済が完了すると、現在のプレビューLPが公開されます。' +
+    '提供開始後のお客様都合による返金・キャンセルは原則承っておりません。' +
+    'システム障害等により当社が正常にサービスを提供できない場合は、再提供等を行い、それでも提供できない場合は返金対応を行います。' +
+    '<a href="/tokushoho/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>／' +
+    '<a href="/tokushoho/#refund-lp" target="_blank" rel="noopener">返金・キャンセルについて</a>／' +
+    '<a href="/terms/" target="_blank" rel="noopener">利用規約</a>' +
+    'をご確認のうえ、お手続きください。' +
+    '</p></div>';
   return '<section class="pub-box">' +
     '<h2 class="pub-h">このLPを公開する</h2>' +
     '<p class="pub-d">¥9,800（税込）で本公開します。公開するとPREVIEW表示が外れ、誰でも閲覧できる公開URLになります。</p>' +
+    disclosure +
     inner +
     '</section>';
 }
@@ -167,6 +179,8 @@ function renderLp(lp, status, slug) {
     '.pub-h{font-size:20px;font-weight:800;margin:0 0 10px;color:#111827}' +
     '.pub-d{font-size:14px;color:#52606d;margin:0 0 18px;line-height:1.8}' +
     '.pub-msg{font-size:14px;margin:14px 0 0;font-weight:700;min-height:1em;color:#374151}' +
+    '.pub-legal{font-size:12px;color:#52606d;line-height:1.9;text-align:left;background:#f8fafc;border:1px solid #e4e7eb;border-radius:10px;padding:14px 16px;margin:0 0 18px}' +
+    '.pub-legal a{color:#2563eb;text-decoration:underline}' +
     '#paypal-btn{max-width:420px;margin:0 auto}' +
     '@media(max-width:520px){.headline{font-size:24px}.hero{padding:40px 0 24px}.sec{padding:22px 18px}}' +
     '</style></head><body>' +
