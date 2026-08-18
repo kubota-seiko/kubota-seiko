@@ -905,6 +905,19 @@
       .then(function(r){return r.json();}).catch(function(){return {ok:true};})
       .then(function(){var el=document.getElementById('shLead');if(el){el.innerHTML='<h4>受け付けました。ありがとうございます。</h4>'+'<p class="done">数日以内に、窪田より「あなたのサイト専用の改善提案」をメールでお送りします。<br>お急ぎの方は、LINEからもご相談いただけます。</p>'+'<a class="sh-line" href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;">LINEで相談する →</a>';}});
   }
+  var LP_TALLY_URL='https://tally.so/r/81bq8P';
+  var UUID_RE=/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  function lpButton(sessionId){
+    var sid=(sessionId==null?'':String(sessionId)).trim();
+    if(!UUID_RE.test(sid))return '';
+    var href=LP_TALLY_URL+'?session_id='+encodeURIComponent(sid);
+    return '<div class="sh-lp-cta" style="margin:22px 0 4px;text-align:center;">'+
+      '<a href="'+href+'" target="_blank" rel="noopener" data-cta-label="shindan_to_lp" '+
+      'style="display:inline-block;background:linear-gradient(180deg,#f0a53c,#e8501e);color:#fff;font-weight:800;font-size:16px;text-decoration:none;padding:16px 30px;border-radius:999px;box-shadow:0 8px 20px rgba(232,80,30,.30);max-width:100%;line-height:1.5;">'+
+      'この診断をもとに“あなた専用のLP”を作成する →</a>'+
+      '<p style="font-size:12px;color:var(--sub,#888);margin-top:10px;">診断内容が引き継がれ、そのままLP作成フォームに進みます。</p>'+
+    '</div>';
+  }
   function renderReport(data,isSample){
     var f=data.findings.map(function(x){return '<div class="sh-finding"><h4>'+esc(x.t)+'</h4>'+
       '<p class="sh-row"><b>現状：</b>'+esc(x.now)+'</p>'+
@@ -918,7 +931,7 @@
       '<p class="sh-url">対象サイト：'+esc(data.url)+'</p>'+
       '<div class="sh-lead-block">'+esc(data.summary)+'</div>'+f+
       '<p class="sh-mini" style="text-align:left;margin-top:16px;">※本診断はAIによる自動診断です。詳しい設計図・改善提案は個別診断で承ります。</p>'+
-    '</div>'+leadBlock()+ctaRow(true,true);
+    '</div>'+lpButton(data.session_id)+leadBlock()+ctaRow(true,true);
     resultEl.innerHTML=html;resultEl.hidden=false;
     document.getElementById('shPdf').addEventListener('click',exportPdf);
     var _ls=document.getElementById('shLineSend'); if(_ls){_ls.addEventListener('click',function(){sendToLine(data);});}
