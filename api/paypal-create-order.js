@@ -10,7 +10,8 @@ const SERVICES = {
   'monthly-1': { name: '月1回伴走プラン', amount: '33000' },
   'monthly-2': { name: '月2回伴走プラン', amount: '55000' },
   'lp-planning': { name: '企画整理セッション', amount: '16500' },
-  'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: '55000' }
+  'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: '55000' },
+  'lp-publish': { name: '即日LP 公開（¥9,800）', amount: '9800' }
 };
 
 async function getAccessToken() {
@@ -46,6 +47,27 @@ module.exports = async (req, res) => {
       res.status(400).json({ error: 'invalid service' });
       return;
     }
+
+    // lp-publish は公開対象LPの slug を必須で受け取り、PayPal注文の custom_id に埋め込む。
+    // 決済成功(capture)時にこの custom_id を読み取って該当LPを公開する。
+    let customId = null;
+    if (serviceId === 'lp-publish') {
+      const slug = String(body.slug || '').trim();
+      if (!/^[A-Za-z0-9_-]{1,64}$/.test(slug)) {
+        res.status(400).json({ error: 'invalid slug' });
+        return;
+      }
+      // 既存商品の決済と誤認しないよう目印を付ける(capture側で接頭辞を検証)
+      customId = 'lp-publish:' + slug;
+    }
+
+    // 金額はサーバー固定(SERVICES)。クライアントからは受け取らない。
+    const purchaseUnit = {
+      description: service.name,
+      amount: { currency_code: 'JPY', value: service.amount }
+    };
+    if (customId) purchaseUnit.custom_id = customId;
+
     const accessToken = await getAccessToken();
     const orderRes = await fetch(PAYPAL_API_BASE + '/v2/checkout/orders', {
       method: 'POST',
@@ -55,10 +77,7 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         intent: 'CAPTURE',
-        purchase_units: [{
-          description: service.name,
-          amount: { currency_code: 'JPY', value: service.amount }
-        }]
+        purchase_units: [purchaseUnit]
       })
     });
     if (!orderRes.ok) {

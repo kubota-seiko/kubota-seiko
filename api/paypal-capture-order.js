@@ -116,6 +116,63 @@ async function createMisocaInvoice(accessToken, contactId, itemName, amount, mar
   return invoice;
 }
 
+const LP_PUBLISH_PREFIX = 'lp-publish:';
+const LP_PUBLISH_AMOUNT = '9800'; // サーバー固定額(JPY)。これ以外では公開しない。
+
+// LP公開は次の5条件が「すべて」揃ったときだけ。1つでも不一致なら null(公開しない)。
+//   1) order.status === 'COMPLETED'
+//   2) capture.status === 'COMPLETED'
+//   3) capture.amount.value === '9800'
+//   4) capture.amount.currency_code === 'JPY'
+//   5) custom_id が 'lp-publish:' で始まる(slug は接頭辞を除いて取り出す)
+// 既存商品(目印なし)の決済では null を返し、従来通り公開処理をスキップさせる。
+function resolvePublishSlug(captureData) {
+  try {
+    if (!captureData || captureData.status !== 'COMPLETED') return null;
+    const pu = (captureData.purchase_units && captureData.purchase_units[0]) || {};
+    const cap = pu.payments && pu.payments.captures && pu.payments.captures[0];
+    if (!cap || cap.status !== 'COMPLETED') return null;
+    const amt = cap.amount || {};
+    if (amt.value !== LP_PUBLISH_AMOUNT) return null;
+    if (amt.currency_code !== 'JPY') return null;
+    const rawId = (cap.custom_id != null ? cap.custom_id : pu.custom_id);
+    const customId = rawId != null ? String(rawId).trim() : '';
+    if (customId.indexOf(LP_PUBLISH_PREFIX) !== 0) return null;
+    const slug = customId.slice(LP_PUBLISH_PREFIX.length);
+    if (!/^[A-Za-z0-9_-]{1,64}$/.test(slug)) return null;
+    return slug;
+  } catch (_) {
+    return null;
+  }
+}
+
+// 該当LPを status='published' に更新して本公開する(サーバー側・service_role)。
+// 既存のPostgREST素fetch方式を流用。冪等(何度PATCHしても published のまま)。
+// 失敗しても false を返すだけでキャプチャの成功レスポンスには影響させない。
+async function publishLp(slug) {
+  const base = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
+  const key = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+  if (!base || !key) return false;
+  if (!/^[A-Za-z0-9_-]{1,64}$/.test(slug)) return false;
+  try {
+    const r = await fetch(base + '/rest/v1/lps?slug=eq.' + encodeURIComponent(slug), {
+      method: 'PATCH',
+      headers: {
+        'apikey': key,
+        'Authorization': 'Bearer ' + key,
+        'content-type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ status: 'published' })
+    });
+    if (!r.ok) throw new Error('lps patch http ' + r.status);
+    return true;
+  } catch (e) {
+    console.error('[lp-publish] update failed:', String((e && e.message) || e).slice(0, 200));
+    return false;
+  }
+}
+
 async function syncToMisoca(serviceId, payerName, payerEmail) {
   const service = SERVICES[serviceId];
   if (!service) return 'skipped-unknown-service';
@@ -151,7 +208,9 @@ module.exports = async (req, res) => {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + accessToken,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // 注文ごとに安定した冪等キー。ネットワーク再試行時の二重キャプチャを防ぐ。
+        'PayPal-Request-Id': 'capture-' + orderID
       }
     });
     if (!captureRes.ok) {
@@ -176,7 +235,18 @@ module.exports = async (req, res) => {
       misocaStatus = 'failed';
     }
 
-    res.status(200).json({ status: captureData.status, id: captureData.id, misoca: misocaStatus });
+    // LP公開: 5条件をすべて満たすときだけ、サーバー側で該当LPを本公開する。
+    // 公開の成否に関わらずキャプチャのHTTPは200(決済は成立している)。
+    // D-2側で「決済済みだが未公開(published:false)」を検知できるよう必ず返す。
+    let published = false;
+    try {
+      const slug = resolvePublishSlug(captureData);
+      if (slug) published = await publishLp(slug);
+    } catch (err) {
+      console.error('[lp-publish] post-capture error:', err.message || err);
+    }
+
+    res.status(200).json({ status: captureData.status, id: captureData.id, misoca: misocaStatus, published: published });
   } catch (err) {
     console.error(err);
     if (!res.headersSent) {
