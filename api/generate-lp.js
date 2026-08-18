@@ -229,6 +229,7 @@ module.exports = async (req, res) => {
     return;
   }
   try {
+    const startedAt = Date.now();
     const body = req.body || {};
     const sessionId = String(body.session_id || '').trim();
 
@@ -355,7 +356,10 @@ module.exports = async (req, res) => {
 
     let apiRes;
     const aiCtrl = new AbortController();
-    const aiTimer = setTimeout(() => aiCtrl.abort(), 60000);
+    // maxDuration(60s)内に必ず収める。Tally待機で使った時間を差し引いた残り予算で
+    // AIを打ち切る(プラットフォームの504ではなくクリーンな500で返すため)。最低20秒は確保。
+    const aiBudgetMs = Math.max(20000, 57000 - (Date.now() - startedAt));
+    const aiTimer = setTimeout(() => aiCtrl.abort(), aiBudgetMs);
     try {
       apiRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
