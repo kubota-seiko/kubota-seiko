@@ -181,19 +181,16 @@ module.exports = async (req, res) => {
     const model = (process.env.LP_MODEL || 'claude-sonnet-4-5').trim();
 
     const sysPrompt =
-      'あなたは「思考整理の参謀・窪田成功」のLP設計アシスタントです。' +
-      '与えられた「診断結果」と「Tallyの回答」から読み取れる情報だけを根拠に、1本のランディングページ構造(lp_json)を設計します。' +
-      '設計原則(窪田式): 誰に・何を・どの順で伝えるかを明確にし、導線は1本・CTAは1つに絞る。' +
-      '心理順(現在地→課題→望む未来→解決→(あれば)証拠→行動)で並べる。' +
-      '誇張・断定・煽り(売上◯倍・必ず成果 等)は禁止。丁寧語で簡潔に。' +
-      '社名・数値・実績・引用などの事実は創作しない。回答や診断から読み取れない情報は書かず、根拠が無いセクションは省く。' +
-      'headline は解決したい課題または得たい未来を一言で。benefits は最大4件。' +
-      '出力は日本語で、指定 JSON スキーマの純粋な JSON のみ(前置き・コードブロック・説明を付けない)。' +
+      'あなたは「思考整理の参謀・窪田成功」のLP設計アシスタントです。与えられた「診断結果」と「Tallyの回答」から読み取れる情報だけを根拠に、9,800円の商品として通用する、完成された1本のランディングページ構造(lp_json)を設計します。' +
+      '【窪田式の原則】誰に・何を・どの順で伝えるかを明確にし、導線は1本・CTAは1つに絞る。心理順(現在地→課題→望む未来→解決→証拠→価格→行動)で構成する。誇張・断定・煽り(売上◯倍・必ず成果 等)は禁止。丁寧語で、簡潔かつ具体的に書く。' +
+      '【事実の扱い】社名・数値・実績・経歴・引用などの事実は創作しない。回答や診断から読み取れない情報は書かない。一方で、Tallyや診断に実在する実績・数値・経歴(例:経験年数・実績件数・保有スキル)は、証拠として具体的に活用する。' +
+      '【構成】根拠がある範囲で、次の構成を可能な限りそろえた"痩せていないLP"にする。根拠が全く無いセクションのみ省く: 1 problem(現状・お悩み) / 2 solution(解決策) / 3 benefits(得られる変化・最大4件) / 4 service(内容・特徴・他との違い＝差別化点) / 5 voice(実績・証拠。実在する実績や数値があれば必ず具体的に載せる) / 6 price(価格・提供内容。価格が分かる場合は必ず入れる) / 7 faq(想定される不安を解消) / 8 cta(行動を後押しする一文＋CTA)。' +
+      '【具体性】ターゲットの状況・言葉に寄せ、一般論を避ける。他の選択肢との違いを明確にする。各セクションの body は2〜4文でしっかり書き、薄い一文で終わらせない。' +
+      '【ファーストビュー】headline は「誰が・どんな未来を得られるか」が伝わる具体的な訴求(約40字)。subheadline は課題→解決の流れが伝わるよう約90〜120字で書く。' +
+      '【出力】日本語。指定JSONスキーマの純粋なJSONのみを出力(前置き・コードブロック・説明なし)。sections の type は列挙値のみ。順番は心理順を基本に最適化。items は各約80字、不要なセクションは空配列で可。' +
       'スキーマ: {"meta":{"title":string,"description":string},"headline":string,"subheadline":string,' +
       '"cta":{"label":string,"type":"line"|"form"|"checkout"},' +
-      '"sections":[{"type":"problem"|"solution"|"benefits"|"service"|"price"|"voice"|"faq"|"cta","heading":string,"body":string,"items":[string]}]}. ' +
-      'sections は使うものだけ・順番はあなたが判断。type は列挙値のみ。' +
-      '文字数目安: headline 約40字, subheadline 約90字, items 各約80字。items が不要なセクションは空配列で可。';
+      '"sections":[{"type":"problem"|"solution"|"benefits"|"service"|"price"|"voice"|"faq"|"cta","heading":string,"body":string,"items":[string]}]}. ';
 
     const diagText = diagnosisJson
       ? ('総評: ' + String(diagnosisJson.summary || '(なし)') + '\n' +
@@ -235,7 +232,7 @@ module.exports = async (req, res) => {
         },
         body: JSON.stringify({
           model,
-          max_tokens: 2000,
+          max_tokens: 4000,
           system: sysPrompt,
           messages: [{ role: 'user', content: userContent }]
         })
