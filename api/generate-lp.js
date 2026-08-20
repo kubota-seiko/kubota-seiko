@@ -326,7 +326,11 @@ module.exports = async (req, res) => {
       '【出力】日本語。指定JSONスキーマの純粋なJSONのみを出力(前置き・コードブロック・説明なし)。sections の type は列挙値のみ。順番は心理順を基本に最適化。items は各約80字、不要なセクションは空配列で可。' +
       'スキーマ: {"meta":{"title":string,"description":string},"headline":string,"subheadline":string,' +
       '"cta":{"label":string,"type":"line"|"form"|"checkout"},' +
-      '"sections":[{"type":"problem"|"solution"|"benefits"|"service"|"price"|"voice"|"faq"|"cta","heading":string,"body":string,"items":[string]}]}. ';
+      '"sections":[{"type":"problem"|"solution"|"benefits"|"service"|"price"|"voice"|"faq"|"cta","heading":string,"body":string,"items":[string]}]}. ' +
+      '【3つの情報源の役割】(1)site_facts=会社が既に持つ事実・資産 (2)Tally=今回売る商品・価格・対象・意図 (3)診断の課題=現HPで伝わっていない点。' +
+      '【手順】まず3つを統合し「今回のLPで最も強く訴求すべき軸」を1つ決め、その軸に沿って構成する(軸はJSONに出力しない)。' +
+      '【優先順位】今回の商品・価格・CTA・ターゲット=Tally最優先／会社の実績・経歴・強み・既存サービス=site_factsを活用／現HPの問題点・改善方向=診断の課題を参考。' +
+      '【矛盾時】今回商品の明示回答(商品/価格/対象/CTA)はTally優先。ただし実績・数値・経歴等の事実はsite_factsかTallyで確認できる内容以外を創作しない。';
 
     const diagText = diagnosisJson
       ? ('総評: ' + String(diagnosisJson.summary || '(なし)') + '\n' +
@@ -350,9 +354,36 @@ module.exports = async (req, res) => {
          tally.pairs.map((p) => '▼' + p.label + '\n' + p.value).join('\n').slice(0, 6000))
       : '(Tally回答なし。商品情報は空。診断から読み取れる範囲で、事実を創作せず設計してください)';
 
+    // site_facts / site_excerpt を診断JSONから読み足す(v1.1・後方互換: 無ければ空扱いで継続)
+    const siteFacts = (diagnosisJson && diagnosisJson.site_facts) || null;
+    const siteExcerpt = (diagnosisJson && diagnosisJson.site_excerpt) || '';
+    const FACT_LABELS = [
+      ['business', '会社/事業'],
+      ['target_customers', '対象顧客'],
+      ['services', '提供サービス'],
+      ['strengths', '強み/差別化'],
+      ['proof', '実績/数値/取引先等'],
+      ['people', '代表者/経歴'],
+      ['voices', '顧客の声/推薦'],
+      ['current_cta', '現状の誘導先']
+    ];
+    const factLines = [];
+    if (siteFacts && typeof siteFacts === 'object') {
+      for (const [k, label] of FACT_LABELS) {
+        const arr = Array.isArray(siteFacts[k]) ? siteFacts[k].filter((x) => x != null && String(x).trim()) : [];
+        if (arr.length) factLines.push('【' + label + '】\n' + arr.map((x) => '・' + String(x)).join('\n'));
+      }
+    }
+    // 空カテゴリは出力しない。site_facts が空/無しなら「(HPからの確認事実なし)」で継続。
+    let siteFactsText = factLines.length ? factLines.join('\n\n') : '(HPからの確認事実なし)';
+    if (siteExcerpt) siteFactsText += '\n\n【HP本文抜粋(裏取り用)】\n' + String(siteExcerpt).slice(0, 2500);
+
+    // 優先順位順に再構成: 会社の資産(site_facts) → 今回売る商品(Tally) → 現HPの課題(診断)
     const userContent =
-      '【診断結果】\n' + diagText + '\n\n' + tallyText + '\n\n' +
-      '上記だけを根拠に lp_json を生成してください。根拠の無い事実は書かないでください。';
+      '【会社の資産(HP確認事実)】\n' + siteFactsText + '\n\n' +
+      '【今回売る商品(Tally回答)】\n' + tallyText + '\n\n' +
+      '【現HPの導線課題(改善方向)】\n' + diagText + '\n\n' +
+      '上記を統合し、まず主要訴求軸を1つ決めてから lp_json を生成してください。根拠の無い事実は書かないでください。';
 
     let apiRes;
     const aiCtrl = new AbortController();
