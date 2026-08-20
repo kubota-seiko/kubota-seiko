@@ -17,9 +17,11 @@
   :root {
     --bg: #0f1115;
     --card: #171a21;
+    --card2: #1d2129;
     --line: #262b35;
     --text: #e8eaed;
     --muted: #9aa3b2;
+    --dim: #6b7484;
     --accent: #4a9eff;
     --ok: #4ade80;
     --warn: #fbbf24;
@@ -27,14 +29,10 @@
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 0 0 96px;
-    background: var(--bg);
-    color: var(--text);
+    margin: 0; padding: 0 0 96px;
+    background: var(--bg); color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 15px;
-    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; font-size: 15px; line-height: 1.6;
   }
   .wrap { max-width: 560px; margin: 0 auto; padding: 16px; }
 
@@ -42,66 +40,59 @@
   header h1 { margin: 0; font-size: 15px; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
   header .date { font-size: 13px; color: var(--muted); }
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 12px;
-  }
-  .card h2 {
-    margin: 0 0 12px;
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 600;
-    letter-spacing: .06em;
-  }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+  .card h2 { margin: 0 0 12px; font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: .06em; }
+  .card .sub { margin: -8px 0 12px; font-size: 12px; color: var(--dim); }
 
-  /* 今使えるお金 */
-  .hero .amount {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-  }
-  .hero .amount.negative { color: var(--danger); }
-  .hero .note { margin-top: 6px; font-size: 12px; color: var(--muted); }
+  /* 今使えるお金（確定 / 予測） */
+  .dual { display: flex; gap: 10px; }
+  .dual > div { flex: 1; min-width: 0; background: var(--card2); border-radius: 11px; padding: 14px 12px; }
+  .dual .lbl { font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+  .dual .amt { font-size: 24px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 3px; }
+  .dual .amt.negative { color: var(--danger); }
+  .dual .hint { font-size: 11px; color: var(--dim); margin-top: 5px; line-height: 1.45; }
 
   details.breakdown { margin-top: 14px; }
-  details.breakdown summary {
-    cursor: pointer; font-size: 13px; color: var(--accent);
-    list-style: none; padding: 4px 0;
-  }
+  details.breakdown summary { cursor: pointer; font-size: 13px; color: var(--accent); list-style: none; padding: 4px 0; }
   details.breakdown summary::-webkit-details-marker { display: none; }
   details.breakdown summary::before { content: '内訳を見る ▾'; }
   details.breakdown[open] summary::before { content: '内訳を閉じる ▴'; }
 
   .rows { margin-top: 10px; border-top: 1px solid var(--line); }
-  .row {
-    display: flex; justify-content: space-between; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid var(--line);
-    font-size: 14px;
-  }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .row:last-child { border-bottom: 0; }
   .row .k { color: var(--muted); }
+  .row .k small { color: var(--dim); font-size: 11px; }
   .row .v { font-variant-numeric: tabular-nums; white-space: nowrap; }
   .row.total { font-weight: 700; border-top: 1px solid var(--line); }
   .row .v.minus { color: var(--danger); }
   .row .v.plus { color: var(--ok); }
+  .row .v.est { color: var(--warn); }
 
-  /* 予測 */
-  .forecast { display: flex; gap: 12px; }
-  .forecast > div { flex: 1; }
-  .forecast .lbl { font-size: 12px; color: var(--muted); }
-  .forecast .val { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .forecast .val.negative { color: var(--danger); }
+  /* 法人 / 個人 */
+  .ent { display: flex; gap: 10px; }
+  .ent > div { flex: 1; background: var(--card2); border-radius: 11px; padding: 13px 12px; }
+  .ent .lbl { font-size: 11px; color: var(--muted); }
+  .ent .amt { font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .ent .amt.negative { color: var(--danger); }
+  .ent .fc { font-size: 11px; color: var(--dim); margin-top: 4px; font-variant-numeric: tabular-nums; }
+
+  /* 資金繰り区切り */
+  .rw { border-top: 1px solid var(--line); }
+  .rw-item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .rw-item:last-child { border-bottom: 0; }
+  .rw-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .rw-head .t { font-size: 14px; font-weight: 600; }
+  .rw-head .d { font-size: 11px; color: var(--dim); }
+  .rw-grid { display: flex; gap: 8px; margin-top: 8px; }
+  .rw-grid > div { flex: 1; min-width: 0; }
+  .rw-grid .k { font-size: 10px; color: var(--dim); white-space: nowrap; }
+  .rw-grid .v { font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rw-grid .v.negative { color: var(--danger); }
+  .rw-grid .v.est { color: var(--warn); }
 
   /* リスト */
-  .item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 11px 0; border-bottom: 1px solid var(--line);
-  }
+  .item { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
   .item:last-child { border-bottom: 0; }
   .item .body { flex: 1; min-width: 0; }
   .item .ttl { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -110,44 +101,35 @@
   .item .amt.out { color: var(--danger); }
   .item .amt.in { color: var(--ok); }
 
-  .btn-mini {
-    padding: 7px 12px; font-size: 12px; border-radius: 8px;
-    border: 1px solid var(--line); background: #0f1115; color: var(--text);
-    cursor: pointer; white-space: nowrap;
-  }
+  .btn-mini { padding: 7px 12px; font-size: 12px; border-radius: 8px; border: 1px solid var(--line); background: #0f1115; color: var(--text); cursor: pointer; white-space: nowrap; }
   .btn-mini:active { opacity: .6; }
   .btn-mini:disabled { opacity: .4; }
-
-  .chk {
-    width: 22px; height: 22px; flex: 0 0 22px;
-    border: 1.5px solid var(--muted); border-radius: 6px;
-    background: transparent; cursor: pointer;
-  }
+  .chk { width: 22px; height: 22px; flex: 0 0 22px; border: 1.5px solid var(--muted); border-radius: 6px; background: transparent; cursor: pointer; }
   .chk:active { background: var(--line); }
 
-  .alert {
-    display: block; padding: 12px 14px; border-radius: 10px;
-    font-size: 13px; margin-bottom: 12px;
-  }
+  .alert { display: block; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 12px; }
   .alert.danger { background: rgba(255,95,86,.12); border: 1px solid rgba(255,95,86,.4); color: #ffb4ae; }
   .alert.warn   { background: rgba(251,191,36,.10); border: 1px solid rgba(251,191,36,.35); color: #fcd34d; }
   .alert a { color: inherit; }
 
   .empty { color: var(--muted); font-size: 13px; padding: 6px 0; }
-  .tag {
-    display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 5px;
-    background: var(--line); color: var(--muted); margin-left: 6px; vertical-align: 1px;
-  }
+  .tag { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 5px; background: var(--line); color: var(--muted); margin-left: 6px; vertical-align: 1px; }
   .tag.od { background: rgba(255,95,86,.2); color: #ffb4ae; }
+  .tag.est { background: rgba(251,191,36,.18); color: #fcd34d; }
+  .tag.ent { background: rgba(74,158,255,.15); color: #a9cdf7; }
 
-  .fab {
-    position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px;
-    width: calc(100% - 32px); max-width: 528px;
-    padding: 15px; font-size: 15px; font-weight: 600;
-    color: #fff; background: var(--accent); border: 0; border-radius: 12px;
-    text-align: center; text-decoration: none; display: block;
-    box-shadow: 0 6px 20px rgba(0,0,0,.5);
-  }
+  /* 確認待ち */
+  .pend { border-top: 1px solid var(--line); }
+  .pend-item { display: flex; gap: 9px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+  .pend-item:last-child { border-bottom: 0; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 8px; margin-top: 7px; }
+  .dot.high { background: var(--danger); }
+  .dot.medium { background: var(--warn); }
+  .dot.low { background: var(--dim); }
+  .pend-item .t { font-size: 13.5px; }
+  .pend-item .d { font-size: 11.5px; color: var(--dim); }
+
+  .fab { position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px; width: calc(100% - 32px); max-width: 528px; padding: 15px; font-size: 15px; font-weight: 600; color: #fff; background: var(--accent); border: 0; border-radius: 12px; text-align: center; text-decoration: none; display: block; box-shadow: 0 6px 20px rgba(0,0,0,.5); }
   .loading { text-align: center; color: var(--muted); padding: 60px 0; }
   .hidden { display: none !important; }
 </style>
@@ -166,39 +148,87 @@
     <div id="toast" class="alert warn hidden"></div>
     <div id="alerts"></div>
 
-    <!-- 今使えるお金 -->
-    <section class="card hero">
+    <!-- 今日確認すること -->
+    <section class="card hidden" id="sec-check">
+      <h2>今日確認すること</h2>
+      <p class="sub">期限の近さ・金額の大きさ・資金繰りへの影響・データの古さで並べています</p>
+      <div class="pend" id="to-check"></div>
+    </section>
+
+    <!-- 今使えるお金（確定 / 予測） -->
+    <section class="card">
       <h2>今使えるお金</h2>
-      <div class="amount" id="available">—</div>
-      <div class="note">確保額と最低安全残高を差し引いた、いま自由に使える上限です</div>
+      <div class="dual">
+        <div>
+          <div class="lbl">確定ベース</div>
+          <div class="amt" id="av-confirmed">—</div>
+          <div class="hint">金額が確定した支払いだけを引いた額</div>
+        </div>
+        <div>
+          <div class="lbl">予測ベース</div>
+          <div class="amt" id="av-forecast">—</div>
+          <div class="hint">前月実績・計画値も引いた最悪寄りの額</div>
+        </div>
+      </div>
 
       <details class="breakdown">
         <summary></summary>
         <div class="rows">
           <div class="row"><span class="k">現預金</span><span class="v" id="b-cash">—</span></div>
           <div class="row"><span class="k">30日以内の確定入金</span><span class="v plus" id="b-in">—</span></div>
-          <div class="row"><span class="k">30日以内の支払い</span><span class="v minus" id="b-out">—</span></div>
+          <div class="row"><span class="k">30日以内の<b>確定</b>支払い</span><span class="v minus" id="b-out-c">—</span></div>
           <div class="row"><span class="k">税金・返済の確保額</span><span class="v minus" id="b-reserve">—</span></div>
           <div class="row"><span class="k">最低安全残高</span><span class="v minus" id="b-buffer">—</span></div>
-          <div class="row total"><span class="k">今使えるお金</span><span class="v" id="b-total">—</span></div>
+          <div class="row total"><span class="k">確定ベース</span><span class="v" id="b-total-c">—</span></div>
+          <div class="row"><span class="k">30日以内の<b>予測</b>支払い <small>前月実績等</small></span><span class="v est" id="b-out-e">—</span></div>
+          <div class="row total"><span class="k">予測ベース</span><span class="v" id="b-total-f">—</span></div>
         </div>
       </details>
+    </section>
+
+    <!-- 法人 / 個人 -->
+    <section class="card">
+      <h2>法人 / 個人</h2>
+      <p class="sub">会社のお金と個人のお金は別物として表示します（確保額・安全残高は総合にのみ適用）</p>
+      <div class="ent">
+        <div>
+          <div class="lbl">法人キャッシュ</div>
+          <div class="amt" id="e-corp">—</div>
+          <div class="fc" id="e-corp-f"></div>
+        </div>
+        <div>
+          <div class="lbl">個人キャッシュ</div>
+          <div class="amt" id="e-pers">—</div>
+          <div class="fc" id="e-pers-f"></div>
+        </div>
+      </div>
+      <div class="rows" style="margin-top:12px">
+        <div class="row"><span class="k">総合流動性 <small>参考</small></span><span class="v" id="e-total">—</span></div>
+        <div class="row hidden" id="e-unknown-row"><span class="k">未分類</span><span class="v" id="e-unknown">—</span></div>
+      </div>
+    </section>
+
+    <!-- 資金繰りの区切り -->
+    <section class="card">
+      <h2>いつまでに、いくら必要か</h2>
+      <p class="sub">その日までの累積。不足見込みは最低安全残高を割り込む額です</p>
+      <div class="rw" id="runway"></div>
     </section>
 
     <!-- 残高予測 -->
     <section class="card">
       <h2>残高予測（確保額は引かない素の残高）</h2>
-      <div class="forecast">
-        <div>
-          <div class="lbl">7日後</div>
-          <div class="val" id="f7">—</div>
-        </div>
-        <div>
-          <div class="lbl">30日後</div>
-          <div class="val" id="f30">—</div>
-        </div>
+      <div class="dual">
+        <div><div class="lbl">7日後</div><div class="amt" id="f7">—</div></div>
+        <div><div class="lbl">30日後</div><div class="amt" id="f30">—</div></div>
       </div>
-      <div class="note" id="f30opt" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
+      <div class="sub" id="f30opt" style="margin:10px 0 0"></div>
+    </section>
+
+    <!-- 口座残高 -->
+    <section class="card">
+      <h2>口座残高</h2>
+      <div id="accounts"></div>
     </section>
 
     <!-- 今日の支払い -->
@@ -207,12 +237,10 @@
       <div id="due-today"></div>
     </section>
 
-    <!-- 入金確認・回収（期限超過の入金） -->
+    <!-- 入金確認・回収 -->
     <section class="card hidden" id="sec-collect">
       <h2>入金確認・回収</h2>
-      <p class="note" style="margin:-6px 0 10px;font-size:12px;color:var(--muted)">
-        入金予定日を過ぎています。この金額は「今使えるお金」に含めていません。
-      </p>
+      <p class="sub">入金予定日を過ぎています。この金額は「今使えるお金」に含めていません。</p>
       <div id="collect"></div>
     </section>
 
@@ -220,6 +248,13 @@
     <section class="card">
       <h2>今日やること</h2>
       <div id="tasks"></div>
+    </section>
+
+    <!-- 確認待ち（全件） -->
+    <section class="card hidden" id="sec-pending">
+      <h2>確認待ち</h2>
+      <p class="sub">分かっていないことの一覧です。埋まらなくても計算は進みます。</p>
+      <div class="pend" id="pending"></div>
     </section>
 
     <!-- 入金予定 -->
@@ -258,11 +293,11 @@
     var p = String(d).split('-');
     return p.length === 3 ? (Number(p[1]) + '/' + Number(p[2])) : d;
   }
+  function neg(el, v) { el.className = el.className.replace(/\s*negative/g, '') + (v < 0 ? ' negative' : ''); }
   function gotoLogin() {
     location.replace('/ceo/login/?next=' + encodeURIComponent(location.pathname));
   }
 
-  // 画面上部に一時的な通知を出す(6秒で自動的に消える)
   var toastTimer = null;
   function toast(html) {
     var el = $('toast');
@@ -284,12 +319,10 @@
   // --- 描画 ---------------------------------------------------------
 
   function renderAlerts(d) {
-    var html = '';
-    var m = d.money, t = d.today;
-
-    if (m.available_now < 0) {
-      html += '<div class="alert danger"><b>今使えるお金がマイナスです。</b>'
-            + '30日以内の支払いに対して資金が不足しています。</div>';
+    var html = '', m = d.money, t = d.today;
+    if (m.available_confirmed < 0) {
+      html += '<div class="alert danger"><b>確定ベースでも資金が不足しています。</b>'
+            + ' 金額が確定している支払いだけで ' + yen(m.available_confirmed) + ' です。</div>';
     }
     if (t.overdue_count > 0) {
       html += '<div class="alert danger"><b>支払いの期限超過が ' + t.overdue_count + ' 件あります。</b>'
@@ -297,11 +330,11 @@
     }
     if (t.collection_count > 0) {
       html += '<div class="alert warn"><b>未回収の入金が ' + t.collection_count + ' 件あります。</b> '
-            + yen(m.overdue_in) + '（この金額は「今使えるお金」に含めていません）</div>';
+            + yen(m.overdue_in) + '（「今使えるお金」には含めていません）</div>';
     }
-    if (m.balance_stale) {
-      html += '<div class="alert warn">残高が ' + esc(m.balance_as_of_oldest)
-            + ' 時点のままです。実際の残高と差がある可能性があります。</div>';
+    if (m.payables_30d_estimated > 0) {
+      html += '<div class="alert warn">30日以内の支払いのうち <b>' + yen(m.payables_30d_estimated)
+            + ' は予測金額</b>です（前月実績・計画値）。実額次第で数字が動きます。</div>';
     }
     if (d.lists.accounts.length === 0) {
       html += '<div class="alert warn">口座が未登録です。まず「入力する」から現預金を登録してください。</div>';
@@ -310,39 +343,92 @@
   }
 
   function renderMoney(m) {
-    var av = $('available');
-    av.textContent = yen(m.available_now);
-    av.className = 'amount' + (m.available_now < 0 ? ' negative' : '');
+    var ac = $('av-confirmed'), af = $('av-forecast');
+    ac.textContent = yen(m.available_confirmed); neg(ac, m.available_confirmed);
+    af.textContent = yen(m.available_forecast); neg(af, m.available_forecast);
 
-    $('b-cash').textContent    = yen(m.cash);
-    $('b-in').textContent      = '+' + yen(m.receivables_30d_confirmed);
-    $('b-out').textContent     = '−' + yen(m.payables_30d);
-    $('b-reserve').textContent = '−' + yen(m.reserve_amount);
-    $('b-buffer').textContent  = '−' + yen(m.safety_buffer);
-    $('b-total').textContent   = yen(m.available_now);
+    $('b-cash').textContent     = yen(m.cash);
+    $('b-in').textContent       = '+' + yen(m.receivables_30d_confirmed);
+    $('b-out-c').textContent    = '−' + yen(m.payables_30d_confirmed);
+    $('b-reserve').textContent  = '−' + yen(m.reserve_amount);
+    $('b-buffer').textContent   = '−' + yen(m.safety_buffer);
+    $('b-total-c').textContent  = yen(m.available_confirmed);
+    $('b-out-e').textContent    = '−' + yen(m.payables_30d_estimated);
+    $('b-total-f').textContent  = yen(m.available_forecast);
 
     var f7 = $('f7'), f30 = $('f30');
-    f7.textContent = yen(m.forecast_7d);
-    f7.className = 'val' + (m.forecast_7d < 0 ? ' negative' : '');
-    f30.textContent = yen(m.forecast_30d);
-    f30.className = 'val' + (m.forecast_30d < 0 ? ' negative' : '');
-
+    f7.textContent = yen(m.forecast_7d); neg(f7, m.forecast_7d);
+    f30.textContent = yen(m.forecast_30d); neg(f30, m.forecast_30d);
     $('f30opt').textContent = m.receivables_30d_high > 0
       ? '確度「高」の入金 ' + yen(m.receivables_30d_high) + ' を含めた場合の30日後: '
         + yen(m.forecast_30d_optimistic) + '（今使えるお金には含めていません）'
       : '';
   }
 
+  function renderEntities(e) {
+    var c = $('e-corp'), p = $('e-pers');
+    c.textContent = yen(e.corporate.available_confirmed); neg(c, e.corporate.available_confirmed);
+    p.textContent = yen(e.personal.available_confirmed); neg(p, e.personal.available_confirmed);
+    $('e-corp-f').textContent = '予測込み ' + yen(e.corporate.available_forecast);
+    $('e-pers-f').textContent = '予測込み ' + yen(e.personal.available_forecast);
+    $('e-total').textContent = yen(e.total.cash);
+    if (e.unknown.cash !== 0) {
+      $('e-unknown-row').classList.remove('hidden');
+      $('e-unknown').textContent = yen(e.unknown.cash);
+    } else {
+      $('e-unknown-row').classList.add('hidden');
+    }
+  }
+
+  function renderRunway(rows) {
+    $('runway').innerHTML = rows.length ? rows.map(function (r) {
+      var fc = r.balance_forecast, cf = r.balance_confirmed;
+      return '<div class="rw-item">'
+        + '<div class="rw-head"><span class="t">' + esc(r.label) + '（' + mmdd(r.date) + '）</span>'
+        + '<span class="d">あと' + r.days_until + '日</span></div>'
+        + '<div class="rw-grid">'
+        +   '<div><div class="k">確定支払</div><div class="v">−' + yen(r.payables_confirmed) + '</div></div>'
+        +   '<div><div class="k">予測支払</div><div class="v est">−' + yen(r.payables_estimated) + '</div></div>'
+        +   '<div><div class="k">確定入金</div><div class="v">+' + yen(r.receivables_confirmed) + '</div></div>'
+        + '</div>'
+        + '<div class="rw-grid" style="margin-top:6px">'
+        +   '<div><div class="k">残高(確定)</div><div class="v' + (cf < 0 ? ' negative' : '') + '">' + yen(cf) + '</div></div>'
+        +   '<div><div class="k">残高(予測)</div><div class="v' + (fc < 0 ? ' negative' : '') + '">' + yen(fc) + '</div></div>'
+        +   '<div><div class="k">不足見込み</div><div class="v' + (r.shortfall_forecast > 0 ? ' negative' : '') + '">'
+        +     (r.shortfall_forecast > 0 ? yen(r.shortfall_forecast) : '—') + '</div></div>'
+        + '</div>'
+        + '</div>';
+    }).join('') : '<div class="empty">区切りがありません</div>';
+  }
+
+  function renderAccounts(rows) {
+    $('accounts').innerHTML = rows.length ? rows.map(function (a) {
+      var badge = a.freshness === 'outdated' ? '<span class="tag od">要更新</span>'
+                : a.freshness === 'stale' ? '<span class="tag est">古い</span>' : '';
+      var ent = a.entity === 'corporate' ? '<span class="tag ent">法人</span>'
+              : a.entity === 'personal' ? '<span class="tag ent">個人</span>'
+              : '<span class="tag">未分類</span>';
+      return '<div class="item"><div class="body">'
+        + '<div class="ttl">' + esc(a.name) + ent + '</div>'
+        + '<div class="sub">' + esc(a.as_of) + '時点'
+        + (a.age_days > 0 ? '（' + a.age_days + '日前）' : '') + badge + '</div>'
+        + '</div><div class="amt">' + yen(a.balance) + '</div></div>';
+    }).join('') : '<div class="empty">口座が登録されていません</div>';
+  }
+
   function eventItem(e, withButton) {
     var dirCls = e.direction === 'out' ? 'out' : 'in';
     var sign = e.direction === 'out' ? '−' : '+';
+    var ent = e.entity === 'corporate' ? '<span class="tag ent">法</span>'
+            : e.entity === 'personal' ? '<span class="tag ent">個</span>' : '';
     var sub = mmdd(e.due_date)
             + (e.counterparty ? ' ・ ' + esc(e.counterparty) : '')
+            + (e.estimated ? '<span class="tag est">予測</span>' : '')
             + (e.confidence === 'high' ? '<span class="tag">確度 高</span>' : '')
             + (e.confidence === 'low' ? '<span class="tag">確度 低</span>' : '')
             + (e.overdue ? '<span class="tag od">期限超過</span>' : '');
     return '<div class="item" data-id="' + esc(e.id) + '">'
-      + '<div class="body"><div class="ttl">' + esc(e.label) + '</div>'
+      + '<div class="body"><div class="ttl">' + esc(e.label) + ent + '</div>'
       + '<div class="sub">' + sub + '</div></div>'
       + '<div class="amt ' + dirCls + '">' + sign + yen(e.amount) + '</div>'
       + (withButton
@@ -353,26 +439,45 @@
       + '</div>';
   }
 
+  function pendItem(p) {
+    return '<div class="pend-item">'
+      + '<span class="dot ' + esc(p.severity) + '"></span>'
+      + '<div><div class="t">' + esc(p.title) + '</div>'
+      + '<div class="d">' + esc(p.detail) + '</div></div></div>';
+  }
+
   function renderLists(d) {
     var t = d.today;
 
-    // 今日 + 支払いの期限超過
+    // 今日確認すること
+    if (t.to_check && t.to_check.length) {
+      $('sec-check').classList.remove('hidden');
+      $('to-check').innerHTML = t.to_check.map(pendItem).join('');
+    } else {
+      $('sec-check').classList.add('hidden');
+    }
+
+    // 確認待ち（全件・上位3件は上に出ているので件数で示す）
+    if (d.pending && d.pending.length) {
+      $('sec-pending').classList.remove('hidden');
+      $('pending').innerHTML = d.pending.map(pendItem).join('');
+    } else {
+      $('sec-pending').classList.add('hidden');
+    }
+
     var todayList = t.overdue.concat(t.due_today);
     $('due-today').innerHTML = todayList.length
       ? todayList.map(function (e) { return eventItem(e, true); }).join('')
       : '<div class="empty">今日が期限のものはありません</div>';
 
-    // 入金確認・回収（期限超過の入金。件数0なら丸ごと隠す）
     if (t.collection_count > 0) {
       $('sec-collect').classList.remove('hidden');
-      $('collect').innerHTML = t.collection_candidates
-        .map(function (e) { return eventItem(e, true); }).join('');
+      $('collect').innerHTML = t.collection_candidates.map(function (e) { return eventItem(e, true); }).join('');
     } else {
       $('sec-collect').classList.add('hidden');
       $('collect').innerHTML = '';
     }
 
-    // タスク
     $('tasks').innerHTML = t.tasks.length
       ? t.tasks.map(function (x) {
           return '<div class="item">'
@@ -383,8 +488,7 @@
             + (x.overdue ? '<span class="tag od">期限超過</span>' : '')
             + '</div></div></div>';
         }).join('')
-        + (t.tasks_total_open > 3
-            ? '<div class="empty">ほか ' + (t.tasks_total_open - 3) + ' 件</div>' : '')
+        + (t.tasks_total_open > 3 ? '<div class="empty">ほか ' + (t.tasks_total_open - 3) + ' 件</div>' : '')
       : '<div class="empty">未完了のタスクはありません</div>';
 
     $('up-in').innerHTML = d.lists.upcoming_in.length
@@ -400,6 +504,9 @@
     $('today').textContent = d.as_of;
     renderAlerts(d);
     renderMoney(d.money);
+    renderEntities(d.entities);
+    renderRunway(d.runway || []);
+    renderAccounts(d.lists.accounts);
     renderLists(d);
     $('loading').classList.add('hidden');
     $('app').classList.remove('hidden');
@@ -425,11 +532,10 @@
     }).then(function (out) {
       if (out.status === 200 && out.data && out.data.ok) {
         // 入金済みにしても口座残高は自動で増えない(残高は手入力のため)。
-        // 更新を促さないと「現預金」が実態より低いまま放置される。
         if (dir === 'in') {
           toast('入金を記録しました。<a href="/ceo/entry/">口座残高の更新</a>をお忘れなく。');
         }
-        load(); // 数字が変わるので再取得
+        load();
       } else {
         btn.disabled = false;
         alert('更新に失敗しました');
@@ -460,8 +566,6 @@
   }
 
   load();
-
-  // 画面に戻ってきたら最新化(入力ページから戻ったとき)
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) load();
   });

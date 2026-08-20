@@ -116,6 +116,14 @@ function buildCashEvent(data, isCreate) {
   if (data.counterparty !== undefined) out.counterparty = lib.str(data.counterparty, 120);
   if (data.note !== undefined) out.note = lib.str(data.note, 500);
 
+  // 金額の確からしさ（工程②）。'manual'=確定 / 'estimate'=予測。
+  // 詳細は _ceo-lib.js の「金額の確からしさ」を参照。
+  if (data.source !== undefined) {
+    const source = lib.pickEnum(data.source, lib.AMOUNT_SOURCES);
+    if (!source) return { error: 'invalid_source', field: 'source' };
+    out.source = source;
+  }
+
   // 支払(out)に「高/低」の確度は存在しない。DB制約より前にAPI側でも強制する。
   // update で direction を変えず confidence だけ 'high' にする経路も塞ぐため、
   // 呼び出し側で既存 direction を解決してから最終確定させる(下の handler 参照)。

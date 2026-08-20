@@ -320,6 +320,54 @@ function isUuid(v) {
   return typeof v === 'string' && UUID_RE.test(v);
 }
 
+// =====================================================================
+// 法人 / 個人 の判定（工程②）
+// ---------------------------------------------------------------------
+// DB スキーマを変更せず、口座名・ラベルの先頭タグ [法] [個] で区別する。
+// 会社のお金と個人のお金を同一視しないための最小実装。
+// 工程③で ceo_accounts / ceo_cash_events に entity 列を追加して置き換える。
+const ENTITY_TAG = { '[法]': 'corporate', '[個]': 'personal' };
+
+/** 'corporate' | 'personal' | 'unknown' を返す */
+function entityOf(nameOrLabel) {
+  const s = String(nameOrLabel || '').trim();
+  for (const tag of Object.keys(ENTITY_TAG)) {
+    if (s.indexOf(tag) === 0) return ENTITY_TAG[tag];
+  }
+  return 'unknown';
+}
+
+/** 表示用に先頭タグを取り除く */
+function stripEntityTag(nameOrLabel) {
+  const s = String(nameOrLabel || '').trim();
+  for (const tag of Object.keys(ENTITY_TAG)) {
+    if (s.indexOf(tag) === 0) return s.slice(tag.length).trim();
+  }
+  return s;
+}
+
+// =====================================================================
+// 金額の確からしさ（工程②）
+// ---------------------------------------------------------------------
+// 「請求書が来ている確定額」と「前月実績からの予測額」を区別する。
+// ceo_cash_events.source を流用する（schema 変更なし）:
+//   'manual'   … 確定。自分で確認した実額
+//   'estimate' … 予測。前月実績・計画値からの推定
+// 将来の自動同期用に 'misoca' / 'paypal' も確定扱いとする。
+//
+// なぜ confidence を使わないか:
+//   confidence は「入金が実現するか」を表す軸で、DB 制約
+//   ck_ceo_cash_events_out_confirmed により支払い(out)では常に
+//   'confirmed' に固定されている。金額の確からしさは別の軸なので
+//   同じ列に載せられない。
+const ESTIMATE_SOURCE = 'estimate';
+const AMOUNT_SOURCES = ['manual', 'estimate', 'misoca', 'paypal'];
+
+/** その入出金の金額が「予測」か */
+function isEstimated(event) {
+  return !!event && event.source === ESTIMATE_SOURCE;
+}
+
 module.exports = {
   COOKIE_NAME,
   SESSION_MAX_AGE_SEC,
@@ -350,5 +398,13 @@ module.exports = {
   pickEnum,
   str,
   isUuid,
-  AMOUNT_MAX
+  AMOUNT_MAX,
+  // 法人 / 個人（工程②）
+  entityOf,
+  stripEntityTag,
+  ENTITY_TAG,
+  // 金額の確からしさ（工程②）
+  isEstimated,
+  ESTIMATE_SOURCE,
+  AMOUNT_SOURCES
 };
