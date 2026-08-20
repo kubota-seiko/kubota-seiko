@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>入力｜CEO OS</title>
+<!-- 機密データはHTMLに埋め込まない。既存値は認証必須APIから取得する。 -->
+<style>
+  :root {
+    --bg: #0f1115; --card: #171a21; --line: #262b35;
+    --text: #e8eaed; --muted: #9aa3b2; --accent: #4a9eff;
+    --ok: #4ade80; --danger: #ff5f56;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0 0 40px; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    -webkit-font-smoothing: antialiased; font-size: 15px; line-height: 1.6;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 16px; }
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  header h1 { margin: 0; font-size: 15px; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+  header a { color: var(--accent); text-decoration: none; font-size: 14px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+  .card h2 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+  .card .hint { margin: 0 0 14px; font-size: 12px; color: var(--muted); }
+
+  label { display: block; font-size: 12px; color: var(--muted); margin: 12px 0 5px; }
+  input, select, textarea {
+    width: 100%; padding: 12px; font-size: 16px; /* 16px未満だと iOS でズーム */
+    color: var(--text); background: #0f1115; border: 1px solid var(--line);
+    border-radius: 9px; outline: none; font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  .grid2 { display: flex; gap: 10px; }
+  .grid2 > div { flex: 1; min-width: 0; }
+
+  button.primary {
+    width: 100%; margin-top: 16px; padding: 13px; font-size: 15px; font-weight: 600;
+    color: #fff; background: var(--accent); border: 0; border-radius: 10px; cursor: pointer;
+  }
+  button.primary:disabled { opacity: .5; }
+
+  .rowlist { margin-top: 14px; border-top: 1px solid var(--line); }
+  .rowitem {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px;
+  }
+  .rowitem .body { flex: 1; min-width: 0; }
+  .rowitem .sub { font-size: 12px; color: var(--muted); }
+  .rowitem .amt { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .btn-mini {
+    padding: 6px 10px; font-size: 12px; border-radius: 7px;
+    border: 1px solid var(--line); background: #0f1115; color: var(--muted); cursor: pointer;
+  }
+  .btn-mini.danger { color: #ffb4ae; }
+  .msg { font-size: 13px; min-height: 18px; margin-top: 10px; }
+  .msg.ok { color: var(--ok); }
+  .msg.ng { color: var(--danger); }
+  .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
+  .note-box {
+    background: rgba(74,158,255,.08); border: 1px solid rgba(74,158,255,.3);
+    border-radius: 9px; padding: 11px 13px; font-size: 12px; color: #a9cdf7; margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>入力</h1>
+    <a href="/ceo/">← ダッシュボード</a>
+  </header>
+
+  <!-- 1. 口座残高 -->
+  <section class="card">
+    <h2>現預金</h2>
+    <p class="hint">口座ごとの残高。同じ名前で登録すると上書きされます。</p>
+    <div id="accounts" class="rowlist"></div>
+    <form id="f-account">
+      <div class="grid2">
+        <div>
+          <label for="a-name">口座名</label>
+          <input id="a-name" type="text" placeholder="事業用" required>
+        </div>
+        <div>
+          <label for="a-balance">残高</label>
+          <input id="a-balance" type="text" inputmode="numeric" placeholder="520000" required>
+        </div>
+      </div>
+      <label for="a-asof">残高の基準日</label>
+      <input id="a-asof" type="date" required>
+      <button class="primary" type="submit">保存する</button>
+      <div class="msg" id="m-account"></div>
+    </form>
+  </section>
+
+  <!-- 2. 入金予定 -->
+  <section class="card">
+    <h2>入金予定を追加</h2>
+    <p class="hint">確度「確定」だけが「今使えるお金」に加算されます。</p>
+    <form id="f-in">
+      <label for="i-label">内容</label>
+      <input id="i-label" type="text" placeholder="○○様 スポット相談" required>
+      <div class="grid2">
+        <div>
+          <label for="i-amount">金額</label>
+          <input id="i-amount" type="text" inputmode="numeric" placeholder="55000" required>
+        </div>
+        <div>
+          <label for="i-due">入金予定日</label>
+          <input id="i-due" type="date" required>
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <label for="i-conf">確度</label>
+          <select id="i-conf">
+            <option value="confirmed">確定</option>
+            <option value="high">高</option>
+            <option value="low">低</option>
+          </select>
+        </div>
+        <div>
+          <label for="i-cp">入金元</label>
+          <input id="i-cp" type="text" placeholder="○○様">
+        </div>
+      </div>
+      <button class="primary" type="submit">追加する</button>
+      <div class="msg" id="m-in"></div>
+    </form>
+    <div id="list-in" class="rowlist"></div>
+  </section>
+
+  <!-- 3. 支払予定 -->
+  <section class="card">
+    <h2>支払予定を追加</h2>
+    <p class="hint">カードの未確定利用分も、見込み額をここに入れてください。</p>
+    <form id="f-out">
+      <label for="o-label">内容</label>
+      <input id="o-label" type="text" placeholder="家賃" required>
+      <div class="grid2">
+        <div>
+          <label for="o-amount">金額</label>
+          <input id="o-amount" type="text" inputmode="numeric" placeholder="85000" required>
+        </div>
+        <div>
+          <label for="o-due">支払期限</label>
+          <input id="o-due" type="date" required>
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <label for="o-cat">分類</label>
+          <select id="o-cat">
+            <option value="">未分類</option>
+            <option value="rent">家賃</option>
+            <option value="card">カード</option>
+            <option value="tax">税金</option>
+            <option value="loan">返済</option>
+            <option value="subscription">サブスク</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div>
+          <label for="o-cp">支払先</label>
+          <input id="o-cp" type="text" placeholder="○○不動産">
+        </div>
+      </div>
+      <label for="o-note">メモ（任意）</label>
+      <input id="o-note" type="text" placeholder="毎月27日">
+      <button class="primary" type="submit">追加する</button>
+      <div class="msg" id="m-out"></div>
+    </form>
+    <div id="list-out" class="rowlist"></div>
+  </section>
+
+  <!-- 4. タスク -->
+  <section class="card">
+    <h2>やることを追加</h2>
+    <p class="hint">優先度 1 が最優先。ダッシュボードには上位3件が出ます。</p>
+    <form id="f-task">
+      <label for="t-title">内容</label>
+      <input id="t-title" type="text" placeholder="○○様へ請求書送付" required>
+      <div class="grid2">
+        <div>
+          <label for="t-due">期限（任意）</label>
+          <input id="t-due" type="date">
+        </div>
+        <div>
+          <label for="t-pri">優先度</label>
+          <select id="t-pri">
+            <option value="1">1（最優先）</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+      <button class="primary" type="submit">追加する</button>
+      <div class="msg" id="m-task"></div>
+    </form>
+  </section>
+
+  <!-- 5. 設定 -->
+  <section class="card">
+    <h2>確保額・最低安全残高</h2>
+    <div class="note-box">
+      <b>二重計上に注意。</b><br>
+      30日<u>以内</u>に払う税金・返済は「支払予定」に登録してください。<br>
+      ここに入れるのは <b>31日以降</b>に払う分のために今から取り置く金額だけです。
+    </div>
+    <form id="f-setting">
+      <label for="s-reserve">税金・返済などの確保額</label>
+      <input id="s-reserve" type="text" inputmode="numeric" placeholder="0">
+      <label for="s-buffer">最低安全残高（これ以上は減らしたくない額）</label>
+      <input id="s-buffer" type="text" inputmode="numeric" placeholder="0">
+      <button class="primary" type="submit">保存する</button>
+      <div class="msg" id="m-setting"></div>
+    </form>
+  </section>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  function yen(n) {
+    if (typeof n !== 'number' || !isFinite(n)) return '—';
+    return (n < 0 ? '−¥' : '¥') + Math.abs(n).toLocaleString('ja-JP');
+  }
+  function esc(s) {
+    return String(s === null || s === undefined ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function mmdd(d) {
+    if (!d) return '';
+    var p = String(d).split('-');
+    return p.length === 3 ? (Number(p[1]) + '/' + Number(p[2])) : d;
+  }
+  function gotoLogin() {
+    location.replace('/ceo/login/?next=' + encodeURIComponent(location.pathname));
+  }
+  function say(el, text, ok) {
+    el.textContent = text;
+    el.className = 'msg ' + (ok ? 'ok' : 'ng');
+    if (ok) setTimeout(function () { if (el.textContent === text) el.textContent = ''; }, 2500);
+  }
+
+  function api(path, options) {
+    return fetch(path, Object.assign({ credentials: 'same-origin' }, options || {}))
+      .then(function (r) {
+        if (r.status === 401) { gotoLogin(); throw new Error('unauthorized'); }
+        return r.json().catch(function () { return {}; })
+          .then(function (d) { return { status: r.status, data: d }; });
+      });
+  }
+
+  function post(payload) {
+    return api('/api/ceo-entry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  // エラーコードを日本語に
+  var ERRORS = {
+    invalid_amount: '金額が正しくありません（半角の整数で入力してください）',
+    invalid_date: '日付が正しくありません',
+    name_required: '口座名を入力してください',
+    label_required: '内容を入力してください',
+    title_required: '内容を入力してください',
+    invalid_priority: '優先度が正しくありません',
+    invalid_setting_key: '設定項目が正しくありません',
+    supabase_env_not_set: 'サーバー設定が未完了です（SUPABASE の環境変数）',
+    not_found: '対象が見つかりませんでした'
+  };
+  function errText(d) {
+    return (d && ERRORS[d.error]) || '保存に失敗しました';
+  }
+
+  // --- 既存データの表示 ----------------------------------------------
+
+  var state = { accounts: [], upIn: [], upOut: [] };
+
+  function renderAccounts() {
+    $('accounts').innerHTML = state.accounts.length
+      ? state.accounts.map(function (a) {
+          return '<div class="rowitem">'
+            + '<div class="body"><div>' + esc(a.name) + '</div>'
+            + '<div class="sub">' + esc(a.as_of) + ' 時点</div></div>'
+            + '<div class="amt">' + yen(a.balance) + '</div>'
+            + '<button class="btn-mini js-fill" data-name="' + esc(a.name) + '" '
+            + 'data-balance="' + a.balance + '" data-asof="' + esc(a.as_of) + '">編集</button>'
+            + '</div>';
+        }).join('')
+      : '<div class="empty">まだ口座が登録されていません</div>';
+  }
+
+  function renderEvents(elId, rows, emptyText) {
+    $(elId).innerHTML = rows.length
+      ? rows.map(function (e) {
+          return '<div class="rowitem">'
+            + '<div class="body"><div>' + esc(e.label) + '</div>'
+            + '<div class="sub">' + mmdd(e.due_date)
+            + (e.counterparty ? ' ・ ' + esc(e.counterparty) : '')
+            + (e.confidence === 'high' ? ' ・確度 高' : '')
+            + (e.confidence === 'low' ? ' ・確度 低' : '')
+            + '</div></div>'
+            + '<div class="amt">' + yen(e.amount) + '</div>'
+            + '<button class="btn-mini danger js-del" data-id="' + esc(e.id) + '">削除</button>'
+            + '</div>';
+        }).join('')
+      : '<div class="empty">' + emptyText + '</div>';
+  }
+
+  function load() {
+    return api('/api/ceo-dashboard').then(function (out) {
+      if (out.status !== 200 || !out.data || !out.data.ok) return;
+      var d = out.data;
+      state.accounts = d.lists.accounts;
+      state.upIn = d.lists.upcoming_in;
+      state.upOut = d.lists.upcoming_out;
+      renderAccounts();
+      renderEvents('list-in', state.upIn, '30日以内の入金予定はありません');
+      renderEvents('list-out', state.upOut, '30日以内の支払予定はありません');
+      $('s-reserve').value = d.money.reserve_amount;
+      $('s-buffer').value = d.money.safety_buffer;
+      $('a-asof').value = d.as_of;
+    }).catch(function (e) {
+      if (e && e.message === 'unauthorized') return;
+    });
+  }
+
+  // 口座「編集」→ フォームに流し込む
+  document.addEventListener('click', function (ev) {
+    var fill = ev.target.closest ? ev.target.closest('.js-fill') : null;
+    if (fill) {
+      $('a-name').value = fill.getAttribute('data-name');
+      $('a-balance').value = fill.getAttribute('data-balance');
+      $('a-asof').value = fill.getAttribute('data-asof');
+      $('a-balance').focus();
+      return;
+    }
+    var del = ev.target.closest ? ev.target.closest('.js-del') : null;
+    if (del) {
+      if (!confirm('この予定を削除しますか？')) return;
+      del.disabled = true;
+      post({ type: 'cash_event', action: 'delete', id: del.getAttribute('data-id') })
+        .then(function (out) {
+          if (out.status === 200 && out.data.ok) load();
+          else { del.disabled = false; alert(errText(out.data)); }
+        }).catch(function (e) {
+          if (e && e.message === 'unauthorized') return;
+          del.disabled = false;
+        });
+    }
+  });
+
+  // --- フォーム送信 --------------------------------------------------
+
+  function bind(formId, msgId, build, onOk) {
+    var form = $(formId), msg = $(msgId);
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var btn = form.querySelector('button.primary');
+      var payload = build();
+      if (!payload) return;
+      btn.disabled = true;
+      msg.textContent = '';
+      post(payload).then(function (out) {
+        if (out.status === 200 && out.data && out.data.ok) {
+          say(msg, '保存しました', true);
+          if (onOk) onOk();
+          load();
+        } else {
+          say(msg, errText(out.data), false);
+        }
+      }).catch(function (e) {
+        if (e && e.message === 'unauthorized') return;
+        say(msg, '通信に失敗しました', false);
+      }).then(function () { btn.disabled = false; });
+    });
+  }
+
+  function num(v) { return String(v || '').replace(/[,\s¥￥]/g, ''); }
+
+  // 口座: 同名があれば update、なければ create
+  bind('f-account', 'm-account', function () {
+    var name = $('a-name').value.trim();
+    var existing = state.accounts.filter(function (a) { return a.name === name; })[0];
+    var data = { name: name, balance: num($('a-balance').value), as_of: $('a-asof').value };
+    return existing
+      ? { type: 'account', action: 'update', id: existing.id, data: data }
+      : { type: 'account', action: 'create', data: data };
+  }, function () {
+    $('a-name').value = ''; $('a-balance').value = '';
+  });
+
+  bind('f-in', 'm-in', function () {
+    return { type: 'cash_event', action: 'create', data: {
+      direction: 'in',
+      label: $('i-label').value.trim(),
+      amount: num($('i-amount').value),
+      due_date: $('i-due').value,
+      confidence: $('i-conf').value,
+      counterparty: $('i-cp').value.trim() || null
+    } };
+  }, function () {
+    $('i-label').value = ''; $('i-amount').value = ''; $('i-cp').value = '';
+  });
+
+  bind('f-out', 'm-out', function () {
+    return { type: 'cash_event', action: 'create', data: {
+      direction: 'out',
+      label: $('o-label').value.trim(),
+      amount: num($('o-amount').value),
+      due_date: $('o-due').value,
+      category: $('o-cat').value || null,
+      counterparty: $('o-cp').value.trim() || null,
+      note: $('o-note').value.trim() || null
+    } };
+  }, function () {
+    $('o-label').value = ''; $('o-amount').value = '';
+    $('o-cp').value = ''; $('o-note').value = '';
+  });
+
+  bind('f-task', 'm-task', function () {
+    return { type: 'task', action: 'create', data: {
+      title: $('t-title').value.trim(),
+      due_date: $('t-due').value || null,
+      priority: Number($('t-pri').value)
+    } };
+  }, function () {
+    $('t-title').value = ''; $('t-due').value = '';
+  });
+
+  // 設定は2件を順に保存する
+  $('f-setting').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var btn = $('f-setting').querySelector('button.primary');
+    var msg = $('m-setting');
+    btn.disabled = true; msg.textContent = '';
+    post({ type: 'setting', action: 'update', data: { key: 'reserve_amount', amount: num($('s-reserve').value) } })
+      .then(function (out) {
+        if (out.status !== 200 || !out.data.ok) throw new Error(errText(out.data));
+        return post({ type: 'setting', action: 'update', data: { key: 'safety_buffer', amount: num($('s-buffer').value) } });
+      })
+      .then(function (out) {
+        if (out.status !== 200 || !out.data.ok) throw new Error(errText(out.data));
+        say(msg, '保存しました', true);
+        load();
+      })
+      .catch(function (e) {
+        if (e && e.message === 'unauthorized') return;
+        say(msg, e.message || '保存に失敗しました', false);
+      })
+      .then(function () { btn.disabled = false; });
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

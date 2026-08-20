@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>CEO OS</title>
+<!--
+  重要: このHTMLには金額・残高などの機密データを一切埋め込まない。
+  数字はすべて認証必須の /api/ceo-dashboard から取得する。
+  静的HTMLは Vercel の CDN が直接配信するため Cookie 認証が効かないが、
+  データを含まないので漏洩しない。
+  GA4(track.js)は読み込まない(自分専用の私的ツールのため)。
+-->
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #171a21;
+    --line: #262b35;
+    --text: #e8eaed;
+    --muted: #9aa3b2;
+    --accent: #4a9eff;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --danger: #ff5f56;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 0 96px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 16px; }
+
+  header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+  header h1 { margin: 0; font-size: 15px; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+  header .date { font-size: 13px; color: var(--muted); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+  .card h2 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .06em;
+  }
+
+  /* 今使えるお金 */
+  .hero .amount {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero .amount.negative { color: var(--danger); }
+  .hero .note { margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+  details.breakdown { margin-top: 14px; }
+  details.breakdown summary {
+    cursor: pointer; font-size: 13px; color: var(--accent);
+    list-style: none; padding: 4px 0;
+  }
+  details.breakdown summary::-webkit-details-marker { display: none; }
+  details.breakdown summary::before { content: '内訳を見る ▾'; }
+  details.breakdown[open] summary::before { content: '内訳を閉じる ▴'; }
+
+  .rows { margin-top: 10px; border-top: 1px solid var(--line); }
+  .row {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row .k { color: var(--muted); }
+  .row .v { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row.total { font-weight: 700; border-top: 1px solid var(--line); }
+  .row .v.minus { color: var(--danger); }
+  .row .v.plus { color: var(--ok); }
+
+  /* 予測 */
+  .forecast { display: flex; gap: 12px; }
+  .forecast > div { flex: 1; }
+  .forecast .lbl { font-size: 12px; color: var(--muted); }
+  .forecast .val { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .forecast .val.negative { color: var(--danger); }
+
+  /* リスト */
+  .item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+  }
+  .item:last-child { border-bottom: 0; }
+  .item .body { flex: 1; min-width: 0; }
+  .item .ttl { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item .sub { font-size: 12px; color: var(--muted); }
+  .item .amt { font-variant-numeric: tabular-nums; font-size: 14px; white-space: nowrap; }
+  .item .amt.out { color: var(--danger); }
+  .item .amt.in { color: var(--ok); }
+
+  .btn-mini {
+    padding: 7px 12px; font-size: 12px; border-radius: 8px;
+    border: 1px solid var(--line); background: #0f1115; color: var(--text);
+    cursor: pointer; white-space: nowrap;
+  }
+  .btn-mini:active { opacity: .6; }
+  .btn-mini:disabled { opacity: .4; }
+
+  .chk {
+    width: 22px; height: 22px; flex: 0 0 22px;
+    border: 1.5px solid var(--muted); border-radius: 6px;
+    background: transparent; cursor: pointer;
+  }
+  .chk:active { background: var(--line); }
+
+  .alert {
+    display: block; padding: 12px 14px; border-radius: 10px;
+    font-size: 13px; margin-bottom: 12px;
+  }
+  .alert.danger { background: rgba(255,95,86,.12); border: 1px solid rgba(255,95,86,.4); color: #ffb4ae; }
+  .alert.warn   { background: rgba(251,191,36,.10); border: 1px solid rgba(251,191,36,.35); color: #fcd34d; }
+  .alert a { color: inherit; }
+
+  .empty { color: var(--muted); font-size: 13px; padding: 6px 0; }
+  .tag {
+    display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 5px;
+    background: var(--line); color: var(--muted); margin-left: 6px; vertical-align: 1px;
+  }
+  .tag.od { background: rgba(255,95,86,.2); color: #ffb4ae; }
+
+  .fab {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 20px;
+    width: calc(100% - 32px); max-width: 528px;
+    padding: 15px; font-size: 15px; font-weight: 600;
+    color: #fff; background: var(--accent); border: 0; border-radius: 12px;
+    text-align: center; text-decoration: none; display: block;
+    box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  }
+  .loading { text-align: center; color: var(--muted); padding: 60px 0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="loading" class="loading">読み込み中…</div>
+
+  <div id="app" class="hidden">
+    <header>
+      <h1>CEO OS</h1>
+      <span class="date" id="today"></span>
+    </header>
+
+    <div id="toast" class="alert warn hidden"></div>
+    <div id="alerts"></div>
+
+    <!-- 今使えるお金 -->
+    <section class="card hero">
+      <h2>今使えるお金</h2>
+      <div class="amount" id="available">—</div>
+      <div class="note">確保額と最低安全残高を差し引いた、いま自由に使える上限です</div>
+
+      <details class="breakdown">
+        <summary></summary>
+        <div class="rows">
+          <div class="row"><span class="k">現預金</span><span class="v" id="b-cash">—</span></div>
+          <div class="row"><span class="k">30日以内の確定入金</span><span class="v plus" id="b-in">—</span></div>
+          <div class="row"><span class="k">30日以内の支払い</span><span class="v minus" id="b-out">—</span></div>
+          <div class="row"><span class="k">税金・返済の確保額</span><span class="v minus" id="b-reserve">—</span></div>
+          <div class="row"><span class="k">最低安全残高</span><span class="v minus" id="b-buffer">—</span></div>
+          <div class="row total"><span class="k">今使えるお金</span><span class="v" id="b-total">—</span></div>
+        </div>
+      </details>
+    </section>
+
+    <!-- 残高予測 -->
+    <section class="card">
+      <h2>残高予測（確保額は引かない素の残高）</h2>
+      <div class="forecast">
+        <div>
+          <div class="lbl">7日後</div>
+          <div class="val" id="f7">—</div>
+        </div>
+        <div>
+          <div class="lbl">30日後</div>
+          <div class="val" id="f30">—</div>
+        </div>
+      </div>
+      <div class="note" id="f30opt" style="margin-top:8px;font-size:12px;color:var(--muted)"></div>
+    </section>
+
+    <!-- 今日の支払い -->
+    <section class="card">
+      <h2>今日の支払い・入金</h2>
+      <div id="due-today"></div>
+    </section>
+
+    <!-- 入金確認・回収（期限超過の入金） -->
+    <section class="card hidden" id="sec-collect">
+      <h2>入金確認・回収</h2>
+      <p class="note" style="margin:-6px 0 10px;font-size:12px;color:var(--muted)">
+        入金予定日を過ぎています。この金額は「今使えるお金」に含めていません。
+      </p>
+      <div id="collect"></div>
+    </section>
+
+    <!-- 今日やること -->
+    <section class="card">
+      <h2>今日やること</h2>
+      <div id="tasks"></div>
+    </section>
+
+    <!-- 入金予定 -->
+    <section class="card">
+      <h2>入金予定（30日以内）</h2>
+      <div id="up-in"></div>
+    </section>
+
+    <!-- 支払予定 -->
+    <section class="card">
+      <h2>支払予定（30日以内）</h2>
+      <div id="up-out"></div>
+    </section>
+  </div>
+</div>
+
+<a class="fab" href="/ceo/entry/">＋ 入力する</a>
+
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function yen(n) {
+    if (typeof n !== 'number' || !isFinite(n)) return '—';
+    return (n < 0 ? '−¥' : '¥') + Math.abs(n).toLocaleString('ja-JP');
+  }
+  function esc(s) {
+    return String(s === null || s === undefined ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function mmdd(d) {
+    if (!d) return '';
+    var p = String(d).split('-');
+    return p.length === 3 ? (Number(p[1]) + '/' + Number(p[2])) : d;
+  }
+  function gotoLogin() {
+    location.replace('/ceo/login/?next=' + encodeURIComponent(location.pathname));
+  }
+
+  // 画面上部に一時的な通知を出す(6秒で自動的に消える)
+  var toastTimer = null;
+  function toast(html) {
+    var el = $('toast');
+    el.innerHTML = html;
+    el.classList.remove('hidden');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.add('hidden'); }, 6000);
+  }
+
+  function api(path, options) {
+    return fetch(path, Object.assign({ credentials: 'same-origin' }, options || {}))
+      .then(function (r) {
+        if (r.status === 401) { gotoLogin(); throw new Error('unauthorized'); }
+        return r.json().catch(function () { return {}; })
+          .then(function (d) { return { status: r.status, data: d }; });
+      });
+  }
+
+  // --- 描画 ---------------------------------------------------------
+
+  function renderAlerts(d) {
+    var html = '';
+    var m = d.money, t = d.today;
+
+    if (m.available_now < 0) {
+      html += '<div class="alert danger"><b>今使えるお金がマイナスです。</b>'
+            + '30日以内の支払いに対して資金が不足しています。</div>';
+    }
+    if (t.overdue_count > 0) {
+      html += '<div class="alert danger"><b>支払いの期限超過が ' + t.overdue_count + ' 件あります。</b>'
+            + (m.overdue_out > 0 ? ' 未払い ' + yen(m.overdue_out) : '') + '</div>';
+    }
+    if (t.collection_count > 0) {
+      html += '<div class="alert warn"><b>未回収の入金が ' + t.collection_count + ' 件あります。</b> '
+            + yen(m.overdue_in) + '（この金額は「今使えるお金」に含めていません）</div>';
+    }
+    if (m.balance_stale) {
+      html += '<div class="alert warn">残高が ' + esc(m.balance_as_of_oldest)
+            + ' 時点のままです。実際の残高と差がある可能性があります。</div>';
+    }
+    if (d.lists.accounts.length === 0) {
+      html += '<div class="alert warn">口座が未登録です。まず「入力する」から現預金を登録してください。</div>';
+    }
+    $('alerts').innerHTML = html;
+  }
+
+  function renderMoney(m) {
+    var av = $('available');
+    av.textContent = yen(m.available_now);
+    av.className = 'amount' + (m.available_now < 0 ? ' negative' : '');
+
+    $('b-cash').textContent    = yen(m.cash);
+    $('b-in').textContent      = '+' + yen(m.receivables_30d_confirmed);
+    $('b-out').textContent     = '−' + yen(m.payables_30d);
+    $('b-reserve').textContent = '−' + yen(m.reserve_amount);
+    $('b-buffer').textContent  = '−' + yen(m.safety_buffer);
+    $('b-total').textContent   = yen(m.available_now);
+
+    var f7 = $('f7'), f30 = $('f30');
+    f7.textContent = yen(m.forecast_7d);
+    f7.className = 'val' + (m.forecast_7d < 0 ? ' negative' : '');
+    f30.textContent = yen(m.forecast_30d);
+    f30.className = 'val' + (m.forecast_30d < 0 ? ' negative' : '');
+
+    $('f30opt').textContent = m.receivables_30d_high > 0
+      ? '確度「高」の入金 ' + yen(m.receivables_30d_high) + ' を含めた場合の30日後: '
+        + yen(m.forecast_30d_optimistic) + '（今使えるお金には含めていません）'
+      : '';
+  }
+
+  function eventItem(e, withButton) {
+    var dirCls = e.direction === 'out' ? 'out' : 'in';
+    var sign = e.direction === 'out' ? '−' : '+';
+    var sub = mmdd(e.due_date)
+            + (e.counterparty ? ' ・ ' + esc(e.counterparty) : '')
+            + (e.confidence === 'high' ? '<span class="tag">確度 高</span>' : '')
+            + (e.confidence === 'low' ? '<span class="tag">確度 低</span>' : '')
+            + (e.overdue ? '<span class="tag od">期限超過</span>' : '');
+    return '<div class="item" data-id="' + esc(e.id) + '">'
+      + '<div class="body"><div class="ttl">' + esc(e.label) + '</div>'
+      + '<div class="sub">' + sub + '</div></div>'
+      + '<div class="amt ' + dirCls + '">' + sign + yen(e.amount) + '</div>'
+      + (withButton
+          ? '<button class="btn-mini js-settle" data-id="' + esc(e.id) + '"'
+            + ' data-dir="' + esc(e.direction) + '">'
+            + (e.direction === 'out' ? '払った' : '入った') + '</button>'
+          : '')
+      + '</div>';
+  }
+
+  function renderLists(d) {
+    var t = d.today;
+
+    // 今日 + 支払いの期限超過
+    var todayList = t.overdue.concat(t.due_today);
+    $('due-today').innerHTML = todayList.length
+      ? todayList.map(function (e) { return eventItem(e, true); }).join('')
+      : '<div class="empty">今日が期限のものはありません</div>';
+
+    // 入金確認・回収（期限超過の入金。件数0なら丸ごと隠す）
+    if (t.collection_count > 0) {
+      $('sec-collect').classList.remove('hidden');
+      $('collect').innerHTML = t.collection_candidates
+        .map(function (e) { return eventItem(e, true); }).join('');
+    } else {
+      $('sec-collect').classList.add('hidden');
+      $('collect').innerHTML = '';
+    }
+
+    // タスク
+    $('tasks').innerHTML = t.tasks.length
+      ? t.tasks.map(function (x) {
+          return '<div class="item">'
+            + '<button class="chk js-done" data-id="' + esc(x.id) + '" aria-label="完了"></button>'
+            + '<div class="body"><div class="ttl">' + esc(x.title) + '</div>'
+            + '<div class="sub">' + (x.due_date ? mmdd(x.due_date) : '期限なし')
+            + '<span class="tag">優先 ' + x.priority + '</span>'
+            + (x.overdue ? '<span class="tag od">期限超過</span>' : '')
+            + '</div></div></div>';
+        }).join('')
+        + (t.tasks_total_open > 3
+            ? '<div class="empty">ほか ' + (t.tasks_total_open - 3) + ' 件</div>' : '')
+      : '<div class="empty">未完了のタスクはありません</div>';
+
+    $('up-in').innerHTML = d.lists.upcoming_in.length
+      ? d.lists.upcoming_in.map(function (e) { return eventItem(e, false); }).join('')
+      : '<div class="empty">30日以内の入金予定はありません</div>';
+
+    $('up-out').innerHTML = d.lists.upcoming_out.length
+      ? d.lists.upcoming_out.map(function (e) { return eventItem(e, false); }).join('')
+      : '<div class="empty">30日以内の支払予定はありません</div>';
+  }
+
+  function render(d) {
+    $('today').textContent = d.as_of;
+    renderAlerts(d);
+    renderMoney(d.money);
+    renderLists(d);
+    $('loading').classList.add('hidden');
+    $('app').classList.remove('hidden');
+  }
+
+  // --- 操作(ワンタップ) ----------------------------------------------
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest ? ev.target.closest('.js-settle, .js-done') : null;
+    if (!btn) return;
+    var id = btn.getAttribute('data-id');
+    if (!id) return;
+    var isTask = btn.classList.contains('js-done');
+    var dir = btn.getAttribute('data-dir');
+    btn.disabled = true;
+
+    api('/api/ceo-entry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(isTask
+        ? { type: 'task', action: 'done', id: id }
+        : { type: 'cash_event', action: 'settle', id: id })
+    }).then(function (out) {
+      if (out.status === 200 && out.data && out.data.ok) {
+        // 入金済みにしても口座残高は自動で増えない(残高は手入力のため)。
+        // 更新を促さないと「現預金」が実態より低いまま放置される。
+        if (dir === 'in') {
+          toast('入金を記録しました。<a href="/ceo/entry/">口座残高の更新</a>をお忘れなく。');
+        }
+        load(); // 数字が変わるので再取得
+      } else {
+        btn.disabled = false;
+        alert('更新に失敗しました');
+      }
+    }).catch(function (e) {
+      if (e && e.message === 'unauthorized') return;
+      btn.disabled = false;
+      alert('通信に失敗しました');
+    });
+  });
+
+  // --- 読み込み -----------------------------------------------------
+
+  function load() {
+    api('/api/ceo-dashboard').then(function (out) {
+      if (out.status === 200 && out.data && out.data.ok) {
+        render(out.data);
+      } else {
+        $('loading').textContent =
+          out.data && out.data.error === 'supabase_env_not_set'
+            ? 'サーバー設定が未完了です（SUPABASE の環境変数を確認してください）'
+            : '読み込みに失敗しました';
+      }
+    }).catch(function (e) {
+      if (e && e.message === 'unauthorized') return;
+      $('loading').textContent = '通信に失敗しました';
+    });
+  }
+
+  load();
+
+  // 画面に戻ってきたら最新化(入力ページから戻ったとき)
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) load();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>CEO OS</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #171a21;
+    --line: #262b35;
+    --text: #e8eaed;
+    --muted: #9aa3b2;
+    --accent: #4a9eff;
+    --danger: #ff5f56;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  h1 { margin: 0 0 4px; font-size: 20px; letter-spacing: .04em; }
+  .sub { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  input[type="password"] {
+    width: 100%;
+    padding: 14px 14px;
+    font-size: 16px; /* 16px未満だと iOS でズームされる */
+    color: var(--text);
+    background: #0f1115;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+  }
+  input[type="password"]:focus { border-color: var(--accent); }
+  button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  button:disabled { opacity: .5; cursor: default; }
+  .msg { margin-top: 14px; font-size: 13px; min-height: 18px; color: var(--danger); }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>CEO OS</h1>
+    <p class="sub">パスフレーズを入力してください</p>
+
+    <form id="form" autocomplete="off">
+      <label for="pass">パスフレーズ</label>
+      <input id="pass" type="password" autocomplete="current-password" required>
+      <button id="btn" type="submit">ログイン</button>
+    </form>
+
+    <p class="msg" id="msg" role="alert"></p>
+  </main>
+
+<script>
+(function () {
+  'use strict';
+  var form = document.getElementById('form');
+  var pass = document.getElementById('pass');
+  var btn  = document.getElementById('btn');
+  var msg  = document.getElementById('msg');
+
+  // 遷移先。オープンリダイレクトを防ぐため /ceo/ 配下の相対パスのみ許可する。
+  function safeNext() {
+    try {
+      var raw = new URLSearchParams(location.search).get('next') || '/ceo/';
+      if (raw.indexOf('/ceo/') !== 0 || raw.indexOf('//') === 0) return '/ceo/';
+      return raw;
+    } catch (e) { return '/ceo/'; }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.textContent = '';
+    btn.disabled = true;
+    btn.textContent = '確認中...';
+
+    fetch('/api/ceo-auth', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ passphrase: pass.value })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        return { status: r.status, data: d };
+      });
+    }).then(function (out) {
+      if (out.status === 200 && out.data && out.data.ok) {
+        location.replace(safeNext());
+        return;
+      }
+      if (out.status === 500) {
+        msg.textContent = 'サーバー設定が未完了です（環境変数を確認してください）';
+      } else {
+        msg.textContent = 'パスフレーズが違います';
+      }
+      pass.value = '';
+      pass.focus();
+    }).catch(function () {
+      msg.textContent = '通信に失敗しました。電波状況を確認して再度お試しください';
+    }).then(function () {
+      btn.disabled = false;
+      btn.textContent = 'ログイン';
+    });
+  });
+
+  pass.focus();
+})();
+</script>
+</body>
+</html>
