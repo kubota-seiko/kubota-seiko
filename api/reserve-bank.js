@@ -14,7 +14,7 @@ const SERVICES = {
   'regular-spot': { name: '通常スポット相談', amount: 16500 },
   'monthly-1': { name: '月1回伴走プラン', amount: 33000 },
   'monthly-2': { name: '月2回伴走プラン', amount: 55000 },
-  'course-3m': { name: '3ヶ月集中コース（月2回・全6回）', amount: 99000 },
+  'course-3m': { name: 'スポット相談 6回回数券', amount: 99000 },
   'lp-planning': { name: '企画整理セッション', amount: 16500 },
   'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: 55000 }
 };
