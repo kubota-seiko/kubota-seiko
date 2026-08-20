@@ -12,8 +12,15 @@ const SERVICES = {
   'lp-planning': { name: '企画整理セッション', amount: '16500' },
   'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: '55000' },
   'course-3m': { name: 'スポット相談 6回回数券', amount: '99000' },
-  'lp-publish': { name: '即日LP 公開（¥9,800）', amount: '9800' }
+  'lp-publish': { name: '即日LP 公開（¥9,800）', amount: '9800' },
+  // くぼちゃっと(β版)。「申込日から31日間利用できる利用権」の一括購入。
+  // 自動更新なし(PayPal Subscriptions APIは使わない)。継続時は都度決済。
+  'kubo-monthly': { name: 'くぼちゃっと 31日利用', amount: '3300' }
 };
+
+// くぼちゃっとの紹介元(?ref=)を注文に紐付けるための接頭辞。
+// 決済後、PayPal管理画面の取引詳細(custom_id)で「誰の紹介か」を確認できる。
+const KUBO_REF_PREFIX = 'kubo:';
 
 async function getAccessToken() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
@@ -60,6 +67,15 @@ module.exports = async (req, res) => {
       }
       // 既存商品の決済と誤認しないよう目印を付ける(capture側で接頭辞を検証)
       customId = 'lp-publish:' + slug;
+    }
+
+    // くぼちゃっと: 紹介元 ?ref= を custom_id に保持する。
+    // 金額(3300)は上のSERVICESでサーバー固定のため、refは金額に一切影響しない。
+    // refが未指定・不正な形式のときは 'kubo:direct' として記録し、決済自体は必ず通す。
+    if (serviceId.indexOf('kubo-') === 0) {
+      const rawRef = String(body.ref || '').trim();
+      const ref = /^[A-Za-z0-9_-]{1,32}$/.test(rawRef) ? rawRef : 'direct';
+      customId = KUBO_REF_PREFIX + serviceId.slice('kubo-'.length) + ':' + ref;
     }
 
     // 金額はサーバー固定(SERVICES)。クライアントからは受け取らない。

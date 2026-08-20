@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQKZ2M8B6S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HQKZ2M8B6S');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>くぼちゃっと｜「これ、誰に聞けばいい？」をなくす相談窓口</title>
+<meta name="description" content="Excel・PDF・LINE・PC・AI・書類整理・スタッフへの伝え方。仕事の小さな困りごとを、そのまま送るだけ。AIの使い方を覚える必要はありません。くぼちゃっと｜31日利用 3,300円。自動更新なし・申込日から31日間ご利用いただけます。">
+<link rel="canonical" href="https://kubota-seiko.com/kubo/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="くぼちゃっと｜「これ、誰に聞けばいい？」をなくす相談窓口">
+<meta property="og:description" content="仕事の小さな困りごとを、そのまま送ってください。AIの使い方を覚える必要はありません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kubota-seiko.com/kubo/">
+<meta property="og:image" content="https://kubota-seiko.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#1A1A1A;
+    --accent:#1A1A2E;
+    --gold:#B8924F;
+    --sub:#666666;
+    --line:#ECECEC;
+    --soft:#F7F7F8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans JP","Inter",sans-serif;
+    color:var(--ink);background:var(--bg);
+    line-height:1.8;font-weight:400;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2,h3{line-height:1.45;font-weight:700;letter-spacing:.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+  section{padding:64px 0;}
+  @media(min-width:768px){section{padding:92px 0;}}
+  .eyebrow{
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600;
+  }
+  .sec-title{font-size:clamp(21px,5vw,30px);margin-bottom:16px;}
+  .sec-lead{color:var(--sub);font-size:15px;}
+
+  /* header */
+  header.nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:760px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .brand span{display:block;font-size:10.5px;color:var(--sub);font-weight:400;letter-spacing:.14em;margin-top:1px;}
+  .nav-cta{
+    background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;
+    padding:9px 16px;border-radius:2px;white-space:nowrap;
+  }
+
+  /* hero */
+  .hero{padding:56px 0 60px;border-bottom:1px solid var(--line);}
+  @media(min-width:768px){.hero{padding:84px 0 88px;}}
+  .hero h1{font-size:clamp(26px,7vw,44px);letter-spacing:.01em;}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero-sub{margin-top:24px;font-size:16px;color:var(--sub);line-height:2.0;}
+  .hero-note{
+    margin-top:28px;display:inline-block;font-size:12.5px;color:var(--gold);
+    border:1px solid var(--gold);border-radius:30px;padding:5px 16px;letter-spacing:.04em;
+  }
+
+  /* problem list */
+  .prob{background:var(--soft);}
+  .prob-list{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:2px;}
+  .prob-list li{
+    background:#fff;border-radius:8px;padding:15px 18px;font-size:15px;
+    display:flex;align-items:flex-start;gap:12px;line-height:1.7;
+  }
+  .prob-list li::before{content:"?";flex:0 0 auto;width:21px;height:21px;border-radius:50%;
+    background:var(--soft);color:var(--gold);font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:3px;font-family:"Inter",sans-serif;}
+  .prob-after{margin-top:30px;font-size:15.5px;line-height:2.0;font-weight:500;}
+
+  /* steps */
+  .steps{margin-top:36px;display:flex;flex-direction:column;gap:14px;}
+  .step{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:20px 20px;}
+  .step-no{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;
+    font-family:"Inter",sans-serif;font-size:13px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step h3{font-size:16px;margin-bottom:4px;}
+  .step p{font-size:14px;color:var(--sub);line-height:1.85;}
+
+  /* cases */
+  .cases{background:var(--soft);}
+  .case-grid{margin-top:32px;display:grid;grid-template-columns:1fr;gap:12px;}
+  @media(min-width:640px){.case-grid{grid-template-columns:1fr 1fr;}}
+  .case{background:#fff;border-radius:10px;padding:20px;}
+  .case-tag{
+    font-family:"Inter",sans-serif;font-size:10.5px;letter-spacing:.14em;
+    color:var(--gold);font-weight:600;margin-bottom:8px;text-transform:uppercase;
+  }
+  .case h3{font-size:15px;margin-bottom:8px;line-height:1.6;}
+  .case p{font-size:13.5px;color:var(--sub);line-height:1.85;}
+  .case-note{margin-top:26px;font-size:12.5px;color:var(--sub);line-height:1.8;}
+
+  /* pricing */
+  .plans{margin-top:36px;display:flex;flex-direction:column;gap:16px;}
+  .plan{border:1px solid var(--line);border-radius:12px;padding:26px 24px;position:relative;}
+  .plan.featured{border-color:var(--gold);border-width:2px;}
+  .plan-badge{
+    position:absolute;top:-11px;left:24px;background:var(--gold);color:#fff;
+    font-size:11px;font-weight:600;letter-spacing:.08em;padding:3px 12px;border-radius:20px;
+  }
+  .plan-name{font-size:17px;font-weight:700;}
+  .plan-price{font-family:"Inter",sans-serif;font-size:33px;font-weight:700;color:var(--ink);margin:8px 0 2px;letter-spacing:-.01em;}
+  .plan-price small{font-size:14px;font-weight:500;color:var(--sub);margin-left:4px;letter-spacing:0;}
+  .plan-unit{font-size:12.5px;color:var(--gold);font-weight:500;}
+  .plan-desc{font-size:14px;color:var(--sub);line-height:1.9;margin-top:14px;}
+  .plan-terms{list-style:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+  .plan-terms li{font-size:12.5px;color:var(--sub);line-height:1.85;position:relative;padding-left:14px;}
+  .plan-terms li::before{content:"・";position:absolute;left:0;}
+  .plan-btn{
+    display:block;width:100%;margin-top:20px;background:var(--ink);color:#fff;
+    padding:16px 20px;border-radius:2px;font-size:15px;font-weight:600;text-align:center;
+    border:none;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;
+  }
+  .plan-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.14);}
+  .plan.featured .plan-btn{background:var(--gold);}
+  .pay-note{margin-top:24px;font-size:12.5px;color:var(--sub);line-height:1.9;text-align:center;}
+  .pay-note a{color:var(--gold);text-decoration:underline;}
+
+  /* cta */
+  .cta{background:var(--ink);color:#fff;text-align:center;}
+  .cta h2{font-size:clamp(22px,5.4vw,34px);margin-bottom:14px;}
+  .cta p{color:rgba(255,255,255,.72);font-size:15px;margin-bottom:32px;line-height:1.95;}
+  .cta-btn{
+    display:inline-block;background:#fff;color:var(--ink);padding:18px 42px;border-radius:2px;
+    font-size:16px;font-weight:600;border:none;cursor:pointer;font-family:inherit;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(255,255,255,.2);}
+
+  /* footer */
+  footer{padding:38px 0;border-top:1px solid var(--line);text-align:center;}
+  .foot-links{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;font-size:12.5px;color:var(--sub);}
+  .foot-links a:hover{color:var(--gold);}
+  .copy{margin-top:18px;font-size:11.5px;color:var(--sub);font-family:"Inter",sans-serif;letter-spacing:.04em;}
+
+  /* modal */
+  .kb-overlay{position:fixed;inset:0;background:rgba(26,26,26,.55);z-index:9998;display:none;align-items:center;justify-content:center;padding:18px;}
+  .kb-overlay.open{display:flex;}
+  .kb-modal{background:#fff;border-radius:16px;max-width:440px;width:100%;max-height:90vh;overflow-y:auto;padding:34px 26px;position:relative;}
+  @media(max-width:480px){.kb-modal{padding:28px 20px;}}
+  .kb-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--soft);color:var(--ink);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .kb-step{text-align:center;}
+  .kb-name{font-size:16px;font-weight:700;}
+  .kb-price{font-family:"Inter",sans-serif;font-size:26px;font-weight:700;color:var(--gold);margin:2px 0 20px;}
+  /* 購入直前の条件表示(特商法) */
+  .kb-terms{background:var(--soft);border-radius:10px;padding:16px 18px;text-align:left;margin-bottom:20px;}
+  .kb-terms h4{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:9px;letter-spacing:.04em;}
+  .kb-terms dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:12.5px;line-height:1.75;}
+  .kb-terms dt{color:var(--sub);white-space:nowrap;}
+  .kb-terms dd{color:var(--ink);}
+  .kb-terms .kb-terms-link{display:block;margin-top:11px;font-size:11.5px;color:var(--gold);text-decoration:underline;}
+  .kb-error{font-size:13px;color:#B23B3B;text-align:center;margin-top:12px;}
+  .kb-back{display:block;margin:18px auto 0;background:none;border:none;color:var(--sub);font-size:13px;text-decoration:underline;cursor:pointer;font-family:inherit;}
+  .kb-done-h{font-size:19px;font-weight:700;margin-bottom:12px;}
+  .kb-done-b{font-size:14px;color:var(--sub);line-height:1.95;margin-bottom:22px;}
+  .kb-pass-label{font-size:12px;color:var(--sub);margin-bottom:6px;}
+  .kb-pass{
+    background:var(--soft);border:1px dashed var(--gold);border-radius:8px;padding:14px 12px;
+    font-family:"Inter",sans-serif;font-size:16px;font-weight:700;color:var(--ink);
+    letter-spacing:.04em;word-break:break-all;
+  }
+  .kb-copy{margin-top:10px;background:none;border:1px solid var(--line);border-radius:6px;padding:8px 16px;font-size:12.5px;color:var(--sub);cursor:pointer;font-family:inherit;}
+  .kb-copy:hover{border-color:var(--gold);color:var(--gold);}
+  .kb-chat-btn{
+    display:block;margin-top:6px;background:var(--gold);color:#fff;padding:17px 20px;border-radius:2px;
+    font-size:16px;font-weight:700;text-align:center;letter-spacing:.02em;
+  }
+  .kb-line-btn{
+    display:block;margin-top:20px;background:#06C755;color:#fff;padding:16px 20px;border-radius:2px;
+    font-size:15px;font-weight:600;text-align:center;
+  }
+  .kb-steps-after{text-align:left;margin-top:20px;font-size:13px;color:var(--sub);line-height:1.9;}
+  .kb-steps-after b{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="/" class="brand">くぼちゃっと<span>KUBOTA SEIKO</span></a>
+    <a href="#pricing" class="nav-cta">料金を見る</a>
+  </div>
+</header>
+
+<!-- 1. メインコピー -->
+<section class="hero">
+  <div class="wrap">
+    <h1>「これ、誰に聞けばいい？」<br>を<em>なくす</em>。</h1>
+    <p class="hero-sub">
+      仕事の小さな困りごとを、そのまま送ってください。<br>
+      AIの使い方を覚える必要はありません。
+    </p>
+    <div class="hero-note">β版・受付中</div>
+  </div>
+</section>
+
+<!-- 2. こんなことありませんか？ -->
+<section class="prob">
+  <div class="wrap">
+    <p class="eyebrow">Problem</p>
+    <h2 class="sec-title">こんなこと、ありませんか？</h2>
+    <ul class="prob-list">
+      <li>Excelがおかしい</li>
+      <li>PDFがどこに保存されたか分からない</li>
+      <li>LINEとPCの共有が面倒</li>
+      <li>スタッフに何度言っても伝わらない</li>
+      <li>AIを使いたいけど、何を聞けばいいか分からない</li>
+      <li>書類や情報が整理できない</li>
+      <li>そもそも、誰に相談すればいいか分からない</li>
+    </ul>
+    <p class="prob-after">
+      どれも「調べれば分かる」けれど、<br>
+      調べる時間がない。聞ける人もいない。<br>
+      その一つひとつが、毎日少しずつ時間を奪っていきます。
+    </p>
+  </div>
+</section>
+
+<!-- 3. 使い方 -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2 class="sec-title">使い方</h2>
+    <p class="sec-lead">むずかしい操作はありません。LINEで送るだけです。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-no">1</div>
+        <div>
+          <h3>困っていることを送る</h3>
+          <p>きれいにまとめる必要はありません。「Excelがなんかおかしい」でも大丈夫です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-no">2</div>
+        <div>
+          <h3>内容を整理する</h3>
+          <p>何が起きているのか、原因はどこにありそうかを、こちらで整理してお返しします。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-no">3</div>
+        <div>
+          <h3>まず何をすればいいか分かる</h3>
+          <p>「最初にやること」を1つに絞ってお伝えします。必要なら具体的な手順までご案内します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 実際の相談例 -->
+<section class="cases">
+  <div class="wrap">
+    <p class="eyebrow">Examples</p>
+    <h2 class="sec-title">実際の相談例</h2>
+    <div class="case-grid">
+      <div class="case">
+        <p class="case-tag">共有</p>
+        <h3>LINEと会社PCの情報共有</h3>
+        <p>スマホで受けた連絡が会社のPCに反映されず、二重入力が発生していた。</p>
+      </div>
+      <div class="case">
+        <p class="case-tag">ファイル</p>
+        <h3>PDFの保存場所が分からない</h3>
+        <p>スキャンした書類がどこへ行ったか毎回探していた。保存先の決め方から整理。</p>
+      </div>
+      <div class="case">
+        <p class="case-tag">復旧</p>
+        <h3>消えたExcelファイルの探索</h3>
+        <p>上書き保存したはずのファイルが見つからない。探す手順と再発防止まで。</p>
+      </div>
+      <div class="case">
+        <p class="case-tag">教育</p>
+        <h3>新人スタッフの教育</h3>
+        <p>毎回同じことを説明している状態。伝え方と手順書のつくり方を整理。</p>
+      </div>
+      <div class="case">
+        <p class="case-tag">現場</p>
+        <h3>店舗業務のミス防止</h3>
+        <p>同じミスが繰り返し起きる。原因を人ではなく仕組み側で切り分け。</p>
+      </div>
+      <div class="case">
+        <p class="case-tag">仕組み</p>
+        <h3>業務ルールの整理</h3>
+        <p>「なんとなくの慣習」で回っている業務を、書き出して判断できる形に。</p>
+      </div>
+    </div>
+    <p class="case-note">※ 掲載事例はご相談内容を匿名化し、要点のみを記載しています。</p>
+  </div>
+</section>
+
+<!-- 5. 料金 -->
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Price</p>
+    <h2 class="sec-title">料金</h2>
+    <p class="sec-lead">プランは1つだけです。自動更新はありません。</p>
+
+    <div class="plans">
+      <div class="plan featured">
+        <span class="plan-badge">β版</span>
+        <p class="plan-name">くぼちゃっと｜31日利用</p>
+        <p class="plan-price">3,300<small>円（税込）</small></p>
+        <p class="plan-unit">自動更新なし / 申込日から31日間ご利用いただけます</p>
+        <p class="plan-desc">困ったときにいつでも聞ける状態を、31日間つくります。まずは31日間お試しください。</p>
+        <ul class="plan-terms">
+          <li>申込日から31日間ご利用いただけます</li>
+          <li>今回は自動更新なし（期間終了後に自動で課金されません）</li>
+          <li>継続する場合は、あらためて3,300円をお支払いいただきます</li>
+          <li>β版として提供しています</li>
+          <li>サービス提供開始後の途中解約・返金：原則なし</li>
+          <li>当社都合でサービス提供継続ができない場合等は個別対応</li>
+        </ul>
+        <button type="button" class="plan-btn" data-plan="kubo-monthly">3,300円ではじめる</button>
+      </div>
+    </div>
+
+    <p class="pay-note">
+      お支払いはPayPal（クレジットカード可）。PayPalアカウントがなくてもお支払いいただけます。<br>
+      <a href="/tokushoho/">特定商取引法に基づく表記</a>　/　<a href="/terms/">利用規約</a>　/　<a href="/privacy/">プライバシーポリシー</a>
+    </p>
+  </div>
+</section>
+
+<!-- 6. CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2>まず、1件だけ<br>送ってみてください。</h2>
+    <p>
+      うまく説明できなくて大丈夫です。<br>
+      「何に困っているか分からない」も、そのままどうぞ。
+    </p>
+    <button type="button" class="cta-btn" data-plan="kubo-monthly">3,300円ではじめる（31日間）</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="/">ホーム</a>
+      <a href="/tokushoho/">特定商取引法に基づく表記</a>
+      <a href="/terms/">利用規約</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+      <a href="/company/">運営会社</a>
+    </div>
+    <p class="copy">&copy; Eternal Inc. / Kubota Seiko</p>
+  </div>
+</footer>
+
+<!-- 決済モーダル -->
+<div class="kb-overlay" id="kbOverlay">
+  <div class="kb-modal">
+    <button type="button" class="kb-close" id="kbClose" aria-label="閉じる">&times;</button>
+
+    <!-- 決済ステップ -->
+    <div class="kb-step" id="kbStepPay" style="display:none;">
+      <p class="kb-name" id="kbPayName"></p>
+      <p class="kb-price" id="kbPayPrice"></p>
+
+      <!-- 購入直前の条件表示 -->
+      <div class="kb-terms">
+        <h4>お申し込み内容のご確認</h4>
+        <dl>
+          <dt>販売価格</dt><dd id="kbTermPrice"></dd>
+          <dt>利用期間</dt><dd id="kbTermPeriod"></dd>
+          <dt>自動更新</dt><dd>なし（期間終了後に自動で課金されることはありません）</dd>
+          <dt>継続</dt><dd>利用期間終了後、ご希望の場合はあらためてご購入いただきます</dd>
+          <dt>返金</dt><dd id="kbTermRefund"></dd>
+          <dt>提供開始</dt><dd>決済完了後、LINEで合言葉をお送りいただいた時点から</dd>
+        </dl>
+        <a href="/tokushoho/" target="_blank" rel="noopener" class="kb-terms-link">特定商取引法に基づく表記を確認する</a>
+      </div>
+
+      <div id="kbPaypal"></div>
+      <p class="kb-error" id="kbPayError" style="display:none;"></p>
+      <button type="button" class="kb-back" id="kbBack">✕ 閉じる</button>
+    </div>
+
+    <!-- 完了ステップ -->
+    <div class="kb-step" id="kbStepDone" style="display:none;">
+      <p class="kb-done-h">お支払いが完了しました</p>
+      <p class="kb-done-b" id="kbDoneBody"></p>
+
+      <a href="/kubo/chat/" class="kb-chat-btn" id="kbChatBtn">くぼちゃっとを開始する</a>
+
+      <div class="kb-steps-after">
+        <b>ご利用開始までの流れ</b><br>
+        ① 上のボタンから専用チャットを開く<br>
+        ② 困っていることを、そのまま入力する<br>
+        ③ 整理された回答が返ってきます
+      </div>
+
+      <p class="kb-pass-label" style="margin-top:24px;">個別相談をご希望の方へ</p>
+      <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" class="kb-line-btn" id="kbLineBtn">個別相談についてLINEで問い合わせる</a>
+      <p class="kb-done-b" style="margin-top:12px;font-size:12.5px;">
+        くぼちゃっとで扱える範囲を超えるご相談は、LINEからお問い合わせいただけます。<br>
+        お問い合わせの際は、下の合言葉をお送りください。
+      </p>
+      <div class="kb-pass" id="kbPass" style="margin-top:8px;"></div>
+      <button type="button" class="kb-copy" id="kbCopy">合言葉をコピー</button>
+      <p class="kb-done-b" style="margin-top:20px;font-size:12.5px;">
+        ※ 専用チャットは <b>/kubo/chat</b> からいつでも開けます。この画面を閉じても、同じ端末・同じブラウザであればご利用いただけます。<br>
+        端末を変える場合や開けない場合は、合言葉を添えてLINEからご連絡ください。
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  // ---- 紹介元(?ref=)の取得と保持 -------------------------------------
+  // 取得したrefはsessionStorageに保持し、決済時にサーバーへ送る。
+  // サーバー側でPayPal注文のcustom_idに埋め込まれ、後から紹介元を確認できる。
+  var REF_KEY = 'kubo_ref';
+  function readRef(){
+    var m = /[?&]ref=([^&#]*)/.exec(location.search);
+    if(m){
+      var v = decodeURIComponent(m[1]).trim();
+      if(/^[A-Za-z0-9_-]{1,32}$/.test(v)){
+        try{ sessionStorage.setItem(REF_KEY, v); }catch(e){}
+        return v;
+      }
+    }
+    try{ return sessionStorage.getItem(REF_KEY) || ''; }catch(e){ return ''; }
+  }
+  var KUBO_REF = readRef();
+  if(KUBO_REF && typeof gtag === 'function'){
+    gtag('event','kubo_ref_landing',{ ref: KUBO_REF });
+  }
+
+  // ---- プラン定義（表示用。金額の正はサーバー側SERVICES） -------------
+  var PLANS = {
+    'kubo-monthly': {
+      name:'くぼちゃっと｜31日利用', price:'3,300', code:'MONTHLY',
+      period:'申込日から31日間',
+      refund:'サービス提供開始後の途中解約・返金は原則ありません'
+    }
+  };
+
+  // 本番(kubota-seiko.com)で使うClient ID。Production ではこの値をそのまま使い、
+  // サーバーへの問い合わせは一切行わない(現行動作を維持するため)。
+  var PAYPAL_CLIENT_ID = 'AdFmpeY5FNEXreaQEx1D2qvUDMuj4GU8hRr0FRnS_yW_GuxzXK6XAQejSkdLOhIRldwRxF7O8E_fh1hA';
+
+  // Vercel の Preview デプロイ(*.vercel.app)かどうか。
+  // Preview は PayPal Sandbox を使うため、Client ID をサーバーから取得する。
+  var IS_PREVIEW = /\.vercel\.app$/.test(location.hostname);
+
+  // Preview では本番Client IDへフォールバックしない(fail-closed)。
+  // 取得失敗・空値なら例外を投げ、SDKを読み込まずにエラー表示で止める。
+  // 本番のClient IDでSandbox決済を始めてしまう事故を防ぐため。
+  function resolveClientId(){
+    if(!IS_PREVIEW) return Promise.resolve(PAYPAL_CLIENT_ID);
+    return fetch('/api/kubo?fn=config').then(function(r){
+      if(!r.ok) throw configError();
+      return r.json();
+    }).then(function(d){
+      var id = d && d.paypalClientId;
+      if(typeof id !== 'string' || !id.trim()) throw configError();
+      return id.trim();
+    }, function(){ throw configError(); });
+  }
+  function configError(){
+    var e = new Error('preview-config-unavailable');
+    e.kuboConfig = true;
+    return e;
+  }
+
+  var overlay   = document.getElementById('kbOverlay');
+  var stepPay   = document.getElementById('kbStepPay');
+  var stepDone  = document.getElementById('kbStepDone');
+  var current   = null;
+  var paypalLoaded = false, paypalLoading = null;
+
+  function showStep(el){
+    [stepPay, stepDone].forEach(function(s){ s.style.display = (s===el) ? 'block' : 'none'; });
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function loadPaypalSdk(){
+    if(paypalLoaded) return Promise.resolve();
+    if(paypalLoading) return paypalLoading;
+    paypalLoading = resolveClientId().then(function(clientId){
+      return new Promise(function(resolve, reject){
+        var s = document.createElement('script');
+        s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(clientId) + '&currency=JPY&intent=capture&locale=ja_JP';
+        s.onload  = function(){ paypalLoaded = true; resolve(); };
+        s.onerror = function(){ reject(new Error('sdk load failed')); };
+        document.body.appendChild(s);
+      });
+    });
+    // 失敗したPromiseを保持し続けると再試行できなくなるため破棄する
+    paypalLoading.catch(function(){ paypalLoading = null; });
+    return paypalLoading;
+  }
+
+  function buildPassphrase(orderId){
+    var tail = String(orderId || '').replace(/[^A-Za-z0-9]/g,'').slice(-6).toUpperCase();
+    return 'くぼちゃっと-' + current.code + '-' + (tail || 'XXXXXX');
+  }
+
+  function openModal(planId){
+    var p = PLANS[planId];
+    if(!p) return;
+    current = { id: planId, name: p.name, price: p.price, code: p.code };
+
+    document.getElementById('kbPayName').textContent  = p.name;
+    document.getElementById('kbPayPrice').textContent = '￥' + p.price;
+    document.getElementById('kbTermPrice').textContent  = p.price + '円（税込）一括';
+    document.getElementById('kbTermPeriod').textContent = p.period;
+    document.getElementById('kbTermRefund').textContent = p.refund;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showStep(stepPay);
+
+    if(typeof gtag === 'function'){
+      gtag('event','begin_checkout',{
+        currency:'JPY',
+        value: Number(p.price.replace(/,/g,'')),
+        items:[{ item_id: planId, item_name: p.name }],
+        ref: KUBO_REF || '(direct)'
+      });
+    }
+
+    var box = document.getElementById('kbPaypal');
+    var err = document.getElementById('kbPayError');
+    err.style.display = 'none';
+    box.innerHTML = '<p style="font-size:13px;color:var(--sub);">読み込み中...</p>';
+
+    loadPaypalSdk().then(function(){
+      box.innerHTML = '';
+      window.paypal.Buttons({
+        style:{ layout:'vertical', color:'black', shape:'rect', label:'pay' },
+        createOrder: function(){
+          return fetch('/api/paypal-create-order', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ serviceId: current.id, ref: KUBO_REF })
+          }).then(function(r){
+            if(!r.ok) throw new Error('order-create-failed');
+            return r.json();
+          }).then(function(d){ return d.id; });
+        },
+        onApprove: function(data){
+          return fetch('/api/paypal-capture-order', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ orderID: data.orderID, serviceId: current.id })
+          }).then(function(r){
+            if(!r.ok) throw new Error('capture-failed');
+            return r.json();
+          }).then(function(res){
+            // 専用チャットの利用権トークンを保存する。/kubo と /kubo/chat は
+            // 同一オリジンのため localStorage を共有できる（URLにトークンを載せない）。
+            var chatReady = false;
+            try{
+              if(res && res.kuboToken){
+                localStorage.setItem('kubo_token', res.kuboToken);
+                if(res.kuboExpiresAt) localStorage.setItem('kubo_token_exp', String(res.kuboExpiresAt));
+                chatReady = true;
+              }
+            }catch(e){}
+
+            var pass = buildPassphrase(data.orderID);
+            document.getElementById('kbDoneBody').textContent = chatReady
+              ? (current.name + '（￥' + current.price + '）のお支払いが完了しました。'
+                 + 'このまま専用チャットをお使いいただけます。')
+              : (current.name + '（￥' + current.price + '）のお支払いが完了しました。'
+                 + 'チャットの準備が整わなかったため、お手数ですが下の合言葉を添えてLINEからご連絡ください。');
+
+            // トークンが発行されなかった場合は、チャットボタンを出さずLINEへ誘導する
+            var chatBtn = document.getElementById('kbChatBtn');
+            if(chatBtn && !chatReady) chatBtn.style.display = 'none';
+            document.getElementById('kbPass').textContent = pass;
+            showStep(stepDone);
+            if(typeof gtag === 'function'){
+              // Preview(Sandbox決済)の結果を本番の売上レポートへ混ぜない。
+              // Production では従来どおり 'purchase' を送信する。
+              gtag('event', IS_PREVIEW ? 'kubo_test_purchase' : 'purchase', {
+                transaction_id: data.orderID,
+                currency:'JPY',
+                value: Number(current.price.replace(/,/g,'')),
+                items:[{ item_id: current.id, item_name: current.name }],
+                ref: KUBO_REF || '(direct)'
+              });
+            }
+          });
+        },
+        onError: function(){
+          err.textContent = '決済処理中にエラーが発生しました。お手数ですが、時間をおいて再度お試しいただくか、LINEにてご連絡ください。';
+          err.style.display = 'block';
+        },
+        onCancel: function(){}
+      }).render('#kbPaypal');
+    }).catch(function(e){
+      // Previewで Sandbox Client ID を取得できなかった場合は、本番IDで
+      // 決済を始めずにここで止める(fail-closed)。
+      var msg = (e && e.kuboConfig)
+        ? 'テスト決済を開始できません。設定を確認してください。'
+        : '決済フォームの読み込みに失敗しました。お手数ですが、時間をおいて再度お試しください。';
+      box.innerHTML = '<p style="font-size:13px;color:#B23B3B;">' + msg + '</p>';
+    });
+  }
+
+  // ---- イベント配線 ---------------------------------------------------
+  Array.prototype.forEach.call(document.querySelectorAll('[data-plan]'), function(btn){
+    btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-plan')); });
+  });
+  document.getElementById('kbClose').addEventListener('click', closeModal);
+  document.getElementById('kbBack').addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  document.getElementById('kbCopy').addEventListener('click', function(){
+    var t = document.getElementById('kbPass').textContent;
+    var btn = this;
+    function done(){ btn.textContent = 'コピーしました'; setTimeout(function(){ btn.textContent='合言葉をコピー'; }, 2000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(done).catch(fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+
+  document.getElementById('kbChatBtn').addEventListener('click', function(){
+    if(typeof gtag === 'function'){
+      gtag('event','kubo_chat_start',{ item_id: current ? current.id : '', ref: KUBO_REF || '(direct)' });
+    }
+  });
+
+  document.getElementById('kbLineBtn').addEventListener('click', function(){
+    if(typeof gtag === 'function'){
+      gtag('event','kubo_line_start',{ item_id: current ? current.id : '', ref: KUBO_REF || '(direct)' });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

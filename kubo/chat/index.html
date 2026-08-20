@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQKZ2M8B6S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HQKZ2M8B6S');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>くぼちゃっと</title>
+<meta name="description" content="くぼちゃっと専用チャット。仕事の小さな困りごとを、そのまま送ってください。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#1A1A1A;
+    --gold:#B8924F;
+    --sub:#666666;
+    --line:#ECECEC;
+    --soft:#F7F7F8;
+    --bar:64px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:"Noto Sans JP","Inter",sans-serif;
+    color:var(--ink);background:var(--bg);
+    line-height:1.8;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  a{color:inherit;}
+
+  /* header */
+  header{
+    flex:0 0 auto;border-bottom:1px solid var(--line);background:#fff;z-index:10;
+    padding-top:env(safe-area-inset-top);
+  }
+  .head-in{
+    max-width:760px;margin:0 auto;padding:12px 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .head-title{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .head-title span{display:block;font-size:10.5px;color:var(--sub);font-weight:400;letter-spacing:.1em;margin-top:1px;}
+  .head-meta{font-size:11px;color:var(--sub);text-align:right;white-space:nowrap;}
+  .head-meta a{color:var(--gold);text-decoration:underline;font-size:11px;}
+
+  /* messages */
+  main{
+    flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:22px 0 12px;
+  }
+  .thread{max-width:760px;margin:0 auto;padding:0 18px;display:flex;flex-direction:column;gap:16px;}
+  .msg{display:flex;}
+  .msg.user{justify-content:flex-end;}
+  .bubble{
+    max-width:86%;padding:13px 16px;border-radius:14px;font-size:15px;line-height:1.85;
+    white-space:pre-wrap;word-break:break-word;
+  }
+  .msg.user .bubble{background:var(--ink);color:#fff;border-bottom-right-radius:4px;}
+  .msg.ai .bubble{background:var(--soft);color:var(--ink);border-bottom-left-radius:4px;}
+  .msg.err .bubble{background:#FDF3F3;color:#B23B3B;border:1px solid #F0DADA;font-size:14px;}
+
+  /* intro */
+  .intro{
+    max-width:760px;margin:0 auto;padding:26px 18px 6px;text-align:center;
+  }
+  .intro h1{font-size:19px;font-weight:700;margin-bottom:10px;line-height:1.5;}
+  .intro p{font-size:14px;color:var(--sub);line-height:1.95;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
+  .chip{
+    border:1px solid var(--line);border-radius:20px;padding:8px 14px;font-size:12.5px;
+    color:var(--sub);background:#fff;cursor:pointer;font-family:inherit;
+  }
+  .chip:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* typing */
+  .typing{display:flex;gap:4px;align-items:center;padding:4px 2px;}
+  .typing i{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.4;animation:bl 1.2s infinite;}
+  .typing i:nth-child(2){animation-delay:.2s;}
+  .typing i:nth-child(3){animation-delay:.4s;}
+  @keyframes bl{0%,60%,100%{opacity:.25;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+
+  /* composer */
+  footer{
+    flex:0 0 auto;border-top:1px solid var(--line);background:#fff;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .comp{max-width:760px;margin:0 auto;padding:12px 18px 10px;}
+  .comp-row{display:flex;gap:10px;align-items:flex-end;}
+  .comp textarea{
+    flex:1 1 auto;resize:none;border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;font-family:inherit;font-size:16px;line-height:1.65;
+    max-height:140px;min-height:48px;background:#fff;color:var(--ink);
+  }
+  .comp textarea:focus{outline:none;border-color:var(--gold);}
+  .send{
+    flex:0 0 auto;background:var(--ink);color:#fff;border:none;border-radius:12px;
+    padding:0 20px;height:48px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;
+  }
+  .send:disabled{opacity:.4;cursor:default;}
+  .comp-note{margin-top:8px;font-size:11.5px;color:var(--sub);text-align:center;line-height:1.7;}
+  .comp-note a{color:var(--gold);text-decoration:underline;}
+
+  /* gate (未購入) */
+  .gate{
+    flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:30px 22px;
+  }
+  .gate-in{max-width:420px;text-align:center;}
+  .gate-in h1{font-size:21px;margin-bottom:14px;line-height:1.5;}
+  .gate-in p{font-size:14.5px;color:var(--sub);line-height:1.95;margin-bottom:26px;}
+  .gate-btn{
+    display:block;background:var(--gold);color:#fff;padding:16px 20px;border-radius:2px;
+    font-size:15px;font-weight:600;text-decoration:none;
+  }
+  .gate-sub{display:block;margin-top:16px;font-size:12.5px;color:var(--sub);}
+  .gate-sub a{color:var(--gold);text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- 未購入・期限切れのときに出す入口画面 -->
+<div class="gate" id="gate" style="display:none;">
+  <div class="gate-in">
+    <h1 id="gateTitle">ご購入が必要です</h1>
+    <p id="gateBody">くぼちゃっとは、お申し込みいただいた方専用の相談窓口です。<br>ご購入ページからお手続きください。</p>
+    <a href="/kubo/" class="gate-btn">くぼちゃっとを見る</a>
+    <span class="gate-sub">お支払い済みでこの画面が出る場合は、<a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">LINE</a>からご連絡ください。</span>
+  </div>
+</div>
+
+<!-- チャット本体 -->
+<header id="appHead" style="display:none;">
+  <div class="head-in">
+    <div class="head-title">くぼちゃっと<span>KUBOTA SEIKO</span></div>
+    <div class="head-meta">
+      <span id="expiryLabel"></span><br>
+      <a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener" id="lineLink">個別相談について</a>
+    </div>
+  </div>
+</header>
+
+<main id="appMain" style="display:none;">
+  <div class="intro" id="intro">
+    <h1>これ、誰に聞けばいい？<br>をなくします。</h1>
+    <p>
+      うまくまとめなくて大丈夫です。<br>
+      困っていることを、そのまま送ってください。
+    </p>
+    <div class="chips">
+      <button type="button" class="chip">Excelがおかしい</button>
+      <button type="button" class="chip">PDFの保存先が分からない</button>
+      <button type="button" class="chip">スタッフに伝わらない</button>
+      <button type="button" class="chip">何に困っているか分からない</button>
+    </div>
+  </div>
+  <div class="thread" id="thread"></div>
+</main>
+
+<footer id="appFoot" style="display:none;">
+  <div class="comp">
+    <div class="comp-row">
+      <textarea id="input" rows="1" placeholder="困っていることを入力" autocomplete="off"></textarea>
+      <button type="button" class="send" id="send">送信</button>
+    </div>
+    <p class="comp-note">
+      AIが一緒に整理します。個別相談をご希望の場合は、<a href="https://lin.ee/Qr9byp1" target="_blank" rel="noopener">LINEからお問い合わせ</a>いただけます。<br>
+      法律・税務・医療などは、必ず専門家にご確認ください。
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var TOKEN_KEY = 'kubo_token';
+  var EXP_KEY   = 'kubo_token_exp';
+  var HIST_KEY  = 'kubo_history';
+  var MAX_CHARS = 4000;
+  // サーバーへ送る履歴の上限(往復)。サーバー側でも同じ上限で切るが、
+  // 通信量を抑えるためクライアントでも絞る。
+  var MAX_SEND_TURNS = 10;
+
+  var gate    = document.getElementById('gate');
+  var head    = document.getElementById('appHead');
+  var main    = document.getElementById('appMain');
+  var foot    = document.getElementById('appFoot');
+  var thread  = document.getElementById('thread');
+  var intro   = document.getElementById('intro');
+  var input   = document.getElementById('input');
+  var sendBtn = document.getElementById('send');
+
+  var history = [];   // [{role:'user'|'assistant', content:'...', ts:number}]
+  var busy = false;
+
+  // ---- トークン ------------------------------------------------------
+  // URLに ?t= が付いていれば取り込む(決済完了画面からの遷移で使う)。
+  // 取り込んだ後はURLから消し、履歴やスクショに残りにくくする。
+  function adoptTokenFromUrl(){
+    var m = /[?&]t=([^&#]+)/.exec(location.search);
+    if(!m) return;
+    try{
+      var t = decodeURIComponent(m[1]);
+      if(t) localStorage.setItem(TOKEN_KEY, t);
+    }catch(e){}
+    try{
+      history_replace();
+    }catch(e){}
+  }
+  function history_replace(){
+    if(window.history && window.history.replaceState){
+      window.history.replaceState({}, '', location.pathname);
+    }
+  }
+  function getToken(){
+    try{ return localStorage.getItem(TOKEN_KEY) || ''; }catch(e){ return ''; }
+  }
+
+  function showGate(title, body){
+    if(title) document.getElementById('gateTitle').textContent = title;
+    if(body)  document.getElementById('gateBody').innerHTML = body;
+    gate.style.display = 'flex';
+    head.style.display = main.style.display = foot.style.display = 'none';
+  }
+  function showApp(){
+    gate.style.display = 'none';
+    head.style.display = main.style.display = foot.style.display = '';
+  }
+
+  // ---- 履歴（localStorage） ------------------------------------------
+  function loadHistory(){
+    try{
+      var raw = localStorage.getItem(HIST_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      if(Array.isArray(arr)) history = arr.filter(function(m){
+        return m && (m.role==='user'||m.role==='assistant') && typeof m.content==='string';
+      });
+    }catch(e){ history = []; }
+  }
+  function saveHistory(){
+    // 将来のDB移行を見据え {role, content, ts} の形で保持する
+    try{ localStorage.setItem(HIST_KEY, JSON.stringify(history.slice(-80))); }catch(e){}
+  }
+
+  // ---- 描画 ----------------------------------------------------------
+  function addBubble(role, text){
+    var wrap = document.createElement('div');
+    wrap.className = 'msg ' + (role==='user' ? 'user' : (role==='error' ? 'err' : 'ai'));
+    var b = document.createElement('div');
+    b.className = 'bubble';
+    b.textContent = text;
+    wrap.appendChild(b);
+    thread.appendChild(wrap);
+    scrollBottom();
+    return wrap;
+  }
+  function addTyping(){
+    var wrap = document.createElement('div');
+    wrap.className = 'msg ai';
+    wrap.innerHTML = '<div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
+    thread.appendChild(wrap);
+    scrollBottom();
+    return wrap;
+  }
+  function scrollBottom(){
+    requestAnimationFrame(function(){ main.scrollTop = main.scrollHeight; });
+  }
+  function renderHistory(){
+    thread.innerHTML = '';
+    history.forEach(function(m){ addBubble(m.role, m.content); });
+    intro.style.display = history.length ? 'none' : '';
+  }
+
+  // ---- 送信 ----------------------------------------------------------
+  function send(){
+    if(busy) return;
+    var text = (input.value || '').trim();
+    if(!text) return;
+    if(text.length > MAX_CHARS){
+      addBubble('error', '入力が長すぎます。お手数ですが、要点を分けて送ってください。');
+      return;
+    }
+
+    busy = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    autosize();
+    intro.style.display = 'none';
+
+    history.push({ role:'user', content:text, ts:Date.now() });
+    saveHistory();
+    addBubble('user', text);
+
+    var typing = addTyping();
+
+    // サーバーへ送るのは直近の往復のみ(コストと通信量の抑制)
+    var send_history = history.slice(-(MAX_SEND_TURNS*2)).map(function(m){
+      return { role:m.role, content:m.content };
+    });
+    // 直近のuser(=今回の入力)は message として別に送るため履歴からは外す
+    send_history.pop();
+
+    fetch('/api/kubo?fn=chat', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer ' + getToken()
+      },
+      body: JSON.stringify({ message:text, history:send_history })
+    }).then(function(r){
+      if(r.status === 401){ return { __unauthorized:true }; }
+      return r.json();
+    }).then(function(data){
+      typing.remove();
+      if(data && data.__unauthorized){
+        showGate('ご利用期間が終了しています',
+          '継続をご希望の場合は、あらためてお申し込みください。<br>お心当たりがない場合はLINEからご連絡ください。');
+        return;
+      }
+      if(data && data.ok && data.reply){
+        history.push({ role:'assistant', content:data.reply, ts:Date.now() });
+        saveHistory();
+        addBubble('assistant', data.reply);
+        if(typeof gtag==='function'){ gtag('event','kubo_chat_reply',{}); }
+      } else {
+        addBubble('error', (data && data.message) || 'うまく応答できませんでした。時間をおいて再度お試しください。');
+      }
+    }).catch(function(){
+      typing.remove();
+      addBubble('error', '通信に失敗しました。電波状況をご確認のうえ、もう一度お試しください。');
+    }).then(function(){
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+    });
+  }
+
+  function autosize(){
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 140) + 'px';
+  }
+
+  // ---- 起動 ----------------------------------------------------------
+  adoptTokenFromUrl();
+
+  if(!getToken()){
+    showGate();
+  } else {
+    // サーバー側で署名と期限を検証する(画面側の判定は信用しない)
+    fetch('/api/kubo?fn=verify', {
+      headers:{ 'Authorization':'Bearer ' + getToken() }
+    }).then(function(r){
+      if(!r.ok) throw new Error('unauthorized');
+      return r.json();
+    }).then(function(data){
+      showApp();
+      if(data && data.expires_at){
+        try{ localStorage.setItem(EXP_KEY, String(data.expires_at)); }catch(e){}
+        var d = new Date(data.expires_at * 1000);
+        document.getElementById('expiryLabel').textContent =
+          'ご利用期限 ' + (d.getMonth()+1) + '/' + d.getDate();
+      }
+      loadHistory();
+      renderHistory();
+      input.focus();
+    }).catch(function(){
+      showGate('ご利用期間が終了しています',
+        '継続をご希望の場合は、あらためてお申し込みください。<br>お心当たりがない場合はLINEからご連絡ください。');
+    });
+  }
+
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('input', autosize);
+  // スマホでの誤送信を防ぐため、送信はボタンのみ。PCは Ctrl/Cmd+Enter で送信。
+  input.addEventListener('keydown', function(e){
+    if((e.metaKey || e.ctrlKey) && e.key === 'Enter'){ e.preventDefault(); send(); }
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c){
+    c.addEventListener('click', function(){
+      input.value = c.textContent;
+      autosize();
+      input.focus();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

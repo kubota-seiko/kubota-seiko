@@ -6,6 +6,8 @@
 // 重要: レスポンスを返した後の処理はVercel側で実行が保証されないため、
 // Misoca連携は必ずレスポンスを返す前にawaitで完了させること。
 
+const kuboLib = require('./_kubo-lib.js');
+
 const PAYPAL_API_BASE = process.env.PAYPAL_API_BASE || 'https://api-m.sandbox.paypal.com';
 const MISOCA_API_BASE = 'https://app.misoca.jp/api/v3';
 const MISOCA_OAUTH_BASE = 'https://app.misoca.jp/oauth2';
@@ -18,7 +20,9 @@ const SERVICES = {
   'monthly-2': { name: '月2回伴走プラン', amount: 55000 },
   'lp-planning': { name: '企画整理セッション', amount: 16500 },
   'sokujitsu-lp': { name: '即日LPラボ（モニター）', amount: 55000 },
-  'course-3m': { name: 'スポット相談 6回回数券', amount: 99000 }
+  'course-3m': { name: 'スポット相談 6回回数券', amount: 99000 },
+  // くぼちゃっと: Misocaで支払い済み請求書を発行する。
+  'kubo-monthly': { name: 'くぼちゃっと 31日利用', amount: 3300 }
 };
 
 async function getPaypalAccessToken() {
@@ -179,6 +183,12 @@ async function publishLp(slug) {
 async function syncToMisoca(serviceId, payerName, payerEmail) {
   const service = SERVICES[serviceId];
   if (!service) return 'skipped-unknown-service';
+  // Preview(Vercelのプレビュー環境)は PayPal Sandbox を使うテスト用のため、
+  // Misocaに実際の請求書を作らない。Production(VERCEL_ENV==='production')は従来どおり発行する。
+  if (process.env.VERCEL_ENV === 'preview') {
+    console.log('[misoca] skipped on preview deployment');
+    return 'skipped-preview';
+  }
   try {
     const misocaToken = await getMisocaAccessToken();
     if (!misocaToken) return 'skipped-not-configured';
@@ -249,7 +259,32 @@ module.exports = async (req, res) => {
       console.error('[lp-publish] post-capture error:', err.message || err);
     }
 
-    res.status(200).json({ status: captureData.status, id: captureData.id, misoca: misocaStatus, published: published });
+    // くぼちゃっと: 決済が成立したときだけ、専用チャットの利用権トークンを発行する。
+    // 他の商品では kuboToken を付けない(既存商品のレスポンスは従来どおり)。
+    // 署名鍵が未設定なら発行しないが、決済の成功レスポンスには影響させない。
+    let kuboToken = null;
+    let kuboExpiresAt = null;
+    try {
+      if (serviceId === 'kubo-monthly' && captureData.status === 'COMPLETED') {
+        const kuboSecret = (process.env.KUBO_SESSION_SECRET || '').trim();
+        if (kuboSecret) {
+          const issued = kuboLib.issueToken(
+            { oid: captureData.id, plan: 'monthly' },
+            kuboSecret
+          );
+          kuboToken = issued.token;
+          kuboExpiresAt = issued.exp;
+        } else {
+          console.error('[kubo] KUBO_SESSION_SECRET not set; token not issued');
+        }
+      }
+    } catch (err) {
+      console.error('[kubo] token issue failed:', String((err && err.message) || err).slice(0, 200));
+    }
+
+    const out = { status: captureData.status, id: captureData.id, misoca: misocaStatus, published: published };
+    if (kuboToken) { out.kuboToken = kuboToken; out.kuboExpiresAt = kuboExpiresAt; }
+    res.status(200).json(out);
   } catch (err) {
     console.error(err);
     if (!res.headersSent) {
