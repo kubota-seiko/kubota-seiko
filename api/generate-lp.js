@@ -36,6 +36,52 @@ function parseJsonLoose(s) {
   return null;
 }
 
+// Structured Outputs 用の JSON Schema。既存の lp_json 8-type 構造に一致(構造は不変)。
+// 制約は string/array/enum のみ(minLength/maxLength 等の非対応制約は使わない。
+// 文字数上限は既存の lpJson 正規化がそのまま担保)。strict 要件のため各 object に
+// additionalProperties:false と required を付与する。
+const LP_JSON_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['meta', 'headline', 'subheadline', 'cta', 'sections'],
+  properties: {
+    meta: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['title', 'description'],
+      properties: {
+        title: { type: 'string' },
+        description: { type: 'string' }
+      }
+    },
+    headline: { type: 'string' },
+    subheadline: { type: 'string' },
+    cta: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['label', 'type'],
+      properties: {
+        label: { type: 'string' },
+        type: { type: 'string', enum: ['line', 'form', 'checkout'] }
+      }
+    },
+    sections: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['type', 'heading', 'body', 'items'],
+        properties: {
+          type: { type: 'string', enum: ['problem', 'solution', 'benefits', 'service', 'price', 'voice', 'faq', 'cta'] },
+          heading: { type: 'string' },
+          body: { type: 'string' },
+          items: { type: 'array', items: { type: 'string' } }
+        }
+      }
+    }
+  }
+};
+
 function supabaseHeaders(key) {
   return {
     'apikey': key,
@@ -360,22 +406,33 @@ module.exports = async (req, res) => {
     // AIを打ち切る(プラットフォームの504ではなくクリーンな500で返すため)。最低20秒は確保。
     const aiBudgetMs = Math.max(20000, 57000 - (Date.now() - startedAt));
     const aiTimer = setTimeout(() => aiCtrl.abort(), aiBudgetMs);
+    // Structured Outputs: lp_json を JSON Schema で拘束し、JSON崩れ由来の500を減らす。
+    // max_tokens/system/messages は不変。output_config を1フィールド足すだけ。
+    const baseBody = {
+      model,
+      max_tokens: 4000,
+      system: sysPrompt,
+      messages: [{ role: 'user', content: userContent }]
+    };
+    const callAnthropic = (useSchema) => fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: aiCtrl.signal,
+      headers: {
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(useSchema
+        ? Object.assign({}, baseBody, { output_config: { format: { type: 'json_schema', schema: LP_JSON_SCHEMA } } })
+        : baseBody)
+    });
     try {
-      apiRes = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        signal: aiCtrl.signal,
-        headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 4000,
-          system: sysPrompt,
-          messages: [{ role: 'user', content: userContent }]
-        })
-      });
+      apiRes = await callAnthropic(true);
+      // 非対応モデル/スキーマ拒否(400)のときだけ、output_config を外して1回だけ再試行(後方互換)。
+      if (apiRes.status === 400) {
+        console.warn('[generate-lp] structured output rejected (400); retrying without output_config');
+        apiRes = await callAnthropic(false);
+      }
     } catch (e) {
       console.error('[generate-lp] ai request failed:', String((e && e.message) || e).slice(0, 200));
       res.status(500).json({ ok: false, error: 'ai_request_failed' });
