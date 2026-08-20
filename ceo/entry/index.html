@@ -331,7 +331,7 @@
       });
   }
   function post(payload) {
-    return api('/api/ceo-entry', {
+    return api('/api/ceo?fn=entry', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(payload)
@@ -395,7 +395,7 @@
   }
 
   function load() {
-    return api('/api/ceo-dashboard').then(function (out) {
+    return api('/api/ceo?fn=dashboard').then(function (out) {
       if (out.status !== 200 || !out.data || !out.data.ok) return;
       var d = out.data;
       state.accounts = d.lists.accounts;

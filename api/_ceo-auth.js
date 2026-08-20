@@ -1,8 +1,8 @@
 // CEO OS 認証エンドポイント
 // ---------------------------------------------------------------------
-// POST /api/ceo-auth          { passphrase: "..." }  → 署名付きCookieを発行
-// POST /api/ceo-auth?action=logout                   → Cookieを失効
-// GET  /api/ceo-auth                                 → ログイン状態の確認のみ
+// POST /api/ceo?fn=auth                  { passphrase: "..." } → 署名付きCookieを発行
+// POST /api/ceo?fn=auth&action=logout    → Cookieを失効
+// GET  /api/ceo?fn=auth                  → ログイン状態の確認のみ
 //
 // 必要な環境変数(Vercelダッシュボードで設定・値はコードに書かない):
 //   CEO_PASSPHRASE      … ログイン用パスフレーズ

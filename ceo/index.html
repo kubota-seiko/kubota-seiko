@@ -8,7 +8,7 @@
 <title>CEO OS</title>
 <!--
   重要: このHTMLには金額・残高などの機密データを一切埋め込まない。
-  数字はすべて認証必須の /api/ceo-dashboard から取得する。
+  数字はすべて認証必須の /api/ceo?fn=dashboard から取得する。
   静的HTMLは Vercel の CDN が直接配信するため Cookie 認証が効かないが、
   データを含まないので漏洩しない。
   GA4(track.js)は読み込まない(自分専用の私的ツールのため)。
@@ -523,7 +523,7 @@
     var dir = btn.getAttribute('data-dir');
     btn.disabled = true;
 
-    api('/api/ceo-entry', {
+    api('/api/ceo?fn=entry', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(isTask
@@ -550,7 +550,7 @@
   // --- 読み込み -----------------------------------------------------
 
   function load() {
-    api('/api/ceo-dashboard').then(function (out) {
+    api('/api/ceo?fn=dashboard').then(function (out) {
       if (out.status === 200 && out.data && out.data.ok) {
         render(out.data);
       } else {

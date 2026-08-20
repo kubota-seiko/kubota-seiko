@@ -1,6 +1,6 @@
 // CEO OS 入力エンドポイント(追加・更新・削除・完了トグル)
 // ---------------------------------------------------------------------
-// POST /api/ceo-entry
+// POST /api/ceo?fn=entry
 //   {
 //     "type":   "account" | "cash_event" | "task" | "setting",
 //     "action": "create" | "update" | "delete" | "settle" | "unsettle" | "done" | "reopen",

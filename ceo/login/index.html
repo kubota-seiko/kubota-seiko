@@ -104,7 +104,7 @@
     btn.disabled = true;
     btn.textContent = '確認中...';
 
-    fetch('/api/ceo-auth', {
+    fetch('/api/ceo?fn=auth', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       credentials: 'same-origin',
