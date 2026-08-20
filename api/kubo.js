@@ -19,10 +19,13 @@
 
 const lib = require('./_kubo-lib.js');
 const { KUBO_OS } = require('./_kubo-os.js');
+const schema = require('./_kubo-schema.js');
 
 const OPENAI_ENDPOINT = 'https://api.openai.com/v1/responses';
 const DEFAULT_MODEL = 'gpt-5.6-terra';
-const MAX_OUTPUT_TOKENS = 900;
+// reply に加えて内部分析JSONも出力するため、旧900から引き上げる。
+// スキーマは reply を先頭に置いており、打ち切られても本文が残りやすい。
+const MAX_OUTPUT_TOKENS = 1600;
 const OPENAI_TIMEOUT_MS = 45000;
 
 // 利用者向けの文言(内部エラーの詳細は出さない)
@@ -63,9 +66,36 @@ function extractText(data) {
   return String(text || '').trim();
 }
 
-async function callOpenAI(apiKey, model, history, message) {
+/**
+ * 安全上の理由でモデルが応答を拒否した場合、content に type:'refusal' が入る。
+ * これを本文なしと同一視すると原因が分からなくなるため、別扱いで検出する。
+ */
+function extractRefusal(data) {
+  const out = (data && Array.isArray(data.output)) ? data.output : [];
+  for (const o of out) {
+    const parts = (o && Array.isArray(o.content)) ? o.content : [];
+    for (const c of parts) {
+      if (c && c.type === 'refusal' && typeof c.refusal === 'string' && c.refusal.trim()) {
+        return c.refusal.trim();
+      }
+    }
+  }
+  return '';
+}
+
+async function callOpenAI(apiKey, model, history, message, useSchema) {
   // 会話履歴 + 今回の入力。instructions(developer相当)はユーザー入力より優先される。
   const input = history.concat([{ role: 'user', content: message }]);
+
+  // Structured Outputs。モデルが未対応の場合は呼び出し側が useSchema=false で再試行する。
+  const payload = {
+    model: model,
+    instructions: KUBO_OS,
+    input: input,
+    max_output_tokens: MAX_OUTPUT_TOKENS,
+    reasoning: { effort: 'low' }
+  };
+  if (useSchema) payload.text = schema.TEXT_FORMAT;
 
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), OPENAI_TIMEOUT_MS);
@@ -78,13 +108,7 @@ async function callOpenAI(apiKey, model, history, message) {
         'Authorization': 'Bearer ' + apiKey,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        model: model,
-        instructions: KUBO_OS,
-        input: input,
-        max_output_tokens: MAX_OUTPUT_TOKENS,
-        reasoning: { effort: 'low' }
-      })
+      body: JSON.stringify(payload)
     });
   } catch (e) {
     const aborted = e && (e.name === 'AbortError' || /abort/i.test(String((e && e.message) || '')));
@@ -94,9 +118,14 @@ async function callOpenAI(apiKey, model, history, message) {
   }
 
   if (!apiRes.ok) {
-    // 本文は相談内容を含みうるため保存しない。ステータスのみ記録する。
-    console.error('[kubo] openai http', apiRes.status);
-    return { ok: false, code: 'ai_error' };
+    // 本文は相談内容を含みうるため保存しない。ステータスと種別のみ記録する。
+    let kind = '';
+    try {
+      const errBody = await apiRes.json();
+      kind = (errBody && errBody.error && (errBody.error.type || errBody.error.code)) || '';
+    } catch (_) { /* 解析できなくても致命ではない */ }
+    console.error('[kubo] openai http', apiRes.status, kind ? 'type=' + kind : '');
+    return { ok: false, code: 'ai_error', status: apiRes.status };
   }
 
   let data;
@@ -106,12 +135,30 @@ async function callOpenAI(apiKey, model, history, message) {
     return { ok: false, code: 'ai_bad_response' };
   }
 
+  // 安全上の拒否は空応答と区別する
+  const refusal = extractRefusal(data);
+  if (refusal) {
+    console.error('[kubo] openai refusal');
+    return { ok: false, code: 'ai_refusal' };
+  }
+
   const text = extractText(data);
   if (!text) {
     console.error('[kubo] openai empty output');
     return { ok: false, code: 'ai_empty' };
   }
-  return { ok: true, text: text };
+
+  // 構造化出力なら素直にparseできる。崩れていても parseJsonLoose が拾う。
+  // それでも駄目なら本文そのものを reply として扱い、利用者を空応答にしない。
+  const parsed = schema.parseJsonLoose(text);
+  if (!parsed) console.warn('[kubo] structured output not parsed; falling back to raw text');
+  const result = schema.normalizeResult(parsed, text);
+
+  if (!result.reply) {
+    console.error('[kubo] empty reply after normalize');
+    return { ok: false, code: 'ai_empty' };
+  }
+  return { ok: true, result: result, structured: !!parsed };
 }
 
 // =====================================================================
@@ -155,17 +202,26 @@ async function handleChat(req, res) {
   const history = lib.normalizeHistory(body.history);
   const model = (process.env.KUBO_MODEL || '').trim() || DEFAULT_MODEL;
 
-  const result = await callOpenAI(apiKey, model, history, check.value);
-  if (!result.ok) {
+  // まず Structured Outputs で試す。モデル/APIが未対応で 400 が返った場合だけ、
+  // スキーマなしで1度だけ再試行する(OS側でもJSON形式を指示しているため成立する)。
+  let out = await callOpenAI(apiKey, model, history, check.value, true);
+  if (!out.ok && out.status === 400) {
+    console.warn('[kubo] structured output rejected (400); retrying without schema');
+    out = await callOpenAI(apiKey, model, history, check.value, false);
+  }
+
+  if (!out.ok) {
     // 決済済みユーザーの体験を止めないため、HTTPは200で文言を返す
     return lib.json(res, 200, {
       ok: false,
-      error: result.code,
-      message: result.code === 'ai_timeout' ? MSG.timeout : MSG.aiError
+      error: out.code,
+      message: out.code === 'ai_timeout' ? MSG.timeout : MSG.aiError
     });
   }
 
-  return lib.json(res, 200, { ok: true, reply: result.text });
+  // facts / interpretations / hypotheses は未確認の推測を含む内部分析のため、
+  // ブラウザへ返さない。永続化もしない(v0.1ではDBを使わない)。
+  return lib.json(res, 200, Object.assign({ ok: true }, schema.toPublic(out.result)));
 }
 
 async function handleVerify(req, res) {
