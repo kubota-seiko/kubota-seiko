@@ -809,7 +809,9 @@
 .clients-title{font-size:24px;font-weight:800;line-height:1.4;color:#1A1A2E;margin:0 0 10px;}
 .clients-lead{font-size:14px;color:#5A5A5A;line-height:1.9;margin:0;}
 .clients-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto;}
-.client-card{display:flex;flex-direction:column;border:1px solid #E7D8B8;border-radius:14px;background:linear-gradient(180deg,#fff,#FBF8F1);box-shadow:0 8px 20px rgba(184,146,79,.08);padding:18px 18px 16px;}
+.client-card{display:flex;flex-direction:column;border:1px solid #E7D8B8;border-radius:14px;background:linear-gradient(180deg,#fff,#FBF8F1);box-shadow:0 8px 20px rgba(184,146,79,.08);padding:18px 18px 16px;overflow:hidden;}
+.client-thumb{margin:-18px -18px 15px;aspect-ratio:5/3;overflow:hidden;background:#EEE;border-bottom:1px solid #E7D8B8;}
+.client-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
 .client-badge{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;color:#B8924F;background:#F4EFE5;border:1px solid #E7D8B8;border-radius:999px;padding:4px 11px;margin:0 0 11px;}
 .client-badge.hp{color:#fff;background:#1A1A2E;border-color:#1A1A2E;}
 .client-badge.rewrite{color:#3F4F38;background:#EAF0E2;border-color:#D3E0C4;}
@@ -834,6 +836,7 @@
     <div class="clients-grid">
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-seiju.jpg" alt="Seiju国際知財事務所 新サイト" loading="lazy"></div>
         <span class="client-badge hp">本格HPリニューアル</span>
         <p class="client-name">Seiju国際知財事務所</p>
         <p class="client-role">弁理士 北村 光司 先生</p>
@@ -842,6 +845,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-greenart.jpg" alt="株式会社グリーン・アート 代表取締役 松本直樹様" loading="lazy"></div>
         <span class="client-badge hp">本格HPリニューアル</span>
         <p class="client-name">株式会社グリーン・アート</p>
         <p class="client-role">代表取締役 松本 直樹 様</p>
@@ -850,6 +854,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-yuai.jpg" alt="社会保険労務士法人ゆうあいパートナーズ" loading="lazy"></div>
         <span class="client-badge rewrite">HP文章リライト</span>
         <p class="client-name">社会保険労務士法人<br>ゆうあいパートナーズ</p>
         <p class="client-role">大阪市 ／ 人事労務・社会保険</p>
@@ -858,6 +863,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-arita.jpg" alt="株式会社三住建設 代表取締役 有田三千子様" loading="lazy"></div>
         <span class="client-badge">即日LP</span>
         <p class="client-name">株式会社三住建設</p>
         <p class="client-role">代表取締役 有田 三千子 様</p>
@@ -866,6 +872,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-ohyama.jpg" alt="大山太徳 ワンマンライブ ACCELERATE 2027" loading="lazy"></div>
         <span class="client-badge">即日LP</span>
         <p class="client-name">大山 太徳 ワンマンライブ<br>「ACCELERATE 2027」</p>
         <p class="client-role">大阪・ザ・シンフォニーホール</p>
@@ -874,6 +881,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-tsuruji.jpg" alt="落語家 笑福亭鶴二 師匠" loading="lazy"></div>
         <span class="client-badge">即日LP</span>
         <p class="client-name">笑福亭 鶴二 師匠</p>
         <p class="client-role">落語家 ／ 芸道四十周年</p>
@@ -882,6 +890,7 @@
       </div>
 
       <div class="client-card">
+        <div class="client-thumb"><img src="images/roster-okaeri.jpg" alt="Okaeri（ダリ）" loading="lazy"></div>
         <span class="client-badge">LP制作</span>
         <p class="client-name">Okaeri（ダリ）</p>
         <p class="client-role">リトリート・体験セッション</p>
