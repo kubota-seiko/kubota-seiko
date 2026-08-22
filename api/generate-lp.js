@@ -36,6 +36,76 @@ function parseJsonLoose(s) {
   return null;
 }
 
+// Structured Outputs 用の JSON Schema。lp_json 8-type 構造(永続部・不変)に加え、
+// 4,980円版の価値(戦略サマリー strategy / 注意事項 notes)を出力に含める。
+// strategy/notes は【レスポンス専用】で lp_json/DBには保存しない(後方互換)。
+// 制約は string/array/enum のみ(minLength/maxLength等の非対応制約は使わない。
+// 文字数上限は正規化が担保)。strict 要件のため各 object に additionalProperties:false と required。
+const LP_JSON_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['strategy', 'meta', 'headline', 'subheadline', 'cta', 'sections', 'notes'],
+  properties: {
+    strategy: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['who', 'primary_angle', 'problem', 'unique_mechanism', 'proof', 'primary_cta'],
+      properties: {
+        who: { type: 'string' },
+        primary_angle: { type: 'string' },
+        problem: { type: 'string' },
+        unique_mechanism: { type: 'string' },
+        proof: { type: 'string' },
+        primary_cta: { type: 'string' }
+      }
+    },
+    meta: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['title', 'description'],
+      properties: {
+        title: { type: 'string' },
+        description: { type: 'string' }
+      }
+    },
+    headline: { type: 'string' },
+    subheadline: { type: 'string' },
+    cta: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['label', 'type'],
+      properties: {
+        label: { type: 'string' },
+        type: { type: 'string', enum: ['line', 'form', 'checkout'] }
+      }
+    },
+    sections: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['type', 'heading', 'body', 'items'],
+        properties: {
+          type: { type: 'string', enum: ['problem', 'solution', 'benefits', 'service', 'price', 'voice', 'faq', 'cta'] },
+          heading: { type: 'string' },
+          body: { type: 'string' },
+          items: { type: 'array', items: { type: 'string' } }
+        }
+      }
+    },
+    notes: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['fact_gaps', 'needs_confirmation', 'softened_inferences'],
+      properties: {
+        fact_gaps: { type: 'array', items: { type: 'string' } },
+        needs_confirmation: { type: 'array', items: { type: 'string' } },
+        softened_inferences: { type: 'array', items: { type: 'string' } }
+      }
+    }
+  }
+};
+
 function supabaseHeaders(key) {
   return {
     'apikey': key,
@@ -313,20 +383,49 @@ module.exports = async (req, res) => {
     // 3) Tally 商品情報を抽出
     const tally = tallyJson ? extractTallyInfo(tallyJson) : { semantic: {}, pairs: [] };
 
+    // 3b) 会社の資産(site_facts)/裏取り本文(site_excerpt)を診断JSONから読む。
+    //     後方互換: shindanがsite_factsを保存していない旧データでは空扱いで継続。
+    const siteFacts = (diagnosisJson && diagnosisJson.site_facts) || null;
+    const siteExcerpt = (diagnosisJson && diagnosisJson.site_excerpt) || '';
+    const FACT_LABELS = [
+      ['business', '会社/事業'], ['target_customers', '対象顧客'], ['services', '提供サービス'],
+      ['strengths', '強み/差別化'], ['proof', '実績/数値/取引先等'], ['people', '代表者/経歴'],
+      ['voices', '顧客の声/推薦'], ['current_cta', '現状の誘導先']
+    ];
+    const factLines = [];
+    if (siteFacts && typeof siteFacts === 'object') {
+      for (const [k, label] of FACT_LABELS) {
+        const arr = Array.isArray(siteFacts[k]) ? siteFacts[k].filter((x) => x != null && String(x).trim()) : [];
+        if (arr.length) factLines.push('【' + label + '】\n' + arr.map((x) => '・' + String(x)).join('\n'));
+      }
+    }
+    let siteFactsText = factLines.length ? factLines.join('\n\n') : '(HPからの確認事実なし)';
+    if (siteExcerpt) siteFactsText += '\n\n【HP本文抜粋(裏取り用)】\n' + String(siteExcerpt).slice(0, 2500);
+
     // 4) Claude で lp_json を生成
     const model = (process.env.LP_MODEL || 'claude-sonnet-4-5').trim();
 
     const sysPrompt =
-      'あなたは「思考整理の参謀・窪田成功」のLP設計アシスタントです。与えられた「診断結果」と「Tallyの回答」から読み取れる情報だけを根拠に、9,800円の商品として通用する、完成された1本のランディングページ構造(lp_json)を設計します。' +
-      '【窪田式の原則】誰に・何を・どの順で伝えるかを明確にし、導線は1本・CTAは1つに絞る。心理順(現在地→課題→望む未来→解決→証拠→価格→行動)で構成する。誇張・断定・煽り(売上◯倍・必ず成果 等)は禁止。丁寧語で、簡潔かつ具体的に書く。' +
-      '【事実の扱い】社名・数値・実績・経歴・引用などの事実は創作しない。回答や診断から読み取れない情報は書かない。一方で、Tallyや診断に実在する実績・数値・経歴(例:経験年数・実績件数・保有スキル)は、証拠として具体的に活用する。' +
-      '【構成】根拠がある範囲で、次の構成を可能な限りそろえた"痩せていないLP"にする。根拠が全く無いセクションのみ省く: 1 problem(現状・お悩み) / 2 solution(解決策) / 3 benefits(得られる変化・最大4件) / 4 service(内容・特徴・他との違い＝差別化点) / 5 voice(実績・証拠。実在する実績や数値があれば必ず具体的に載せる) / 6 price(価格・提供内容。価格が分かる場合は必ず入れる) / 7 faq(想定される不安を解消) / 8 cta(行動を後押しする一文＋CTA)。' +
-      '【具体性】ターゲットの状況・言葉に寄せ、一般論を避ける。他の選択肢との違いを明確にする。各セクションの body は2〜4文でしっかり書き、薄い一文で終わらせない。' +
-      '【ファーストビュー】headline は「誰が・どんな未来を得られるか」が伝わる具体的な訴求(約40字)。subheadline は課題→解決の流れが伝わるよう約90〜120字で書く。' +
-      '【出力】日本語。指定JSONスキーマの純粋なJSONのみを出力(前置き・コードブロック・説明なし)。sections の type は列挙値のみ。順番は心理順を基本に最適化。items は各約80字、不要なセクションは空配列で可。' +
-      'スキーマ: {"meta":{"title":string,"description":string},"headline":string,"subheadline":string,' +
-      '"cta":{"label":string,"type":"line"|"form"|"checkout"},' +
-      '"sections":[{"type":"problem"|"solution"|"benefits"|"service"|"price"|"voice"|"faq"|"cta","heading":string,"body":string,"items":[string]}]}. ';
+      'あなたは「思考整理の参謀・窪田成功」の“戦略・LP原稿”アシスタントです。会社のHP・診断・Tally回答から読み取れる事実だけを根拠に、まず売る戦略を整理し、そのまま使えるLP完成原稿を設計します。「普通のAIがLPを書いた文章」ではなく、会社固有の事実を使い、売る順番まで設計された原稿を出すのが目的です。' +
+      // ── 内部処理順(1回の生成の中で、この順で考える) ──
+      '【内部処理順】(A)Strategy: いきなり本文を書かず、まず WHO/現在地/Problem/Agitation/Desired Outcome/Unique Mechanism/Reason Why/Proof/Offer/Objections/Primary CTA を内部で決める。(B)Evidence: 使う情報を FACT(確認できる事実) / INFERENCE(合理的推測だが断定不可) / UNKNOWN(根拠なし) に分類する。(C)Conversion: 心理順で構成を組む。(D)Copy: 事実に基づく本文を書く。' +
+      // ── Evidence Engine(最重要・捏造禁止) ──
+      '【Evidence Engine】売るために事実を作らない。UNKNOWNは書かない。INFERENCEは「期待できます/可能性があります/〜につながりやすくなります」等の非断定表現に限る。次はFACTがある時のみ使用(無ければ書かない・匂わせない): 売上/顧客数/実績件数/経験年数/順位/受賞/資格/推薦/顧客の声/Before-After/限定/残席/期間/保証/返金/値引き/納期/成果保証。' +
+      // ── 情報源の優先順位 ──
+      '【情報源の優先順位】今回売る商品(商品名/価格/対象/商品内容/CTA/特に伝えたいこと)=Tally最優先。会社の資産(事業/対象顧客/サービス/強み/実績/代表者・経歴/顧客の声/現状CTA)=site_facts。現HPで伝わっていない点・導線課題=diagnosis(Problem/Agitationと改善方向に使う)。矛盾時は今回商品の明示回答(商品/価格/対象/CTA)をTally優先。ただし実績・数値・経歴等はsite_factsかTallyで確認できる内容以外を書かない。' +
+      // ── Hero / Copy品質 ──
+      '【Hero】主役は商品名ではなく“顧客が得られる変化”。NG「○○サービスです」/ OK「○○な状態から、○○できる状態へ」。headlineは誰がどんな未来を得るか(約40字)、subheadlineは課題→解決(約90〜120字)。' +
+      '【Copy品質】高品質/圧倒的/革新的/業界No.1/寄り添います/最高/絶対/必ず 等の“根拠なき抽象・断定”を禁止。抽象語→具体的事実→顧客メリットに変換する。丁寧語・簡潔。' +
+      '【Proof配置】実績・数値は最後にまとめるだけでなく、対応する主張の直後に近接配置(例:「短時間で強みを整理できる」→直後に実在FACTを置く)。Proofが無ければ無理に埋めない。' +
+      // ── 構成(心理順・固定14禁止) ──
+      '【構成】心理順を基本に、情報量・商品タイプで統合/省略(全セクション固定は禁止・根拠が全く無いセクションは省く): Hero(top) → problem → (agitation) → solution → service(=Unique Mechanism/独自プロセス) → benefits → voice(=Proof, 実在時のみ) → price(Offer・Value) → faq(Objections) → cta。各bodyは2〜4文で具体的に。itemsは各約80字。' +
+      // ── 4,980円版のOffer整理(重要) ──
+      '【この商品のOffer】これは“LPを公開する商品”ではなく“完成原稿を買う商品”。9,800円の公開・決済・再生成等のプラットフォーム条件は本文に一切混ぜない。price/offer/ctaは【顧客自身の商品】のもの(Tally由来)だけで構成する。' +
+      // ── strategy / notes 出力 ──
+      '【strategy 出力】who(誰に)/primary_angle(一番強い訴求)/problem/unique_mechanism(独自性)/proof(根拠)/primary_cta を各1〜2文で簡潔に。' +
+      '【notes 出力】fact_gaps(FACT不足で書けなかった点)/needs_confirmation(公開前に確認推奨)/softened_inferences(断定を避けた箇所)を短い配列で。無ければ空配列。' +
+      // ── 出力形式 ──
+      '【出力】日本語。指定JSONスキーマの純粋なJSONのみ(前置き・コードブロック・説明なし)。sectionsのtypeは列挙値のみ。strategy/notesは簡潔に保ち、本文(sections)を必ず最後まで完結させることを最優先する。';
 
     const diagText = diagnosisJson
       ? ('総評: ' + String(diagnosisJson.summary || '(なし)') + '\n' +
@@ -351,8 +450,10 @@ module.exports = async (req, res) => {
       : '(Tally回答なし。商品情報は空。診断から読み取れる範囲で、事実を創作せず設計してください)';
 
     const userContent =
-      '【診断結果】\n' + diagText + '\n\n' + tallyText + '\n\n' +
-      '上記だけを根拠に lp_json を生成してください。根拠の無い事実は書かないでください。';
+      '【今回売る商品(Tally回答・最優先)】\n' + tallyText + '\n\n' +
+      '【会社の資産(HP確認事実 site_facts)】\n' + siteFactsText + '\n\n' +
+      '【現HPの導線課題(改善方向 diagnosis)】\n' + diagText + '\n\n' +
+      'まず戦略(誰に/何を/なぜこの商品で/何を根拠に)を内部で決め、FACT/INFERENCE/UNKNOWNを分類してから、strategy・lp_json・notes を生成してください。根拠の無い事実は書かない(UNKNOWNは出さない)。';
 
     let apiRes;
     const aiCtrl = new AbortController();
@@ -360,22 +461,33 @@ module.exports = async (req, res) => {
     // AIを打ち切る(プラットフォームの504ではなくクリーンな500で返すため)。最低20秒は確保。
     const aiBudgetMs = Math.max(20000, 57000 - (Date.now() - startedAt));
     const aiTimer = setTimeout(() => aiCtrl.abort(), aiBudgetMs);
+    // Structured Outputs: lp_json を JSON Schema で拘束し、JSON崩れ由来の500を減らす。
+    // max_tokens/system/messages は不変。output_config を1フィールド足すだけ。
+    const baseBody = {
+      model,
+      max_tokens: 4000,
+      system: sysPrompt,
+      messages: [{ role: 'user', content: userContent }]
+    };
+    const callAnthropic = (useSchema) => fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: aiCtrl.signal,
+      headers: {
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(useSchema
+        ? Object.assign({}, baseBody, { output_config: { format: { type: 'json_schema', schema: LP_JSON_SCHEMA } } })
+        : baseBody)
+    });
     try {
-      apiRes = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        signal: aiCtrl.signal,
-        headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 4000,
-          system: sysPrompt,
-          messages: [{ role: 'user', content: userContent }]
-        })
-      });
+      apiRes = await callAnthropic(true);
+      // 非対応モデル/スキーマ拒否(400)のときだけ、output_config を外して1回だけ再試行(後方互換)。
+      if (apiRes.status === 400) {
+        console.warn('[generate-lp] structured output rejected (400); retrying without output_config');
+        apiRes = await callAnthropic(false);
+      }
     } catch (e) {
       console.error('[generate-lp] ai request failed:', String((e && e.message) || e).slice(0, 200));
       res.status(500).json({ ok: false, error: 'ai_request_failed' });
@@ -428,6 +540,24 @@ module.exports = async (req, res) => {
         }))
     };
 
+    // strategy / notes は【レスポンス専用】(lp_json/DBには保存しない)。4,980円版の戦略サマリー・注意事項。
+    const strArr = (v) => (Array.isArray(v) ? v.filter((x) => x != null && String(x).trim()).slice(0, 8).map((x) => s(x, 200)) : []);
+    const st = (parsed.strategy && typeof parsed.strategy === 'object') ? parsed.strategy : {};
+    const strategyOut = {
+      who: s(st.who, 300),
+      primary_angle: s(st.primary_angle, 300),
+      problem: s(st.problem, 300),
+      unique_mechanism: s(st.unique_mechanism, 300),
+      proof: s(st.proof, 300),
+      primary_cta: s(st.primary_cta, 200)
+    };
+    const nt = (parsed.notes && typeof parsed.notes === 'object') ? parsed.notes : {};
+    const notesOut = {
+      fact_gaps: strArr(nt.fact_gaps),
+      needs_confirmation: strArr(nt.needs_confirmation),
+      softened_inferences: strArr(nt.softened_inferences)
+    };
+
     // 5-6) slug を生成して lps に insert(unique 衝突は再生成)。毎回新規行。
     let lpRow = null;
     for (let attempt = 0; attempt < 5 && !lpRow; attempt++) {
@@ -464,7 +594,8 @@ module.exports = async (req, res) => {
     }
 
     // 7) lp_json 全文は返さない
-    res.status(200).json({ ok: true, lp_id: lpRow.id, slug: lpRow.slug, status: lpRow.status || 'draft' });
+    // 4,980円版: 戦略サマリー(strategy)と注意事項(notes)を同梱(lp_jsonは不変・DB非保存)。
+    res.status(200).json({ ok: true, lp_id: lpRow.id, slug: lpRow.slug, status: lpRow.status || 'draft', strategy: strategyOut, notes: notesOut });
   } catch (e) {
     console.error('[generate-lp] server error:', String((e && e.message) || e).slice(0, 200));
     res.status(500).json({ ok: false, error: 'server_error' });

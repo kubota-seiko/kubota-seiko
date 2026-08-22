@@ -198,8 +198,9 @@ module.exports = async (req, res) => {
       '渡されたサイトの本文抜粋と構造シグナルだけを根拠に、Web導線（誰に・何を・どの順番で伝え、どこで問い合わせに至るか）の観点で診断します。' +
       '推測で決めつけず、抜粋から読み取れる事実のみを述べ、断定しすぎないこと。誇張・煽り表現（売上◯倍・必ず成果 等）は禁止。丁寧語で簡潔に。' +
       '出力は日本語のJSONのみ。前置きやコードブロックは付けないこと。' +
-      'スキーマ: {"summary": string, "findings": [{"title": string, "now": string, "eff": string, "fix": string}]}. ' +
+      'スキーマ: {"summary": string, "findings": [{"title": string, "now": string, "eff": string, "fix": string}],"site_facts":{"business":[string],"target_customers":[string],"services":[string],"strengths":[string],"proof":[string],"people":[string],"voices":[string],"current_cta":[string]}}. ' +
       'summary=総評1〜2文。findings=3〜4件。title=短い課題名。now=現状（読み取れた事実）。eff=その影響。fix=改善アクション1つ。' +
+      'site_facts=本文と見出しから「明示的に確認できる事実」だけを短い箇条書きで抽出。business=会社/事業, target_customers=対象顧客, services=提供サービス, strengths=強み/差別化, proof=実績/数値/受賞/取引先等, people=代表者/経歴, voices=顧客の声/推薦, current_cta=現状の誘導先。読み取れない項目は空配列[]。推測・一般化・創作は禁止。原文の言葉を尊重し簡潔に。' +
       '本文が薄く判断が難しい場合は findings を減らしてよい。';
 
     const userContent =
@@ -229,7 +230,7 @@ module.exports = async (req, res) => {
         },
         body: JSON.stringify({
           model,
-          max_tokens: 1400,
+          max_tokens: 2500,
           system: sysPrompt,
           messages: [{ role: 'user', content: userContent }]
         })
@@ -271,6 +272,20 @@ module.exports = async (req, res) => {
       fix: String(f.fix || '').slice(0, 300)
     }));
 
+    // site_facts 正規化: 8キーのホワイトリスト、各キー=文字列配列(最大8件×各120字)、欠損キーは[]。
+    // 保存専用(ユーザー返却には含めない)。HPから明示確認できた事実のみ(創作はプロンプトで禁止)。
+    const SITE_FACT_KEYS = ['business', 'target_customers', 'services', 'strengths', 'proof', 'people', 'voices', 'current_cta'];
+    const rawFacts = (parsed && parsed.site_facts && typeof parsed.site_facts === 'object') ? parsed.site_facts : {};
+    const siteFacts = {};
+    for (const k of SITE_FACT_KEYS) {
+      const arr = Array.isArray(rawFacts[k]) ? rawFacts[k] : [];
+      siteFacts[k] = arr
+        .filter((x) => x != null && String(x).trim())
+        .slice(0, 8)
+        .map((x) => String(x).slice(0, 120));
+    }
+    const siteExcerpt = sig.text.slice(0, 4000); // 裏取り用の本文抜粋(保存専用)
+
     const diagnosis = {
       ok: true,
       url,
@@ -289,7 +304,8 @@ module.exports = async (req, res) => {
     try {
       sessionId = await saveDiagnosisToSupabase({
         url,
-        diagnosis,
+        // 保存だけに site_facts / site_excerpt を含める(ユーザー返却の diagnosis は不変)
+        diagnosis: Object.assign({}, diagnosis, { site_facts: siteFacts, site_excerpt: siteExcerpt }),
         utm,
         incomingSessionId: body.session_id
       });
